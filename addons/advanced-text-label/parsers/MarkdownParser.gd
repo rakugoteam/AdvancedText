@@ -1,4 +1,4 @@
-extends "ebbcode_parser.gd"
+extends "EBBCodeParser.gd"
 # Markdown Parser
 # With support for <values> and :emojis:
 # For emojis you need to install emojis-for-godot

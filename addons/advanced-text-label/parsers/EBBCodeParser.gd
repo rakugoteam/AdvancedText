@@ -3,14 +3,21 @@ extends Node
 # Adds support for <values> and :emojis:
 # For emojis you need to install emojis-for-godot
 
-var emojis = load("res://addons/emojis-for-godot/emojis/emojis.gd").new()
+var d := Directory.new()
+
+func get_emojis():
+	if d.dir_exists("res://addons/emojis-for-godot"):
+		return load("res://addons/emojis-for-godot/emojis/emojis.gd").new()
+	else:
+		return null
 
 func parse(text:String, editor:=false, variables:={}) -> String:
 	text = dirty_escaping(text)
 
-	if !editor:
+	if !editor and !variables.empty():
 		text = replace_variables(text, editor)
 	
+	var emojis = get_emojis()
 	if emojis:
 		text = emojis.parse_emojis(text)
 		
