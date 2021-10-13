@@ -3,8 +3,12 @@ extends EditorPlugin
 
 
 func _enter_tree():
-	pass
+	add_custom_type(
+		"AdvancedTextLabel", "RichTextLabel",
+		preload("nodes/AdvancedTextLabel.gd"),
+		preload("icons/AdvancedTextLabel.svg")
+	)
 
 
 func _exit_tree():
-	pass
+	remove_custom_type("AdvancedTextLabel")
