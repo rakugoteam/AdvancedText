@@ -25,9 +25,7 @@ func add_json_keywords_colors(json: String, color: Color) -> void:
 		add_keyword_color(keyword, color)
 
 func load_json_config(json: String) -> void:
-	prints("try to load", json)
 	var content : = get_file_content(json)
-	print("loaded")
 	var config : Dictionary = parse_json(content)
 
 	var member_color := Color(0, 0, 0)

@@ -23,16 +23,16 @@ __meta__ = {
 markups_options_nodepath = NodePath("CenterContainer/HBoxContainer/MarkupOption")
 layout_options_nodepath = NodePath("CenterContainer/HBoxContainer/LayoutOption")
 layout_nodepath = NodePath("Grid")
-edit_tabs_nodepath = NodePath("Grid/TabContainer")
-advanced_text_label_nodepath = NodePath("Grid/AdvancedTextLabel")
+edit_tabs_nodepath = NodePath("Grid/EditorsContainer")
+label_tabs_nodepath = NodePath("Grid/PreviewsContainer")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 20.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
-margin_left = 300.0
-margin_right = 723.0
+margin_left = 309.0
+margin_right = 714.0
 margin_bottom = 20.0
 
 [node name="Label" type="Label" parent="CenterContainer/HBoxContainer"]
@@ -61,14 +61,14 @@ text = "Select Layout"
 
 [node name="LayoutOption" type="OptionButton" parent="CenterContainer/HBoxContainer"]
 margin_left = 328.0
-margin_right = 423.0
+margin_right = 405.0
 margin_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Horizontal"
+text = "Vertical"
 flat = true
 items = [ "Horizontal", null, false, 0, null, "Vertical", null, false, 1, null ]
-selected = 0
+selected = 1
 
 [node name="Grid" type="GridContainer" parent="."]
 margin_top = 24.0
@@ -80,15 +80,16 @@ rect_min_size = Vector2( 800, 500 )
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+columns = 2
 
-[node name="TabContainer" type="TabContainer" parent="Grid"]
-margin_right = 1024.0
-margin_bottom = 286.0
+[node name="EditorsContainer" type="TabContainer" parent="Grid"]
+margin_right = 510.0
+margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tabs_visible = false
 
-[node name="MarkdownEdit" type="TextEdit" parent="Grid/TabContainer"]
+[node name="MarkdownEdit" type="TextEdit" parent="Grid/EditorsContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -108,11 +109,12 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/markdown.json" ]
 
-[node name="RenPyEdit" type="TextEdit" parent="Grid/TabContainer"]
+[node name="RenPyEdit" type="TextEdit" parent="Grid/EditorsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
+margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
@@ -128,11 +130,12 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/renpy.json" ]
 
-[node name="BBCodeEdit" type="TextEdit" parent="Grid/TabContainer"]
+[node name="BBCodeEdit" type="TextEdit" parent="Grid/EditorsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
+margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
@@ -148,10 +151,21 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="AdvancedTextLabel" type="RichTextLabel" parent="Grid"]
-margin_top = 290.0
+[node name="PreviewsContainer" type="TabContainer" parent="Grid"]
+margin_left = 514.0
 margin_right = 1024.0
 margin_bottom = 576.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tabs_visible = false
+
+[node name="MarkdownTextLabel" type="RichTextLabel" parent="Grid/PreviewsContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 8.0
+margin_right = -4.0
+margin_bottom = -4.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -166,5 +180,55 @@ text = "Test Selected Markup here wave"
 script = ExtResource( 1 )
 markup_text = "Test Selected Markup **here** wave"
 markup = "markdown"
+variables = {
+}
+
+[node name="RenPyTextLabel" type="RichTextLabel" parent="Grid/PreviewsContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 8.0
+margin_right = -4.0
+margin_bottom = -4.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 4 )
+custom_fonts/bold_italics_font = ExtResource( 6 )
+custom_fonts/italics_font = ExtResource( 7 )
+custom_fonts/bold_font = ExtResource( 8 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "Test Selected Markup **here** wave"
+text = "Test Selected Markup **here** wave"
+script = ExtResource( 1 )
+markup_text = "Test Selected Markup **here** wave"
+markup = "renpy"
+variables = {
+}
+
+[node name="BBCodeTextLabel" type="RichTextLabel" parent="Grid/PreviewsContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 8.0
+margin_right = -4.0
+margin_bottom = -4.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 4 )
+custom_fonts/bold_italics_font = ExtResource( 6 )
+custom_fonts/italics_font = ExtResource( 7 )
+custom_fonts/bold_font = ExtResource( 8 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "Test Selected Markup **here** wave"
+text = "Test Selected Markup **here** wave"
+script = ExtResource( 1 )
+markup_text = "Test Selected Markup **here** wave"
+markup = "renpy"
 variables = {
 }
