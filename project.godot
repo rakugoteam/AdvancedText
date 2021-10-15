@@ -16,7 +16,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/advanced-text-label/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/advanced-text-label/plugin.cfg", "res://addons/emojis-for-godot/plugin.cfg" )
 
 [physics]
 

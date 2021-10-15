@@ -4,10 +4,10 @@ extends "EBBCodeParser.gd"
 # For emojis you need to install emojis-for-godot
 
 func parse(text:String, editor:=false, variables:={}) -> String:
+	# run base.parse
+	text = .parse(text, editor, variables)
 	text = convert_markdown(text)
-	
-  # run base.parse
-	return .parse(text, editor, variables)
+	return text
 
 func convert_markdown(text:String) -> String:
 	var re = RegEx.new()

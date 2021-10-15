@@ -28,18 +28,14 @@ func _set_markup_text(value:String) -> void:
 	bbcode_enabled = true
 	_markup_text = value
 
-	var can_be_parsed := false
-	can_be_parsed = Engine.editor_hint
+	var p = _get_text_parser()
+	if p == null:
+		return
+	
+	if value == null:
+		return
 
-	if can_be_parsed:
-		var p = _get_text_parser()
-		if p == null:
-			return
-		
-		if value == null:
-			return
-
-		bbcode_text = p.parse(value, Engine.editor_hint, variables)
+	bbcode_text = p.parse(value, Engine.editor_hint, variables)
 	
 func _get_markup_text() -> String:
 	return _markup_text

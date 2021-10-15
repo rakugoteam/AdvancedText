@@ -24,7 +24,7 @@ markups_options_nodepath = NodePath("CenterContainer/HBoxContainer/MarkupOption"
 layout_options_nodepath = NodePath("CenterContainer/HBoxContainer/LayoutOption")
 layout_nodepath = NodePath("Grid")
 edit_tabs_nodepath = NodePath("Grid/EditorsContainer")
-label_tabs_nodepath = NodePath("Grid/PreviewsContainer")
+preview_tabs_nodepath = NodePath("Grid/PreviewsContainer")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 1024.0
@@ -98,7 +98,30 @@ margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Test Selected Markup **here** wave"
+text = "**bold**
+*italic*
+~~strikethrough~~
+`code`
+https://some_domain.com
+<variable>
+:grinning:
+![](res://icon.png)
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
+"
 highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
