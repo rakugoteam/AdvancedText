@@ -17,13 +17,6 @@ func _add_keywords_highlighting() -> void:
 		for json in configs:
 			load_json_config(json)
 
-func add_json_keywords_colors(json: String, color: Color) -> void:
-	var content : = get_file_content(json)
-	var keywords : Array = parse_json(content)
-	
-	for keyword in keywords:
-		add_keyword_color(keyword, color)
-
 func load_json_config(json: String) -> void:
 	var content : = get_file_content(json)
 	var config : Dictionary = parse_json(content)
@@ -43,11 +36,18 @@ func read_conf_element(config : Dictionary, member_color: Color, conf):
 			member_color = color
 	
 	read_sings_if_exist(c, color)
+	read_keywords_if_exist(c, color)
 
 func read_sings_if_exist(c, color:Color): 
 	if c.has("sings"):
 		var s = c["sings"]
 		add_color_region(s[0], s[1], color)
+	
+func read_keywords_if_exist(c, color:Color):
+	if c.has("keywords"):
+		var keywords = c["keywords"]
+		for k in keywords:
+			add_keyword_color(k, color)
 
 func get_file_content(path:String) -> String:
 	var file = File.new()
