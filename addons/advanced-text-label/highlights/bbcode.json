@@ -1,112 +1,101 @@
 {
-  "bold":
-  { 
-    "color": "#ffff44",
-    "sings": ["[b]", "[/b]"]
+  "variable": {
+    "color": "#D19A66",
+    "region": [
+      "<",
+      ">"
+    ]
   },
-  "italic":
-  {
-    "sings": ["[i]", "[/i]"],
-    "color": "#ffff6d"
+  "emojis": {
+    "color": "#D19A66",
+    "region": [
+      ":",
+      ":"
+    ]
   },
-  "underline":
-  {
-    "color": "#ffff99",
-    "sings": ["[u]", "[/u]"]
+  "font-style": {
+    "color": "#5C6370",
+    "keywords": [
+      "b",
+      "i",
+      "u",
+      "s",
+      "code",
+      "font",
+      "color"
+    ]
   },
-  "strike":
-  {
-    "color": "#7d7d7d",
-    "sings": ["[s]", "[/s]"]
+  "text-aliment": {
+    "color": "#ABB2BF",
+    "keywords": [
+      "right",
+      "center",
+      "fill",
+      "indent"
+    ]
   },
-  "center":
-  {
-    "color": "#5e5e9d",
-    "sings": ["[center]", "[/center]"]
+  "url": {
+    "color": "#61AFEF",
+    "keywords": [
+      "url"
+    ]
   },
-  "right":
-  {
-    "color": "#36369d",
-    "sings": ["[right]", "[/right]"]
+  "table": {
+    "color": "#56B6C2",
+    "keywords": [
+      "table",
+      "cell"
+    ]
   },
-  "fill":
-  {
-    "color": "#25259d",
-    "sings": ["[fill]", "[/fill]"]
+  "colors": {
+    "color": "#E06C75",
+    "keywords": [
+      "aqua",
+      "black",
+      "blue",
+      "fuchsia",
+      "gray",
+      "green",
+      "lime",
+      "maroon",
+      "navy",
+      "purple",
+      "red",
+      "silver",
+      "teal",
+      "white",
+      "yellow"
+    ]
   },
-  "font":
-  {
-    "color": "#000000",
-    "sings": ["[font=",  "[/font]"]
+  "custom-color": {
+    "color": "#BE5046",
+    "sings": [
+      "#",
+      ""
+    ]
   },
-  "indent":
-  {
-    "color": "#000000",
-    "sings": ["[indent=",  "[/indent]"]
+  "effects": {
+    "color": "#98C379",
+    "keywords": [
+      "wave",
+      "tornado",
+      "shake",
+      "fade",
+      "rainbow"
+    ]
   },
-  "url":
-  {
-    "color": "#9959ff",
-    "sings": ["[url=",  "[/url]"]
-  },
-  "img":
-  {
-    "color": "#7823ff",
-    "sings": ["[img=",  "[/img]"]
-  },
-  "color":
-  {
-    "color": "#000000",
-    "sings": ["[color=",  "[/color]"]
-  },
-  "emoji":
-  {
-    "color": "#7823ff",
-    "sings": ["[:", ":]"]
-  },
-  "code":
-  {
-    "color": "#959595",
-    "sings": ["[code]", "[/code]"]
-  },
-  "table":
-  {
-    "color": "#000000",
-    "sings": ["[table=",  "[/table]"]
-  },
-  "cell":
-  {
-    "color": "#000000",
-    "sings": ["[cell=]", "[/cell]"]
-  },
-  "wave":
-  {
-    "color": "#ff9999",
-    "sings": ["[wave",  "[/wave]"]
-  },
-  "tornado":
-  {
-    "color": "#ff9999",
-    "sings": ["[tornado",  "[/tornado]"]
-  },
-  "shake":
-  {
-    "color": "#ff9999",
-    "sings": ["[shake",  "[/shake]"]
-  },
-  "fade":
-  {
-    "color": "#ff9999",
-    "sings": ["[fade",  "[/fade]"]
-  },
-  "rainbow":
-  {
-    "color": "#ff9999",
-    "sings": ["[rainbow",  "[/rainbow]"]
-  },
-  "var":
-  {
-    "color": "#99ff99",
-    "sings": ["<", ">"]
+  "effects-args": {
+    "color": "#D19A66",
+    "keywords": [
+      "amp",
+      "freq",
+      "radius",
+      "rate",
+      "level",
+      "start",
+      "length",
+      "sat",
+      "val"
+    ]
   }
 }

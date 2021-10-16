@@ -5,6 +5,7 @@ export(Array, String, FILE, "*.json") var configs
 
 func _ready() -> void:
 	syntax_highlighting = true
+	# clear_colors()
 	_add_keywords_highlighting()
 
 func switch_config(json_file:String, id:=0) -> void:
@@ -18,7 +19,7 @@ func _add_keywords_highlighting() -> void:
 			load_json_config(json)
 
 func load_json_config(json: String) -> void:
-	var content : = get_file_content(json)
+	var content := get_file_content(json)
 	var config : Dictionary = parse_json(content)
 
 	var member_color := Color(0, 0, 0)
@@ -28,20 +29,20 @@ func load_json_config(json: String) -> void:
 
 func read_conf_element(config : Dictionary, member_color: Color, conf):
 	var c = config[conf]
-	var color : Color = Color(c["color"])
+	var color := Color(c["color"].to_lower())
 	# prints(conf, color)
 
 	match conf:
 		"member":
 			member_color = color
 	
-	read_sings_if_exist(c, color)
+	read_region_if_exist(c, color)
 	read_keywords_if_exist(c, color)
 
-func read_sings_if_exist(c, color:Color): 
-	if c.has("sings"):
-		var s = c["sings"]
-		add_color_region(s[0], s[1], color)
+func read_region_if_exist(c, color:Color): 
+	if c.has("region"):
+		var r = c["region"]
+		add_color_region(r[0], r[1], color)
 	
 func read_keywords_if_exist(c, color:Color):
 	if c.has("keywords"):
