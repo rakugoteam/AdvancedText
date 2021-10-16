@@ -8,6 +8,7 @@ export_presets.cfg
 .mono/
 data_*/
 
-# for testing emojis support
-addons/emojis-for-godot/*
+# project specific
 .vscode/*
+addons/emojis-for-godot/*
+addons/Iconify/*

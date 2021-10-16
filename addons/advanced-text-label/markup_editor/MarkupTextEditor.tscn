@@ -9,41 +9,44 @@
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=7]
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Bold.tres" type="DynamicFont" id=8]
 
-[node name="MarkupTextEditor" type="VBoxContainer"]
+[node name="MarkupTextEditor" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 1
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-markups_options_nodepath = NodePath("CenterContainer/HBoxContainer/MarkupOption")
-layout_options_nodepath = NodePath("CenterContainer/HBoxContainer/LayoutOption")
-layout_nodepath = NodePath("Grid")
-edit_tabs_nodepath = NodePath("Grid/EditorsContainer")
-preview_tabs_nodepath = NodePath("Grid/PreviewsContainer")
+markups_options_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/MarkupOption")
+layout_options_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/LayoutOption")
+layout_nodepath = NodePath("VBoxContainer/Grid")
+edit_tabs_nodepath = NodePath("VBoxContainer/Grid/EditorsContainer")
+preview_tabs_nodepath = NodePath("VBoxContainer/Grid/PreviewsContainer")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-margin_right = 1024.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 800.0
+margin_bottom = 524.0
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 800.0
 margin_bottom = 20.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
-margin_left = 309.0
-margin_right = 714.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer"]
+margin_left = 221.0
+margin_right = 579.0
 margin_bottom = 20.0
 
-[node name="Label" type="Label" parent="CenterContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer"]
 margin_top = 3.0
-margin_right = 137.0
+margin_right = 90.0
 margin_bottom = 17.0
-text = "Select markup to test"
+text = "Select Markup"
 
-[node name="MarkupOption" type="OptionButton" parent="CenterContainer/HBoxContainer"]
-margin_left = 141.0
-margin_right = 235.0
+[node name="MarkupOption" type="OptionButton" parent="VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 94.0
+margin_right = 188.0
 margin_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -52,16 +55,16 @@ flat = true
 items = [ "Markdown", null, false, 0, null, "RenPy", null, false, 1, null, "BBCode", null, false, 2, null ]
 selected = 0
 
-[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer"]
-margin_left = 239.0
+[node name="Label2" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 192.0
 margin_top = 3.0
-margin_right = 324.0
+margin_right = 277.0
 margin_bottom = 17.0
 text = "Select Layout"
 
-[node name="LayoutOption" type="OptionButton" parent="CenterContainer/HBoxContainer"]
-margin_left = 328.0
-margin_right = 405.0
+[node name="LayoutOption" type="OptionButton" parent="VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 281.0
+margin_right = 358.0
 margin_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -70,10 +73,10 @@ flat = true
 items = [ "Horizontal", null, false, 0, null, "Vertical", null, false, 1, null ]
 selected = 1
 
-[node name="Grid" type="GridContainer" parent="."]
+[node name="Grid" type="GridContainer" parent="VBoxContainer"]
 margin_top = 24.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_right = 800.0
+margin_bottom = 524.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 800, 500 )
@@ -82,14 +85,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[node name="EditorsContainer" type="TabContainer" parent="Grid"]
-margin_right = 510.0
-margin_bottom = 576.0
+[node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/Grid"]
+margin_right = 398.0
+margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tabs_visible = false
 
-[node name="MarkdownEdit" type="TextEdit" parent="Grid/EditorsContainer"]
+[node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/Grid/EditorsContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -104,7 +107,7 @@ text = "**bold**
 `code`
 [link](https://some_domain.com)
 https://some_domain.com
-<variable>
+<test_var>
 :grinning:
 ![](res://icon.png)
 
@@ -141,7 +144,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json", "res://addons/advanced-text-label/highlights/markdown.json" ]
 
-[node name="RenPyEdit" type="TextEdit" parent="Grid/EditorsContainer"]
+[node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/Grid/EditorsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -157,7 +160,7 @@ text = "**bold**
 `code`
 [link](https://some_domain.com)
 https://some_domain.com
-<variable>
+<test_var>
 :grinning:
 ![](res://icon.png)
 
@@ -194,7 +197,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="BBCodeEdit" type="TextEdit" parent="Grid/EditorsContainer"]
+[node name="BBCodeEdit" type="TextEdit" parent="VBoxContainer/Grid/EditorsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -210,7 +213,7 @@ text = "**bold**
 `code`
 [link](https://some_domain.com)
 https://some_domain.com
-<variable>
+<test_var>
 :grinning:
 ![](res://icon.png)
 
@@ -247,15 +250,15 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="PreviewsContainer" type="TabContainer" parent="Grid"]
-margin_left = 514.0
-margin_right = 1024.0
-margin_bottom = 576.0
+[node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/Grid"]
+margin_left = 402.0
+margin_right = 800.0
+margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tabs_visible = false
 
-[node name="MarkdownTextLabel" type="RichTextLabel" parent="Grid/PreviewsContainer"]
+[node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/Grid/PreviewsContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -277,9 +280,10 @@ script = ExtResource( 1 )
 markup_text = "Test Selected Markup **here** wave"
 markup = "markdown"
 variables = {
+"test_var": "x"
 }
 
-[node name="RenPyTextLabel" type="RichTextLabel" parent="Grid/PreviewsContainer"]
+[node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/Grid/PreviewsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -302,9 +306,10 @@ script = ExtResource( 1 )
 markup_text = "Test Selected Markup **here** wave"
 markup = "renpy"
 variables = {
+"test_var": "x"
 }
 
-[node name="BBCodeTextLabel" type="RichTextLabel" parent="Grid/PreviewsContainer"]
+[node name="BBCodeTextLabel" type="RichTextLabel" parent="VBoxContainer/Grid/PreviewsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -327,4 +332,100 @@ script = ExtResource( 1 )
 markup_text = "Test Selected Markup **here** wave"
 markup = "bbcode"
 variables = {
+"test_var": "x"
+}
+
+[node name="Popup" type="Popup" parent="."]
+visible = true
+margin_left = 131.5
+margin_top = 66.4314
+margin_right = 631.5
+margin_bottom = 427.431
+rect_min_size = Vector2( 500, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HelperContainer" type="TabContainer" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tabs_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarkdownTextLabel" type="RichTextLabel" parent="Popup/HelperContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 4 )
+custom_fonts/bold_italics_font = ExtResource( 6 )
+custom_fonts/italics_font = ExtResource( 7 )
+custom_fonts/bold_font = ExtResource( 8 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "Test Selected Markup [b]here[/b] wave"
+text = "Test Selected Markup here wave"
+script = ExtResource( 1 )
+markup_text = "Test Selected Markup **here** wave"
+markup = "markdown"
+variables = {
+"test_var": "x"
+}
+
+[node name="RenPyTextLabel" type="RichTextLabel" parent="Popup/HelperContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 4 )
+custom_fonts/bold_italics_font = ExtResource( 6 )
+custom_fonts/italics_font = ExtResource( 7 )
+custom_fonts/bold_font = ExtResource( 8 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "Test Selected Markup **here** wave"
+text = "Test Selected Markup **here** wave"
+script = ExtResource( 1 )
+markup_text = "Test Selected Markup **here** wave"
+markup = "renpy"
+variables = {
+"test_var": "x"
+}
+
+[node name="BBCodeTextLabel" type="RichTextLabel" parent="Popup/HelperContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 4 )
+custom_fonts/bold_italics_font = ExtResource( 6 )
+custom_fonts/italics_font = ExtResource( 7 )
+custom_fonts/bold_font = ExtResource( 8 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "Test Selected Markup **here** wave"
+text = "Test Selected Markup **here** wave"
+script = ExtResource( 1 )
+markup_text = "Test Selected Markup **here** wave"
+markup = "bbcode"
+variables = {
+"test_var": "x"
 }
