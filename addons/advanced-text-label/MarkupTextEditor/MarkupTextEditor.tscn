@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/advanced-text-label/nodes/AdvancedTextLabel.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text-label/nodes/MarkupEdit.gd" type="Script" id=2]
-[ext_resource path="res://addons/advanced-text-label/markup_editor/MarkupTextEditor.gd" type="Script" id=3]
+[ext_resource path="res://addons/advanced-text-label/MarkupTextEditor/MarkupTextEditor.gd" type="Script" id=3]
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Mono.tres" type="DynamicFont" id=4]
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans.tres" type="DynamicFont" id=5]
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-BoldOblique.tres" type="DynamicFont" id=6]

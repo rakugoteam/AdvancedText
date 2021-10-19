@@ -1,4 +1,6 @@
 extends Node
+class_name EBBCodeParser
+
 # Extended BBCode Parser
 # Adds support for <values> and :emojis:
 # For emojis you need to install emojis-for-godot

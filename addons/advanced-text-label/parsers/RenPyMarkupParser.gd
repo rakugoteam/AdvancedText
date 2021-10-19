@@ -1,4 +1,6 @@
-extends "EBBCodeParser.gd"
+extends EBBCodeParser
+class_name RenPyMarkupParser
+
 # RenPy Markup Parser
 # It has one difference from original Ren'Py markup:
 # for values we use '<','>' instead of '[' and ']'

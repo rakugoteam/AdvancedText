@@ -8,6 +8,40 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "RichTextLabel",
+"class": "AdvancedTextLabel",
+"language": "GDScript",
+"path": "res://addons/advanced-text-label/nodes/AdvancedTextLabel.gd"
+}, {
+"base": "Node",
+"class": "EBBCodeParser",
+"language": "GDScript",
+"path": "res://addons/advanced-text-label/parsers/EBBCodeParser.gd"
+}, {
+"base": "EBBCodeParser",
+"class": "MarkdownParser",
+"language": "GDScript",
+"path": "res://addons/advanced-text-label/parsers/MarkdownParser.gd"
+}, {
+"base": "TextEdit",
+"class": "MarkupEdit",
+"language": "GDScript",
+"path": "res://addons/advanced-text-label/nodes/MarkupEdit.gd"
+}, {
+"base": "EBBCodeParser",
+"class": "RenPyMarkupParser",
+"language": "GDScript",
+"path": "res://addons/advanced-text-label/parsers/RenPyMarkupParser.gd"
+} ]
+_global_script_class_icons={
+"AdvancedTextLabel": "res://addons/advanced-text-label/icons/AdvancedTextLabel.svg",
+"EBBCodeParser": "",
+"MarkdownParser": "",
+"MarkupEdit": "",
+"RenPyMarkupParser": ""
+}
+
 [application]
 
 config/name="AdvencedTextLabel"

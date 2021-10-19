@@ -1,5 +1,6 @@
 tool
 extends RichTextLabel
+class_name AdvancedTextLabel, "res://addons/advanced-text-label/icons/AdvancedTextLabel.svg"
 
 export(String, MULTILINE) var markup_text:String setget _set_markup_text, _get_markup_text
 export(String, "markdown", "renpy", "bbcode") var markup setget _set_markup, _get_markup
@@ -7,9 +8,9 @@ export var variables := {}
 
 var _markup_text := ""
 var _markup := "Extended BBCode"
-var ebbcode_parser := preload("../parsers/EBBCodeParser.gd").new()
-var renpy_parser := preload("../parsers/RenPyMarkupParser.gd").new()
-var markdown_parser := preload("../parsers/MarkdownParser.gd").new()
+var ebbcode_parser := EBBCodeParser.new()
+var markdown_parser := MarkdownParser.new()
+var renpy_parser := RenPyMarkupParser.new()
 
 func _ready() -> void:
 	bbcode_enabled = true

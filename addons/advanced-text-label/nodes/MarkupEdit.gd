@@ -1,5 +1,6 @@
 tool
 extends TextEdit
+class_name MarkupEdit
 
 export(Array, String, FILE, "*.json") var configs
 
