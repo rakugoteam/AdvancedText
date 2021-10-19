@@ -2,20 +2,7 @@ tool
 extends EditorInspectorPlugin
 
 func can_handle(object:Object):
-  var type := object.get_class()
-  var is_type_right := type == "RichTextLabel"
-  
-  var right_vars := ["markup_text", "markup"]
-  var vars := []
-
-  for v in object.get_property_list():
-    vars.append(v.name)
-  
-  for v in right_vars:
-    if !(v in vars):
-      is_type_right = false
-
-  return is_type_right
+  return object is AdvancedTextLabel
 
 func parse_property(object, type, path, hint, hint_text, usage):
   var hidden_vars = [
@@ -34,7 +21,7 @@ func parse_property(object, type, path, hint, hint_text, usage):
   
   match path:
     "markup_text":
-     
+    
       return true
     
   return false
