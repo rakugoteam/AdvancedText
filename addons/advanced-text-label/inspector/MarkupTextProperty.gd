@@ -4,7 +4,7 @@ extends EditorProperty
 var text := "" setget _set_text, _get_text
 var object
 
-var MarkupTextEditor = preload("../markup_editor/MarkupTextEditor.tscn").instance();
+var MarkupTextEditor = preload("../MarkupTextEditor/MarkupTextEditor.tscn").instance();
 var popup := WindowDialog.new()
 var hbox := HBoxContainer.new()
 var text_edit := TextEdit.new()
