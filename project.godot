@@ -19,6 +19,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/advanced-text-label/parsers/EBBCodeParser.gd"
 }, {
+"base": "Button",
+"class": "EmojiButton",
+"language": "GDScript",
+"path": "res://addons/emojis-for-godot/nodes/EmojiButton.gd"
+}, {
+"base": "TextureRect",
+"class": "EmojiIcon",
+"language": "GDScript",
+"path": "res://addons/emojis-for-godot/nodes/EmojiIcon.gd"
+}, {
+"base": "Object",
+"class": "Emojis",
+"language": "GDScript",
+"path": "res://addons/emojis-for-godot/emojis/emojis.gd"
+}, {
 "base": "EBBCodeParser",
 "class": "MarkdownParser",
 "language": "GDScript",
@@ -37,6 +52,9 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AdvancedTextLabel": "res://addons/advanced-text-label/icons/AdvancedTextLabel.svg",
 "EBBCodeParser": "",
+"EmojiButton": "res://addons/emojis-for-godot/icons/EmojiButton.svg",
+"EmojiIcon": "res://addons/emojis-for-godot/icons/EmojiIcon.svg",
+"Emojis": "",
 "MarkdownParser": "",
 "MarkupEdit": "",
 "RenPyMarkupParser": ""
