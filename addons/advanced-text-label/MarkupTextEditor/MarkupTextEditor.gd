@@ -2,14 +2,10 @@ tool
 extends Control
 
 export var markups_options_nodepath : NodePath
-export var layout_options_nodepath : NodePath
-export var layout_nodepath : NodePath
 export var edit_tabs_nodepath : NodePath
 export var preview_tabs_nodepath : NodePath
 
 onready var markups_options : OptionButton = get_node(markups_options_nodepath)
-onready var layout_options : OptionButton = get_node(layout_options_nodepath)
-onready var layout : GridContainer = get_node(layout_nodepath)
 onready var edit_tabs : TabContainer = get_node(edit_tabs_nodepath)
 onready var preview_tabs : TabContainer = get_node(preview_tabs_nodepath)
 
@@ -21,13 +17,9 @@ var text: = ""
 func _ready():
 	update_text_preview(get_current_edit_tab())
 	markups_options.connect("item_selected", self, "_on_option_selected")
-	layout_options.connect("item_selected", self, "switch_layout")
 	
 	for ch in edit_tabs.get_children():
 		ch.connect("text_changed", self, "update_text_preview", [ch, true])
-
-func switch_layout(id := 0):
-	layout.columns = id + 1
 
 func get_current_edit_tab() -> TextEdit:
 	var e_tabs := edit_tabs.get_children()

@@ -11,4 +11,4 @@ data_*/
 # project specific
 .vscode/*
 addons/emojis-for-godot/*
-addons/Iconify/*
+addons/zylann.editor_debugger/*

@@ -20,34 +20,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 markups_options_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/MarkupOption")
-layout_options_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/LayoutOption")
-layout_nodepath = NodePath("VBoxContainer/Grid")
-edit_tabs_nodepath = NodePath("VBoxContainer/Grid/EditorsContainer")
-preview_tabs_nodepath = NodePath("VBoxContainer/Grid/PreviewsContainer")
+edit_tabs_nodepath = NodePath("VBoxContainer/VSeprator/EditorsContainer")
+preview_tabs_nodepath = NodePath("VBoxContainer/VSeprator/PreviewsContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 800.0
-margin_bottom = 524.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
-margin_right = 800.0
-margin_bottom = 20.0
+margin_right = 1024.0
+margin_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer"]
-margin_left = 221.0
-margin_right = 579.0
-margin_bottom = 20.0
+margin_left = 328.0
+margin_right = 696.0
+margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer"]
-margin_top = 3.0
+margin_top = 13.0
 margin_right = 90.0
-margin_bottom = 17.0
+margin_bottom = 27.0
 text = "Select Markup"
 
 [node name="MarkupOption" type="OptionButton" parent="VBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 94.0
 margin_right = 188.0
-margin_bottom = 20.0
+margin_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Markdown"
@@ -55,44 +56,39 @@ flat = true
 items = [ "Markdown", null, false, 0, null, "RenPy", null, false, 1, null, "BBCode", null, false, 2, null ]
 selected = 0
 
-[node name="Label2" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="PreviewToggle" type="CheckButton" parent="VBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 192.0
-margin_top = 3.0
-margin_right = 277.0
-margin_bottom = 17.0
-text = "Select Layout"
+margin_right = 322.0
+margin_bottom = 40.0
+pressed = true
+text = "Preview"
 
-[node name="LayoutOption" type="OptionButton" parent="VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 281.0
-margin_right = 358.0
-margin_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Vertical"
+[node name="Button" type="Button" parent="VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 326.0
+margin_right = 368.0
+margin_bottom = 40.0
+text = "Help"
 flat = true
-items = [ "Horizontal", null, false, 0, null, "Vertical", null, false, 1, null ]
-selected = 1
 
-[node name="Grid" type="GridContainer" parent="VBoxContainer"]
-margin_top = 24.0
-margin_right = 800.0
-margin_bottom = 524.0
+[node name="VSeprator" type="VSeparator" parent="VBoxContainer"]
+margin_top = 44.0
+margin_right = 1024.0
+margin_bottom = 600.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 800, 500 )
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 2
 
-[node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/Grid"]
-margin_right = 398.0
-margin_bottom = 500.0
+[node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/VSeprator"]
+margin_right = 510.0
+margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tabs_visible = false
 
-[node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/Grid/EditorsContainer"]
+[node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/VSeprator/EditorsContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -144,7 +140,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json", "res://addons/advanced-text-label/highlights/markdown.json" ]
 
-[node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/Grid/EditorsContainer"]
+[node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/VSeprator/EditorsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -197,7 +193,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="BBCodeEdit" type="TextEdit" parent="VBoxContainer/Grid/EditorsContainer"]
+[node name="BBCodeEdit" type="TextEdit" parent="VBoxContainer/VSeprator/EditorsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -250,15 +246,15 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/Grid"]
-margin_left = 402.0
-margin_right = 800.0
-margin_bottom = 500.0
+[node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/VSeprator"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tabs_visible = false
 
-[node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/Grid/PreviewsContainer"]
+[node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/VSeprator/PreviewsContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -274,16 +270,102 @@ custom_fonts/italics_font = ExtResource( 7 )
 custom_fonts/bold_font = ExtResource( 8 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "Test Selected Markup [b]here[/b] wave"
-text = "Test Selected Markup here wave"
+bbcode_text = "[b]bold[/b]
+[i]italic[/i]
+[s]strikethrough[/s]
+[code]code[/code]
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com
+<test_var[/url]>
+[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
+[img]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
+"
+text = "bold
+italic
+strikethrough
+code
+link
+https://some_domain.com
+<test_var>
+
+
+
+123456789
+
+underline
+center
+right
+fill
+	text
+red
+
+wave
+tornado
+shake
+fade
+rainbow
+
+
+"
 script = ExtResource( 1 )
-markup_text = "Test Selected Markup **here** wave"
+markup_text = "**bold**
+*italic*
+~~strikethrough~~
+`code`
+[link](https://some_domain.com)
+https://some_domain.com
+<test_var>
+:grinning:
+![](res://icon.png)
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
+"
 markup = "markdown"
 variables = {
 "test_var": "x"
 }
 
-[node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/Grid/PreviewsContainer"]
+[node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/VSeprator/PreviewsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -309,7 +391,7 @@ variables = {
 "test_var": "x"
 }
 
-[node name="BBCodeTextLabel" type="RichTextLabel" parent="VBoxContainer/Grid/PreviewsContainer"]
+[node name="BBCodeTextLabel" type="RichTextLabel" parent="VBoxContainer/VSeprator/PreviewsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -335,16 +417,16 @@ variables = {
 "test_var": "x"
 }
 
-[node name="Popup" type="Popup" parent="."]
-visible = true
-margin_left = 131.5
-margin_top = 66.4314
-margin_right = 631.5
-margin_bottom = 427.431
+[node name="Popup" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -241.0
+margin_right = 250.0
+margin_bottom = 248.0
 rect_min_size = Vector2( 500, 100 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HelperContainer" type="TabContainer" parent="Popup"]
 anchor_right = 1.0
@@ -360,6 +442,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
+margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 mouse_filter = 2
@@ -385,6 +468,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
+margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 mouse_filter = 2
@@ -410,6 +494,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
+margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 mouse_filter = 2
