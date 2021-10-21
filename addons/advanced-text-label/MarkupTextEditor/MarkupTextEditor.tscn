@@ -20,12 +20,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 markups_options_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/MarkupOption")
-edit_tabs_nodepath = NodePath("VBoxContainer/VSeprator/EditorsContainer")
-preview_tabs_nodepath = NodePath("VBoxContainer/VSeprator/PreviewsContainer")
+edit_tabs_nodepath = NodePath("VBoxContainer/HBox/EditorsContainer")
+preview_tabs_nodepath = NodePath("VBoxContainer/HBox/PreviewsContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -70,25 +72,27 @@ margin_bottom = 40.0
 text = "Help"
 flat = true
 
-[node name="VSeprator" type="VSeparator" parent="VBoxContainer"]
+[node name="HBox" type="HSplitContainer" parent="VBoxContainer"]
 margin_top = 44.0
 margin_right = 1024.0
 margin_bottom = 600.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 800, 500 )
-mouse_filter = 2
-size_flags_horizontal = 3
+mouse_default_cursor_shape = 10
 size_flags_vertical = 3
 
-[node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/VSeprator"]
-margin_right = 510.0
-margin_bottom = 576.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/HBox"]
+margin_right = 712.0
+margin_bottom = 556.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 11
 tabs_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/VSeprator/EditorsContainer"]
+[node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/HBox/EditorsContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -140,7 +144,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json", "res://addons/advanced-text-label/highlights/markdown.json" ]
 
-[node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/VSeprator/EditorsContainer"]
+[node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/HBox/EditorsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -193,7 +197,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="BBCodeEdit" type="TextEdit" parent="VBoxContainer/VSeprator/EditorsContainer"]
+[node name="BBCodeEdit" type="TextEdit" parent="VBoxContainer/HBox/EditorsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -246,15 +250,14 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/VSeprator"]
-margin_left = 514.0
+[node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/HBox"]
+margin_left = 724.0
 margin_right = 1024.0
-margin_bottom = 576.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_bottom = 556.0
+rect_min_size = Vector2( 300, 0 )
 tabs_visible = false
 
-[node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/VSeprator/PreviewsContainer"]
+[node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/HBox/PreviewsContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -365,7 +368,7 @@ variables = {
 "test_var": "x"
 }
 
-[node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/VSeprator/PreviewsContainer"]
+[node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/HBox/PreviewsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -391,7 +394,7 @@ variables = {
 "test_var": "x"
 }
 
-[node name="BBCodeTextLabel" type="RichTextLabel" parent="VBoxContainer/VSeprator/PreviewsContainer"]
+[node name="BBCodeTextLabel" type="RichTextLabel" parent="VBoxContainer/HBox/PreviewsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
