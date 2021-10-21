@@ -14,11 +14,11 @@ func _enter_tree():
 
 	markup_text_editor = preload("MarkupTextEditor/MarkupTextEditor.tscn")
 	markup_text_editor = markup_text_editor.instance()
-	markup_text_editor.visible = false
-	markup_text_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	markup_text_editor.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	editor_parent = get_editor_interface().get_editor_viewport()
 	editor_parent.add_child(markup_text_editor)
+	markup_text_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	markup_text_editor.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	markup_text_editor.visible = false
 	
 	markup_text_editor_button.text = "Markup Text Editor"
 	markup_text_editor_button.icon = preload("MarkupTextEditor/MarkupTextEditor.svg")
@@ -31,12 +31,14 @@ func _enter_tree():
 	button_parent = markup_text_editor_button.get_parent()
 	button_parent.remove_child(markup_text_editor_button)
 	button_parent = button_parent.get_child(2)
+	button_parent.add_child(markup_text_editor_button)
 
 	for b in button_parent.get_children():
-		b.connect("pressed", self, "_on_toggle", [false])
-
-	markup_text_editor_button.connect("toggled", self, "_on_toggle")
-	button_parent.add_child(markup_text_editor_button)
+		var args := [false, b]
+		if b == markup_text_editor_button:
+			args[0] = true
+		
+		b.connect("pressed", self, "_on_toggle", args)
 
 func _exit_tree():
 	remove_inspector_plugin(atl_inspector)
@@ -44,20 +46,52 @@ func _exit_tree():
 	markup_text_editor_button.queue_free()
 
 func hide_current_editor():
-	for ch in editor_parent.get_children():
-		if ch.visible:
-			ch.visible = false
+	for editor in editor_parent.get_children():
+		if editor.has_method("show"):
+			if editor.visible:
+				editor.visible = false
+				break
+
+	for b in button_parent.get_children():
+		if b.pressed:
+			b.pressed = false
 			return
 
-func unpressed_current_button():
-	for ch in button_parent.get_children():
-		if ch.pressed:
-			ch.pressed = false
-			return
+func show_editor(button: ToolButton):
+	for editor in editor_parent.get_children():
+		if editor is Control:
+			match button.text:
+				"2D":
+					if editor.get_class() == "CanvasItemEditor":
+						editor.show()
+						return
 
-func _on_toggle(toggled:bool):
+				"3D":
+					if editor.get_class() == "SpatialEditor":
+						editor.show()
+						return
+
+				"Script":
+					if editor.get_class() == "ScriptEditor":
+						editor.show()
+						return
+
+				"AssetLib":
+					if editor.get_class() == "AssetLibraryEditor":
+						editor.show()
+						return
+				_:
+					continue
+
+func _on_toggle(toggled:bool, button:ToolButton):
 	if toggled:
 		hide_current_editor()
-		unpressed_current_button()
-		
+	
+	else:
+		button.pressed = true
+		show_editor(button)
+
+	markup_text_editor_button.pressed = toggled
 	markup_text_editor.visible = toggled
+
+
