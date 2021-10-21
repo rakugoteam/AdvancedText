@@ -1,4 +1,5 @@
-extends VBoxContainer
+tool
+extends Control
 
 export var markups_options_nodepath : NodePath
 export var layout_options_nodepath : NodePath
@@ -13,6 +14,8 @@ onready var edit_tabs : TabContainer = get_node(edit_tabs_nodepath)
 onready var preview_tabs : TabContainer = get_node(preview_tabs_nodepath)
 
 var markup_id := 0
+var markup := "markdown" setget _set_markup, _get_markup
+var markup_dir := {"markdown":0, "renpy":1, "bbcode":2}
 var text: = ""
 
 func _ready():
@@ -57,3 +60,10 @@ func _on_option_selected(id: int):
 		var current := get_current_edit_tab()
 		update_text_preview(current, text.empty())
 
+func _set_markup(m: String):
+	markup = m
+	markup_id = markup_dir[m]
+	_on_option_selected(markup_id)
+
+func _get_markup() -> String:
+	return markup
