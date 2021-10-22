@@ -64,5 +64,6 @@ func _on_option_selected(id: int):
 		update_text_preview(current, text.empty())
 
 func _on_help_button_pressed():
-	help_popup.window_title = markups_options.get_item_text(markup_id) + " Help"
+	var m = markups_options.get_item_text(markup_id) 
+	help_popup.window_title = m + " Help"
 	help_popup.popup_centered(Vector2(700, 500))
