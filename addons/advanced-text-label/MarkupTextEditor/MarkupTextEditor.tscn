@@ -24,8 +24,9 @@ edit_tabs_nodepath = NodePath("VBoxContainer/HBox/EditorsContainer")
 preview_tabs_nodepath = NodePath("VBoxContainer/HBox/PreviewsContainer")
 preview_toggle_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/PreviewToggle")
 help_button_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/HelpButton")
-help_tabs_nodepath = NodePath("Popup/HelperContainer")
-help_popup_nodepath = NodePath("Popup")
+help_tabs_nodepath = NodePath("PopupHelp/HelperContainer")
+help_popup_nodepath = NodePath("PopupHelp")
+emoji_button_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/EmojisButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -41,8 +42,8 @@ margin_right = 1024.0
 margin_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer"]
-margin_left = 328.0
-margin_right = 696.0
+margin_left = 298.0
+margin_right = 725.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer"]
@@ -74,6 +75,13 @@ margin_left = 326.0
 margin_right = 368.0
 margin_bottom = 40.0
 text = "Help"
+flat = true
+
+[node name="EmojisButton" type="Button" parent="VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 372.0
+margin_right = 427.0
+margin_bottom = 40.0
+text = "Emojis"
 flat = true
 
 [node name="HBox" type="HSplitContainer" parent="VBoxContainer"]
@@ -243,8 +251,7 @@ variables = {
 "test_var": "x"
 }
 
-[node name="Popup" type="WindowDialog" parent="."]
-visible = true
+[node name="PopupHelp" type="WindowDialog" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -258,7 +265,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HelperContainer" type="TabContainer" parent="Popup"]
+[node name="HelperContainer" type="TabContainer" parent="PopupHelp"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -268,7 +275,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarkdownHelp" type="HSplitContainer" parent="Popup/HelperContainer"]
+[node name="MarkdownHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -276,7 +283,7 @@ margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="MarkdownCode" type="TextEdit" parent="Popup/HelperContainer/MarkdownHelp"]
+[node name="MarkdownCode" type="TextEdit" parent="PopupHelp/HelperContainer/MarkdownHelp"]
 margin_right = 335.0
 margin_bottom = 515.0
 size_flags_horizontal = 3
@@ -325,7 +332,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json", "res://addons/advanced-text-label/highlights/markdown.json" ]
 
-[node name="MarkdownPreview" type="RichTextLabel" parent="Popup/HelperContainer/MarkdownHelp"]
+[node name="MarkdownPreview" type="RichTextLabel" parent="PopupHelp/HelperContainer/MarkdownHelp"]
 margin_left = 347.0
 margin_right = 647.0
 margin_bottom = 515.0
@@ -344,8 +351,8 @@ bbcode_text = "[b]bold[/b]
 [code]code[/code]
 [url=https://some_domain.com]link[/url]
 [url]https://some_domain.com
-<test_var[/url]>
-[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
+<test_var>
+:grinning[/url]:
 [img]res://icon.png[/img]
 
 [table=3]
@@ -373,7 +380,7 @@ code
 link
 https://some_domain.com
 <test_var>
-
+:grinning:
 
 
 123456789
@@ -424,7 +431,7 @@ variables = {
 "test_var": "x"
 }
 
-[node name="RenPyHelp" type="HSplitContainer" parent="Popup/HelperContainer"]
+[node name="RenPyHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -433,7 +440,7 @@ margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="RenPyCode" type="TextEdit" parent="Popup/HelperContainer/RenPyHelp"]
+[node name="RenPyEdit3" type="TextEdit" parent="PopupHelp/HelperContainer/RenPyHelp"]
 margin_right = 335.0
 margin_bottom = 515.0
 size_flags_horizontal = 3
@@ -479,7 +486,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="RenPyPreview" type="RichTextLabel" parent="Popup/HelperContainer/RenPyHelp"]
+[node name="RenPy" type="RichTextLabel" parent="PopupHelp/HelperContainer/RenPyHelp"]
 margin_left = 347.0
 margin_right = 647.0
 margin_bottom = 515.0
@@ -492,58 +499,62 @@ custom_fonts/italics_font = ExtResource( 7 )
 custom_fonts/bold_font = ExtResource( 8 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "[b]bold[/b]
-[i]italic[/i]
-[s]strikethrough[/s]
-[code]some_code()[/code]
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com[/url]
+bbcode_text = "{b}bold{/b}
+{i}italic{/i}
+{s}strikethrough{/s}
+{code}some_code(){/code}
+{url=https://some_domain.com}link{/url}
+{url}https://some_domain.com{/url}
 <test_var>
-<img>res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
-[img]res://icon.png[/img]
+:grinning:
+{img}res://icon.png{/img}
 
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
+{table=3}
+{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
+{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
+{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
+{/table}
 
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
+{u}underline{/u}
+{center}center{/center}
+{right}right{/right}
+{fill}fill{/fill}
+{indent}text{/indent}
+{color=red}red{/color}
 
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
-text = "bold
-italic
-strikethrough
-some_code()
-link
-https://some_domain.com
+{wave amp=50 freq=2}wave{/wave}
+{tornado radius=5 freq=2}tornado{/tornado}
+{shake rate=5 level=10}shake{/shake}
+{fade start=4 length=14}fade{/fade}
+{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}"
+text = "{b}bold{/b}
+{i}italic{/i}
+{s}strikethrough{/s}
+{code}some_code(){/code}
+{url=https://some_domain.com}link{/url}
+{url}https://some_domain.com{/url}
 <test_var>
-<img>res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
+:grinning:
+{img}res://icon.png{/img}
 
+{table=3}
+{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
+{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
+{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
+{/table}
 
-123456789
+{u}underline{/u}
+{center}center{/center}
+{right}right{/right}
+{fill}fill{/fill}
+{indent}text{/indent}
+{color=red}red{/color}
 
-underline
-center
-right
-fill
-	text
-red
-
-wave
-tornado
-shake
-fade
-rainbow"
+{wave amp=50 freq=2}wave{/wave}
+{tornado radius=5 freq=2}tornado{/tornado}
+{shake rate=5 level=10}shake{/shake}
+{fade start=4 length=14}fade{/fade}
+{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}"
 script = ExtResource( 1 )
 markup_text = "{b}bold{/b}
 {i}italic{/i}
@@ -573,12 +584,12 @@ markup_text = "{b}bold{/b}
 {shake rate=5 level=10}shake{/shake}
 {fade start=4 length=14}fade{/fade}
 {rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}"
-markup = "renpy"
+markup = "bbcode"
 variables = {
 "test_var": "x"
 }
 
-[node name="BBCodeHelp" type="HSplitContainer" parent="Popup/HelperContainer"]
+[node name="BBCodeHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -593,7 +604,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BBCodeEdit2" type="TextEdit" parent="Popup/HelperContainer/BBCodeHelp"]
+[node name="BBCodeEdit2" type="TextEdit" parent="PopupHelp/HelperContainer/BBCodeHelp"]
 margin_right = 335.0
 margin_bottom = 515.0
 size_flags_horizontal = 3
@@ -606,7 +617,7 @@ text = "[b]bold[/b]
 [url]https://some_domain.com[/url]
 <test_var>
 :grinning:
-[img=res://icon.png]
+[img]res://icon.png[/img]
 
 [table=3]
 [cell]1[/cell][cell]2[/cell][cell]3[/cell]
@@ -626,8 +637,6 @@ text = "[b]bold[/b]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
 [rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-
-
 "
 readonly = true
 syntax_highlighting = true
@@ -642,7 +651,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="BBCode" type="RichTextLabel" parent="Popup/HelperContainer/BBCodeHelp"]
+[node name="BBCode" type="RichTextLabel" parent="PopupHelp/HelperContainer/BBCodeHelp"]
 margin_left = 347.0
 margin_right = 647.0
 margin_bottom = 515.0
@@ -662,9 +671,8 @@ bbcode_text = "[b]bold[/b]
 [url=https://some_domain.com]link[/url]
 [url]https://some_domain.com[/url]
 <test_var>
-[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
+:grinning:
 [img]res://icon.png[/img]
-[img=32x32]res://icon.png[/img]
 
 [table=3]
 [cell]1[/cell][cell]2[/cell][cell]3[/cell]
@@ -683,8 +691,7 @@ bbcode_text = "[b]bold[/b]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-"
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
 text = "bold
 italic
 strikethrough
@@ -692,8 +699,7 @@ some_code()
 link
 https://some_domain.com
 <test_var>
-
-
+:grinning:
 
 
 123456789
@@ -709,8 +715,7 @@ wave
 tornado
 shake
 fade
-rainbow
-"
+rainbow"
 script = ExtResource( 1 )
 markup_text = "[b]bold[/b]
 [i]italic[/i]
@@ -721,7 +726,6 @@ markup_text = "[b]bold[/b]
 <test_var>
 :grinning:
 [img]res://icon.png[/img]
-[img=32x32]res://icon.png[/img]
 
 [table=3]
 [cell]1[/cell][cell]2[/cell][cell]3[/cell]
@@ -740,9 +744,11 @@ markup_text = "[b]bold[/b]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-"
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
 markup = "bbcode"
 variables = {
 "test_var": "x"
 }
+
+[connection signal="about_to_show" from="PopupDialog" to="PopupDialog/Emoji" method="_on_about_to_show"]
+[connection signal="resized" from="PopupDialog" to="PopupDialog/Emoji" method="_on_resized"]

@@ -5,22 +5,13 @@ class_name EBBCodeParser
 # Adds support for <values> and :emojis:
 # For emojis you need to install emojis-for-godot
 
-var f := File.new()
-var _emojis
-const emoji_path = "res://addons/emojis-for-godot/emojis/emojis.gd"
+var EmojisImport
+var emojis_gd
 
-func get_emojis():
-	if _emojis:
-		return _emojis
-
-	if f.file_exists(emoji_path):
-		_emojis = load(emoji_path)
-		_emojis = _emojis.new()
-		return _emojis
-
-	else:
-		push_warning("Emojis not found")
-		return null
+func _ready():
+	EmojisImport = preload("../emojis_import.gd")
+	EmojisImport = EmojisImport.new()
+	emojis_gd = EmojisImport.get_emojis()
 
 func parse(text:String, editor:=false, variables:={}) -> String:
 	text = dirty_escaping(text)
@@ -28,9 +19,8 @@ func parse(text:String, editor:=false, variables:={}) -> String:
 	if !editor and !variables.empty():
 		text = replace_variables(text, editor)
 	
-	var emojis = get_emojis()
-	if emojis:
-		text = emojis.parse_emojis(text)
+	if emojis_gd:
+		text = emojis_gd.parse_emojis(text)
 		
 	return text
 
