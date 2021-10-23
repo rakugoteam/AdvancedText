@@ -24,7 +24,8 @@ edit_tabs_nodepath = NodePath("VBoxContainer/HBox/EditorsContainer")
 preview_tabs_nodepath = NodePath("VBoxContainer/HBox/PreviewsContainer")
 preview_toggle_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/PreviewToggle")
 help_button_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/HelpButton")
-help_tabs_nodepath = NodePath("Popup/HelperContainer")
+help_tabs_nodepath = NodePath("Popup/HBoxContainer/HelperContainer")
+help_popup_nodepath = NodePath("Popup")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -84,6 +85,7 @@ grow_vertical = 2
 rect_min_size = Vector2( 800, 500 )
 mouse_default_cursor_shape = 10
 size_flags_vertical = 3
+dragger_visibility = 1
 
 [node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/HBox"]
 margin_right = 712.0
@@ -104,37 +106,6 @@ margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "**bold**
-*italic*
-~~strikethrough~~
-`code`
-[link](https://some_domain.com)
-https://some_domain.com
-<test_var>
-:grinning:
-![](res://icon.png)
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-
-
-"
 highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
@@ -157,37 +128,6 @@ margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "**bold**
-*italic*
-~~strikethrough~~
-`code`
-[link](https://some_domain.com)
-https://some_domain.com
-<test_var>
-:grinning:
-![](res://icon.png)
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-
-
-"
 highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
@@ -210,37 +150,6 @@ margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "**bold**
-*italic*
-~~strikethrough~~
-`code`
-[link](https://some_domain.com)
-https://some_domain.com
-<test_var>
-:grinning:
-![](res://icon.png)
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-
-
-"
 highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
@@ -276,96 +185,7 @@ custom_fonts/italics_font = ExtResource( 7 )
 custom_fonts/bold_font = ExtResource( 8 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "[b]bold[/b]
-[i]italic[/i]
-[s]strikethrough[/s]
-[code]code[/code]
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com
-<test_var[/url]>
-[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
-[img]res://icon.png[/img]
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-
-
-"
-text = "bold
-italic
-strikethrough
-code
-link
-https://some_domain.com
-<test_var>
-
-
-
-123456789
-
-underline
-center
-right
-fill
-	text
-red
-
-wave
-tornado
-shake
-fade
-rainbow
-
-
-"
 script = ExtResource( 1 )
-markup_text = "**bold**
-*italic*
-~~strikethrough~~
-`code`
-[link](https://some_domain.com)
-https://some_domain.com
-<test_var>
-:grinning:
-![](res://icon.png)
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-
-
-"
 markup = "markdown"
 variables = {
 "test_var": "x"
@@ -424,19 +244,31 @@ variables = {
 }
 
 [node name="Popup" type="WindowDialog" parent="."]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -250.0
+margin_left = -316.0
 margin_top = -241.0
-margin_right = 250.0
-margin_bottom = 248.0
+margin_right = 339.0
+margin_bottom = 286.0
 rect_min_size = Vector2( 500, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="HelperContainer" type="TabContainer" parent="Popup"]
+[node name="HBoxContainer" type="HSplitContainer" parent="Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+dragger_visibility = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HelperContainer" type="TabContainer" parent="Popup/HBoxContainer"]
+margin_right = 343.0
+margin_bottom = 527.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tabs_visible = false
@@ -444,32 +276,60 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Markdown" type="RichTextLabel" parent="Popup/HelperContainer"]
+[node name="MarkdownEdit2" type="TextEdit" parent="Popup/HBoxContainer/HelperContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
-mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 4 )
-custom_fonts/bold_italics_font = ExtResource( 6 )
-custom_fonts/italics_font = ExtResource( 7 )
-custom_fonts/bold_font = ExtResource( 8 )
-custom_fonts/normal_font = ExtResource( 5 )
-bbcode_enabled = true
-bbcode_text = "Test Selected Markup [b]here[/b] wave"
-text = "Test Selected Markup here wave"
-script = ExtResource( 1 )
-markup_text = "Test Selected Markup **here** wave"
-markup = "markdown"
-variables = {
-"test_var": "x"
-}
+text = "**bold**
+*italic*
+~~strikethrough~~
+`code`
+[link](https://some_domain.com)
+https://some_domain.com
+<test_var>
+:grinning:
+![](res://icon.png)
 
-[node name="RenPy" type="RichTextLabel" parent="Popup/HelperContainer"]
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
+"
+readonly = true
+syntax_highlighting = true
+context_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+selecting_enabled = false
+v_scroll_speed = 0.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+configs = [ "res://addons/advanced-text-label/highlights/bbcode.json", "res://addons/advanced-text-label/highlights/markdown.json" ]
+
+[node name="RenPyEdit2" type="TextEdit" parent="Popup/HBoxContainer/HelperContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -477,25 +337,50 @@ margin_left = 4.0
 margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
-mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 4 )
-custom_fonts/bold_italics_font = ExtResource( 6 )
-custom_fonts/italics_font = ExtResource( 7 )
-custom_fonts/bold_font = ExtResource( 8 )
-custom_fonts/normal_font = ExtResource( 5 )
-bbcode_enabled = true
-bbcode_text = "Test Selected Markup **here** wave"
-text = "Test Selected Markup **here** wave"
-script = ExtResource( 1 )
-markup_text = "Test Selected Markup **here** wave"
-markup = "renpy"
-variables = {
-"test_var": "x"
-}
+text = "{b}bold{/b}
+{i}italic{/i}
+{s}strikethrough{/s}
+{code}some_code(){/code}
+{url=https://some_domain.com}link{/url}
+{url}https://some_domain.com{/url}
+<test_var>
+:grinning:
+{img=res://icon.png}
 
-[node name="BBCode" type="RichTextLabel" parent="Popup/HelperContainer"]
+{table=3}
+{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
+{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
+{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
+{/table}
+
+{u}underline{/u}
+{center}center{/center}
+{right}right{/right}
+{fill}fill{/fill}
+{indent}text{/indent}
+{color=red}red{/color}
+
+{wave amp=50 freq=2}wave{/wave}
+{tornado radius=5 freq=2}tornado{/tornado}
+{shake rate=5 level=10}shake{/shake}
+{fade start=4 length=14}fade{/fade}
+{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}"
+readonly = true
+syntax_highlighting = true
+context_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+selecting_enabled = false
+v_scroll_speed = 0.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
+
+[node name="BBCodeEdit2" type="TextEdit" parent="Popup/HBoxContainer/HelperContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -503,8 +388,58 @@ margin_left = 4.0
 margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
-mouse_filter = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "[b]bold[/b]
+[i]italic[/i]
+[s]strikethrough[/s]
+[code]some_code()[/code]
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+<test_var>
+:grinning:
+[img=res://icon.png]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
+"
+readonly = true
+syntax_highlighting = true
+context_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+selecting_enabled = false
+v_scroll_speed = 0.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
+
+[node name="BBCode" type="RichTextLabel" parent="Popup/HBoxContainer"]
+margin_left = 355.0
+margin_right = 655.0
+margin_bottom = 527.0
+rect_min_size = Vector2( 300, 300 )
+mouse_filter = 2
 size_flags_vertical = 3
 custom_fonts/mono_font = ExtResource( 4 )
 custom_fonts/bold_italics_font = ExtResource( 6 )
@@ -512,10 +447,88 @@ custom_fonts/italics_font = ExtResource( 7 )
 custom_fonts/bold_font = ExtResource( 8 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "Test Selected Markup **here** wave"
-text = "Test Selected Markup **here** wave"
+bbcode_text = "[b]bold[/b]
+[i]italic[/i]
+[s]strikethrough[/s]
+[code]some_code()[/code]
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+<test_var>
+[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
+[img=res://icon.png]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+"
+text = "bold
+italic
+strikethrough
+some_code()
+link
+https://some_domain.com
+<test_var>
+
+123456789
+
+underline
+center
+right
+fill
+	text
+red
+
+wave
+tornado
+shake
+fade
+rainbow
+"
 script = ExtResource( 1 )
-markup_text = "Test Selected Markup **here** wave"
+markup_text = "[b]bold[/b]
+[i]italic[/i]
+[s]strikethrough[/s]
+[code]some_code()[/code]
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+<test_var>
+:grinning:
+[img=res://icon.png]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+"
 markup = "bbcode"
 variables = {
 "test_var": "x"

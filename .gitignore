@@ -12,3 +12,4 @@ data_*/
 .vscode/*
 addons/emojis-for-godot/*
 addons/zylann.editor_debugger/*
+addons/godot-plugin-refresher/*

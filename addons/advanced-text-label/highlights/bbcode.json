@@ -6,13 +6,6 @@
       ">"
     ]
   },
-  "emojis": {
-    "color": "#D19A66",
-    "region": [
-      ":",
-      ":"
-    ]
-  },
   "font-style": {
     "color": "#5C6370",
     "keywords": [
@@ -65,13 +58,6 @@
       "teal",
       "white",
       "yellow"
-    ]
-  },
-  "custom-color": {
-    "color": "#BE5046",
-    "sings": [
-      "#",
-      ""
     ]
   },
   "effects": {
