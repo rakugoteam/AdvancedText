@@ -5,22 +5,31 @@ var EmojisImport
 var emojis_gd
 
 export var markups_options_nodepath : NodePath
-export var edit_tabs_nodepath : NodePath
-export var preview_tabs_nodepath : NodePath
-export var preview_toggle_nodepath : NodePath
-export var help_button_nodepath : NodePath
-export var help_tabs_nodepath : NodePath
-export var help_popup_nodepath : NodePath
-export var emoji_button_nodepath : NodePath
-
 onready var markups_options : OptionButton = get_node(markups_options_nodepath)
+
+export var edit_tabs_nodepath : NodePath
 onready var edit_tabs : TabContainer = get_node(edit_tabs_nodepath)
+
+export var preview_tabs_nodepath : NodePath
 onready var preview_tabs : TabContainer = get_node(preview_tabs_nodepath)
+
+export var preview_toggle_nodepath : NodePath
 onready var preview_toggle : CheckButton = get_node(preview_toggle_nodepath)
+
+export var help_button_nodepath : NodePath
 onready var help_button : Button = get_node(help_button_nodepath)
+
+export var help_tabs_nodepath : NodePath
+
 onready var help_tabs : TabContainer = get_node(help_tabs_nodepath)
+export var help_popup_nodepath : NodePath
 onready var help_popup : WindowDialog = get_node(help_popup_nodepath)
+
+export var emoji_button_nodepath : NodePath
 onready var emoji_button : Button = get_node(emoji_button_nodepath)
+
+export var selected_node_toggle_nodepath : NodePath
+onready var selected_node_toggle : CheckButton = get_node(selected_node_toggle_nodepath)
 
 var markup_id := 0
 var text: = ""
@@ -78,6 +87,9 @@ func _on_text_changed(caller:MarkupEdit):
 	if !caller.visible:
 		return
 
+	if not selected_node_toggle.pressed:
+		return
+
 	if !selected_node:
 		return
 
@@ -117,6 +129,9 @@ func _process(delta: float) -> void:
 	if not editor:
 		return
 
+	if not selected_node_toggle.pressed:
+		return
+
 	if visible:
 		var _selected_node = editor.get_selection().get_selected_nodes()[0]
 		if selected_node != _selected_node:
@@ -129,7 +144,7 @@ func _process(delta: float) -> void:
 
 		preview_toggle.pressed = true
 		preview_tabs.visible = true
-		
+
 		if selected_node is AdvancedTextLabel:
 			var _markup_str_id = selected_node.markup
 			match _markup_str_id:
