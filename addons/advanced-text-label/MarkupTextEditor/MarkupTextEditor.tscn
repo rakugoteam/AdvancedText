@@ -26,6 +26,7 @@ preview_toggle_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/
 help_button_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/HelpButton")
 help_tabs_nodepath = NodePath("PopupHelp/HelperContainer")
 help_popup_nodepath = NodePath("PopupHelp")
+emoji_button_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/EmojisButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -41,8 +42,8 @@ margin_right = 1024.0
 margin_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer"]
-margin_left = 328.0
-margin_right = 696.0
+margin_left = 298.0
+margin_right = 725.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer"]
@@ -77,7 +78,6 @@ text = "Help"
 flat = true
 
 [node name="EmojisButton" type="Button" parent="VBoxContainer/CenterContainer/HBoxContainer"]
-visible = false
 margin_left = 372.0
 margin_right = 427.0
 margin_bottom = 40.0
@@ -749,3 +749,6 @@ markup = "bbcode"
 variables = {
 "test_var": "x"
 }
+
+[connection signal="about_to_show" from="PopupDialog" to="PopupDialog/Emoji" method="_on_about_to_show"]
+[connection signal="resized" from="PopupDialog" to="PopupDialog/Emoji" method="_on_resized"]

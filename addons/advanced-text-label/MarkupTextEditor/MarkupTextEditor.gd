@@ -1,6 +1,10 @@
 tool
 extends Control
 
+
+var EmojisImport
+var emojis_gd
+
 export var markups_options_nodepath : NodePath
 export var edit_tabs_nodepath : NodePath
 export var preview_tabs_nodepath : NodePath
@@ -8,6 +12,7 @@ export var preview_toggle_nodepath : NodePath
 export var help_button_nodepath : NodePath
 export var help_tabs_nodepath : NodePath
 export var help_popup_nodepath : NodePath
+export var emoji_button_nodepath : NodePath
 
 onready var markups_options : OptionButton = get_node(markups_options_nodepath)
 onready var edit_tabs : TabContainer = get_node(edit_tabs_nodepath)
@@ -16,11 +21,23 @@ onready var preview_toggle : CheckButton = get_node(preview_toggle_nodepath)
 onready var help_button : Button = get_node(help_button_nodepath)
 onready var help_tabs : TabContainer = get_node(help_tabs_nodepath)
 onready var help_popup : WindowDialog = get_node(help_popup_nodepath)
+onready var emoji_button : Button = get_node(emoji_button_nodepath)
 
 var markup_id := 0
 var text: = ""
 
 func _ready():
+	EmojisImport = preload("../emojis_import.gd")
+	EmojisImport = EmojisImport.new()
+
+	if EmojisImport.is_emojis_plugin_enabled():
+		var emoji_panel : Popup = EmojisImport.get_emoji_panel()
+		add_child(emoji_panel)
+		emoji_button.connect("pressed", emoji_panel, "popup_centered", [Vector2(450, 400)])
+
+	else:
+		emoji_button.hide()
+
 	update_text_preview(get_current_edit_tab())
 	markups_options.connect("item_selected", self, "_on_option_selected")
 	preview_toggle.connect("toggled", self, "_on_toggle")
