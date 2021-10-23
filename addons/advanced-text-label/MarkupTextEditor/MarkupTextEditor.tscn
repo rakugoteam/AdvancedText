@@ -24,8 +24,8 @@ edit_tabs_nodepath = NodePath("VBoxContainer/HBox/EditorsContainer")
 preview_tabs_nodepath = NodePath("VBoxContainer/HBox/PreviewsContainer")
 preview_toggle_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/PreviewToggle")
 help_button_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/HelpButton")
-help_tabs_nodepath = NodePath("Popup/HelperContainer")
-help_popup_nodepath = NodePath("Popup")
+help_tabs_nodepath = NodePath("PopupHelp/HelperContainer")
+help_popup_nodepath = NodePath("PopupHelp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -74,6 +74,14 @@ margin_left = 326.0
 margin_right = 368.0
 margin_bottom = 40.0
 text = "Help"
+flat = true
+
+[node name="EmojisButton" type="Button" parent="VBoxContainer/CenterContainer/HBoxContainer"]
+visible = false
+margin_left = 372.0
+margin_right = 427.0
+margin_bottom = 40.0
+text = "Emojis"
 flat = true
 
 [node name="HBox" type="HSplitContainer" parent="VBoxContainer"]
@@ -243,8 +251,7 @@ variables = {
 "test_var": "x"
 }
 
-[node name="Popup" type="WindowDialog" parent="."]
-visible = true
+[node name="PopupHelp" type="WindowDialog" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -258,7 +265,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HelperContainer" type="TabContainer" parent="Popup"]
+[node name="HelperContainer" type="TabContainer" parent="PopupHelp"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -268,7 +275,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarkdownHelp" type="HSplitContainer" parent="Popup/HelperContainer"]
+[node name="MarkdownHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -276,7 +283,7 @@ margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="MarkdownCode" type="TextEdit" parent="Popup/HelperContainer/MarkdownHelp"]
+[node name="MarkdownCode" type="TextEdit" parent="PopupHelp/HelperContainer/MarkdownHelp"]
 margin_right = 335.0
 margin_bottom = 515.0
 size_flags_horizontal = 3
@@ -326,7 +333,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json", "res://addons/advanced-text-label/highlights/markdown.json" ]
 
-[node name="MarkdownPreview" type="RichTextLabel" parent="Popup/HelperContainer/MarkdownHelp"]
+[node name="MarkdownPreview" type="RichTextLabel" parent="PopupHelp/HelperContainer/MarkdownHelp"]
 margin_left = 347.0
 margin_right = 647.0
 margin_bottom = 515.0
@@ -428,7 +435,7 @@ variables = {
 "test_var": "x"
 }
 
-[node name="RenPyHelp" type="HSplitContainer" parent="Popup/HelperContainer"]
+[node name="RenPyHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -437,8 +444,9 @@ margin_top = 8.0
 margin_right = -611.0
 margin_bottom = -479.0
 
-[node name="RenPyCode" type="TextEdit" parent="Popup/HelperContainer/RenPyHelp"]
-margin_bottom = 300.0
+[node name="RenPyCode" type="TextEdit" parent="PopupHelp/HelperContainer/RenPyHelp"]
+margin_right = 335.0
+margin_bottom = 515.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "{b}bold{/b}
@@ -483,10 +491,10 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="RenPyPreview" type="RichTextLabel" parent="Popup/HelperContainer/RenPyHelp"]
-margin_left = 12.0
-margin_right = 312.0
-margin_bottom = 300.0
+[node name="RenPyPreview" type="RichTextLabel" parent="PopupHelp/HelperContainer/RenPyHelp"]
+margin_left = 347.0
+margin_right = 647.0
+margin_bottom = 515.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
@@ -585,7 +593,7 @@ variables = {
 "test_var": "x"
 }
 
-[node name="BBCodeHelp" type="HSplitContainer" parent="Popup/HelperContainer"]
+[node name="BBCodeHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -600,7 +608,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BBCodeEdit2" type="TextEdit" parent="Popup/HelperContainer/BBCodeHelp"]
+[node name="BBCodeEdit2" type="TextEdit" parent="PopupHelp/HelperContainer/BBCodeHelp"]
 margin_right = 335.0
 margin_bottom = 515.0
 size_flags_horizontal = 3
@@ -649,7 +657,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="BBCode" type="RichTextLabel" parent="Popup/HelperContainer/BBCodeHelp"]
+[node name="BBCode" type="RichTextLabel" parent="PopupHelp/HelperContainer/BBCodeHelp"]
 margin_left = 347.0
 margin_right = 647.0
 margin_bottom = 515.0
