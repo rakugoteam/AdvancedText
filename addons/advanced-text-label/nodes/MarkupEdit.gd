@@ -2,7 +2,10 @@ tool
 extends TextEdit
 class_name MarkupEdit
 
-var EmojisImport
+var f := File.new()
+var _emojis
+const emoji_path = "res://addons/emojis-for-godot/emojis/emojis.gd"
+
 export var color_colors := true
 export(Array, String, FILE, "*.json") var configs
 
@@ -22,6 +25,54 @@ func _add_keywords_highlighting() -> void:
 	if configs.size() > 0:
 		for json in configs:
 			load_json_config(json)
+	
+	if color_colors:
+		_color_colors()
+
+func _color_colors():
+	var colors := [ 
+		"aqua", "black",
+		"blue", "fuchsia",
+		"gray", "green",
+		"lime", "maroon",
+		"navy", "purple",
+		"red", "silver",
+		"teal", "white",
+		"yellow"
+	]
+
+	for color in colors:
+		match color:
+			"aqua":
+				add_keyword_color("aqua", Color.aqua)
+			"black":
+				add_keyword_color("black", Color.black)
+			"blue":
+				add_keyword_color("blue", Color.blue)
+			"fuchsia":
+				add_keyword_color("fuchsia", Color.fuchsia)
+			"gray":
+				add_keyword_color("gray", Color.gray)
+			"green":
+				add_keyword_color("green", Color.green)
+			"lime":
+				add_keyword_color("lime", Color.lime)
+			"maroon":
+				add_keyword_color("maroon", Color.maroon)
+			"navy":
+				add_keyword_color("navy", Color("#7faeff"))
+			"purple":
+				add_keyword_color("purple", Color.purple)
+			"red":
+				add_keyword_color("red", Color.red)
+			"silver":
+				add_keyword_color("silver", Color.silver)
+			"teal":
+				add_keyword_color("teal", Color.teal)
+			"white":
+				add_keyword_color("white", Color.white)
+			"yellow":
+				add_keyword_color("yellow", Color.yellow)
 
 func load_json_config(json: String) -> void:
 	var content := get_file_content(json)
