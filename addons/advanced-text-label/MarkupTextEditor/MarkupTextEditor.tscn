@@ -244,6 +244,7 @@ variables = {
 }
 
 [node name="Popup" type="WindowDialog" parent="."]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -260,15 +261,13 @@ __meta__ = {
 [node name="HBoxContainer" type="HSplitContainer" parent="Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-dragger_visibility = 2
+dragger_visibility = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HelperContainer" type="TabContainer" parent="Popup/HBoxContainer"]
-margin_right = 355.0
+margin_right = 343.0
 margin_bottom = 527.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -323,7 +322,7 @@ context_menu_enabled = false
 shortcut_keys_enabled = false
 virtual_keyboard_enabled = false
 selecting_enabled = false
-smooth_scrolling = true
+v_scroll_speed = 0.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -370,12 +369,11 @@ text = "{b}bold{/b}
 {rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}"
 readonly = true
 syntax_highlighting = true
-highlight_all_occurrences = true
 context_menu_enabled = false
 shortcut_keys_enabled = false
 virtual_keyboard_enabled = false
 selecting_enabled = false
-smooth_scrolling = true
+v_scroll_speed = 0.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -425,12 +423,11 @@ text = "[b]bold[/b]
 "
 readonly = true
 syntax_highlighting = true
-highlight_all_occurrences = true
 context_menu_enabled = false
 shortcut_keys_enabled = false
 virtual_keyboard_enabled = false
 selecting_enabled = false
-smooth_scrolling = true
+v_scroll_speed = 0.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
