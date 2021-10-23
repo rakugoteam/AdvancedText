@@ -19,6 +19,7 @@ func _enter_tree():
 	markup_text_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	markup_text_editor.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	markup_text_editor.visible = false
+	markup_text_editor.editor = get_editor_interface()
 	
 	markup_text_editor_button.text = "Markup Text Editor"
 	markup_text_editor_button.icon = preload("MarkupTextEditor/MarkupTextEditor.svg")
