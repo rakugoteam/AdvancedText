@@ -1,7 +1,6 @@
 tool
 extends Control
 
-
 var EmojisImport
 var emojis_gd
 
@@ -25,6 +24,8 @@ onready var emoji_button : Button = get_node(emoji_button_nodepath)
 
 var markup_id := 0
 var text: = ""
+var editor : EditorInterface
+var selected_node : Node
 
 func _ready():
 	EmojisImport = preload("../emojis_import.gd")
@@ -32,8 +33,10 @@ func _ready():
 
 	if EmojisImport.is_emojis_plugin_enabled():
 		var emoji_panel : Popup = EmojisImport.get_emoji_panel()
+		emoji_panel.visible = false
 		add_child(emoji_panel)
 		emoji_button.connect("pressed", emoji_panel, "popup_centered", [Vector2(450, 400)])
+		emoji_button.icon = EmojisImport.get_icon()
 
 	else:
 		emoji_button.hide()
@@ -45,6 +48,7 @@ func _ready():
 	
 	for ch in edit_tabs.get_children():
 		ch.connect("text_changed", self, "update_text_preview", [ch, true])
+		ch.connect("text_changed", self, "_on_text_changed", [ch])
 
 func _on_toggle(toggled: bool):
 	preview_tabs.visible = toggled
@@ -54,7 +58,7 @@ func get_current_edit_tab() -> TextEdit:
 	var e_id := edit_tabs.current_tab
 	return e_tabs[e_id]
 
-func update_text_preview(caller:TextEdit, change_text := true):
+func update_text_preview(caller:MarkupEdit, change_text := true):
 	if not caller.visible:
 		return
 		
@@ -70,17 +74,86 @@ func update_text_preview(caller:TextEdit, change_text := true):
 
 	current_preview_tab.markup_text = text
 
+func _on_text_changed(caller:MarkupEdit):
+	if !caller.visible:
+		return
+
+	if !selected_node:
+		return
+
+	if selected_node:
+		if selected_node is AdvancedTextLabel:
+			selected_node.markup_text = caller.text
+		
+		if selected_node is RichTextLabel:
+			if selected_node.bbcode_enabled:
+				selected_node.markup_text = caller.text
+			else:
+				selected_node.text = caller.text
+		
+		if selected_node is MarkupEdit:
+			selected_node.text = caller.text
+
 func _on_option_selected(id: int):
 	if id != markup_id:
+		_set_markup_id(id)
+		var current := get_current_edit_tab()
+		update_text_preview(current, text.empty())
+
+func _set_markup_id(id: int):
+	if id != markup_id:
+		markups_options.selected = id
 		edit_tabs.current_tab = id
 		preview_tabs.current_tab = id
 		help_tabs.current_tab = id
 		markup_id = id
 
-		var current := get_current_edit_tab()
-		update_text_preview(current, text.empty())
-
 func _on_help_button_pressed():
 	var m = markups_options.get_item_text(markup_id) 
 	help_popup.window_title = m + " Help"
 	help_popup.popup_centered(Vector2(700, 500))
+
+func _process(delta: float) -> void:
+	if not editor:
+		return
+
+	if visible:
+		var _selected_node = editor.get_selection().get_selected_nodes()[0]
+		if selected_node != _selected_node:
+			selected_node = _selected_node
+		else:
+			return
+
+		if !selected_node:
+			return
+
+		preview_toggle.pressed = true
+		preview_tabs.visible = true
+		
+		if selected_node is AdvancedTextLabel:
+			var _markup_str_id = selected_node.markup
+			match _markup_str_id:
+				"markdown":
+					_set_markup_id(0)
+					
+				"renpy":
+					_set_markup_id(1)
+					
+				"bbcode":
+					_set_markup_id(2)
+					
+			text = selected_node.markup_text
+			update_text_preview(get_current_edit_tab(), false)
+			return
+		
+		if selected_node is RichTextLabel:
+			_set_markup_id(2)
+			text = selected_node.bbcode_text
+			update_text_preview(get_current_edit_tab(), false)
+		
+		if selected_node is MarkupEdit:
+			preview_toggle.pressed = false
+			preview_tabs.visible = false
+			text = selected_node.text
+			update_text_preview(get_current_edit_tab(), false)
+

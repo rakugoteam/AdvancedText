@@ -4,6 +4,7 @@ extends Object
 const emoji_path = "res://addons/emojis-for-godot/emojis/emojis.gd"
 const emoji_plugin_path = "res://addons/emojis-for-godot/plugin.cfg"
 const emoji_panel = "res://addons/emojis-for-godot/EmojiPanel/EmojiPanel.tscn"
+const emoji_icon_path ="res://addons/emojis-for-godot/icon.png"
 
 var f := File.new()
 var _emojis
@@ -40,3 +41,10 @@ func get_emoji_panel() -> Node:
 	
 	var panel = load(emoji_panel)
 	return panel.instance()
+
+func get_icon() -> Texture:
+	if not is_emojis_plugin_enabled():
+		return null
+	
+	var icon = load(emoji_icon_path)
+	return icon

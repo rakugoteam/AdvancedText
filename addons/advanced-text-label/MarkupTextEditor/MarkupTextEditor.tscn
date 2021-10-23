@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/advanced-text-label/nodes/AdvancedTextLabel.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text-label/nodes/MarkupEdit.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-BoldOblique.tres" type="DynamicFont" id=6]
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=7]
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Bold.tres" type="DynamicFont" id=8]
+[ext_resource path="res://addons/emojis-for-godot/icon.png" type="Texture" id=9]
 
 [node name="MarkupTextEditor" type="Control"]
 anchor_right = 1.0
@@ -42,8 +43,8 @@ margin_right = 1024.0
 margin_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer"]
-margin_left = 298.0
-margin_right = 725.0
+margin_left = 289.0
+margin_right = 734.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer"]
@@ -79,9 +80,10 @@ flat = true
 
 [node name="EmojisButton" type="Button" parent="VBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 372.0
-margin_right = 427.0
+margin_right = 445.0
 margin_bottom = 40.0
 text = "Emojis"
+icon = ExtResource( 9 )
 flat = true
 
 [node name="HBox" type="HSplitContainer" parent="VBoxContainer"]
@@ -499,62 +501,58 @@ custom_fonts/italics_font = ExtResource( 7 )
 custom_fonts/bold_font = ExtResource( 8 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "{b}bold{/b}
-{i}italic{/i}
-{s}strikethrough{/s}
-{code}some_code(){/code}
-{url=https://some_domain.com}link{/url}
-{url}https://some_domain.com{/url}
+bbcode_text = "[b]bold[/b]
+[i]italic[/i]
+[s]strikethrough[/s]
+[code]some_code()[/code]
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
 <test_var>
 :grinning:
-{img}res://icon.png{/img}
+[img]res://icon.png[/img]
 
-{table=3}
-{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
-{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
-{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
-{/table}
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
 
-{u}underline{/u}
-{center}center{/center}
-{right}right{/right}
-{fill}fill{/fill}
-{indent}text{/indent}
-{color=red}red{/color}
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
 
-{wave amp=50 freq=2}wave{/wave}
-{tornado radius=5 freq=2}tornado{/tornado}
-{shake rate=5 level=10}shake{/shake}
-{fade start=4 length=14}fade{/fade}
-{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}"
-text = "{b}bold{/b}
-{i}italic{/i}
-{s}strikethrough{/s}
-{code}some_code(){/code}
-{url=https://some_domain.com}link{/url}
-{url}https://some_domain.com{/url}
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
+text = "bold
+italic
+strikethrough
+some_code()
+link
+https://some_domain.com
 <test_var>
 :grinning:
-{img}res://icon.png{/img}
 
-{table=3}
-{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
-{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
-{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
-{/table}
 
-{u}underline{/u}
-{center}center{/center}
-{right}right{/right}
-{fill}fill{/fill}
-{indent}text{/indent}
-{color=red}red{/color}
+123456789
 
-{wave amp=50 freq=2}wave{/wave}
-{tornado radius=5 freq=2}tornado{/tornado}
-{shake rate=5 level=10}shake{/shake}
-{fade start=4 length=14}fade{/fade}
-{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}"
+underline
+center
+right
+fill
+	text
+red
+
+wave
+tornado
+shake
+fade
+rainbow"
 script = ExtResource( 1 )
 markup_text = "{b}bold{/b}
 {i}italic{/i}
@@ -584,7 +582,7 @@ markup_text = "{b}bold{/b}
 {shake rate=5 level=10}shake{/shake}
 {fade start=4 length=14}fade{/fade}
 {rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}"
-markup = "bbcode"
+markup = "renpy"
 variables = {
 "test_var": "x"
 }
@@ -673,6 +671,7 @@ bbcode_text = "[b]bold[/b]
 <test_var>
 :grinning:
 [img]res://icon.png[/img]
+[img=32x32]res://icon.png[/img]
 
 [table=3]
 [cell]1[/cell][cell]2[/cell][cell]3[/cell]
@@ -702,6 +701,7 @@ https://some_domain.com
 :grinning:
 
 
+
 123456789
 
 underline
@@ -726,6 +726,7 @@ markup_text = "[b]bold[/b]
 <test_var>
 :grinning:
 [img]res://icon.png[/img]
+[img=32x32]res://icon.png[/img]
 
 [table=3]
 [cell]1[/cell][cell]2[/cell][cell]3[/cell]

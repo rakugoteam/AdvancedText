@@ -11,5 +11,6 @@ data_*/
 # project specific
 .vscode/*
 addons/emojis-for-godot
+adddons/Iconify
 addons/zylann.editor_debugger
 addons/godot-plugin-refresher
