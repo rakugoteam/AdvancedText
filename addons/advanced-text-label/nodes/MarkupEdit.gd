@@ -2,10 +2,8 @@ tool
 extends TextEdit
 class_name MarkupEdit
 
-var f := File.new()
-var _emojis
-const emoji_path = "res://addons/emojis-for-godot/emojis/emojis.gd"
-
+var EmojisImport
+var emojis_gd
 export var color_colors := true
 export(Array, String, FILE, "*.json") var configs
 
@@ -93,7 +91,9 @@ func read_conf_element(config : Dictionary, conf):
 	read_keywords_if_exist(c, color)
 
 func load_emojis_if_exists(color: Color) -> void:
-	var emojis_gd = EmojisImport.get_emojis()
+	if emojis_gd == null:
+		emojis_gd = EmojisImport.get_emojis()
+
 	if emojis_gd:
 		for e in emojis_gd.emojis.keys():
 			add_keyword_color(e, color)
