@@ -35,6 +35,7 @@ var markup_id := 0
 var text: = ""
 var editor : EditorInterface
 var selected_node : Node
+var markups_str := ["markdown", "renpy", "bbcode"]
 
 func _ready():
 	EmojisImport = preload("../emojis_import.gd")
@@ -112,6 +113,7 @@ func _on_option_selected(id: int):
 		var current := get_current_edit_tab()
 		update_text_preview(current, text.empty())
 
+
 func _set_markup_id(id: int):
 	if id != markup_id:
 		markups_options.selected = id
@@ -119,6 +121,10 @@ func _set_markup_id(id: int):
 		preview_tabs.current_tab = id
 		help_tabs.current_tab = id
 		markup_id = id
+
+		if selected_node:
+			if selected_node is AdvancedTextLabel:
+				selected_node.markup = markups_str[id]
 
 func _on_help_button_pressed():
 	var m = markups_options.get_item_text(markup_id) 
@@ -147,16 +153,9 @@ func _process(delta: float) -> void:
 
 		if selected_node is AdvancedTextLabel:
 			var _markup_str_id = selected_node.markup
-			match _markup_str_id:
-				"markdown":
-					_set_markup_id(0)
-					
-				"renpy":
-					_set_markup_id(1)
-					
-				"bbcode":
-					_set_markup_id(2)
-					
+			var _markup_id = markups_str.find(_markup_str_id)
+			_set_markup_id(_markup_id)
+			
 			text = selected_node.markup_text
 			update_text_preview(get_current_edit_tab(), false)
 			return
