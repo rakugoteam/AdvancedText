@@ -63,7 +63,6 @@ _global_script_class_icons={
 [application]
 
 config/name="AdvencedTextLabel"
-run/main_scene="res://addons/advanced-text-label/markup_editor/MarkupTextEditor.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]
