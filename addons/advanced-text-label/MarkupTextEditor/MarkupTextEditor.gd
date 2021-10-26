@@ -46,8 +46,20 @@ onready var file_name_label : Label = get_node(file_name_label_nodepath)
 export var file_icon_nodepath : NodePath
 onready var file_icon : TextureRect = get_node(file_icon_nodepath)
 
-export var files_list_nodepath : NodePath
-onready var files_list : VBoxContainer = get_node(files_list_nodepath)
+export var files_box_nodepath : NodePath
+onready var files_box : VBoxContainer = get_node(files_box_nodepath)
+
+export var file_open_button_nodepath : NodePath
+onready var file_open_button : Button = get_node(file_open_button_nodepath)
+
+export var file_popup_nodepath : NodePath
+onready var file_popup : FileDialog = get_node(file_popup_nodepath)
+
+export var file_save_button_nodepath : NodePath
+onready var file_save_button : Button = get_node(file_save_button_nodepath)
+
+export var file_save_as_button_nodepath : NodePath
+onready var file_save_as_button : Button = get_node(file_save_as_button_nodepath)
 
 var markup_id := 0
 var text: = ""
@@ -92,6 +104,15 @@ func _ready():
 	files_toggle.connect("toggled", self, "_on_files_toggle")
 	files_toggle.icon = get_icon("TextFile", "EditorIcons")
 
+	file_save_button.icon = get_icon("Save", "EditorIcons")
+	file_save_button.connect("pressed", self, "_on_file_save_button_pressed")
+
+	file_save_as_button.icon = get_icon("Save", "EditorIcons")
+	file_save_as_button.connect("pressed", self, "_on_file_save_as_button_pressed")
+
+	file_open_button.icon = get_icon("Load", "EditorIcons")
+	file_open_button.connect("pressed", self, "_on_file_open_button_pressed")
+
 	files_tab.hide()
 	
 	for ch in edit_tabs.get_children():
@@ -107,6 +128,7 @@ func _on_selected_node_toggle(toggled:bool):
 
 func _on_files_toggle(toggled:bool):
 	files_tab.visible = toggled
+	file_name_label.text = "Unnamed Text File"
 
 func _on_toggle(toggled: bool):
 	preview_tabs.visible = toggled
@@ -228,4 +250,20 @@ func _process(delta: float) -> void:
 		file_icon.texture = get_icon("NodeWarning", "EditorIcons")
 		file_name_label.text = "Unsupported Node Type"
 
+func _on_file_open_button_pressed():
+	file_popup.mode = FileDialog.MODE_OPEN_FILES
+	file_popup.popup_centered(Vector2(700, 500))
 
+func _on_file_save_as_button_pressed():
+	file_popup.mode = FileDialog.MODE_SAVE_FILE
+	file_popup.popup_centered(Vector2(700, 500))
+
+func _on_file_save_button_pressed():
+	_on_file_save_as_button_pressed()
+
+func _on_selected_files(files):
+	match file_popup.mode:
+		FileDialog.MODE_OPEN_FILES:
+			_on_file_open(file)
+		FileDialog.MODE_SAVE_FILE:
+			_on_file_save(file)
