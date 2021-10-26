@@ -155,6 +155,7 @@ func _process(delta: float) -> void:
 			var _markup_str_id = selected_node.markup
 			var _markup_id = markups_str.find(_markup_str_id)
 			_set_markup_id(_markup_id)
+			markups_options.disabled = false
 			
 			text = selected_node.markup_text
 			update_text_preview(get_current_edit_tab(), false)
@@ -162,10 +163,12 @@ func _process(delta: float) -> void:
 		
 		if selected_node is RichTextLabel:
 			_set_markup_id(2)
+			markups_options.disabled = true
 			text = selected_node.bbcode_text
 			update_text_preview(get_current_edit_tab(), false)
 		
 		if selected_node is MarkupEdit:
+			markups_options.disabled = true
 			preview_toggle.pressed = false
 			preview_tabs.visible = false
 			text = selected_node.text
