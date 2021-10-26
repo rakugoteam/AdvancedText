@@ -29,13 +29,24 @@ export var emoji_button_nodepath : NodePath
 onready var emoji_button : Button = get_node(emoji_button_nodepath)
 
 export var selected_node_toggle_nodepath : NodePath
-onready var selected_node_toggle : CheckButton = get_node(selected_node_toggle_nodepath)
+onready var selected_node_toggle : CheckBox = get_node(selected_node_toggle_nodepath)
+
+export var files_tab_nodepath : NodePath
+onready var files_tab : VBoxContainer = get_node(files_tab_nodepath)
+
+export var files_toggle_nodepath : NodePath
+onready var files_toggle : CheckBox = get_node(files_toggle_nodepath)
 
 var markup_id := 0
 var text: = ""
 var editor : EditorInterface
 var selected_node : Node
 var markups_str := ["markdown", "renpy", "bbcode"]
+
+var files := {
+	# for example:
+	# "some_md.md": { "path": "some_md.md", "text": "markdown" }
+}
 
 func _ready():
 	EmojisImport = preload("../emojis_import.gd")
@@ -55,10 +66,24 @@ func _ready():
 	markups_options.connect("item_selected", self, "_on_option_selected")
 	preview_toggle.connect("toggled", self, "_on_toggle")
 	help_button.connect("pressed", self, "_on_help_button_pressed")
+	self.connect("visibility_changed", self, "_on_visibility_changed")
+	selected_node_toggle.connect("toggled", self, "_on_selected_node_toggle")
+	files_toggle.connect("toggled", self, "_on_files_toggle")
+	files_tab.hide()
 	
 	for ch in edit_tabs.get_children():
 		ch.connect("text_changed", self, "update_text_preview", [ch, true])
 		ch.connect("text_changed", self, "_on_text_changed", [ch])
+
+func _on_visibility_changed():
+	var edit_node := selected_node_toggle.pressed
+	set_process(edit_node && visible)
+
+func _on_selected_node_toggle(toggled:bool):
+	set_process(toggled)
+
+func _on_files_toggle(toggled:bool):
+	files_tab.visible = toggled
 
 func _on_toggle(toggled: bool):
 	preview_tabs.visible = toggled
@@ -113,7 +138,6 @@ func _on_option_selected(id: int):
 		var current := get_current_edit_tab()
 		update_text_preview(current, text.empty())
 
-
 func _set_markup_id(id: int):
 	if id != markup_id:
 		markups_options.selected = id
@@ -135,42 +159,38 @@ func _process(delta: float) -> void:
 	if not editor:
 		return
 
-	if not selected_node_toggle.pressed:
+	var selected_nodes = editor.get_selection().get_selected_nodes()
+	if selected_nodes.size() == 0:
 		return
 
-	if visible:
-		var _selected_node = editor.get_selection().get_selected_nodes()[0]
-		if selected_node != _selected_node:
-			selected_node = _selected_node
-		else:
-			return
+	if selected_node != selected_nodes[0]:
+		selected_node = selected_nodes[0]
+	else:
+		return
 
-		if !selected_node:
-			return
+	preview_toggle.pressed = true
+	preview_tabs.visible = true
 
-		preview_toggle.pressed = true
-		preview_tabs.visible = true
-
-		if selected_node is AdvancedTextLabel:
-			var _markup_str_id = selected_node.markup
-			var _markup_id = markups_str.find(_markup_str_id)
-			_set_markup_id(_markup_id)
-			markups_options.disabled = false
-			
-			text = selected_node.markup_text
-			update_text_preview(get_current_edit_tab(), false)
-			return
+	if selected_node is AdvancedTextLabel:
+		var _markup_str_id = selected_node.markup
+		var _markup_id = markups_str.find(_markup_str_id)
+		_set_markup_id(_markup_id)
+		markups_options.disabled = false
 		
-		if selected_node is RichTextLabel:
-			_set_markup_id(2)
-			markups_options.disabled = true
-			text = selected_node.bbcode_text
-			update_text_preview(get_current_edit_tab(), false)
-		
-		if selected_node is MarkupEdit:
-			markups_options.disabled = true
-			preview_toggle.pressed = false
-			preview_tabs.visible = false
-			text = selected_node.text
-			update_text_preview(get_current_edit_tab(), false)
+		text = selected_node.markup_text
+		update_text_preview(get_current_edit_tab(), false)
+		return
+	
+	if selected_node is RichTextLabel:
+		_set_markup_id(2)
+		markups_options.disabled = true
+		text = selected_node.bbcode_text
+		update_text_preview(get_current_edit_tab(), false)
+	
+	if selected_node is MarkupEdit:
+		markups_options.disabled = true
+		preview_toggle.pressed = false
+		preview_tabs.visible = false
+		text = selected_node.text
+		update_text_preview(get_current_edit_tab(), false)
 

@@ -31,6 +31,8 @@ help_tabs_nodepath = NodePath("PopupHelp/HelperContainer")
 help_popup_nodepath = NodePath("PopupHelp")
 emoji_button_nodepath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/EmojisButton")
 selected_node_toggle_nodepath = NodePath("VBoxContainer/HBoxContainer/EditSelectedNode")
+files_tab_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer")
+files_toggle_nodepath = NodePath("VBoxContainer/HBoxContainer/EditSelectedFile")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -51,21 +53,21 @@ margin_right = 83.0
 margin_bottom = 27.0
 text = "Edit Selected"
 
-[node name="EditSelectedNode" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+[node name="EditSelectedFile" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
 margin_left = 87.0
-margin_right = 149.0
+margin_right = 138.0
+margin_bottom = 40.0
+group = SubResource( 1 )
+text = "File"
+flat = true
+
+[node name="EditSelectedNode" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+margin_left = 142.0
+margin_right = 204.0
 margin_bottom = 40.0
 pressed = true
 group = SubResource( 1 )
 text = "Node"
-flat = true
-
-[node name="EditSelectedFile" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
-margin_left = 153.0
-margin_right = 204.0
-margin_bottom = 40.0
-group = SubResource( 1 )
-text = "File"
 flat = true
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
@@ -130,6 +132,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="FilesOptionsContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
+visible = false
 margin_right = 153.0
 margin_bottom = 556.0
 size_flags_vertical = 3
@@ -159,7 +162,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBox" type="HSplitContainer" parent="VBoxContainer/HSplitContainer"]
-margin_left = 165.0
 margin_right = 1024.0
 margin_bottom = 556.0
 grow_horizontal = 2
@@ -170,7 +172,7 @@ size_flags_vertical = 3
 dragger_visibility = 1
 
 [node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/HSplitContainer/HBox"]
-margin_right = 547.0
+margin_right = 712.0
 margin_bottom = 556.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 11
@@ -245,8 +247,8 @@ __meta__ = {
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
 [node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/HSplitContainer/HBox"]
-margin_left = 559.0
-margin_right = 859.0
+margin_left = 724.0
+margin_right = 1024.0
 margin_bottom = 556.0
 rect_min_size = Vector2( 300, 0 )
 tabs_visible = false
@@ -326,14 +328,8 @@ variables = {
 }
 
 [node name="PopupHelp" type="WindowDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -316.0
-margin_top = -241.0
-margin_right = 339.0
-margin_bottom = 286.0
+margin_right = 1004.0
+margin_bottom = 590.0
 rect_min_size = Vector2( 500, 100 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -358,8 +354,8 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="MarkdownCode" type="TextEdit" parent="PopupHelp/HelperContainer/MarkdownHelp"]
-margin_right = 335.0
-margin_bottom = 515.0
+margin_right = 684.0
+margin_bottom = 578.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "**bold**
@@ -407,9 +403,9 @@ __meta__ = {
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json", "res://addons/advanced-text-label/highlights/markdown.json" ]
 
 [node name="MarkdownPreview" type="RichTextLabel" parent="PopupHelp/HelperContainer/MarkdownHelp"]
-margin_left = 347.0
-margin_right = 647.0
-margin_bottom = 515.0
+margin_left = 696.0
+margin_right = 996.0
+margin_bottom = 578.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
@@ -515,8 +511,8 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="RenPyEdit3" type="TextEdit" parent="PopupHelp/HelperContainer/RenPyHelp"]
-margin_right = 335.0
-margin_bottom = 515.0
+margin_right = 684.0
+margin_bottom = 578.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "{b}bold{/b}
@@ -561,9 +557,9 @@ __meta__ = {
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
 [node name="RenPy" type="RichTextLabel" parent="PopupHelp/HelperContainer/RenPyHelp"]
-margin_left = 347.0
-margin_right = 647.0
-margin_bottom = 515.0
+margin_left = 696.0
+margin_right = 996.0
+margin_bottom = 578.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
@@ -675,8 +671,8 @@ __meta__ = {
 }
 
 [node name="BBCodeEdit2" type="TextEdit" parent="PopupHelp/HelperContainer/BBCodeHelp"]
-margin_right = 335.0
-margin_bottom = 515.0
+margin_right = 684.0
+margin_bottom = 578.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "[b]bold[/b]
@@ -722,9 +718,9 @@ __meta__ = {
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
 [node name="BBCode" type="RichTextLabel" parent="PopupHelp/HelperContainer/BBCodeHelp"]
-margin_left = 347.0
-margin_right = 647.0
-margin_bottom = 515.0
+margin_left = 696.0
+margin_right = 996.0
+margin_bottom = 578.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
@@ -824,10 +820,8 @@ variables = {
 }
 
 [node name="OpenTextFileDialog" type="FileDialog" parent="."]
-margin_left = 227.0
-margin_top = 140.0
-margin_right = 809.0
-margin_bottom = 430.0
+margin_right = 1004.0
+margin_bottom = 590.0
 window_title = "Otwórz plik(i)"
 resizable = true
 mode = 1
@@ -837,13 +831,14 @@ __meta__ = {
 }
 
 [node name="SaveTextFileDialog" type="FileDialog" parent="."]
-margin_left = 227.0
-margin_top = 140.0
-margin_right = 809.0
-margin_bottom = 430.0
+margin_right = 1004.0
+margin_bottom = 590.0
 window_title = "Zapisz plik"
 resizable = true
 filters = PoolStringArray( "*.txt  ; Text File", "*.md ; Markdown File" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="about_to_show" from="PopupDialog" to="PopupDialog/Emoji" method="_on_about_to_show"]
+[connection signal="resized" from="PopupDialog" to="PopupDialog/Emoji" method="_on_resized"]
