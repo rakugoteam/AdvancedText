@@ -4,6 +4,9 @@ extends Control
 var EmojisImport
 var emojis_gd
 
+export var AdvancedTextLabelIcon : Texture
+export var MarkupEditIcon : Texture
+
 export var markups_options_nodepath : NodePath
 onready var markups_options : OptionButton = get_node(markups_options_nodepath)
 
@@ -37,6 +40,15 @@ onready var files_tab : VBoxContainer = get_node(files_tab_nodepath)
 export var files_toggle_nodepath : NodePath
 onready var files_toggle : CheckBox = get_node(files_toggle_nodepath)
 
+export var file_name_label_nodepath : NodePath
+onready var file_name_label : Label = get_node(file_name_label_nodepath)
+
+export var file_icon_nodepath : NodePath
+onready var file_icon : TextureRect = get_node(file_icon_nodepath)
+
+export var files_list_nodepath : NodePath
+onready var files_list : VBoxContainer = get_node(files_list_nodepath)
+
 var markup_id := 0
 var text: = ""
 var editor : EditorInterface
@@ -63,12 +75,23 @@ func _ready():
 		emoji_button.hide()
 
 	update_text_preview(get_current_edit_tab())
+
 	markups_options.connect("item_selected", self, "_on_option_selected")
+
 	preview_toggle.connect("toggled", self, "_on_toggle")
+	preview_toggle.icon = get_icon("RichTextEffect", "EditorIcons")
+
 	help_button.connect("pressed", self, "_on_help_button_pressed")
+	help_button.icon = get_icon("Help", "EditorIcons")
+
 	self.connect("visibility_changed", self, "_on_visibility_changed")
+
 	selected_node_toggle.connect("toggled", self, "_on_selected_node_toggle")
+	selected_node_toggle.icon = get_icon("Control", "EditorIcons")
+
 	files_toggle.connect("toggled", self, "_on_files_toggle")
+	files_toggle.icon = get_icon("TextFile", "EditorIcons")
+
 	files_tab.hide()
 	
 	for ch in edit_tabs.get_children():
@@ -170,27 +193,39 @@ func _process(delta: float) -> void:
 
 	preview_toggle.pressed = true
 	preview_tabs.visible = true
+	file_name_label.text = selected_node.name
+
+	print("type", selected_node.get_class())
 
 	if selected_node is AdvancedTextLabel:
 		var _markup_str_id = selected_node.markup
 		var _markup_id = markups_str.find(_markup_str_id)
-		_set_markup_id(_markup_id)
 		markups_options.disabled = false
+		_set_markup_id(_markup_id)
 		
 		text = selected_node.markup_text
 		update_text_preview(get_current_edit_tab(), false)
-		return
+		file_icon.texture = AdvancedTextLabelIcon
+		
 	
-	if selected_node is RichTextLabel:
+	elif selected_node is RichTextLabel:
 		_set_markup_id(2)
 		markups_options.disabled = true
 		text = selected_node.bbcode_text
 		update_text_preview(get_current_edit_tab(), false)
+		file_icon.texture = get_icon("RichTextLabel", "EditorIcons")
 	
-	if selected_node is MarkupEdit:
+	elif selected_node is MarkupEdit:
 		markups_options.disabled = true
 		preview_toggle.pressed = false
 		preview_tabs.visible = false
 		text = selected_node.text
 		update_text_preview(get_current_edit_tab(), false)
+		# file_icon.icon = MarkupEditIcon
+		file_icon.texture = get_icon("TextEdit", "EditorIcons")
+		
+	else:
+		file_icon.texture = get_icon("NodeWarning", "EditorIcons")
+		file_name_label.text = "Unsupported Node Type"
+
 

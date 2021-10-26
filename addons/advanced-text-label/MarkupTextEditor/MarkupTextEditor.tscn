@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/advanced-text-label/nodes/AdvancedTextLabel.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text-label/nodes/MarkupEdit.gd" type="Script" id=2]
@@ -9,8 +9,24 @@
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=7]
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Bold.tres" type="DynamicFont" id=8]
 [ext_resource path="res://addons/emojis-for-godot/icon.png" type="Texture" id=9]
+[ext_resource path="res://addons/advanced-text-label/icons/AdvancedTextLabel.svg" type="Texture" id=10]
 
 [sub_resource type="ButtonGroup" id=1]
+
+[sub_resource type="Image" id=2]
+data = {
+"data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"format": "LumAlpha8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id=3]
+flags = 4
+flags = 4
+image = SubResource( 2 )
+size = Vector2( 16, 16 )
 
 [node name="MarkupTextEditor" type="Control"]
 anchor_right = 1.0
@@ -22,6 +38,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+AdvancedTextLabelIcon = ExtResource( 10 )
 markups_options_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/MarkupOption")
 edit_tabs_nodepath = NodePath("VBoxContainer/HSplitContainer/HBox/EditorsContainer")
 preview_tabs_nodepath = NodePath("VBoxContainer/HSplitContainer/HBox/PreviewsContainer")
@@ -33,6 +50,9 @@ emoji_button_nodepath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/Emoj
 selected_node_toggle_nodepath = NodePath("VBoxContainer/HBoxContainer/EditSelectedNode")
 files_tab_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer")
 files_toggle_nodepath = NodePath("VBoxContainer/HBoxContainer/EditSelectedFile")
+file_name_label_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer/FileName")
+file_icon_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer/FileIcon")
+files_list_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/ScrollContainer/VBoxContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -55,32 +75,63 @@ text = "Edit Selected"
 
 [node name="EditSelectedFile" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
 margin_left = 87.0
-margin_right = 138.0
+margin_right = 158.0
 margin_bottom = 40.0
 group = SubResource( 1 )
 text = "File"
+icon = SubResource( 3 )
 flat = true
 
 [node name="EditSelectedNode" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
-margin_left = 142.0
-margin_right = 204.0
+margin_left = 162.0
+margin_right = 244.0
 margin_bottom = 40.0
 pressed = true
 group = SubResource( 1 )
 text = "Node"
+icon = SubResource( 3 )
 flat = true
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 208.0
-margin_right = 767.0
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 248.0
+margin_right = 486.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer2"]
+margin_left = 67.0
+margin_top = 13.0
+margin_right = 171.0
+margin_bottom = 27.0
+
+[node name="FileIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileName" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
+margin_left = 4.0
+margin_right = 104.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "File/NodeName"
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 490.0
+margin_right = 729.0
+margin_bottom = 40.0
+size_flags_horizontal = 15
+size_flags_vertical = 3
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer"]
-margin_left = 185.0
+margin_left = 25.0
 margin_top = 10.0
-margin_right = 373.0
+margin_right = 213.0
 margin_bottom = 30.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
@@ -101,25 +152,27 @@ items = [ "Markdown", null, false, 0, null, "RenPy", null, false, 1, null, "BBCo
 selected = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 771.0
+margin_left = 733.0
 margin_right = 1024.0
 margin_bottom = 40.0
 
 [node name="PreviewToggle" type="CheckButton" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_right = 130.0
+margin_right = 150.0
 margin_bottom = 40.0
 pressed = true
 text = "Preview"
+icon = SubResource( 3 )
 
 [node name="HelpButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 134.0
-margin_right = 176.0
+margin_left = 154.0
+margin_right = 214.0
 margin_bottom = 40.0
 text = "Help"
+icon = SubResource( 3 )
 
 [node name="EmojisButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 180.0
-margin_right = 253.0
+margin_left = 218.0
+margin_right = 291.0
 margin_bottom = 40.0
 text = "Emojis"
 icon = ExtResource( 9 )
