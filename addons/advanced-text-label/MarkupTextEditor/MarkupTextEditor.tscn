@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/advanced-text-label/nodes/AdvancedTextLabel.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text-label/nodes/MarkupEdit.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Bold.tres" type="DynamicFont" id=8]
 [ext_resource path="res://addons/emojis-for-godot/icon.png" type="Texture" id=9]
 
+[sub_resource type="ButtonGroup" id=1]
+
 [node name="MarkupTextEditor" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,15 +22,15 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-markups_options_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/MarkupOption")
-edit_tabs_nodepath = NodePath("VBoxContainer/HBox/EditorsContainer")
-preview_tabs_nodepath = NodePath("VBoxContainer/HBox/PreviewsContainer")
-preview_toggle_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/PreviewToggle")
-help_button_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/HelpButton")
+markups_options_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/MarkupOption")
+edit_tabs_nodepath = NodePath("VBoxContainer/HSplitContainer/HBox/EditorsContainer")
+preview_tabs_nodepath = NodePath("VBoxContainer/HSplitContainer/HBox/PreviewsContainer")
+preview_toggle_nodepath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/PreviewToggle")
+help_button_nodepath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/HelpButton")
 help_tabs_nodepath = NodePath("PopupHelp/HelperContainer")
 help_popup_nodepath = NodePath("PopupHelp")
-emoji_button_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/EmojisButton")
-selected_node_toggle_nodepath = NodePath("VBoxContainer/CenterContainer/HBoxContainer/EditSeledtedNodeToggle")
+emoji_button_nodepath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/EmojisButton")
+selected_node_toggle_nodepath = NodePath("VBoxContainer/HBoxContainer/EditSelectedNode")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -39,32 +41,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 1024.0
 margin_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer"]
-margin_left = 187.0
-margin_right = 837.0
-margin_bottom = 40.0
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_top = 13.0
+margin_right = 83.0
+margin_bottom = 27.0
+text = "Edit Selected"
 
-[node name="EditSeledtedNodeToggle" type="CheckButton" parent="VBoxContainer/CenterContainer/HBoxContainer"]
-margin_right = 201.0
+[node name="EditSelectedNode" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+margin_left = 87.0
+margin_right = 149.0
 margin_bottom = 40.0
 pressed = true
-text = "Edit Selected Node"
+group = SubResource( 1 )
+text = "Node"
+flat = true
 
-[node name="Label" type="Label" parent="VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 205.0
-margin_top = 13.0
-margin_right = 295.0
-margin_bottom = 27.0
+[node name="EditSelectedFile" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+margin_left = 153.0
+margin_right = 204.0
+margin_bottom = 40.0
+group = SubResource( 1 )
+text = "File"
+flat = true
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 208.0
+margin_right = 767.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer"]
+margin_left = 185.0
+margin_top = 10.0
+margin_right = 373.0
+margin_bottom = 30.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 90.0
+margin_bottom = 17.0
 text = "Select Markup"
 
-[node name="MarkupOption" type="OptionButton" parent="VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 299.0
-margin_right = 393.0
-margin_bottom = 40.0
+[node name="MarkupOption" type="OptionButton" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 94.0
+margin_right = 188.0
+margin_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Markdown"
@@ -72,32 +98,70 @@ flat = true
 items = [ "Markdown", null, false, 0, null, "RenPy", null, false, 1, null, "BBCode", null, false, 2, null ]
 selected = 0
 
-[node name="PreviewToggle" type="CheckButton" parent="VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 397.0
-margin_right = 527.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 771.0
+margin_right = 1024.0
+margin_bottom = 40.0
+
+[node name="PreviewToggle" type="CheckButton" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_right = 130.0
 margin_bottom = 40.0
 pressed = true
 text = "Preview"
 
-[node name="HelpButton" type="Button" parent="VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 531.0
-margin_right = 573.0
+[node name="HelpButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_left = 134.0
+margin_right = 176.0
 margin_bottom = 40.0
 text = "Help"
-flat = true
 
-[node name="EmojisButton" type="Button" parent="VBoxContainer/CenterContainer/HBoxContainer"]
-margin_left = 577.0
-margin_right = 650.0
+[node name="EmojisButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_left = 180.0
+margin_right = 253.0
 margin_bottom = 40.0
 text = "Emojis"
 icon = ExtResource( 9 )
-flat = true
 
-[node name="HBox" type="HSplitContainer" parent="VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
 margin_top = 44.0
 margin_right = 1024.0
 margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FilesOptionsContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
+margin_right = 153.0
+margin_bottom = 556.0
+size_flags_vertical = 3
+
+[node name="OpenFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
+margin_right = 153.0
+margin_bottom = 20.0
+text = "Open *.txt / *.md File"
+
+[node name="SaveFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
+margin_top = 24.0
+margin_right = 153.0
+margin_bottom = 44.0
+text = "Save *.txt / *.md File"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
+margin_top = 48.0
+margin_right = 153.0
+margin_bottom = 556.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/ScrollContainer"]
+margin_right = 153.0
+margin_bottom = 508.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBox" type="HSplitContainer" parent="VBoxContainer/HSplitContainer"]
+margin_left = 165.0
+margin_right = 1024.0
+margin_bottom = 556.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 800, 500 )
@@ -105,8 +169,8 @@ mouse_default_cursor_shape = 10
 size_flags_vertical = 3
 dragger_visibility = 1
 
-[node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/HBox"]
-margin_right = 712.0
+[node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/HSplitContainer/HBox"]
+margin_right = 547.0
 margin_bottom = 556.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 11
@@ -115,7 +179,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/HBox/EditorsContainer"]
+[node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -136,7 +200,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json", "res://addons/advanced-text-label/highlights/markdown.json" ]
 
-[node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/HBox/EditorsContainer"]
+[node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -158,7 +222,7 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="BBCodeEdit" type="TextEdit" parent="VBoxContainer/HBox/EditorsContainer"]
+[node name="BBCodeEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -180,14 +244,14 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
 
-[node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/HBox"]
-margin_left = 724.0
-margin_right = 1024.0
+[node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/HSplitContainer/HBox"]
+margin_left = 559.0
+margin_right = 859.0
 margin_bottom = 556.0
 rect_min_size = Vector2( 300, 0 )
 tabs_visible = false
 
-[node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/HBox/PreviewsContainer"]
+[node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -209,7 +273,7 @@ variables = {
 "test_var": "x"
 }
 
-[node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/HBox/PreviewsContainer"]
+[node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -235,7 +299,7 @@ variables = {
 "test_var": "x"
 }
 
-[node name="BBCodeTextLabel" type="RichTextLabel" parent="VBoxContainer/HBox/PreviewsContainer"]
+[node name="BBCodeTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -759,5 +823,27 @@ variables = {
 "test_var": "x"
 }
 
-[connection signal="about_to_show" from="PopupDialog" to="PopupDialog/Emoji" method="_on_about_to_show"]
-[connection signal="resized" from="PopupDialog" to="PopupDialog/Emoji" method="_on_resized"]
+[node name="OpenTextFileDialog" type="FileDialog" parent="."]
+margin_left = 227.0
+margin_top = 140.0
+margin_right = 809.0
+margin_bottom = 430.0
+window_title = "Otwórz plik(i)"
+resizable = true
+mode = 1
+filters = PoolStringArray( "*.txt  ; Text File", "*.md ; Markdown File" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveTextFileDialog" type="FileDialog" parent="."]
+margin_left = 227.0
+margin_top = 140.0
+margin_right = 809.0
+margin_bottom = 430.0
+window_title = "Zapisz plik"
+resizable = true
+filters = PoolStringArray( "*.txt  ; Text File", "*.md ; Markdown File" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
