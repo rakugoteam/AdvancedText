@@ -63,12 +63,11 @@ _global_script_class_icons={
 [application]
 
 config/name="AdvencedTextLabel"
-run/main_scene="res://addons/advanced-text-label/markup_editor/MarkupTextEditor.tscn"
 config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/advanced-text-label/plugin.cfg", "res://addons/emojis-for-godot/plugin.cfg", "res://addons/godot-plugin-refresher/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/advanced-text-label/plugin.cfg", "res://addons/emojis-for-godot/plugin.cfg" )
 
 [physics]
 
