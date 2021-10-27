@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/AdvancedTextLabel.svg-b4d8f67187712587f92d8f6f36378288.stex"
+path="res://.import/AdvancedTextLabel.svg-0084c1fceab9f5f25a15357c7b65df77.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://addons/advanced-text/icons/AdvancedTextLabel.svg"
-dest_files=[ "res://.import/AdvancedTextLabel.svg-b4d8f67187712587f92d8f6f36378288.stex" ]
+dest_files=[ "res://.import/AdvancedTextLabel.svg-0084c1fceab9f5f25a15357c7b65df77.stex" ]
 
 [params]
 

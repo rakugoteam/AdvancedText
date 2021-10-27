@@ -73,18 +73,19 @@ var files := {
 }
 
 func _ready():
-	EmojisImport = preload("../emojis_import.gd")
-	EmojisImport = EmojisImport.new()
+	emoji_button.hide()
 
-	if EmojisImport.is_emojis_plugin_enabled():
-		var emoji_panel : Popup = EmojisImport.get_emoji_panel()
-		emoji_panel.visible = false
-		add_child(emoji_panel)
-		emoji_button.connect("pressed", emoji_panel, "popup_centered", [Vector2(450, 400)])
-		emoji_button.icon = EmojisImport.get_icon()
+	if Engine.editor_hint:
+		EmojisImport = preload("../emojis_import.gd")
+		EmojisImport = EmojisImport.new()
 
-	else:
-		emoji_button.hide()
+		if EmojisImport.is_emojis_plugin_enabled():
+			var emoji_panel : Popup = EmojisImport.get_emoji_panel()
+			emoji_panel.visible = false
+			add_child(emoji_panel)
+			emoji_button.connect("pressed", emoji_panel, "popup_centered", [Vector2(450, 400)])
+			emoji_button.icon = EmojisImport.get_icon()
+			emoji_button.show()
 
 	update_text_preview(get_current_edit_tab())
 
@@ -124,10 +125,13 @@ func _on_visibility_changed():
 	set_process(edit_node && visible)
 
 func _on_selected_node_toggle(toggled:bool):
+	file_icon.texture = get_icon("NodeWarning", "EditorIcons")
+	file_name_label.text = "Unsupported Node Type"
 	set_process(toggled)
 
 func _on_files_toggle(toggled:bool):
 	files_tab.visible = toggled
+	file_icon.texture = get_icon("New", "EditorIcons")
 	file_name_label.text = "Unnamed Text File"
 
 func _on_toggle(toggled: bool):
@@ -262,8 +266,9 @@ func _on_file_save_button_pressed():
 	_on_file_save_as_button_pressed()
 
 func _on_selected_files(files):
-	match file_popup.mode:
-		FileDialog.MODE_OPEN_FILES:
-			_on_file_open(file)
-		FileDialog.MODE_SAVE_FILE:
-			_on_file_save(file)
+	pass
+	# match file_popup.mode:
+	# 	FileDialog.MODE_OPEN_FILES:
+	# 		_on_file_open(file)
+	# 	FileDialog.MODE_SAVE_FILE:
+	# 		_on_file_save(file)

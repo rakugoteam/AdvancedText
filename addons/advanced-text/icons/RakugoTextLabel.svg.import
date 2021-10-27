@@ -2,7 +2,7 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RakugoTextLabel.svg-2fef52ace5ede5968fc998db72ecfe19.stex"
+path="res://.import/RakugoTextLabel.svg-afd0163c7a613a431bf598f6e30d8a74.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,7 +10,7 @@ metadata={
 [deps]
 
 source_file="res://addons/advanced-text/icons/RakugoTextLabel.svg"
-dest_files=[ "res://.import/RakugoTextLabel.svg-2fef52ace5ede5968fc998db72ecfe19.stex" ]
+dest_files=[ "res://.import/RakugoTextLabel.svg-afd0163c7a613a431bf598f6e30d8a74.stex" ]
 
 [params]
 
