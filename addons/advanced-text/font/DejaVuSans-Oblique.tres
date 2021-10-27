@@ -1,6 +1,6 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://addons/advanced-text-label/font/DejaVuSans.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Oblique.ttf" type="DynamicFontData" id=1]
 
 [resource]
 use_filter = true

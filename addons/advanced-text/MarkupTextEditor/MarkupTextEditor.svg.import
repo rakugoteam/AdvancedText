@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/AdvancedTextLabel.svg-b4d8f67187712587f92d8f6f36378288.stex"
+path="res://.import/MarkupTextEditor.svg-8259a4707db81b9ebbc8a8a72874bb10.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/advanced-text-label/icons/AdvancedTextLabel.svg"
-dest_files=[ "res://.import/AdvancedTextLabel.svg-b4d8f67187712587f92d8f6f36378288.stex" ]
+source_file="res://addons/advanced-text/MarkupTextEditor/MarkupTextEditor.svg"
+dest_files=[ "res://.import/MarkupTextEditor.svg-8259a4707db81b9ebbc8a8a72874bb10.stex" ]
 
 [params]
 

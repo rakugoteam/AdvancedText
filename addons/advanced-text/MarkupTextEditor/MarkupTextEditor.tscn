@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://addons/advanced-text-label/nodes/AdvancedTextLabel.gd" type="Script" id=1]
-[ext_resource path="res://addons/advanced-text-label/nodes/MarkupEdit.gd" type="Script" id=2]
-[ext_resource path="res://addons/advanced-text-label/MarkupTextEditor/MarkupTextEditor.gd" type="Script" id=3]
-[ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Mono.tres" type="DynamicFont" id=4]
-[ext_resource path="res://addons/advanced-text-label/font/DejaVuSans.tres" type="DynamicFont" id=5]
-[ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-BoldOblique.tres" type="DynamicFont" id=6]
-[ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=7]
-[ext_resource path="res://addons/advanced-text-label/font/DejaVuSans-Bold.tres" type="DynamicFont" id=8]
+[ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=1]
+[ext_resource path="res://addons/advanced-text/nodes/MarkupEdit.gd" type="Script" id=2]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/MarkupTextEditor.gd" type="Script" id=3]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Mono.tres" type="DynamicFont" id=4]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans.tres" type="DynamicFont" id=5]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-BoldOblique.tres" type="DynamicFont" id=6]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=7]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Bold.tres" type="DynamicFont" id=8]
 [ext_resource path="res://addons/emojis-for-godot/icon.png" type="Texture" id=9]
-[ext_resource path="res://addons/advanced-text-label/icons/AdvancedTextLabel.svg" type="Texture" id=10]
+[ext_resource path="res://addons/advanced-text/icons/AdvancedTextLabel.svg" type="Texture" id=10]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -274,7 +274,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-configs = [ "res://addons/advanced-text-label/highlights/bbcode.json", "res://addons/advanced-text-label/highlights/markdown.json" ]
+configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
 
 [node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
 visible = false
@@ -296,7 +296,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
+configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 
 [node name="BBCodeEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
 visible = false
@@ -318,7 +318,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
+configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 
 [node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/HSplitContainer/HBox"]
 margin_left = 714.0
@@ -474,7 +474,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-configs = [ "res://addons/advanced-text-label/highlights/bbcode.json", "res://addons/advanced-text-label/highlights/markdown.json" ]
+configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
 
 [node name="MarkdownPreview" type="RichTextLabel" parent="PopupHelp/HelperContainer/MarkdownHelp"]
 margin_left = 696.0
@@ -628,7 +628,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
+configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 
 [node name="RenPy" type="RichTextLabel" parent="PopupHelp/HelperContainer/RenPyHelp"]
 margin_left = 696.0
@@ -789,7 +789,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-configs = [ "res://addons/advanced-text-label/highlights/bbcode.json" ]
+configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 
 [node name="BBCode" type="RichTextLabel" parent="PopupHelp/HelperContainer/BBCodeHelp"]
 margin_left = 696.0
