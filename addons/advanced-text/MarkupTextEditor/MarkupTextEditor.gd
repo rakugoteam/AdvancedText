@@ -7,6 +7,8 @@ var emojis_gd
 export var AdvancedTextLabelIcon : Texture
 export var MarkupEditIcon : Texture
 
+export var file_box_scene : PackedScene
+
 export var markups_options_nodepath : NodePath
 onready var markups_options : OptionButton = get_node(markups_options_nodepath)
 
@@ -67,10 +69,17 @@ var editor : EditorInterface
 var selected_node : Node
 var markups_str := ["markdown", "renpy", "bbcode"]
 
-var files := {
+var files_ram := {
 	# for example:
-	# "some_md.md": { "path": "some_md.md", "text": "markdown" }
+	# "some_md.md": {
+	# 	"path": "res://some_md.md",
+	# 	"text": "markdown" ,
+	# 	"box": file_box_node
+	# }
 }
+
+var f := File.new()
+var b_group := ButtonGroup.new()
 
 func _ready():
 	emoji_button.hide()
@@ -114,6 +123,9 @@ func _ready():
 	file_open_button.icon = get_icon("Load", "EditorIcons")
 	file_open_button.connect("pressed", self, "_on_file_open_button_pressed")
 
+	# file_popup.connect("confirmed", self, "_on_file_popup_confirmed")
+	file_popup.connect("file_selected", self, "_on_file_selected")
+
 	files_tab.hide()
 	
 	for ch in edit_tabs.get_children():
@@ -142,12 +154,12 @@ func get_current_edit_tab() -> TextEdit:
 	var e_id := edit_tabs.current_tab
 	return e_tabs[e_id]
 
-func update_text_preview(caller:MarkupEdit, change_text := true):
+func update_text_preview(caller:MarkupEdit, text_from_edit_tab := true):
 	if not caller.visible:
 		return
 		
 	var current_edit_tab := get_current_edit_tab()
-	if change_text:
+	if text_from_edit_tab:
 		text = current_edit_tab.text
 	else:
 		current_edit_tab.text = text
@@ -207,8 +219,9 @@ func _on_help_button_pressed():
 func _process(delta: float) -> void:
 	if not editor:
 		return
-
-	var selected_nodes = editor.get_selection().get_selected_nodes()
+	
+	var s = editor.get_selection()
+	var selected_nodes = s.get_selected_nodes()
 	if selected_nodes.size() == 0:
 		return
 
@@ -221,7 +234,7 @@ func _process(delta: float) -> void:
 	preview_tabs.visible = true
 	file_name_label.text = selected_node.name
 
-	print("type", selected_node.get_class())
+	# print("type", selected_node.get_class())
 
 	if selected_node is AdvancedTextLabel:
 		var _markup_str_id = selected_node.markup
@@ -233,7 +246,6 @@ func _process(delta: float) -> void:
 		update_text_preview(get_current_edit_tab(), false)
 		file_icon.texture = AdvancedTextLabelIcon
 		
-	
 	elif selected_node is RichTextLabel:
 		_set_markup_id(2)
 		markups_options.disabled = true
@@ -255,7 +267,7 @@ func _process(delta: float) -> void:
 		file_name_label.text = "Unsupported Node Type"
 
 func _on_file_open_button_pressed():
-	file_popup.mode = FileDialog.MODE_OPEN_FILES
+	file_popup.mode = FileDialog.MODE_OPEN_FILE
 	file_popup.popup_centered(Vector2(700, 500))
 
 func _on_file_save_as_button_pressed():
@@ -265,10 +277,63 @@ func _on_file_save_as_button_pressed():
 func _on_file_save_button_pressed():
 	_on_file_save_as_button_pressed()
 
-func _on_selected_files(files):
-	pass
-	# match file_popup.mode:
-	# 	FileDialog.MODE_OPEN_FILES:
-	# 		_on_file_open(file)
+func _on_file_selected(file_path:String):
+	# var file_path = file_popup.current_path
+	match file_popup.mode:
+		FileDialog.MODE_OPEN_FILE:
+			# print("open file", file_path)
+			_on_file_open(file_path)
 	# 	FileDialog.MODE_SAVE_FILE:
-	# 		_on_file_save(file)
+	# 		_on_file_save(file_path)
+
+func _on_file_open(file_path:String):
+	if file_path.empty():
+		return
+	
+	# file is already open so just switch to it
+	var file_name = file_path.get_file()
+	var file_ext = file_path.get_extension()
+	# file_name += file_ext
+	if file_name in files_ram:
+		# add switching to file
+		return
+
+	# print("open not opened file", file_path)
+
+	var f_box = file_box_scene.instance()
+	f_box.name = file_name
+	var f_button : Button = f_box.get_node("FileButton")
+	f_button.text = file_name
+	files_box.add_child(f_box)
+	f_button.group = b_group
+	f_button.pressed = true
+
+	f.open(file_path, File.READ)
+	var data = f.get_as_text()
+	f.close()
+
+	var f_data = {
+		"path" : file_path,
+		"text" : data,
+		"box":  f_box,
+	}
+
+	files_ram[file_name] = f_data
+
+	# print("load file data to ram")
+
+	markups_options.disabled = true
+	match file_ext:
+		"md":
+			_set_markup_id(0)
+		"rpy":
+			_set_markup_id(1)
+		# "bbc":
+		# 	_set_markup_id(2)
+		_:
+			markups_options.disabled = false
+
+	text = data
+	update_text_preview(get_current_edit_tab(), false)
+	# print("file loaded")
+	

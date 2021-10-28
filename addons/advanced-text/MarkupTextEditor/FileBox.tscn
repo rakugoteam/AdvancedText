@@ -1,0 +1,22 @@
+[gd_scene format=2]
+
+[node name="FileBox" type="HBoxContainer"]
+margin_right = 185.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+custom_constants/separation = 5
+
+[node name="FileButton" type="Button" parent="."]
+margin_right = 134.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+toggle_mode = true
+text = "file_name.txt"
+flat = true
+
+[node name="CloseButton" type="Button" parent="."]
+margin_left = 139.0
+margin_right = 185.0
+margin_bottom = 20.0
+text = "close"
+flat = true
