@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text/nodes/MarkupEdit.gd" type="Script" id=2]
@@ -8,27 +8,11 @@
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-BoldOblique.tres" type="DynamicFont" id=6]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=7]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-Bold.tres" type="DynamicFont" id=8]
-[ext_resource path="res://addons/emojis-for-godot/icon.png" type="Texture" id=9]
 [ext_resource path="res://addons/advanced-text/icons/AdvancedTextLabel.svg" type="Texture" id=10]
 
 [sub_resource type="ButtonGroup" id=1]
 
-[sub_resource type="Image" id=4]
-data = {
-"data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
-"format": "LumAlpha8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
-
-[sub_resource type="ImageTexture" id=5]
-flags = 4
-flags = 4
-image = SubResource( 4 )
-size = Vector2( 16, 16 )
-
-[sub_resource type="Image" id=6]
+[sub_resource type="Image" id=2]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -40,7 +24,7 @@ data = {
 [sub_resource type="ImageTexture" id=3]
 flags = 4
 flags = 4
-image = SubResource( 6 )
+image = SubResource( 2 )
 size = Vector2( 16, 16 )
 
 [node name="MarkupTextEditor" type="Control"]
@@ -102,7 +86,7 @@ margin_right = 158.0
 margin_bottom = 40.0
 group = SubResource( 1 )
 text = "File"
-icon = SubResource( 5 )
+icon = SubResource( 3 )
 flat = true
 
 [node name="EditSelectedNode" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
@@ -112,20 +96,20 @@ margin_bottom = 40.0
 pressed = true
 group = SubResource( 1 )
 text = "Node"
-icon = SubResource( 5 )
+icon = SubResource( 3 )
 flat = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 248.0
-margin_right = 481.0
+margin_right = 490.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer2"]
-margin_left = 64.0
+margin_left = 69.0
 margin_top = 13.0
-margin_right = 168.0
+margin_right = 173.0
 margin_bottom = 27.0
 
 [node name="FileIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
@@ -145,16 +129,16 @@ size_flags_horizontal = 3
 text = "File/NodeName"
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 485.0
-margin_right = 719.0
+margin_left = 494.0
+margin_right = 737.0
 margin_bottom = 40.0
 size_flags_horizontal = 15
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer"]
-margin_left = 23.0
+margin_left = 27.0
 margin_top = 10.0
-margin_right = 211.0
+margin_right = 215.0
 margin_bottom = 30.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
@@ -175,7 +159,7 @@ items = [ "Markdown", null, false, 0, null, "RenPy", null, false, 1, null, "BBCo
 selected = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 723.0
+margin_left = 741.0
 margin_right = 1014.0
 margin_bottom = 40.0
 
@@ -184,21 +168,20 @@ margin_right = 150.0
 margin_bottom = 40.0
 pressed = true
 text = "Preview"
-icon = SubResource( 5 )
+icon = SubResource( 3 )
 
 [node name="HelpButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
 margin_left = 154.0
 margin_right = 214.0
 margin_bottom = 40.0
 text = "Help"
-icon = SubResource( 5 )
+icon = SubResource( 3 )
 
 [node name="EmojisButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
 margin_left = 218.0
-margin_right = 291.0
+margin_right = 273.0
 margin_bottom = 40.0
 text = "Emojis"
-icon = ExtResource( 9 )
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
 margin_top = 44.0
@@ -224,7 +207,7 @@ margin_top = 24.0
 margin_right = 153.0
 margin_bottom = 44.0
 text = "Save *.txt / *.md File"
-icon = SubResource( 5 )
+icon = SubResource( 3 )
 
 [node name="SaveAsFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
 margin_top = 24.0
