@@ -71,10 +71,9 @@ var markups_str := ["markdown", "renpy", "bbcode"]
 
 var files_ram := {
 	# for example:
-	# "some_md.md": {
+	# file_box_node": {
 	# 	"path": "res://some_md.md",
-	# 	"text": "markdown" ,
-	# 	"box": file_box_node
+	# 	"text": "markdown" 
 	# }
 }
 
@@ -293,7 +292,6 @@ func _on_file_open(file_path:String):
 	# file is already open so just switch to it
 	var file_name = file_path.get_file()
 	var file_ext = file_path.get_extension()
-	# file_name += file_ext
 	if file_name in files_ram:
 		# add switching to file
 		return
@@ -314,11 +312,10 @@ func _on_file_open(file_path:String):
 
 	var f_data = {
 		"path" : file_path,
-		"text" : data,
-		"box":  f_box,
+		"text" : data
 	}
 
-	files_ram[file_name] = f_data
+	files_ram[f_box] = f_data
 
 	# print("load file data to ram")
 
