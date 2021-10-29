@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text/nodes/MarkupEdit.gd" type="Script" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://addons/emojis-for-godot/icon.png" type="Texture" id=9]
 [ext_resource path="res://addons/advanced-text/icons/AdvancedTextLabel.svg" type="Texture" id=10]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/FileBox.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/advanced-text/icons/md.svg" type="Texture" id=12]
+[ext_resource path="res://addons/advanced-text/icons/ren16.png" type="Texture" id=13]
+[ext_resource path="res://addons/advanced-text/icons/bbcode.svg" type="Texture" id=14]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -40,6 +43,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 AdvancedTextLabelIcon = ExtResource( 10 )
+MarkdownIcon = ExtResource( 12 )
+RpyIcon = ExtResource( 13 )
+BBCodeIcon = ExtResource( 14 )
 file_box_scene = ExtResource( 11 )
 markups_options_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer/MarkupOption")
 edit_tabs_nodepath = NodePath("VBoxContainer/HSplitContainer/HBox/EditorsContainer")
@@ -54,6 +60,7 @@ files_tab_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContain
 files_toggle_nodepath = NodePath("VBoxContainer/HBoxContainer/EditSelectedFile")
 file_name_label_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer/FileName")
 file_icon_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer/FileIcon")
+file_modified_icon_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer/ModifiedIcon")
 files_box_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/ScrollContainer/Panel/FilesBox")
 file_open_button_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/OpenFileButton")
 file_popup_nodepath = NodePath("TextFileDialog")
@@ -110,9 +117,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer2"]
-margin_left = 64.0
+margin_left = 62.0
 margin_top = 13.0
-margin_right = 168.0
+margin_right = 170.0
 margin_bottom = 27.0
 
 [node name="FileIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
@@ -131,6 +138,17 @@ margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "File/NodeName"
 
+[node name="ModifiedIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
+margin_left = 108.0
+margin_right = 108.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 485.0
 margin_right = 719.0
@@ -139,26 +157,28 @@ size_flags_horizontal = 15
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer"]
-margin_left = 23.0
-margin_top = 10.0
-margin_right = 211.0
-margin_bottom = 30.0
+margin_left = 46.0
+margin_top = 9.0
+margin_right = 187.0
+margin_bottom = 31.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
-margin_top = 3.0
+margin_top = 4.0
 margin_right = 90.0
-margin_bottom = 17.0
+margin_bottom = 18.0
 text = "Select Markup"
 
 [node name="MarkupOption" type="OptionButton" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 94.0
-margin_right = 188.0
-margin_bottom = 20.0
+margin_right = 141.0
+margin_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Markdown"
+icon = ExtResource( 12 )
 flat = true
-items = [ "Markdown", null, false, 0, null, "RenPy", null, false, 1, null, "BBCode", null, false, 2, null ]
+clip_text = true
+items = [ "Markdown", ExtResource( 12 ), false, 0, null, "RenPy", ExtResource( 13 ), false, 1, null, "BBCode", ExtResource( 14 ), false, 2, null ]
 selected = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]

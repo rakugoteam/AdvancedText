@@ -6,6 +6,9 @@ var emojis_gd
 
 export var AdvancedTextLabelIcon : Texture
 export var MarkupEditIcon : Texture
+export var MarkdownIcon : Texture
+export var RpyIcon : Texture
+export var BBCodeIcon : Texture
 
 export var file_box_scene : PackedScene
 
@@ -48,6 +51,9 @@ onready var file_name_label : Label = get_node(file_name_label_nodepath)
 export var file_icon_nodepath : NodePath
 onready var file_icon : TextureRect = get_node(file_icon_nodepath)
 
+export var file_modified_icon_nodepath : NodePath
+onready var file_modified_icon : TextureRect = get_node(file_modified_icon_nodepath)
+
 export var files_box_nodepath : NodePath
 onready var files_box : VBoxContainer = get_node(files_box_nodepath)
 
@@ -69,13 +75,9 @@ var editor : EditorInterface
 var selected_node : Node
 var markups_str := ["markdown", "renpy", "bbcode"]
 
-var files_ram := {
-	# for example:
-	# file_box_node": {
-	# 	"path": "res://some_md.md",
-	# 	"text": "markdown" 
-	# }
-}
+var files_ram := {}
+var files_boxes := {}
+var current_file_data := {}
 
 var f := File.new()
 var b_group := ButtonGroup.new()
@@ -122,8 +124,11 @@ func _ready():
 	file_open_button.icon = get_icon("Load", "EditorIcons")
 	file_open_button.connect("pressed", self, "_on_file_open_button_pressed")
 
-	# file_popup.connect("confirmed", self, "_on_file_popup_confirmed")
 	file_popup.connect("file_selected", self, "_on_file_selected")
+	file_popup.connect("files_selected", self, "_on_files_selected")
+
+	file_modified_icon.texture = get_icon("Edit", "EditorIcons")
+	file_modified_icon.hide()
 
 	files_tab.hide()
 	
@@ -173,12 +178,13 @@ func _on_text_changed(caller:MarkupEdit):
 	if !caller.visible:
 		return
 
-	if not selected_node_toggle.pressed:
-		return
-
-	if !selected_node:
-		return
-
+	if current_file_data:
+		current_file_data["text"] = caller.text
+		current_file_data["modified"] = true
+		current_file_data["modified_icon"].show()
+		file_modified_icon.show()
+		file_save_button.disabled = false
+		
 	if selected_node:
 		if selected_node is AdvancedTextLabel:
 			selected_node.markup_text = caller.text
@@ -266,7 +272,7 @@ func _process(delta: float) -> void:
 		file_name_label.text = "Unsupported Node Type"
 
 func _on_file_open_button_pressed():
-	file_popup.mode = FileDialog.MODE_OPEN_FILE
+	file_popup.mode = FileDialog.MODE_OPEN_FILES
 	file_popup.popup_centered(Vector2(700, 500))
 
 func _on_file_save_as_button_pressed():
@@ -279,11 +285,16 @@ func _on_file_save_button_pressed():
 func _on_file_selected(file_path:String):
 	# var file_path = file_popup.current_path
 	match file_popup.mode:
-		FileDialog.MODE_OPEN_FILE:
+		FileDialog.MODE_OPEN_FILES:
 			# print("open file", file_path)
 			_on_file_open(file_path)
 	# 	FileDialog.MODE_SAVE_FILE:
 	# 		_on_file_save(file_path)
+
+func _on_files_selected(file_paths:Array):
+	# print("open files", file_paths)
+	for file_path in file_paths:
+		_on_file_open(file_path)
 
 func _on_file_open(file_path:String):
 	if file_path.empty():
@@ -292,7 +303,7 @@ func _on_file_open(file_path:String):
 	# file is already open so just switch to it
 	var file_name = file_path.get_file()
 	var file_ext = file_path.get_extension()
-	if file_name in files_ram:
+	if file_name in files_boxes:
 		# add switching to file
 		return
 
@@ -305,32 +316,77 @@ func _on_file_open(file_path:String):
 	files_box.add_child(f_box)
 	f_button.group = b_group
 	f_button.pressed = true
+	f_button.connect("pressed", self, "_on_file_button_pressed", [f_box])
+
+	var f_close_button : Button = f_box.get_node("CloseButton")
+	f_close_button.connect("pressed", self, "_on_file_close_button_pressed", [f_box])
+	f_close_button.text = ""
+	f_close_button.icon = get_icon("Close", "EditorIcons")
+
+	var f_modified_icon : TextureRect = f_box.get_node("ModifiedIcon")
+	f_modified_icon.texture = get_icon("Edit", "EditorIcons")
+	f_modified_icon.hide()
 
 	f.open(file_path, File.READ)
 	var data = f.get_as_text()
 	f.close()
 
 	var f_data = {
-		"path" : file_path,
-		"text" : data
+		"f_button": f_button,
+		"file_name": file_name,
+		"file_ext": file_ext,
+		"path": file_path,
+		"text": data,
+		"modified": false,
+		"modified_icon": f_modified_icon,
 	}
 
 	files_ram[f_box] = f_data
+	files_boxes[file_name] = f_box
+	_update_file_data(f_data)
 
+func _update_file_data(f_data):
 	# print("load file data to ram")
 
 	markups_options.disabled = true
-	match file_ext:
+	var b : Button = f_data["f_button"]
+	file_name_label.text = f_data["file_name"]
+	match f_data["file_ext"]:
 		"md":
 			_set_markup_id(0)
+			b.icon = MarkdownIcon
+			file_icon.texture = MarkdownIcon
 		"rpy":
 			_set_markup_id(1)
-		# "bbc":
-		# 	_set_markup_id(2)
+			b.icon = RpyIcon
+			file_icon.texture = RpyIcon
 		_:
+			_set_markup_id(2)
 			markups_options.disabled = false
+			b.icon = get_icon("TextFile", "EditorIcons")
 
-	text = data
+	text = f_data["text"]
 	update_text_preview(get_current_edit_tab(), false)
+	current_file_data = f_data
+	file_save_button.disabled = not f_data["modified"]
 	# print("file loaded")
 	
+func _on_file_button_pressed(file_box: Node):
+	var f_data = files_ram[file_box]
+	_update_file_data(f_data)
+
+func _on_file_close_button_pressed(file_box: Node):
+	var f_data = files_ram[file_box]
+	var f_button = f_data["f_button"]
+	# todo add ask for save if text is changed
+	files_box.remove_child(file_box)
+	files_boxes.erase(file_box.name)
+	files_ram.erase(file_box)
+	if files_ram.empty():
+		text = ""
+		update_text_preview(get_current_edit_tab(), false)
+		_on_files_toggle(true)
+	else:
+		_on_file_button_pressed(files_ram.keys().back())
+
+	file_box.queue_free()
