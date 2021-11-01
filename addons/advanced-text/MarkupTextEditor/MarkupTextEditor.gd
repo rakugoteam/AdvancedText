@@ -73,7 +73,7 @@ var markup_id := 0
 var text: = ""
 var editor : EditorInterface
 var selected_node : Node
-var markups_str := ["markdown", "renpy", "bbcode"]
+const markups_str := ["markdown", "renpy", "bbcode"]
 
 var files_ram := {}
 var files_boxes := {}
@@ -82,10 +82,13 @@ var current_file_data := {}
 var f := File.new()
 var b_group := ButtonGroup.new()
 
+const files_ram_path := "res://addons/advanced-text/MarkupTextEditor/ram.data"
+
 func _ready():
 	emoji_button.hide()
 
 	if Engine.editor_hint:
+		# emojis import if possible
 		EmojisImport = preload("../emojis_import.gd")
 		EmojisImport = EmojisImport.new()
 
@@ -96,6 +99,23 @@ func _ready():
 			emoji_button.connect("pressed", emoji_panel, "popup_centered", [Vector2(450, 400)])
 			emoji_button.icon = EmojisImport.get_icon()
 			emoji_button.show()
+		
+		# load perviously edited files
+		if f.file_exists(files_ram_path):
+			f.open_compressed(files_ram_path, File.READ)
+			var loaded_data : Dictionary = f.get_var()
+			f.close()
+
+			for data in loaded_data.values():
+				var path : String = data["path"]
+				var modified : bool = data["modified"]
+				var text := ""
+				if modified:
+					text = data["text"]
+					_on_file_open(path, text)
+				
+				else:
+					_on_file_open(path)
 
 	update_text_preview(get_current_edit_tab())
 
@@ -136,27 +156,33 @@ func _ready():
 		ch.connect("text_changed", self, "update_text_preview", [ch, true])
 		ch.connect("text_changed", self, "_on_text_changed", [ch])
 
+
 func _on_visibility_changed():
 	var edit_node := selected_node_toggle.pressed
 	set_process(edit_node && visible)
+
 
 func _on_selected_node_toggle(toggled:bool):
 	file_icon.texture = get_icon("NodeWarning", "EditorIcons")
 	file_name_label.text = "Unsupported Node Type"
 	set_process(toggled)
 
+
 func _on_files_toggle(toggled:bool):
 	files_tab.visible = toggled
 	file_icon.texture = get_icon("New", "EditorIcons")
 	file_name_label.text = "Unnamed Text File"
 
+
 func _on_toggle(toggled: bool):
 	preview_tabs.visible = toggled
+
 
 func get_current_edit_tab() -> TextEdit:
 	var e_tabs := edit_tabs.get_children()
 	var e_id := edit_tabs.current_tab
 	return e_tabs[e_id]
+
 
 func update_text_preview(caller:MarkupEdit, text_from_edit_tab := true):
 	if not caller.visible:
@@ -173,6 +199,7 @@ func update_text_preview(caller:MarkupEdit, text_from_edit_tab := true):
 	var current_preview_tab = l_tabs[l_id]
 
 	current_preview_tab.markup_text = text
+
 
 func _on_text_changed(caller:MarkupEdit):
 	if !caller.visible:
@@ -198,11 +225,13 @@ func _on_text_changed(caller:MarkupEdit):
 		if selected_node is MarkupEdit:
 			selected_node.text = caller.text
 
+
 func _on_option_selected(id: int):
 	if id != markup_id:
 		_set_markup_id(id)
 		var current := get_current_edit_tab()
 		update_text_preview(current, text.empty())
+
 
 func _set_markup_id(id: int):
 	if id != markup_id:
@@ -216,10 +245,12 @@ func _set_markup_id(id: int):
 			if selected_node is AdvancedTextLabel:
 				selected_node.markup = markups_str[id]
 
+
 func _on_help_button_pressed():
 	var m = markups_options.get_item_text(markup_id) 
 	help_popup.window_title = m + " Help"
 	help_popup.popup_centered(Vector2(700, 500))
+
 
 func _process(delta: float) -> void:
 	if not editor:
@@ -271,16 +302,20 @@ func _process(delta: float) -> void:
 		file_icon.texture = get_icon("NodeWarning", "EditorIcons")
 		file_name_label.text = "Unsupported Node Type"
 
+
 func _on_file_open_button_pressed():
 	file_popup.mode = FileDialog.MODE_OPEN_FILES
 	file_popup.popup_centered(Vector2(700, 500))
+
 
 func _on_file_save_as_button_pressed():
 	file_popup.mode = FileDialog.MODE_SAVE_FILE
 	file_popup.popup_centered(Vector2(700, 500))
 
+
 func _on_file_save_button_pressed():
 	_on_file_save_as_button_pressed()
+
 
 func _on_file_selected(file_path:String):
 	# var file_path = file_popup.current_path
@@ -291,12 +326,14 @@ func _on_file_selected(file_path:String):
 	# 	FileDialog.MODE_SAVE_FILE:
 	# 		_on_file_save(file_path)
 
+
 func _on_files_selected(file_paths:Array):
 	# print("open files", file_paths)
 	for file_path in file_paths:
 		_on_file_open(file_path)
 
-func _on_file_open(file_path:String):
+
+func _on_file_open(file_path:String, modified_text := ""):
 	if file_path.empty():
 		return
 	
@@ -327,9 +364,16 @@ func _on_file_open(file_path:String):
 	f_modified_icon.texture = get_icon("Edit", "EditorIcons")
 	f_modified_icon.hide()
 
-	f.open(file_path, File.READ)
-	var data = f.get_as_text()
-	f.close()
+	var data := ""
+	
+	if modified_text:
+		f_modified_icon.show()
+		data = text
+	
+	else:
+		f.open(file_path, File.READ)
+		data = f.get_as_text()
+		f.close()
 
 	var f_data = {
 		"f_button": f_button,
@@ -344,6 +388,27 @@ func _on_file_open(file_path:String):
 	files_ram[f_box] = f_data
 	files_boxes[file_name] = f_box
 	_update_file_data(f_data)
+	save_files_ram()
+
+
+func save_files_ram():
+	print("save files ram")
+	f.open_compressed(files_ram_path, File.WRITE)
+	var data_to_save := {} 
+	for f_box in files_ram:
+		var f_data = files_ram[f_box]
+		data_to_save[f_data["file_name"]] = {}
+		data_to_save[f_data["file_name"]]["path"] = f_data["path"]
+
+		var modified : bool = f_data["modified"]
+		data_to_save[f_data["file_name"]]["modified"] = modified
+
+		if modified:
+			data_to_save[f_data["file_name"]]["text"] = f_data["text"]
+	
+	f.store_var(data_to_save)
+	f.close()
+
 
 func _update_file_data(f_data):
 	# print("load file data to ram")
@@ -370,10 +435,12 @@ func _update_file_data(f_data):
 	current_file_data = f_data
 	file_save_button.disabled = not f_data["modified"]
 	# print("file loaded")
-	
+
+
 func _on_file_button_pressed(file_box: Node):
 	var f_data = files_ram[file_box]
 	_update_file_data(f_data)
+
 
 func _on_file_close_button_pressed(file_box: Node):
 	var f_data = files_ram[file_box]
@@ -390,3 +457,4 @@ func _on_file_close_button_pressed(file_box: Node):
 		_on_file_button_pressed(files_ram.keys().back())
 
 	file_box.queue_free()
+	save_files_ram()
