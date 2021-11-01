@@ -57,6 +57,9 @@ onready var file_modified_icon : TextureRect = get_node(file_modified_icon_nodep
 export var files_box_nodepath : NodePath
 onready var files_box : VBoxContainer = get_node(files_box_nodepath)
 
+export var new_file_button_nodepath : NodePath
+onready var new_file_button : Button = get_node(new_file_button_nodepath)
+
 export var file_open_button_nodepath : NodePath
 onready var file_open_button : Button = get_node(file_open_button_nodepath)
 
@@ -135,14 +138,17 @@ func _ready():
 	files_toggle.connect("toggled", self, "_on_files_toggle")
 	files_toggle.icon = get_icon("TextFile", "EditorIcons")
 
+	new_file_button.icon = get_icon("New", "EditorIcons")
+	# new_file_button.connect("pressed", self, "_on_new_file_button_pressed")
+
+	file_open_button.icon = get_icon("Load", "EditorIcons")
+	file_open_button.connect("pressed", self, "_on_file_open_button_pressed")
+
 	file_save_button.icon = get_icon("Save", "EditorIcons")
 	file_save_button.connect("pressed", self, "_on_file_save_button_pressed")
 
 	file_save_as_button.icon = get_icon("Save", "EditorIcons")
 	file_save_as_button.connect("pressed", self, "_on_file_save_as_button_pressed")
-
-	file_open_button.icon = get_icon("Load", "EditorIcons")
-	file_open_button.connect("pressed", self, "_on_file_open_button_pressed")
 
 	file_popup.connect("file_selected", self, "_on_file_selected")
 	file_popup.connect("files_selected", self, "_on_files_selected")
@@ -449,10 +455,12 @@ func _on_file_close_button_pressed(file_box: Node):
 	files_box.remove_child(file_box)
 	files_boxes.erase(file_box.name)
 	files_ram.erase(file_box)
+
 	if files_ram.empty():
 		text = ""
 		update_text_preview(get_current_edit_tab(), false)
 		_on_files_toggle(true)
+
 	else:
 		_on_file_button_pressed(files_ram.keys().back())
 

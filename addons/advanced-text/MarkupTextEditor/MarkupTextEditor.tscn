@@ -17,7 +17,7 @@
 
 [sub_resource type="ButtonGroup" id=1]
 
-[sub_resource type="Image" id=2]
+[sub_resource type="Image" id=4]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -29,7 +29,7 @@ data = {
 [sub_resource type="ImageTexture" id=3]
 flags = 4
 flags = 4
-image = SubResource( 2 )
+image = SubResource( 4 )
 size = Vector2( 16, 16 )
 
 [node name="MarkupTextEditor" type="Control"]
@@ -62,10 +62,11 @@ file_name_label_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer
 file_icon_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer/FileIcon")
 file_modified_icon_nodepath = NodePath("VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer/ModifiedIcon")
 files_box_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/ScrollContainer/Panel/FilesBox")
-file_open_button_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/OpenFileButton")
+new_file_button_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer/NewFileButton")
+file_open_button_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer/OpenFileButton")
 file_popup_nodepath = NodePath("TextFileDialog")
-file_save_button_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/SaveFileButton")
-file_save_as_button_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/SaveAsFileButton")
+file_save_button_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer/SaveFileButton")
+file_save_as_button_nodepath = NodePath("VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer/SaveAsFileButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -117,33 +118,38 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer2"]
-margin_left = 62.0
-margin_top = 13.0
-margin_right = 170.0
-margin_bottom = 27.0
+margin_left = 76.0
+margin_top = 12.0
+margin_right = 156.0
+margin_bottom = 28.0
 
 [node name="FileIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
-margin_bottom = 14.0
+margin_right = 16.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource( 13 )
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FileName" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
-margin_left = 4.0
-margin_right = 104.0
-margin_bottom = 14.0
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 80.0
+margin_bottom = 15.0
 size_flags_horizontal = 3
-text = "File/NodeName"
+text = "renpy.rpy"
 
 [node name="ModifiedIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
+visible = false
 margin_left = 108.0
 margin_right = 108.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = SubResource( 3 )
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
@@ -174,12 +180,13 @@ margin_right = 141.0
 margin_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Markdown"
-icon = ExtResource( 12 )
+disabled = true
+text = "RenPy"
+icon = ExtResource( 13 )
 flat = true
 clip_text = true
 items = [ "Markdown", ExtResource( 12 ), false, 0, null, "RenPy", ExtResource( 13 ), false, 1, null, "BBCode", ExtResource( 14 ), false, 2, null ]
-selected = 0
+selected = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 723.0
@@ -215,41 +222,67 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="FilesOptionsContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
-visible = false
-margin_right = 185.0
+margin_right = 202.0
 margin_bottom = 546.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="OpenFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
-margin_right = 185.0
-margin_bottom = 22.0
-text = "Open *.txt / *.md File"
-icon = SubResource( 3 )
-
-[node name="SaveFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
-margin_top = 26.0
-margin_right = 185.0
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
+margin_right = 202.0
 margin_bottom = 48.0
-text = "Save *.txt / *.md File"
-icon = SubResource( 3 )
+size_flags_horizontal = 3
+columns = 2
 
-[node name="SaveAsFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
-margin_top = 52.0
-margin_right = 185.0
-margin_bottom = 74.0
-text = "Save As *.txt / *.md File"
+[node name="NewFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer"]
+margin_right = 99.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+text = "Create new Text File"
 icon = SubResource( 3 )
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer"]
+margin_left = 103.0
+margin_right = 202.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+text = "Open Text File"
+icon = SubResource( 3 )
+clip_text = true
+
+[node name="SaveFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer"]
+margin_top = 26.0
+margin_right = 99.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+disabled = true
+text = "Save File"
+icon = SubResource( 3 )
+clip_text = true
+
+[node name="SaveAsFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer"]
+margin_left = 103.0
+margin_top = 26.0
+margin_right = 202.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+text = "Save As File"
+icon = SubResource( 3 )
+clip_text = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
-margin_top = 78.0
-margin_right = 185.0
+margin_top = 52.0
+margin_right = 202.0
 margin_bottom = 546.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/ScrollContainer"]
-margin_right = 185.0
-margin_bottom = 468.0
+margin_right = 202.0
+margin_bottom = 494.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -264,6 +297,7 @@ __meta__ = {
 }
 
 [node name="HBox" type="HSplitContainer" parent="VBoxContainer/HSplitContainer"]
+margin_left = 214.0
 margin_right = 1014.0
 margin_bottom = 546.0
 grow_horizontal = 2
@@ -273,7 +307,7 @@ mouse_default_cursor_shape = 10
 size_flags_vertical = 3
 
 [node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/HSplitContainer/HBox"]
-margin_right = 702.0
+margin_right = 488.0
 margin_bottom = 546.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 11
@@ -283,6 +317,7 @@ __meta__ = {
 }
 
 [node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -291,6 +326,37 @@ margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = "**bold**
+*italic*
+~~strikethrough~~
+`code`
+[link](https://some_domain.com)
+https://some_domain.com
+<test_var>
+:grinning:
+![](res://icon.png)
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
+"
 highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
@@ -304,7 +370,6 @@ __meta__ = {
 configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
 
 [node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -313,6 +378,36 @@ margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = "\"\"\"
+{b}bold{/b}
+{i}italic{/i}
+{s}strikethrough{/s}
+{code}some_code(){/code}
+{url=https://some_domain.com}link{/url}
+{url}https://some_domain.com{/url}
+<test_var>
+:grinning:
+{img}res://icon.png{/img}
+
+{table=3}
+{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
+{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
+{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
+{/table}
+
+{u}underline{/u}
+{center}center{/center}
+{right}right{/right}
+{fill}fill{/fill}
+{indent}text{/indent}
+{color=red}red{/color}
+
+{wave amp=50 freq=2}wave{/wave}
+{tornado radius=5 freq=2}tornado{/tornado}
+{shake rate=5 level=10}shake{/shake}
+{fade start=4 length=14}fade{/fade}
+{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
+\"\"\""
 highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
@@ -335,6 +430,35 @@ margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = "[b]bold[/b]
+[i]italic[/i]
+[s]strikethrough[/s]
+[code]some_code()[/code]
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+<test_var>
+:grinning:
+[img]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+"
 highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
@@ -348,35 +472,13 @@ __meta__ = {
 configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 
 [node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/HSplitContainer/HBox"]
-margin_left = 714.0
-margin_right = 1014.0
+margin_left = 500.0
+margin_right = 800.0
 margin_bottom = 546.0
 rect_min_size = Vector2( 300, 0 )
 tabs_visible = false
 
 [node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 4 )
-custom_fonts/bold_italics_font = ExtResource( 6 )
-custom_fonts/italics_font = ExtResource( 7 )
-custom_fonts/bold_font = ExtResource( 8 )
-custom_fonts/normal_font = ExtResource( 5 )
-bbcode_enabled = true
-script = ExtResource( 1 )
-markup = "markdown"
-variables = {
-"test_var": "x"
-}
-
-[node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -393,10 +495,204 @@ custom_fonts/italics_font = ExtResource( 7 )
 custom_fonts/bold_font = ExtResource( 8 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "Test Selected Markup **here** wave"
-text = "Test Selected Markup **here** wave"
+bbcode_text = "[b]bold[/b]
+[i]italic[/i]
+[s]strikethrough[/s]
+[code]code[/code]
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com
+<test_var>
+:grinning[/url]:
+[img]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
+"
+text = "bold
+italic
+strikethrough
+code
+link
+https://some_domain.com
+<test_var>
+:grinning:
+
+
+123456789
+
+underline
+center
+right
+fill
+	text
+red
+
+wave
+tornado
+shake
+fade
+rainbow
+
+
+"
 script = ExtResource( 1 )
-markup_text = "Test Selected Markup **here** wave"
+markup_text = "**bold**
+*italic*
+~~strikethrough~~
+`code`
+[link](https://some_domain.com)
+https://some_domain.com
+<test_var>
+:grinning:
+![](res://icon.png)
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
+"
+markup = "markdown"
+variables = {
+"test_var": "x"
+}
+
+[node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 8.0
+margin_right = -4.0
+margin_bottom = -4.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 4 )
+custom_fonts/bold_italics_font = ExtResource( 6 )
+custom_fonts/italics_font = ExtResource( 7 )
+custom_fonts/bold_font = ExtResource( 8 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "\"\"\"
+[b]bold[/b]
+[i]italic[/i]
+[s]strikethrough[/s]
+[code]some_code()[/code]
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+<test_var>
+:grinning:
+[img]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+\"\"\""
+text = "\"\"\"
+bold
+italic
+strikethrough
+some_code()
+link
+https://some_domain.com
+<test_var>
+:grinning:
+
+
+123456789
+
+underline
+center
+right
+fill
+	text
+red
+
+wave
+tornado
+shake
+fade
+rainbow
+\"\"\""
+script = ExtResource( 1 )
+markup_text = "\"\"\"
+{b}bold{/b}
+{i}italic{/i}
+{s}strikethrough{/s}
+{code}some_code(){/code}
+{url=https://some_domain.com}link{/url}
+{url}https://some_domain.com{/url}
+<test_var>
+:grinning:
+{img}res://icon.png{/img}
+
+{table=3}
+{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
+{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
+{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
+{/table}
+
+{u}underline{/u}
+{center}center{/center}
+{right}right{/right}
+{fill}fill{/fill}
+{indent}text{/indent}
+{color=red}red{/color}
+
+{wave amp=50 freq=2}wave{/wave}
+{tornado radius=5 freq=2}tornado{/tornado}
+{shake rate=5 level=10}shake{/shake}
+{fade start=4 length=14}fade{/fade}
+{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
+\"\"\""
 markup = "renpy"
 variables = {
 "test_var": "x"
@@ -419,10 +715,90 @@ custom_fonts/italics_font = ExtResource( 7 )
 custom_fonts/bold_font = ExtResource( 8 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "Test Selected Markup **here** wave"
-text = "Test Selected Markup **here** wave"
+bbcode_text = "[b]bold[/b]
+[i]italic[/i]
+[s]strikethrough[/s]
+[code]some_code()[/code]
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+<test_var>
+:grinning:
+[img]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+"
+text = "bold
+italic
+strikethrough
+some_code()
+link
+https://some_domain.com
+<test_var>
+:grinning:
+
+
+123456789
+
+underline
+center
+right
+fill
+	text
+red
+
+wave
+tornado
+shake
+fade
+rainbow
+"
 script = ExtResource( 1 )
-markup_text = "Test Selected Markup **here** wave"
+markup_text = "[b]bold[/b]
+[i]italic[/i]
+[s]strikethrough[/s]
+[code]some_code()[/code]
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+<test_var>
+:grinning:
+[img]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+"
 markup = "bbcode"
 variables = {
 "test_var": "x"
@@ -447,6 +823,7 @@ __meta__ = {
 }
 
 [node name="MarkdownHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -603,7 +980,6 @@ variables = {
 }
 
 [node name="RenPyHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
