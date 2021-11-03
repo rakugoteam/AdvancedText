@@ -105,6 +105,7 @@ func _ready():
 		
 		# load perviously edited files
 		if f.file_exists(files_ram_path):
+			files_toggle.pressed = true
 			f.open_compressed(files_ram_path, File.READ)
 			var loaded_data : Dictionary = f.get_var()
 			f.close()
@@ -139,7 +140,7 @@ func _ready():
 	files_toggle.icon = get_icon("TextFile", "EditorIcons")
 
 	new_file_button.icon = get_icon("New", "EditorIcons")
-	# new_file_button.connect("pressed", self, "_on_new_file_button_pressed")
+	new_file_button.connect("pressed", self, "_on_new_file_button_pressed")
 
 	file_open_button.icon = get_icon("Load", "EditorIcons")
 	file_open_button.connect("pressed", self, "_on_file_open_button_pressed")
@@ -354,6 +355,7 @@ func _on_file_open(file_path:String, modified_text := ""):
 
 	var f_box = file_box_scene.instance()
 	f_box.name = file_name
+
 	var f_button : Button = f_box.get_node("FileButton")
 	f_button.text = file_name
 	files_box.add_child(f_box)
@@ -376,7 +378,7 @@ func _on_file_open(file_path:String, modified_text := ""):
 		f_modified_icon.show()
 		data = text
 	
-	else:
+	elif f.file_exists(file_path):
 		f.open(file_path, File.READ)
 		data = f.get_as_text()
 		f.close()
@@ -400,7 +402,8 @@ func _on_file_open(file_path:String, modified_text := ""):
 func save_files_ram():
 	print("save files ram")
 	f.open_compressed(files_ram_path, File.WRITE)
-	var data_to_save := {} 
+	var data_to_save := {}
+
 	for f_box in files_ram:
 		var f_data = files_ram[f_box]
 		data_to_save[f_data["file_name"]] = {}
@@ -466,3 +469,9 @@ func _on_file_close_button_pressed(file_box: Node):
 
 	file_box.queue_free()
 	save_files_ram()
+
+
+func _on_new_file_button_pressed():
+	var id := files_ram.size()
+	var file_name = "NewFile " + str(id)
+	_on_file_open(file_name)
