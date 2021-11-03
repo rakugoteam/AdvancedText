@@ -76,6 +76,7 @@ var markup_id := 0
 var text: = ""
 var editor : EditorInterface
 var selected_node : Node
+var saving_as_mode := false
 const markups_str := ["markdown", "renpy", "bbcode"]
 
 var files_ram := {}
@@ -105,7 +106,6 @@ func _ready():
 		
 		# load perviously edited files
 		if f.file_exists(files_ram_path):
-			files_toggle.pressed = true
 			f.open_compressed(files_ram_path, File.READ)
 			var loaded_data : Dictionary = f.get_var()
 			f.close()
@@ -120,6 +120,9 @@ func _ready():
 				
 				else:
 					_on_file_open(path)
+			
+			files_toggle.pressed = true
+			_on_files_toggle(true)
 
 	update_text_preview(get_current_edit_tab())
 
@@ -317,11 +320,8 @@ func _on_file_open_button_pressed():
 
 func _on_file_save_as_button_pressed():
 	file_popup.mode = FileDialog.MODE_SAVE_FILE
+	saving_as_mode = true
 	file_popup.popup_centered(Vector2(700, 500))
-
-
-func _on_file_save_button_pressed():
-	_on_file_save_as_button_pressed()
 
 
 func _on_file_selected(file_path:String):
@@ -330,8 +330,17 @@ func _on_file_selected(file_path:String):
 		FileDialog.MODE_OPEN_FILES:
 			# print("open file", file_path)
 			_on_file_open(file_path)
-	# 	FileDialog.MODE_SAVE_FILE:
-	# 		_on_file_save(file_path)
+
+		FileDialog.MODE_SAVE_FILE:
+			var f_data : Dictionary = current_file_data
+			if saving_as_mode:
+				if f_data["path"] == file_path:
+					saving_as_mode = false
+				
+				else:
+					_on_file_open(file_path, f_data["text"])
+
+			_on_save_file_button_pressed()
 
 
 func _on_files_selected(file_paths:Array):
@@ -347,6 +356,7 @@ func _on_file_open(file_path:String, modified_text := ""):
 	# file is already open so just switch to it
 	var file_name = file_path.get_file()
 	var file_ext = file_path.get_extension()
+
 	if file_name in files_boxes:
 		# add switching to file
 		return
@@ -475,3 +485,21 @@ func _on_new_file_button_pressed():
 	var id := files_ram.size()
 	var file_name = "NewFile " + str(id)
 	_on_file_open(file_name)
+
+
+func _on_save_file_button_pressed():
+	var f_data : Dictionary = current_file_data
+	var file_path : String = f_data["path"]
+	var text : String = f_data["text"]
+
+	if file_path.begins_with("NewFile"):
+		_on_file_save_as_button_pressed()
+		return
+
+	f.open(file_path, File.WRITE)
+	f.store_string(text)
+	f.close()
+
+	f_data["modified"] = false
+	_update_file_data(f_data)
+	save_files_ram()

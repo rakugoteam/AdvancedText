@@ -65,22 +65,18 @@ func show_editor(button: ToolButton):
 				"2D":
 					if editor.get_class() == "CanvasItemEditor":
 						editor.show()
-						return
 
 				"3D":
 					if editor.get_class() == "SpatialEditor":
 						editor.show()
-						return
 
 				"Script":
 					if editor.get_class() == "ScriptEditor":
 						editor.show()
-						return
 
 				"AssetLib":
 					if editor.get_class() == "AssetLibraryEditor":
 						editor.show()
-						return
 				_:
 					continue
 
