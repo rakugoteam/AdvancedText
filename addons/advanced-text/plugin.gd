@@ -1,17 +1,13 @@
 tool
 extends EditorPlugin
 
-var atl_inspector
+
 var markup_text_editor_button := ToolButton.new()
 var markup_text_editor
 var editor_parent : Control
 var button_parent : Control
 
 func _enter_tree():
-	atl_inspector = preload("inspector/AdvancedTextLabelInspector.gd")
-	atl_inspector = atl_inspector.new()
-	add_inspector_plugin(atl_inspector)
-
 	markup_text_editor = preload("MarkupTextEditor/MarkupTextEditor.tscn")
 	markup_text_editor = markup_text_editor.instance()
 	editor_parent = get_editor_interface().get_editor_viewport()
@@ -42,7 +38,6 @@ func _enter_tree():
 		b.connect("pressed", self, "_on_toggle", args)
 
 func _exit_tree():
-	remove_inspector_plugin(atl_inspector)
 	markup_text_editor.queue_free()
 	markup_text_editor_button.queue_free()
 

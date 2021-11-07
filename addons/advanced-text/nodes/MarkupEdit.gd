@@ -2,10 +2,15 @@ tool
 extends TextEdit
 class_name MarkupEdit
 
+var f : File
 var EmojisImport
 var emojis_gd
+
+export(String, FILE, "*.md, *.rpy, *.txt") var text_file := "" setget _set_text_file, _get_text_file
 export var color_colors := true
 export(Array, String, FILE, "*.json") var configs
+
+var _text_file := ""
 
 func _ready() -> void:
 	EmojisImport = preload("../emojis_import.gd")
@@ -13,6 +18,24 @@ func _ready() -> void:
 	syntax_highlighting = true
 	# clear_colors()
 	_add_keywords_highlighting()
+	if _text_file:
+		_set_text_file(_text_file)
+
+func _set_text_file(value:String) -> void:
+	_text_file = value
+	if !value:
+		return
+
+	_load_file(value)
+
+func _load_file(file_path:String) -> void:
+	f = File.new()
+	f.open(file_path, File.READ)
+	text = f.get_as_text()
+	f.close()
+
+func _get_text_file() -> String:
+	return _text_file
 
 func switch_config(json_file:String, id:=0) -> void:
 	clear_colors()

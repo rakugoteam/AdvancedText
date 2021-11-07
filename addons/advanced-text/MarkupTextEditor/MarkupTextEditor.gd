@@ -300,10 +300,15 @@ func _process(delta: float) -> void:
 		var _markup_id = markups_str.find(_markup_str_id)
 		markups_options.disabled = false
 		_set_markup_id(_markup_id)
+
+		if selected_node.markup_text_file:
+			_on_files_toggle(true)
+			_on_file_open(selected_node.markup_text_file)
 		
-		text = selected_node.markup_text
-		update_text_preview(get_current_edit_tab(), false)
-		file_icon.texture = AdvancedTextLabelIcon
+		else:
+			text = selected_node.markup_text
+			update_text_preview(get_current_edit_tab(), false)
+			file_icon.texture = AdvancedTextLabelIcon
 		
 	elif selected_node is RichTextLabel:
 		_set_markup_id(2)
@@ -316,10 +321,16 @@ func _process(delta: float) -> void:
 		markups_options.disabled = true
 		preview_toggle.pressed = false
 		preview_tabs.visible = false
-		text = selected_node.text
-		update_text_preview(get_current_edit_tab(), false)
-		# file_icon.icon = MarkupEditIcon
-		file_icon.texture = get_icon("TextEdit", "EditorIcons")
+
+		if selected_node.text_file:
+			_on_files_toggle(true)
+			_on_file_open(selected_node.text_file)
+		
+		else:
+			text = selected_node.text
+			update_text_preview(get_current_edit_tab(), false)
+			# file_icon.icon = MarkupEditIcon
+			file_icon.texture = get_icon("TextEdit", "EditorIcons")
 		
 	else:
 		file_icon.texture = get_icon("NodeWarning", "EditorIcons")

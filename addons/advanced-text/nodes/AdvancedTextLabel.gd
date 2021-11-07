@@ -2,19 +2,27 @@ tool
 extends RichTextLabel
 class_name AdvancedTextLabel, "res://addons/advanced-text/icons/AdvancedTextLabel.svg"
 
-export(String, MULTILINE) var markup_text:String setget _set_markup_text, _get_markup_text
-export(String, "markdown", "renpy", "bbcode") var markup setget _set_markup, _get_markup
-export var variables := {}
-
-var _markup_text := ""
-var _markup := "Extended BBCode"
+var f : File
 var ebbcode_parser := EBBCodeParser.new()
 var markdown_parser := MarkdownParser.new()
 var renpy_parser := RenPyMarkupParser.new()
 
+export(String, FILE, "*.md, *.rpy, *.txt") var markup_text_file := "" setget _set_markup_text_file, _get_markup_text_file
+export(String, MULTILINE) var markup_text := "" setget _set_markup_text, _get_markup_text
+export(String, "markdown", "renpy", "bbcode") var markup := "markdown" setget _set_markup, _get_markup
+export var variables := {}
+
+var _markup_text := ""
+var _markup := "markdown"
+var _markup_text_file := ""
+
 func _ready() -> void:
 	bbcode_enabled = true
-	_set_markup_text(_markup_text)
+	if _markup_text_file:
+		_set_markup_text_file(_markup_text_file)
+		
+	else:
+		_set_markup_text(_markup_text)
 
 func _get_text_parser():
 	match _markup:
@@ -24,6 +32,30 @@ func _get_text_parser():
 			return renpy_parser
 		"markdown":
 			return markdown_parser
+
+func _set_markup_text_file(value:String) -> void:
+	_markup_text_file = value
+	if value:
+		_load_file(value)
+
+func _load_file(file_path:String) -> void:
+	f = File.new()
+	f.open(file_path, File.READ)
+	var file_ext = file_path.get_extension()
+
+	match file_ext:
+		"md":
+			_set_markup("markdown")
+		"rpy":
+			_set_markup("renpy")
+		"txt":
+			_set_markup("bbcode")
+
+	_set_markup_text(f.get_as_text())
+	f.close()
+
+func _get_markup_text_file() -> String:
+	return _markup_text_file
 
 func _set_markup_text(value:String) -> void:
 	bbcode_enabled = true
@@ -39,6 +71,9 @@ func _set_markup_text(value:String) -> void:
 	bbcode_text = p.parse(value, Engine.editor_hint, variables)
 	
 func _get_markup_text() -> String:
+	if _markup_text_file:
+		_load_file(_markup_text_file)
+
 	return _markup_text
 
 func _set_markup(value:="") -> void:	

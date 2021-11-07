@@ -17,7 +17,7 @@
 
 [sub_resource type="ButtonGroup" id=1]
 
-[sub_resource type="Image" id=2]
+[sub_resource type="Image" id=4]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -29,7 +29,7 @@ data = {
 [sub_resource type="ImageTexture" id=3]
 flags = 4
 flags = 4
-image = SubResource( 2 )
+image = SubResource( 4 )
 size = Vector2( 16, 16 )
 
 [node name="MarkupTextEditor" type="Control"]
@@ -118,9 +118,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer2"]
-margin_left = 76.0
+margin_left = 29.0
 margin_top = 12.0
-margin_right = 156.0
+margin_right = 204.0
 margin_bottom = 28.0
 
 [node name="FileIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
@@ -128,7 +128,7 @@ margin_right = 16.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 13 )
+texture = SubResource( 3 )
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
@@ -137,10 +137,10 @@ __meta__ = {
 [node name="FileName" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
 margin_left = 20.0
 margin_top = 1.0
-margin_right = 80.0
+margin_right = 175.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
-text = "renpy.rpy"
+text = "Unsupported Node Type"
 
 [node name="ModifiedIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
 visible = false
@@ -321,7 +321,6 @@ __meta__ = {
 }
 
 [node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -330,37 +329,6 @@ margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "**bold**
-*italic*
-~~strikethrough~~
-`code`
-[link](https://some_domain.com)
-https://some_domain.com
-<test_var>
-:grinning:
-![](res://icon.png)
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-
-
-"
 highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
@@ -374,6 +342,7 @@ __meta__ = {
 configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
 
 [node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -483,7 +452,6 @@ rect_min_size = Vector2( 300, 0 )
 tabs_visible = false
 
 [node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -499,102 +467,13 @@ custom_fonts/italics_font = ExtResource( 7 )
 custom_fonts/bold_font = ExtResource( 8 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "[b]bold[/b]
-[i]italic[/i]
-[s]strikethrough[/s]
-[code]code[/code]
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com
-<test_var>
-:grinning[/url]:
-[img]res://icon.png[/img]
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-
-
-"
-text = "bold
-italic
-strikethrough
-code
-link
-https://some_domain.com
-<test_var>
-:grinning:
-
-
-123456789
-
-underline
-center
-right
-fill
-	text
-red
-
-wave
-tornado
-shake
-fade
-rainbow
-
-
-"
 script = ExtResource( 1 )
-markup_text = "**bold**
-*italic*
-~~strikethrough~~
-`code`
-[link](https://some_domain.com)
-https://some_domain.com
-<test_var>
-:grinning:
-![](res://icon.png)
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-
-
-"
-markup = "markdown"
 variables = {
 "test_var": "x"
 }
 
 [node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -827,7 +706,6 @@ __meta__ = {
 }
 
 [node name="MarkdownHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -882,6 +760,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+text_file = "res://addons/advanced-text/help/markdown.md"
 configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
 
 [node name="MarkdownPreview" type="RichTextLabel" parent="PopupHelp/HelperContainer/MarkdownHelp"]
@@ -924,7 +803,10 @@ bbcode_text = "[b]bold[/b]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
+"
 text = "bold
 italic
 strikethrough
@@ -948,8 +830,12 @@ wave
 tornado
 shake
 fade
-rainbow"
+rainbow
+
+
+"
 script = ExtResource( 1 )
+markup_text_file = "res://addons/advanced-text/help/markdown.md"
 markup_text = "**bold**
 *italic*
 ~~strikethrough~~
@@ -977,13 +863,16 @@ https://some_domain.com
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
-markup = "markdown"
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
+"
 variables = {
 "test_var": "x"
 }
 
 [node name="RenPyHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -991,12 +880,13 @@ margin_top = 8.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="RenPyEdit3" type="TextEdit" parent="PopupHelp/HelperContainer/RenPyHelp"]
+[node name="RenPyCode" type="TextEdit" parent="PopupHelp/HelperContainer/RenPyHelp"]
 margin_right = 684.0
 margin_bottom = 578.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "{b}bold{/b}
+text = "\"\"\"
+{b}bold{/b}
 {i}italic{/i}
 {s}strikethrough{/s}
 {code}some_code(){/code}
@@ -1023,7 +913,8 @@ text = "{b}bold{/b}
 {tornado radius=5 freq=2}tornado{/tornado}
 {shake rate=5 level=10}shake{/shake}
 {fade start=4 length=14}fade{/fade}
-{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}"
+{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
+\"\"\""
 readonly = true
 syntax_highlighting = true
 context_menu_enabled = false
@@ -1035,6 +926,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+text_file = "res://addons/advanced-text/help/renpy.rpy"
 configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 
 [node name="RenPy" type="RichTextLabel" parent="PopupHelp/HelperContainer/RenPyHelp"]
@@ -1050,7 +942,8 @@ custom_fonts/italics_font = ExtResource( 7 )
 custom_fonts/bold_font = ExtResource( 8 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "[b]bold[/b]
+bbcode_text = "\"\"\"
+[b]bold[/b]
 [i]italic[/i]
 [s]strikethrough[/s]
 [code]some_code()[/code]
@@ -1077,8 +970,10 @@ bbcode_text = "[b]bold[/b]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
-text = "bold
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+\"\"\""
+text = "\"\"\"
+bold
 italic
 strikethrough
 some_code()
@@ -1101,9 +996,12 @@ wave
 tornado
 shake
 fade
-rainbow"
+rainbow
+\"\"\""
 script = ExtResource( 1 )
-markup_text = "{b}bold{/b}
+markup_text_file = "res://addons/advanced-text/help/renpy.rpy"
+markup_text = "\"\"\"
+{b}bold{/b}
 {i}italic{/i}
 {s}strikethrough{/s}
 {code}some_code(){/code}
@@ -1130,7 +1028,8 @@ markup_text = "{b}bold{/b}
 {tornado radius=5 freq=2}tornado{/tornado}
 {shake rate=5 level=10}shake{/shake}
 {fade start=4 length=14}fade{/fade}
-{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}"
+{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
+\"\"\""
 markup = "renpy"
 variables = {
 "test_var": "x"
@@ -1151,7 +1050,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BBCodeEdit2" type="TextEdit" parent="PopupHelp/HelperContainer/BBCodeHelp"]
+[node name="BBCodeCode" type="TextEdit" parent="PopupHelp/HelperContainer/BBCodeHelp"]
 margin_right = 684.0
 margin_bottom = 578.0
 size_flags_horizontal = 3
@@ -1196,6 +1095,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+text_file = "res://addons/advanced-text/help/bbcode.txt"
 configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 
 [node name="BBCode" type="RichTextLabel" parent="PopupHelp/HelperContainer/BBCodeHelp"]
@@ -1220,7 +1120,6 @@ bbcode_text = "[b]bold[/b]
 <test_var>
 :grinning:
 [img]res://icon.png[/img]
-[img=32x32]res://icon.png[/img]
 
 [table=3]
 [cell]1[/cell][cell]2[/cell][cell]3[/cell]
@@ -1239,7 +1138,8 @@ bbcode_text = "[b]bold[/b]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+"
 text = "bold
 italic
 strikethrough
@@ -1248,7 +1148,6 @@ link
 https://some_domain.com
 <test_var>
 :grinning:
-
 
 
 123456789
@@ -1264,8 +1163,10 @@ wave
 tornado
 shake
 fade
-rainbow"
+rainbow
+"
 script = ExtResource( 1 )
+markup_text_file = "res://addons/advanced-text/help/bbcode.txt"
 markup_text = "[b]bold[/b]
 [i]italic[/i]
 [s]strikethrough[/s]
@@ -1275,7 +1176,6 @@ markup_text = "[b]bold[/b]
 <test_var>
 :grinning:
 [img]res://icon.png[/img]
-[img=32x32]res://icon.png[/img]
 
 [table=3]
 [cell]1[/cell][cell]2[/cell][cell]3[/cell]
@@ -1294,7 +1194,8 @@ markup_text = "[b]bold[/b]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+"
 markup = "bbcode"
 variables = {
 "test_var": "x"
