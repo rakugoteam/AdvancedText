@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RakugoTextLabel.svg-2fef52ace5ede5968fc998db72ecfe19.stex"
+path="res://.import/ren16.png-59ae4dfdd37bf4320291136c1bf8d9df.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/advanced-text-label/icons/RakugoTextLabel.svg"
-dest_files=[ "res://.import/RakugoTextLabel.svg-2fef52ace5ede5968fc998db72ecfe19.stex" ]
+source_file="res://addons/advanced-text/icons/ren16.png"
+dest_files=[ "res://.import/ren16.png-59ae4dfdd37bf4320291136c1bf8d9df.stex" ]
 
 [params]
 

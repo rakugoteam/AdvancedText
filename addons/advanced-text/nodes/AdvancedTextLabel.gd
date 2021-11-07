@@ -1,6 +1,6 @@
 tool
 extends RichTextLabel
-class_name AdvancedTextLabel, "res://addons/advanced-text-label/icons/AdvancedTextLabel.svg"
+class_name AdvancedTextLabel, "res://addons/advanced-text/icons/AdvancedTextLabel.svg"
 
 export(String, MULTILINE) var markup_text:String setget _set_markup_text, _get_markup_text
 export(String, "markdown", "renpy", "bbcode") var markup setget _set_markup, _get_markup
