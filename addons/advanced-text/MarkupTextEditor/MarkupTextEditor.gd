@@ -82,48 +82,55 @@ const markups_str := ["markdown", "renpy", "bbcode"]
 var files_ram := {}
 var files_boxes := {}
 var current_file_data := {}
+var last_file_data := {}
 
 var f := File.new()
 var b_group := ButtonGroup.new()
 
 const files_ram_path := "res://addons/advanced-text/MarkupTextEditor/ram.data"
 
+func import_emojis():
+	EmojisImport = preload("../emojis_import.gd")
+	EmojisImport = EmojisImport.new()
+
+	if EmojisImport.is_emojis_plugin_enabled():
+		var emoji_panel : Popup = EmojisImport.get_emoji_panel()
+		emoji_panel.visible = false
+		add_child(emoji_panel)
+		emoji_button.connect("pressed", emoji_panel, "popup_centered", [Vector2(450, 400)])
+		emoji_button.icon = EmojisImport.get_icon()
+		emoji_button.show()
+
+func load_last_session(files_ram_path : String):
+	f.open_compressed(files_ram_path, File.READ)
+	var loaded_data : Dictionary = f.get_var()
+	f.close()
+
+	for data in loaded_data.values():
+		var path : String = data["path"]
+		var modified : bool = data["modified"]
+		var text := ""
+		if modified:
+			text = data["text"]
+			_on_file_open(path, text)
+		
+		else:
+			_on_file_open(path)
+	
+	files_tab.visible = true
+
+
 func _ready():
 	emoji_button.hide()
-
-	if Engine.editor_hint:
-		# emojis import if possible
-		EmojisImport = preload("../emojis_import.gd")
-		EmojisImport = EmojisImport.new()
-
-		if EmojisImport.is_emojis_plugin_enabled():
-			var emoji_panel : Popup = EmojisImport.get_emoji_panel()
-			emoji_panel.visible = false
-			add_child(emoji_panel)
-			emoji_button.connect("pressed", emoji_panel, "popup_centered", [Vector2(450, 400)])
-			emoji_button.icon = EmojisImport.get_icon()
-			emoji_button.show()
+	_on_nodes_toggle(true)
+	
+	# emojis import if possible
+	import_emojis()
 		
-		# load perviously edited files
-		if f.file_exists(files_ram_path):
-			f.open_compressed(files_ram_path, File.READ)
-			var loaded_data : Dictionary = f.get_var()
-			f.close()
-
-			for data in loaded_data.values():
-				var path : String = data["path"]
-				var modified : bool = data["modified"]
-				var text := ""
-				if modified:
-					text = data["text"]
-					_on_file_open(path, text)
-				
-				else:
-					_on_file_open(path)
-			
-			files_toggle.pressed = true
-			_on_files_toggle(true)
-
+	# load perviously edited files
+	if f.file_exists(files_ram_path):
+		load_last_session(files_ram_path)
+		
 	update_text_preview(get_current_edit_tab())
 
 	markups_options.connect("item_selected", self, "_on_option_selected")
@@ -136,7 +143,7 @@ func _ready():
 
 	self.connect("visibility_changed", self, "_on_visibility_changed")
 
-	selected_node_toggle.connect("toggled", self, "_on_selected_node_toggle")
+	selected_node_toggle.connect("toggled", self, "_on_nodes_toggle")
 	selected_node_toggle.icon = get_icon("Control", "EditorIcons")
 
 	files_toggle.connect("toggled", self, "_on_files_toggle")
@@ -160,8 +167,6 @@ func _ready():
 	file_modified_icon.texture = get_icon("Edit", "EditorIcons")
 	file_modified_icon.hide()
 
-	files_tab.hide()
-	
 	for ch in edit_tabs.get_children():
 		ch.connect("text_changed", self, "update_text_preview", [ch, true])
 		ch.connect("text_changed", self, "_on_text_changed", [ch])
@@ -172,7 +177,11 @@ func _on_visibility_changed():
 	set_process(edit_node && visible)
 
 
-func _on_selected_node_toggle(toggled:bool):
+func _on_nodes_toggle(toggled:bool):
+	last_file_data = current_file_data
+	text = ""
+	var tab = get_current_edit_tab()
+	update_text_preview(tab, false)
 	file_icon.texture = get_icon("NodeWarning", "EditorIcons")
 	file_name_label.text = "Unsupported Node Type"
 	set_process(toggled)
@@ -180,8 +189,12 @@ func _on_selected_node_toggle(toggled:bool):
 
 func _on_files_toggle(toggled:bool):
 	files_tab.visible = toggled
-	file_icon.texture = get_icon("New", "EditorIcons")
-	file_name_label.text = "Unnamed Text File"
+	if last_file_data:
+		_update_file_data(last_file_data)
+
+	else:
+		file_icon.texture = get_icon("New", "EditorIcons")
+		file_name_label.text = "Unnamed Text File"
 
 
 func _on_toggle(toggled: bool):
@@ -444,7 +457,7 @@ func _update_file_data(f_data):
 			_set_markup_id(1)
 			b.icon = RpyIcon
 			file_icon.texture = RpyIcon
-		_:
+		"txt":
 			_set_markup_id(2)
 			markups_options.disabled = false
 			b.icon = get_icon("TextFile", "EditorIcons")

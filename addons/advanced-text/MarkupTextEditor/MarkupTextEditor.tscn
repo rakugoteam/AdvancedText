@@ -17,7 +17,7 @@
 
 [sub_resource type="ButtonGroup" id=1]
 
-[sub_resource type="Image" id=4]
+[sub_resource type="Image" id=2]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -29,7 +29,7 @@ data = {
 [sub_resource type="ImageTexture" id=3]
 flags = 4
 flags = 4
-image = SubResource( 4 )
+image = SubResource( 2 )
 size = Vector2( 16, 16 )
 
 [node name="MarkupTextEditor" type="Control"]
@@ -95,6 +95,7 @@ text = "Edit Selected"
 margin_left = 87.0
 margin_right = 158.0
 margin_bottom = 40.0
+pressed = true
 group = SubResource( 1 )
 text = "File"
 icon = SubResource( 3 )
@@ -104,7 +105,6 @@ flat = true
 margin_left = 162.0
 margin_right = 244.0
 margin_bottom = 40.0
-pressed = true
 group = SubResource( 1 )
 text = "Node"
 icon = SubResource( 3 )
@@ -222,22 +222,23 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="FilesOptionsContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
-margin_right = 202.0
+margin_right = 64.0
 margin_bottom = 546.0
-size_flags_horizontal = 3
+rect_min_size = Vector2( 64, 0 )
 size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
-margin_right = 202.0
+margin_right = 64.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 columns = 2
 
 [node name="NewFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer"]
-margin_right = 99.0
+margin_right = 30.0
 margin_bottom = 22.0
+hint_tooltip = "Create New Text File"
 size_flags_horizontal = 3
-text = "Create new Text File"
+text = "Create New Text File"
 icon = SubResource( 3 )
 clip_text = true
 __meta__ = {
@@ -245,9 +246,10 @@ __meta__ = {
 }
 
 [node name="OpenFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer"]
-margin_left = 103.0
-margin_right = 202.0
+margin_left = 34.0
+margin_right = 64.0
 margin_bottom = 22.0
+hint_tooltip = "Open Text File"
 size_flags_horizontal = 3
 text = "Open Text File"
 icon = SubResource( 3 )
@@ -255,8 +257,9 @@ clip_text = true
 
 [node name="SaveFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer"]
 margin_top = 26.0
-margin_right = 99.0
+margin_right = 30.0
 margin_bottom = 48.0
+hint_tooltip = "Save File"
 size_flags_horizontal = 3
 disabled = true
 text = "Save File"
@@ -264,10 +267,11 @@ icon = SubResource( 3 )
 clip_text = true
 
 [node name="SaveAsFileButton" type="Button" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/GridContainer"]
-margin_left = 103.0
+margin_left = 34.0
 margin_top = 26.0
-margin_right = 202.0
+margin_right = 64.0
 margin_bottom = 48.0
+hint_tooltip = "Save As File"
 size_flags_horizontal = 3
 text = "Save As File"
 icon = SubResource( 3 )
@@ -275,13 +279,13 @@ clip_text = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer"]
 margin_top = 52.0
-margin_right = 202.0
+margin_right = 64.0
 margin_bottom = 546.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="VBoxContainer/HSplitContainer/FilesOptionsContainer/ScrollContainer"]
-margin_right = 202.0
+margin_right = 64.0
 margin_bottom = 494.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -297,7 +301,7 @@ __meta__ = {
 }
 
 [node name="HBox" type="HSplitContainer" parent="VBoxContainer/HSplitContainer"]
-margin_left = 214.0
+margin_left = 76.0
 margin_right = 1014.0
 margin_bottom = 546.0
 grow_horizontal = 2
@@ -307,7 +311,7 @@ mouse_default_cursor_shape = 10
 size_flags_vertical = 3
 
 [node name="EditorsContainer" type="TabContainer" parent="VBoxContainer/HSplitContainer/HBox"]
-margin_right = 488.0
+margin_right = 626.0
 margin_bottom = 546.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 11
@@ -472,8 +476,8 @@ __meta__ = {
 configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 
 [node name="PreviewsContainer" type="TabContainer" parent="VBoxContainer/HSplitContainer/HBox"]
-margin_left = 500.0
-margin_right = 800.0
+margin_left = 638.0
+margin_right = 938.0
 margin_bottom = 546.0
 rect_min_size = Vector2( 300, 0 )
 tabs_visible = false
