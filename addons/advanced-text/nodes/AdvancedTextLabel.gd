@@ -41,6 +41,16 @@ func _set_markup_text_file(value:String) -> void:
 func _load_file(file_path:String) -> void:
 	f = File.new()
 	f.open(file_path, File.READ)
+	var file_ext = file_path.get_extension()
+
+	match file_ext:
+		"md":
+			_set_markup("markdown")
+		"rpy":
+			_set_markup("renpy")
+		"txt":
+			_set_markup("bbcode")
+
 	_set_markup_text(f.get_as_text())
 	f.close()
 
