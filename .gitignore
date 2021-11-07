@@ -10,6 +10,9 @@ data_*/
 
 # project specific
 .vscode/*
+addons/advanced-text/MarkupTextEditor/ram.data
+
+# addons
 addons/emojis-for-godot
 adddons/Iconify
 addons/zylann.editor_debugger
