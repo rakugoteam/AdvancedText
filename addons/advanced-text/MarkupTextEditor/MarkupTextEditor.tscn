@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text/nodes/MarkupEdit.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://addons/advanced-text/icons/md.svg" type="Texture" id=12]
 [ext_resource path="res://addons/advanced-text/icons/ren16.png" type="Texture" id=13]
 [ext_resource path="res://addons/advanced-text/icons/bbcode.svg" type="Texture" id=14]
+[ext_resource path="res://addons/advanced-text/font/theme_with_fonts.tres" type="Theme" id=15]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -461,6 +462,7 @@ margin_bottom = -4.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 15 )
 custom_fonts/mono_font = ExtResource( 4 )
 custom_fonts/bold_italics_font = ExtResource( 6 )
 custom_fonts/italics_font = ExtResource( 7 )
@@ -483,6 +485,7 @@ margin_bottom = -4.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 15 )
 custom_fonts/mono_font = ExtResource( 4 )
 custom_fonts/bold_italics_font = ExtResource( 6 )
 custom_fonts/italics_font = ExtResource( 7 )
@@ -592,6 +595,7 @@ margin_bottom = -4.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 15 )
 custom_fonts/mono_font = ExtResource( 4 )
 custom_fonts/bold_italics_font = ExtResource( 6 )
 custom_fonts/italics_font = ExtResource( 7 )
@@ -1105,11 +1109,7 @@ margin_bottom = 578.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 4 )
-custom_fonts/bold_italics_font = ExtResource( 6 )
-custom_fonts/italics_font = ExtResource( 7 )
-custom_fonts/bold_font = ExtResource( 8 )
-custom_fonts/normal_font = ExtResource( 5 )
+theme = ExtResource( 15 )
 bbcode_enabled = true
 bbcode_text = "[b]bold[/b]
 [i]italic[/i]
