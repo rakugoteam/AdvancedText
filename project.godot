@@ -68,7 +68,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="AdvencedTextLabel"
+config/name="AdvancedTextLabel"
 config/icon="res://icon.png"
 
 [editor_plugins]
