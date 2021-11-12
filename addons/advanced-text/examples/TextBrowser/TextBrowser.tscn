@@ -11,6 +11,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+home_text_file = "res://addons/advanced-text/examples/TextBrowser/TestPage01.md"
 tab_button_scene = ExtResource( 3 )
 text_view_scene = ExtResource( 1 )
 
