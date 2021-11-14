@@ -98,7 +98,6 @@ func import_emojis():
 		emoji_panel.visible = false
 		add_child(emoji_panel)
 		emoji_button.connect("pressed", emoji_panel, "popup_centered", [Vector2(450, 400)])
-		emoji_button.icon = EmojisImport.get_icon()
 		emoji_button.show()
 
 func load_last_session(files_ram_path : String):
