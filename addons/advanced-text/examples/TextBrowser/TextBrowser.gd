@@ -28,14 +28,14 @@ func _open_file(file:String) -> void:
 	button.toggle_mode = true
 	button.pressed = true
 	button.group = tabs_group
+	button.connect("pressed", self, "_on_tab_pressed", [new_tab_button])
 
 	var close_button : Button = new_tab_button.get_node("CloseButton")
 	close_button.connect("pressed", self, "_on_tab_closed", [new_tab_button])
-	close_button.text = ""
-	close_button.icon = get_icon("Close", "EditorIcons")
 	tabs_box.add_child(new_tab_button)
 
 	tabs_dir[new_tab_button] = new_text_view
+	current_text_view = new_text_view
 
 func _on_meta_clicked(meta:String):
 	if meta.begins_with("res://"):
@@ -45,3 +45,8 @@ func _on_tab_closed(caller:Node):
 	var text_view = tabs_dir[caller]
 	tabs.remove_child(text_view)
 	tabs_box.remove_child(caller)
+
+func _on_tab_pressed(caller:Node):
+	current_text_view.hide()
+	current_text_view = tabs_dir[caller]
+	current_text_view.show()
