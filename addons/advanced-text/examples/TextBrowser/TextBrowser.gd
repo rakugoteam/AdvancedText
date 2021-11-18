@@ -10,6 +10,7 @@ onready var tabs_box : VBoxContainer = $HSplitContainer/ScrollContainer/VBoxCont
 var current_text_view : AdvancedTextLabel
 var tabs_group := ButtonGroup.new()
 var tabs_dir := {}
+var paths_dir := {}
 
 func _ready():
 	_open_file(home_text_file)
@@ -35,9 +36,15 @@ func _open_file(file:String) -> void:
 	tabs_box.add_child(new_tab_button)
 
 	tabs_dir[new_tab_button] = new_text_view
+	paths_dir[file] = new_tab_button
 	current_text_view = new_text_view
 
 func _on_meta_clicked(meta:String):
+	if meta in paths_dir.keys():
+		var tab_button = paths_dir[meta]
+		tab_button.emit_signal("pressed", [tab_button])
+		return
+
 	if meta.begins_with("res://"):
 		_open_file(meta)
 
