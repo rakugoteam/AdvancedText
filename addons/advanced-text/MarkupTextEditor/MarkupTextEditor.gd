@@ -83,6 +83,7 @@ var files_ram := {}
 var files_boxes := {}
 var current_file_data := {}
 var last_file_data := {}
+var paths_dir := {}
 
 var f := File.new()
 var b_group := ButtonGroup.new()
@@ -98,7 +99,6 @@ func import_emojis():
 		emoji_panel.visible = false
 		add_child(emoji_panel)
 		emoji_button.connect("pressed", emoji_panel, "popup_centered", [Vector2(450, 400)])
-		emoji_button.icon = EmojisImport.get_icon()
 		emoji_button.show()
 
 func load_last_session(files_ram_path : String):
@@ -381,8 +381,10 @@ func _on_file_open(file_path:String, modified_text := ""):
 	var file_name = file_path.get_file()
 	var file_ext = file_path.get_extension()
 
-	if file_name in files_boxes:
+	if file_path in paths_dir.keys():
 		# add switching to file
+		var f_tab = paths_dir[file_path]
+		f_tab.emit_signal("pressed", f_tab)
 		return
 
 	# print("open not opened file", file_path)
@@ -427,6 +429,7 @@ func _on_file_open(file_path:String, modified_text := ""):
 		"modified_icon": f_modified_icon,
 	}
 
+	paths_dir[file_path] = f_box
 	files_ram[f_box] = f_data
 	files_boxes[file_name] = f_box
 	_update_file_data(f_data)

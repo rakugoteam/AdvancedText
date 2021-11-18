@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text/nodes/MarkupEdit.gd" type="Script" id=2]
@@ -8,12 +8,13 @@
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-BoldOblique.tres" type="DynamicFont" id=6]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=7]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-Bold.tres" type="DynamicFont" id=8]
-[ext_resource path="res://addons/emojis-for-godot/icon.png" type="Texture" id=9]
+[ext_resource path="res://addons/advanced-text/icons/emojis.svg" type="Texture" id=9]
 [ext_resource path="res://addons/advanced-text/icons/AdvancedTextLabel.svg" type="Texture" id=10]
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/FileBox.tscn" type="PackedScene" id=11]
+[ext_resource path="res://addons/advanced-text/shared/TabButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://addons/advanced-text/icons/md.svg" type="Texture" id=12]
 [ext_resource path="res://addons/advanced-text/icons/ren16.png" type="Texture" id=13]
 [ext_resource path="res://addons/advanced-text/icons/bbcode.svg" type="Texture" id=14]
+[ext_resource path="res://addons/advanced-text/font/theme_with_fonts.tres" type="Theme" id=15]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -112,15 +113,15 @@ flat = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 248.0
-margin_right = 481.0
+margin_right = 520.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer2"]
-margin_left = 29.0
+margin_left = 92.0
 margin_top = 12.0
-margin_right = 204.0
+margin_right = 180.0
 margin_bottom = 28.0
 
 [node name="FileIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
@@ -137,10 +138,10 @@ __meta__ = {
 [node name="FileName" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
 margin_left = 20.0
 margin_top = 1.0
-margin_right = 175.0
+margin_right = 88.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
-text = "Unsupported Node Type"
+text = "bbcode.txt"
 
 [node name="ModifiedIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
 visible = false
@@ -156,16 +157,16 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 485.0
-margin_right = 719.0
+margin_left = 524.0
+margin_right = 796.0
 margin_bottom = 40.0
 size_flags_horizontal = 15
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer"]
-margin_left = 46.0
+margin_left = 65.0
 margin_top = 9.0
-margin_right = 187.0
+margin_right = 206.0
 margin_bottom = 31.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer/HBoxContainer"]
@@ -180,16 +181,15 @@ margin_right = 141.0
 margin_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
-disabled = true
-text = "RenPy"
-icon = ExtResource( 13 )
+text = "BBCode"
+icon = ExtResource( 14 )
 flat = true
 clip_text = true
 items = [ "Markdown", ExtResource( 12 ), false, 0, null, "RenPy", ExtResource( 13 ), false, 1, null, "BBCode", ExtResource( 14 ), false, 2, null ]
-selected = 1
+selected = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 723.0
+margin_left = 800.0
 margin_right = 1014.0
 margin_bottom = 40.0
 
@@ -208,6 +208,7 @@ text = "Help"
 icon = SubResource( 3 )
 
 [node name="EmojisButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+visible = false
 margin_left = 218.0
 margin_right = 291.0
 margin_bottom = 40.0
@@ -321,6 +322,7 @@ __meta__ = {
 }
 
 [node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -394,7 +396,6 @@ __meta__ = {
 configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 
 [node name="BBCodeEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -449,9 +450,11 @@ margin_left = 638.0
 margin_right = 938.0
 margin_bottom = 546.0
 rect_min_size = Vector2( 300, 0 )
+size_flags_vertical = 3
 tabs_visible = false
 
 [node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -461,6 +464,7 @@ margin_bottom = -4.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 15 )
 custom_fonts/mono_font = ExtResource( 4 )
 custom_fonts/bold_italics_font = ExtResource( 6 )
 custom_fonts/italics_font = ExtResource( 7 )
@@ -483,6 +487,7 @@ margin_bottom = -4.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 15 )
 custom_fonts/mono_font = ExtResource( 4 )
 custom_fonts/bold_italics_font = ExtResource( 6 )
 custom_fonts/italics_font = ExtResource( 7 )
@@ -582,7 +587,6 @@ variables = {
 }
 
 [node name="BBCodeTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -592,6 +596,7 @@ margin_bottom = -4.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 15 )
 custom_fonts/mono_font = ExtResource( 4 )
 custom_fonts/bold_italics_font = ExtResource( 6 )
 custom_fonts/italics_font = ExtResource( 7 )
@@ -706,6 +711,7 @@ __meta__ = {
 }
 
 [node name="MarkdownHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -1036,7 +1042,6 @@ variables = {
 }
 
 [node name="BBCodeHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -1105,11 +1110,7 @@ margin_bottom = 578.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 4 )
-custom_fonts/bold_italics_font = ExtResource( 6 )
-custom_fonts/italics_font = ExtResource( 7 )
-custom_fonts/bold_font = ExtResource( 8 )
-custom_fonts/normal_font = ExtResource( 5 )
+theme = ExtResource( 15 )
 bbcode_enabled = true
 bbcode_text = "[b]bold[/b]
 [i]italic[/i]
@@ -1211,6 +1212,3 @@ filters = PoolStringArray( "*.txt  ; Text File", "*.md ; Markdown File", "*.rpy 
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="about_to_show" from="PopupDialog" to="PopupDialog/Emoji" method="_on_about_to_show"]
-[connection signal="resized" from="PopupDialog" to="PopupDialog/Emoji" method="_on_resized"]

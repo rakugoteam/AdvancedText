@@ -18,7 +18,7 @@ func _enter_tree():
 	markup_text_editor.editor = get_editor_interface()
 	
 	markup_text_editor_button.text = "Markup Text Editor"
-	markup_text_editor_button.icon = preload("MarkupTextEditor/MarkupTextEditor.svg")
+	markup_text_editor_button.icon = preload("icons/MarkupTextEditor.svg")
 	markup_text_editor_button.toggle_mode = true
 	markup_text_editor_button.pressed = false
 	markup_text_editor_button.action_mode = ToolButton.ACTION_MODE_BUTTON_RELEASE

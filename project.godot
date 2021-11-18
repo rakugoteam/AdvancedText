@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Button",
+"class": "AdvancedTextButton",
+"language": "GDScript",
+"path": "res://addons/advanced-text/examples/AdvancedTextButton/AdvancedTextButton.gd"
+}, {
 "base": "RichTextLabel",
 "class": "AdvancedTextLabel",
 "language": "GDScript",
@@ -50,6 +55,7 @@ _global_script_classes=[ {
 "path": "res://addons/advanced-text/parsers/RenPyMarkupParser.gd"
 } ]
 _global_script_class_icons={
+"AdvancedTextButton": "",
 "AdvancedTextLabel": "res://addons/advanced-text/icons/AdvancedTextLabel.svg",
 "EBBCodeParser": "",
 "EmojiButton": "res://addons/emojis-for-godot/icons/EmojiButton.svg",
@@ -67,7 +73,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/advanced-text/plugin.cfg", "res://addons/emojis-for-godot/plugin.cfg", "res://addons/explore-editor-theme/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/advanced-text/plugin.cfg" )
 
 [physics]
 
