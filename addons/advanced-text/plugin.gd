@@ -1,7 +1,6 @@
 tool
 extends EditorPlugin
 
-
 var markup_text_editor_button := ToolButton.new()
 var markup_text_editor
 var editor_parent : Control
@@ -11,11 +10,11 @@ func _enter_tree():
 	markup_text_editor = preload("MarkupTextEditor/MarkupTextEditor.tscn")
 	markup_text_editor = markup_text_editor.instance()
 	editor_parent = get_editor_interface().get_editor_viewport()
-	editor_parent.add_child(markup_text_editor)
 	markup_text_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	markup_text_editor.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	markup_text_editor.visible = false
 	markup_text_editor.editor = get_editor_interface()
+	editor_parent.add_child(markup_text_editor)
 	
 	markup_text_editor_button.text = "Markup Text Editor"
 	markup_text_editor_button.icon = preload("icons/MarkupTextEditor.svg")

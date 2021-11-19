@@ -8,16 +8,17 @@ const emoji_icon_path ="res://addons/emojis-for-godot/icon.png"
 
 var f := File.new()
 var _emojis
+var _emojis_plugin_enabled : = false
 
 func is_emojis_plugin_enabled() -> bool:
-	var plugins : Array = ProjectSettings.get_setting("editor_plugins/enabled")
-	var plugin_enabled := emoji_plugin_path in plugins
+	if not _emojis_plugin_enabled:
+		var plugins : Array = ProjectSettings.get_setting("editor_plugins/enabled")
+		_emojis_plugin_enabled = emoji_plugin_path in plugins
 
-	if not plugin_enabled:
+	if not _emojis_plugin_enabled:
 		push_warning("emojis-for-godot are not enabled")
-		return false
 	
-	return true
+	return _emojis_plugin_enabled
 
 func get_emojis():
 	if _emojis:
