@@ -5,9 +5,9 @@ class_name MarkdownParser
 # With support for <values> and :emojis:
 # For emojis you need to install emojis-for-godot
 
-func parse(text:String, editor:=false, variables:={}) -> String:
+func parse(text:String, editor:=false, headers_fonts :=[], variables:={}) -> String:
 	# run base.parse
-	text = .parse(text, editor, variables)
+	text = .parse(text, editor, headers_fonts, variables)
 	text = convert_markdown(text)
 	return text
 
