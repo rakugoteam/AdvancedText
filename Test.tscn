@@ -69,19 +69,22 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "# Header 1
-## Header 2
-### Header 3"
-text = "# Header 1
-## Header 2
-### Header 3"
+bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header 1[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header 2[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header 3[/font]
+"
+text = "Header 1
+Header 2
+Header 3
+"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 markup_text = "# Header 1
 ## Header 2
-### Header 3"
+### Header 3
+"
 headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
 variables = {
 }

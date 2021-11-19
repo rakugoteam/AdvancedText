@@ -83,12 +83,13 @@ func get_variable(var_name:String, variables:={}):
 	return output
 
 func parse_headers(text:String, headers_fonts:Array) -> String:
-	var re = RegEx.new()
-	var output = "" + text
 	var headers_count = headers_fonts.size()
-
+	
 	if headers_count == 0:
 		return text
+	
+	var re = RegEx.new()
+	var output = "" + text
 
 	re.compile("\\[h([1-4])\\](.+)\\[/h[1-4]\\]")
 	for result in re.search_all(text):

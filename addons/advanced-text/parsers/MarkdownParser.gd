@@ -7,16 +7,16 @@ class_name MarkdownParser
 
 func parse(text:String, editor:=false, headers_fonts :=[], variables:={}) -> String:
 	# run base.parse
-	text = .parse(text, editor, headers_fonts, variables)
 	text = convert_markdown(text)
-	return text
+	return .parse(text, editor, headers_fonts, variables)
 
 func convert_markdown(text:String) -> String:
 	var re = RegEx.new()
 	var output = "" + text
 	var replacement = ""
 	
-	re.compile("!\u200B?\\[\u200B?\\]\\(([^\\(\\)\\[\\]]+)\\)")# ![](path/to/img)
+	# ![](path/to/img)
+	re.compile("!\u200B?\\[\u200B?\\]\\(([^\\(\\)\\[\\]]+)\\)")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[img]" + result.get_string(1) + "[/img]"
@@ -37,28 +37,32 @@ func convert_markdown(text:String) -> String:
 			output = regex_replace(result, output, replacement)
 	text = output
 
-	re.compile("\\*\\*([^\\*]+)\\*\\*")# **bold**
+	# **bold**
+	re.compile("\\*\\*([^\\*]+)\\*\\*")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[b]" + result.get_string(1) + "[/b]"
 			output = regex_replace(result, output, replacement)
 	text = output
 	
-	re.compile("\\*([^\\*]+)\\*")# *italic*
+	# *italic*
+	re.compile("\\*([^\\*]+)\\*")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[i]" + result.get_string(1) + "[/i]"
 			output = regex_replace(result, output, replacement)
 	text = output
 
-	re.compile("~~([^~]+)~~")# ~~strike through~~
+	# ~~strike through~~
+	re.compile("~~([^~]+)~~")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[s]" + result.get_string(1) + "[/s]"
 			output = regex_replace(result, output, replacement)
 	text = output
 
-	re.compile("`([^`]+)`")# `code`
+	# `code`
+	re.compile("`([^`]+)`")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[code]" + result.get_string(1) + "[/code]"
@@ -66,3 +70,24 @@ func convert_markdown(text:String) -> String:
 	text = output
 
 	return text
+
+func parse_headers(text:String, headers_fonts:=[]) -> String:
+	var headers_count = headers_fonts.size()
+
+	if headers_count == 0:
+		return text
+
+	var re = RegEx.new()
+	var output = "" + text
+
+	re.compile("(#+)\\s+(.+)\n")
+	for result in re.search_all(text):
+		if result.get_string():
+			var header_level = headers_count - result.get_string(1).length()
+			header_level = clamp(header_level, 0, headers_count)
+			var header_text = result.get_string(2)
+			var header_font = headers_fonts[header_level]
+			var replacement = "[font=%s]%s[/font]\n" % [header_font, header_text]
+			output = regex_replace(result, output, replacement)
+	
+	return output
