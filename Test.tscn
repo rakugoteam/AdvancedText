@@ -6,24 +6,23 @@
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=4]
 [ext_resource path="res://addons/advanced-text/font/theme_with_fonts.tres" type="Theme" id=5]
 
-[node name="Control" type="Control"]
+[node name="Control" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="AdvancedTextLabel" type="RichTextLabel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="BBCodeTest" type="RichTextLabel" parent="."]
+margin_right = 338.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "[h1]Header 1[/h1]
-[h2]Header 2[/h2]
-[h3]Header 3[/h3]"
-text = "[h1]Header 1[/h1]
-[h2]Header 2[/h2]
-[h3]Header 3[/h3]"
+bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header 1[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header 2[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header 3[/font]"
+text = "Header 1
+Header 2
+Header 3"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -32,6 +31,57 @@ markup_text = "[h1]Header 1[/h1]
 [h2]Header 2[/h2]
 [h3]Header 3[/h3]"
 markup = "bbcode"
+headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
+variables = {
+}
+
+[node name="RenPyTest" type="RichTextLabel" parent="."]
+margin_left = 342.0
+margin_right = 681.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header 1[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header 2[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header 3[/font]"
+text = "Header 1
+Header 2
+Header 3"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+markup_text = "{h1}Header 1{/h1}
+{h2}Header 2{/h2}
+{h3}Header 3{/h3}"
+markup = "renpy"
+headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
+variables = {
+}
+
+[node name="MarkdownTest" type="RichTextLabel" parent="."]
+margin_left = 685.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "# Header 1
+## Header 2
+### Header 3"
+text = "# Header 1
+## Header 2
+### Header 3"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+markup_text = "# Header 1
+## Header 2
+### Header 3"
 headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
 variables = {
 }

@@ -14,8 +14,7 @@ func _ready():
 	emojis_gd = EmojisImport.get_emojis()
 
 func parse(text:String, editor:=false, headers_fonts:=[], variables:={}) -> String:
-	# I'm not sure if this really needed
-	# text = dirty_escaping(text)
+	text = dirty_escaping(text)
 
 	# Parse headers
 	text = parse_headers(text, headers_fonts)
@@ -39,12 +38,12 @@ func dirty_escaping(text:String) -> String:
 	
 	return output
 
-func replace_variables(text:String, editor:=false) -> String:
+func replace_variables(text:String, editor:=false, open:="<", close:=">") -> String:
 	var re = RegEx.new()
 	var output = "" + text
 	var replacement = ""
 	
-	re.compile("<([\\w.]+)>")
+	re.compile("%s([\\w.]+)%s" % [open, close])
 	for result in re.search_all(text):
 		if result.get_string():
 			

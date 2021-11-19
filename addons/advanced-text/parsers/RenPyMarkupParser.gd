@@ -2,27 +2,21 @@ extends EBBCodeParser
 class_name RenPyMarkupParser
 
 # RenPy Markup Parser
-# It has one difference from original Ren'Py markup:
-# for values we use '<','>' instead of '[' and ']'
 # Adds support for :emojis:
 # For emojis you need to install emojis-for-godot
 
 func parse(text:String, editor:=false, headers_fonts:=[], variables:={}) -> String:
-	# run base parser
-	text = .parse(text, editor, headers_fonts, variables)
 	text = convert_renpy_markup(text)
+	text = .parse(text, editor, headers_fonts, variables)
 	return text
+
+func replace_variables(text:String, editor:=false, open:="[", close:="]") -> String:
+	return .replace_variables(text, editor, open, close)
 
 func convert_renpy_markup(text:String) -> String:
 	var re = RegEx.new()
 	var output = "" + text
 	var replacement = ""
-	
-	re.compile("(?<!\\[)\\[([\\w.]+)\\]")# Convert compatible variable inclusion
-	for result in re.search_all(text):
-		if result.get_string():
-			output = regex_replace(result, output, "<" + result.get_string(1) + ">")
-	text = output
 	
 	re.compile("(?<!\\{)\\{(\\/{0,1})a(?:(=[^\\}]+)\\}|\\})")# match unescaped "{a=" and "{/a}"
 	for result in re.search_all(text):
