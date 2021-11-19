@@ -3,18 +3,17 @@ extends RichTextLabel
 class_name AdvancedTextLabel, "res://addons/advanced-text/icons/AdvancedTextLabel.svg"
 
 var f : File
-var ebbcode_parser := EBBCodeParser.new()
-var markdown_parser := MarkdownParser.new()
-var renpy_parser := RenPyMarkupParser.new()
 
 export(String, FILE, "*.md, *.rpy, *.txt") var markup_text_file := "" setget _set_markup_text_file, _get_markup_text_file
 export(String, MULTILINE) var markup_text := "" setget _set_markup_text, _get_markup_text
 export(String, "markdown", "renpy", "bbcode") var markup := "markdown" setget _set_markup, _get_markup
+export(Array, DynamicFont) var headers_fonts := [] 
 export var variables := {}
 
 var _markup_text := ""
 var _markup := "markdown"
 var _markup_text_file := ""
+var _parser
 
 func _ready() -> void:
 	bbcode_enabled = true
@@ -24,14 +23,29 @@ func _ready() -> void:
 	else:
 		_set_markup_text(_markup_text)
 
-func _get_text_parser():
+func get_hf_paths() -> Array:
+	var paths := []
+	for f in headers_fonts:
+		paths.append(f.resource_path)
+
+	return paths 
+
+func get_text_parser() -> EBBCodeParser:
+	if _parser:
+		return _parser
+	
+	return _get_text_parser()
+
+func _get_text_parser() -> EBBCodeParser:
 	match _markup:
 		"bbcode":
-			return ebbcode_parser
+			_parser = EBBCodeParser.new()
 		"renpy":
-			return renpy_parser
+			_parser = RenPyMarkupParser.new()
 		"markdown":
-			return markdown_parser
+			_parser = MarkdownParser.new()
+
+	return _parser
 
 func _set_markup_text_file(value:String) -> void:
 	_markup_text_file = value
@@ -61,14 +75,14 @@ func _set_markup_text(value:String) -> void:
 	bbcode_enabled = true
 	_markup_text = value
 
-	var p = _get_text_parser()
-	if p == null:
-		return
-	
 	if value == null:
 		return
 
-	bbcode_text = p.parse(value, Engine.editor_hint, variables)
+	var p = get_text_parser() 
+	if p == null:
+		return
+	
+	bbcode_text = p.parse(value, Engine.editor_hint, get_hf_paths(), variables)
 	
 func _get_markup_text() -> String:
 	if _markup_text_file:
@@ -76,9 +90,11 @@ func _get_markup_text() -> String:
 
 	return _markup_text
 
-func _set_markup(value:="") -> void:	
-	_markup = value
-	_set_markup_text(_markup_text)
+func _set_markup(value:String) -> void:
+	if value != _markup:
+		_markup = value
+		_get_text_parser()
+		_set_markup_text(_markup_text)
 
 func _get_markup() -> String:
 	return _markup

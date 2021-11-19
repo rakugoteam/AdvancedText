@@ -13,10 +13,13 @@ func _ready():
 	EmojisImport = EmojisImport.new()
 	emojis_gd = EmojisImport.get_emojis()
 
-func parse(text:String, editor:=false, variables:={}) -> String:
+func parse(text:String, editor:=false, headers_fonts:=[], variables:={}) -> String:
 	text = dirty_escaping(text)
 
-	if !editor and !variables.empty():
+	# Parse headers
+	text = parse_headers(text, headers_fonts)
+
+	if !variables.empty():
 		text = replace_variables(text, editor)
 	
 	if emojis_gd:
@@ -35,16 +38,16 @@ func dirty_escaping(text:String) -> String:
 	
 	return output
 
-func replace_variables(text:String, editor:=false) -> String:
+func replace_variables(text:String, editor:=false, open:="<", close:=">") -> String:
 	var re = RegEx.new()
 	var output = "" + text
 	var replacement = ""
 	
-	re.compile("<([\\w.]+)>")
+	re.compile("%s([\\w.]+)%s" % [open, close])
 	for result in re.search_all(text):
 		if result.get_string():
 			
-			if editor:
+			if !editor:
 				replacement = str(get_variable(result.get_string(1)))
 			else:
 				replacement = "[code]" + result.get_string(1) + "[/code]"
@@ -65,12 +68,37 @@ func get_variable(var_name:String, variables:={}):
 	var output = variables
 	var i = 0
 	var error = false
+
 	while output and i < parts.size():
 		output = output.get(parts[i])
 		i += 1
+
 		if not output:
 			error = true
 			push_warning("The variable '%s' does not exist." % var_name)
+
 	if error:
 		output = null
+
+	return output
+
+func parse_headers(text:String, headers_fonts:Array) -> String:
+	var headers_count = headers_fonts.size()
+	
+	if headers_count == 0:
+		return text
+	
+	var re = RegEx.new()
+	var output = "" + text
+
+	re.compile("\\[h([1-4])\\](.+)\\[/h[1-4]\\]")
+	for result in re.search_all(text):
+		if result.get_string():
+			var header_level = headers_count - int(result.get_string(1))
+			header_level = clamp(header_level, 0, headers_count - 1)
+			var header_text = result.get_string(2)
+			var header_font = headers_fonts[header_level]
+			var replacement = "[font=%s]%s[/font]" % [header_font, header_text]
+			output = regex_replace(result, output, replacement)
+	
 	return output
