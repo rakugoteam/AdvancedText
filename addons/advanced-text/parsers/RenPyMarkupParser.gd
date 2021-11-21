@@ -7,7 +7,8 @@ class_name RenPyMarkupParser
 
 func parse(text:String, editor:=false, headers_fonts:=[], variables:={}) -> String:
 	text = convert_renpy_markup(text)
-	return .parse(text, editor, headers_fonts, variables)
+	text = .parse(text, editor, headers_fonts, variables)
+	return text
 
 func replace_variables(text:String, editor:=false, open:="[", close:="]") -> String:
 	return .replace_variables(text, editor, open, close)

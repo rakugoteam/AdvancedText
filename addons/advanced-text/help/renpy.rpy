@@ -1,11 +1,14 @@
 """
+{h1}Header Level 1{/h1}
+{h2}Header Level 2{/h2}
+{h3}Header Level 3{/h3}
 {b}bold{/b}
 {i}italic{/i}
-{s}strikethrough{/s}
+{s}strike through{/s}
 {code}some_code(){/code}
 {url=https://some_domain.com}link{/url}
 {url}https://some_domain.com{/url}
-<test_var>
+[test_var]
 :grinning:
 {img}res://icon.png{/img}
 
