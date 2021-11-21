@@ -364,7 +364,7 @@ func _on_file_selected(file_path:String):
 				else:
 					_on_file_open(file_path, f_data["text"])
 
-			_on_save_file_button_pressed()
+			_on_file_save_button_pressed()
 
 
 func _on_files_selected(file_paths:Array):
@@ -514,7 +514,7 @@ func _on_new_file_button_pressed():
 	_on_file_open(file_name)
 
 
-func _on_save_file_button_pressed():
+func _on_file_save_button_pressed():
 	var f_data : Dictionary = current_file_data
 	var file_path : String = f_data["path"]
 	var text : String = f_data["text"]
