@@ -21,7 +21,9 @@ https://some_domain.com
 @center{centered text}
 @right{right aligned text}
 @fill{fill aligned text}
+@justified{justified text *(alt to @fill)* }
 @indent{indent text}
+@tab {indent text *(alt to @indent)*}
 [color=red]red text[/color]
 
 [wave amp=50 freq=2]wave[/wave]

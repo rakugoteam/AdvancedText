@@ -102,10 +102,16 @@ func convert_markdown(text:String) -> String:
 	# @fill { text }
 	text = parse_keyword(text, "fill", "fill")
 
+	# @justified { text }
+	text = parse_keyword(text, "justified", "fill")
+
 	# @indent { text }
 	text = parse_keyword(text, "indent", "indent")
 
-	
+	# @tab { text }
+	text = parse_keyword(text, "tab", "indent")
+
+
 	return text
 
 func parse_keyword(text:String, keyword:String, tag:String) -> String:
