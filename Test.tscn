@@ -75,11 +75,11 @@ bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header L
 [font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 3[/font]
 [b]bold[/b]
 [i]italic[/i]
-[s]strike through[/s]
+~strike through~
 [code]code[/code]
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com
-<test_var>
+[url=https://some[u]domain.com]link[/url]
+[url]https://some[/u]domain.com
+<test[u]var>
 :grinning[/url]:
 [img]res://icon.png[/img]
 
@@ -88,14 +88,14 @@ bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header L
 [cell]7[/cell][cell]8[/cell][cell]9[/cell]
 [/table]
 
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
+[/u]underline_
+@center{centered text}
+[right]right aligned text[/right]
+[fill]fill aligned text[/fill]
+[indent]indent text[/indent]
+[color=red]red text[/color]
 
-wave amp=50 freq=2]wave[/wave]
+[wave amp=50 freq=2]wave[/wave]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
@@ -108,24 +108,24 @@ Header Level 2
 Header Level 3
 bold
 italic
-strike through
+~strike through~
 code
-link
-https://some_domain.com
-<test_var>
-:grinning:
+domain.com]link
+https://some[/u]domain.com
+<testvar>
+:grinning[/url]:
 
 
 123456789
 
-underline
-center
-right
-fill
-	text
-red
+underline_
+@center{centered text}
+right aligned text
+fill aligned text
+	indent text
+red text
 
-wave amp=50 freq=2]wave[/wave]
+wave
 tornado
 shake
 fade
@@ -143,7 +143,7 @@ markup_text = "# Header Level 1
 ### Header Level 3
 **bold**
 *italic*
-~~strike through~~
+~strike through~
 `code`
 [link](https://some_domain.com)
 https://some_domain.com
@@ -157,14 +157,14 @@ https://some_domain.com
 |7|8|9|
 }
 
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
+_underline_
+@center{centered text}
+[right]right aligned text[/right]
+[fill]fill aligned text[/fill]
+[indent]indent text[/indent]
+[color=red]red text[/color]
 
-wave amp=50 freq=2]wave[/wave]
+[wave amp=50 freq=2]wave[/wave]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]

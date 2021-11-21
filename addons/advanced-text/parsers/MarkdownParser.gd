@@ -87,20 +87,39 @@ func convert_markdown(text:String) -> String:
 						replacement += "[cell]%s[/cell]" % cell
 					replacement += "\n"
 			replacement += "[/table]"
-			prints(replacement)
 			output = regex_replace(result, output, replacement)
 	text = output
 
-	# _underline_
-	re.compile("_([^_]+)_")
-	for result in re.search_all(text):
-		if result.get_string():
-			replacement = "[u]%s[/u]" % result.get_string(1)
-			output = regex_replace(result, output, replacement)
-	text = output
+	# @center { text }
+	text = parse_keyword(text, "center", "center")
+
+	# @u { text}
+	text = parse_keyword(text, "u", "u")
+
+	# @right { text }
+	text = parse_keyword(text, "right", "right")
+
+	# @fill { text }
+	text = parse_keyword(text, "fill", "fill")
+
+	# @indent { text }
+	text = parse_keyword(text, "indent", "indent")
 
 	
+	return text
 
+func parse_keyword(text:String, keyword:String, tag:String) -> String:
+	var re = RegEx.new()
+	var output = "" + text
+	var replacement = ""
+
+	# @keyword {text}
+	re.compile("@%s\\s*\\{([^\\}]+)\\}" % keyword)
+	for result in re.search_all(text):
+		if result.get_string():
+			replacement = "[%s]%s[/%s]" % [tag, result.get_string(1), tag]
+			output = regex_replace(result, output, replacement)
+	text = output
 	return text
 
 func parse_headers(text:String, headers_fonts:=[]) -> String:

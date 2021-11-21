@@ -3,7 +3,7 @@
 ### Header Level 3
 **bold**
 *italic*
-~~strike through~~
+~strike through~
 `code`
 [link](https://some_domain.com)
 https://some_domain.com
@@ -17,14 +17,14 @@ https://some_domain.com
 |7|8|9|
 }
 
-_underline_
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
+@u{underlined text}
+@center{centered text}
+@right{right aligned text}
+@fill{fill aligned text}
+@indent{indent text}
+[color=red]red text[/color]
 
-wave amp=50 freq=2]wave[/wave]
+[wave amp=50 freq=2]wave[/wave]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
