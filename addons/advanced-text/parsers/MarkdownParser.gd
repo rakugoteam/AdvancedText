@@ -90,6 +90,15 @@ func convert_markdown(text:String) -> String:
 			prints(replacement)
 			output = regex_replace(result, output, replacement)
 	text = output
+
+	# _underline_
+	re.compile("_([^_]+)_")
+	for result in re.search_all(text):
+		if result.get_string():
+			replacement = "[u]%s[/u]" % result.get_string(1)
+			output = regex_replace(result, output, replacement)
+	text = output
+
 	
 
 	return text

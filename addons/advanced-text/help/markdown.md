@@ -17,7 +17,7 @@ https://some_domain.com
 |7|8|9|
 }
 
-[u]underline[/u]
+_underline_
 [center]center[/center]
 [right]right[/right]
 [fill]fill[/fill]
