@@ -1,6 +1,9 @@
+# Header Level 1
+## Header Level 2
+### Header Level 3
 **bold**
 *italic*
-~~strikethrough~~
+~~strike through~~
 `code`
 [link](https://some_domain.com)
 https://some_domain.com
@@ -8,11 +11,11 @@ https://some_domain.com
 :grinning:
 ![](res://icon.png)
 
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
+@table=3 {
+|1|2|3|
+|4|5|6|
+|7|8|9|
+}
 
 [u]underline[/u]
 [center]center[/center]
@@ -21,7 +24,7 @@ https://some_domain.com
 [indent]text[/indent]
 [color=red]red[/color]
 
-[wave amp=50 freq=2]wave[/wave]
+wave amp=50 freq=2]wave[/wave]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]

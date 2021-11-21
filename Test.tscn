@@ -11,7 +11,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="BBCodeTest" type="RichTextLabel" parent="."]
-margin_right = 338.0
+visible = false
+margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -36,6 +37,7 @@ variables = {
 }
 
 [node name="RenPyTest" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 342.0
 margin_right = 681.0
 margin_bottom = 600.0
@@ -62,7 +64,6 @@ variables = {
 }
 
 [node name="MarkdownTest" type="RichTextLabel" parent="."]
-margin_left = 685.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -72,11 +73,21 @@ bbcode_enabled = true
 bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header 1[/font]
 [font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header 2[/font]
 [font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header 3[/font]
-"
+
+@table=3{
+|1|2|3|
+|4|5|6|
+|7|8|9|
+}"
 text = "Header 1
 Header 2
 Header 3
-"
+
+@table=3{
+|1|2|3|
+|4|5|6|
+|7|8|9|
+}"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -84,7 +95,12 @@ __meta__ = {
 markup_text = "# Header 1
 ## Header 2
 ### Header 3
-"
+
+@table=3{
+|1|2|3|
+|4|5|6|
+|7|8|9|
+}"
 headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
 variables = {
 }
