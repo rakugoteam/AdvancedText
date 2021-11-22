@@ -26,7 +26,6 @@ func convert_markdown(text:String) -> String:
 
 	# either plain "prot://url" and "[link](url)" and not "[img]url[\img]"
 	re.compile("(\\[img\\][^\\[\\]]*\\[\\/img\\])|(?:(?:\\[([^\\]\\)]+)\\]\\((\\w+:\\/\\/[^\\)]+)\\))|(\\w+:\\/\\/[^ \\[\\]]*[\\w\\d_]+))")
-
 	for result in re.search_all(text):
 		# having anything in 1 meant it matched "[img]url[\img]"
 		if result.get_string() and not result.get_string(1): 
@@ -45,7 +44,7 @@ func convert_markdown(text:String) -> String:
 			replacement = "[b]%s[/b]" % result.get_string(1)
 			output = regex_replace(result, output, replacement)
 	text = output
-	
+
 	# *italic*
 	re.compile("\\*([^\\*]+)\\*")
 	for result in re.search_all(text):
@@ -91,28 +90,34 @@ func convert_markdown(text:String) -> String:
 	text = output
 
 	# @center { text }
-	text = parse_keyword(text, "center", "center")
+	output = parse_keyword(text, "center", "center")
+	text = output
 
 	# @u { text}
-	text = parse_keyword(text, "u", "u")
+	output = parse_keyword(text, "u", "u")
+	text = output
 
 	# @right { text }
-	text = parse_keyword(text, "right", "right")
+	output = parse_keyword(text, "right", "right")
+	text = output
 
 	# @fill { text }
-	text = parse_keyword(text, "fill", "fill")
+	output = parse_keyword(text, "fill", "fill")
+	text = output
 
 	# @justified { text }
-	text = parse_keyword(text, "justified", "fill")
+	output = parse_keyword(text, "justified", "fill")
+	text = output
 
 	# @indent { text }
-	text = parse_keyword(text, "indent", "indent")
+	output = parse_keyword(text, "indent", "indent")
+	text = output
 
 	# @tab { text }
-	text = parse_keyword(text, "tab", "indent")
+	output = parse_keyword(text, "tab", "indent")
+	text = output
 
-
-	return text
+	return output
 
 func parse_keyword(text:String, keyword:String, tag:String) -> String:
 	var re = RegEx.new()
@@ -125,8 +130,8 @@ func parse_keyword(text:String, keyword:String, tag:String) -> String:
 		if result.get_string():
 			replacement = "[%s]%s[/%s]" % [tag, result.get_string(1), tag]
 			output = regex_replace(result, output, replacement)
-	text = output
-	return text
+
+	return output
 
 func parse_headers(text:String, headers_fonts:=[]) -> String:
 	var headers_count = headers_fonts.size()

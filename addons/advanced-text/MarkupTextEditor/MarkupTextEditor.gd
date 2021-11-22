@@ -94,7 +94,7 @@ func import_emojis():
 	EmojisImport = preload("../emojis_import.gd")
 	EmojisImport = EmojisImport.new()
 
-	if EmojisImport.is_emojis_plugin_enabled():
+	if EmojisImport.is_plugin_enabled():
 		var emoji_panel : Popup = EmojisImport.get_emoji_panel()
 		emoji_panel.visible = false
 		add_child(emoji_panel)

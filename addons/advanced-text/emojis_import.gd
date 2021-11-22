@@ -8,23 +8,25 @@ const emoji_icon_path ="res://addons/emojis-for-godot/icon.png"
 
 var f := File.new()
 var _emojis
-var _emojis_plugin_enabled : = false
+var _plugin_enabled : = false
 
-func is_emojis_plugin_enabled() -> bool:
-	if not _emojis_plugin_enabled:
+func _init():
+	if !_plugin_enabled:
 		var plugins : Array = ProjectSettings.get_setting("editor_plugins/enabled")
-		_emojis_plugin_enabled = emoji_plugin_path in plugins
+		_plugin_enabled = emoji_plugin_path in plugins
 
-	if not _emojis_plugin_enabled:
+	if !_plugin_enabled:
 		push_warning("emojis-for-godot are not enabled")
-	
-	return _emojis_plugin_enabled
+
+func is_plugin_enabled() -> bool:
+	return _plugin_enabled
 
 func get_emojis():
 	if _emojis:
 		return _emojis
 
-	if not is_emojis_plugin_enabled():
+	if !is_plugin_enabled():
+		print("emojis.gd is not enabled")
 		return null
 
 	if f.file_exists(emoji_path):
@@ -33,18 +35,18 @@ func get_emojis():
 		return _emojis
 
 	else:
-		push_warning("emojis.gd not found")
+		print("emojis.gd not found")
 		return null
 
 func get_emoji_panel() -> Node:
-	if not is_emojis_plugin_enabled():
+	if not is_plugin_enabled():
 		return null
 	
 	var panel = load(emoji_panel)
 	return panel.instance()
 
 func get_icon() -> Texture:
-	if not is_emojis_plugin_enabled():
+	if not is_plugin_enabled():
 		return null
 	
 	var icon = load(emoji_icon_path)

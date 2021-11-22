@@ -1,4 +1,4 @@
-extends Node
+extends Object
 class_name EBBCodeParser
 
 # Extended BBCode Parser
@@ -8,7 +8,7 @@ class_name EBBCodeParser
 var EmojisImport
 var emojis_gd
 
-func _ready():
+func _init():
 	EmojisImport = preload("../emojis_import.gd")
 	EmojisImport = EmojisImport.new()
 	emojis_gd = EmojisImport.get_emojis()
@@ -22,6 +22,7 @@ func parse(text:String, editor:=false, headers_fonts:=[], variables:={}) -> Stri
 	if !variables.empty():
 		text = replace_variables(text, editor)
 	
+	# prints("emojis_gd:", emojis_gd)
 	if emojis_gd:
 		text = emojis_gd.parse_emojis(text)
 		
