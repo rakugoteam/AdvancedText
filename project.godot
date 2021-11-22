@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Button",
 "class": "AdvancedTextButton",
 "language": "GDScript",
-"path": "res://addons/advanced-text/examples/AdvancedTextButton/AdvancedTextButton.gd"
+"path": "res://examples/AdvancedTextButton/AdvancedTextButton.gd"
 }, {
 "base": "RichTextLabel",
 "class": "AdvancedTextLabel",
