@@ -9,14 +9,63 @@
 [node name="Control" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 164.0
+
+[node name="BBCodeTest" type="RichTextLabel" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header 1[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header 2[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header 3[/font]"
+text = "Header 1
+Header 2
+Header 3"
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+markup_text = "[h1]Header 1[/h1]
+[h2]Header 2[/h2]
+[h3]Header 3[/h3]"
+markup = "bbcode"
+headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
+variables = {
+}
 
-[node name="BBCodeTest" type="RichTextLabel" parent="."]
+[node name="RenPyTest" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 342.0
+margin_right = 681.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header 1[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header 2[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header 3[/font]"
+text = "Header 1
+Header 2
+Header 3"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+markup_text = "{h1}Header 1{/h1}
+{h2}Header 2{/h2}
+{h3}Header 3{/h3}"
+markup = "renpy"
+headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
+variables = {
+}
+
+[node name="MarkdownTest" type="RichTextLabel" parent="."]
 margin_right = 1024.0
-margin_bottom = 764.0
+margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 5 )
@@ -26,98 +75,103 @@ bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header L
 [font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 3[/font]
 [b]bold[/b]
 [i]italic[/i]
-[s]strike through[/s]
-[code]some_code()[/code]
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com[/url]
-<test_var>
-:grinning:
+~strike through~
+[code]code[/code]
+[url=https://some[u]domain.com]link[/url]
+[url]https://some[/u]domain.com
+<test[u]var>
+:grinning[/url]:
 [img]res://icon.png[/img]
 
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[table=3][cell]1[/cell][cell]2[/cell][cell]3[/cell]
 [cell]4[/cell][cell]5[/cell][cell]6[/cell]
 [cell]7[/cell][cell]8[/cell][cell]9[/cell]
 [/table]
 
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
+[/u]underline_
+@center{centered text}
+[right]right aligned text[/right]
+[fill]fill aligned text[/fill]
+[indent]indent text[/indent]
+[color=red]red text[/color]
 
 [wave amp=50 freq=2]wave[/wave]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
 [rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
 "
 text = "Header Level 1
 Header Level 2
 Header Level 3
 bold
 italic
-strike through
-some_code()
-link
-https://some_domain.com
-<test_var>
-:grinning:
+~strike through~
+code
+domain.com]link
+https://some[/u]domain.com
+<testvar>
+:grinning[/url]:
 
 
 123456789
 
-underline
-center
-right
-fill
-	text
-red
+underline_
+@center{centered text}
+right aligned text
+fill aligned text
+	indent text
+red text
 
 wave
 tornado
 shake
 fade
 rainbow
+
+
 "
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-markup_text = "[h1]Header Level 1[/h1]
-[h2]Header Level 2[/h2]
-[h3]Header Level 3[/h3]
-[b]bold[/b]
-[i]italic[/i]
-[s]strike through[/s]
-[code]some_code()[/code]
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com[/url]
+markup_text_file = "res://addons/advanced-text/help/markdown.md"
+markup_text = "# Header Level 1
+## Header Level 2
+### Header Level 3
+**bold**
+*italic*
+~strike through~
+`code`
+[link](https://some_domain.com)
+https://some_domain.com
 <test_var>
 :grinning:
-[img]res://icon.png[/img]
+![](res://icon.png)
 
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
+@table=3 {
+|1|2|3|
+|4|5|6|
+|7|8|9|
+}
 
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
+_underline_
+@center{centered text}
+[right]right aligned text[/right]
+[fill]fill aligned text[/fill]
+[indent]indent text[/indent]
+[color=red]red text[/color]
 
 [wave amp=50 freq=2]wave[/wave]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
 [rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+
+
 "
-markup = "bbcode"
 headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 3 ) ]
 variables = {
 }
