@@ -89,6 +89,10 @@ func convert_markdown(text:String) -> String:
 			output = regex_replace(result, output, replacement)
 	text = output
 
+	# todo:
+	# @color=red{red text}
+	# @color=#c39f00{custom colored text}
+
 	# @center { text }
 	output = parse_keyword(text, "center", "center")
 	text = output
@@ -117,7 +121,50 @@ func convert_markdown(text:String) -> String:
 	output = parse_keyword(text, "tab", "indent")
 	text = output
 
+	# @wave amp=50 freq=2{ text }
+	output = parse_effect(text, "wave", "amp", "freq")
+	text = output
+
+	# @tornado radius=5 freq=2{ text }
+	output = parse_effect(text, "tornado", "radius", "freq")
+	text = output
+
+	# @shake rate=5 level=10{ text }
+	output = parse_effect(text, "shake", "rate", "level")
+	text = output
+
+	# @fade start=4 length=14{ text }
+	output = parse_effect(text, "fade", "start", "length")
+	text = output
+
+	# todo:
+	# @rainbow freq=0.2 sat=10 val=20{ text }
+
+
+
+
 	return output
+
+func parse_effect(text:String, effect:String, arg1:String, arg2:String) -> String:
+	var re = RegEx.new()
+	var output = "" + text
+	var replacement = ""
+	
+	# @effect arg1=0 arg2=0 { text }
+	re.compile("@%s\\s%s=(\\d+)\\s%s=(\\d+)\\s*{(.+)}" % [effect, arg1, arg2])
+	for result in re.search_all(text):
+		if result.get_string():
+			var val1 = result.get_string(1)
+			var val2 = result.get_string(2)
+			var _text = result.get_string(3)
+			replacement = "[%s %s=%s %s=%s]%s[/%s]"
+			replacement = replacement % [effect, arg1, val1, arg2, val2, _text, effect]
+			output = regex_replace(result, output, replacement)
+	
+	return output
+
+
+	
 
 func parse_keyword(text:String, keyword:String, tag:String) -> String:
 	var re = RegEx.new()
@@ -125,7 +172,7 @@ func parse_keyword(text:String, keyword:String, tag:String) -> String:
 	var replacement = ""
 
 	# @keyword {text}
-	re.compile("@%s\\s*\\{([^\\}]+)\\}" % keyword)
+	re.compile("@%s\\s*{(.+)}" % keyword)
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[%s]%s[/%s]" % [tag, result.get_string(1), tag]
