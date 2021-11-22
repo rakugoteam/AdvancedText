@@ -35,6 +35,8 @@ func _enter_tree():
 			args[0] = true
 		
 		b.connect("pressed", self, "_on_toggle", args)
+	
+	connect("scene_changed", self, "_on_scene_changed")
 
 func _exit_tree():
 	markup_text_editor.queue_free()
@@ -51,6 +53,14 @@ func hide_current_editor():
 		if b.pressed:
 			b.pressed = false
 			return
+
+func _on_scene_changed(scene_root: Node):
+	for b in button_parent.get_children():
+		if b.pressed:
+			show_editor(b)
+		
+	markup_text_editor_button.pressed = false
+	markup_text_editor.visible = false
 
 func show_editor(button: ToolButton):
 	for editor in editor_parent.get_children():
