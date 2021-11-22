@@ -4,7 +4,11 @@
 **bold**
 *italic*
 ~strike through~
-`code`
+`some_code()`
+
+```
+some code block
+```
 [link](https://some_domain.com)
 https://some_domain.com
 <test_var>

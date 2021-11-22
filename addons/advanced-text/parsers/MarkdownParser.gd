@@ -17,36 +17,59 @@ func convert_markdown(text:String) -> String:
 	var replacement = ""
 	
 	# ![](path/to/img)
-	re.compile("!\u200B?\\[\u200B?\\]\\(([^\\(\\)\\[\\]]+)\\)")
+	re.compile("!\\[\\]\\((.*?)\\)")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[img]%s[/img]" % result.get_string(1)
 			output = regex_replace(result, output, replacement)
 	text = output
 
-	# either plain "prot://url" and "[link](url)" and not "[img]url[\img]"
-	re.compile("(\\[img\\][^\\[\\]]*\\[\\/img\\])|(?:(?:\\[([^\\]\\)]+)\\]\\((\\w+:\\/\\/[^\\)]+)\\))|(\\w+:\\/\\/[^ \\[\\]]*[\\w\\d_]+))")
+	# ![height x width](path/to/img)
+	re.compile("!\\[(\\d+)x(\\d+)\\]\\((.*?)\\)")
 	for result in re.search_all(text):
-		# having anything in 1 meant it matched "[img]url[\img]"
-		if result.get_string() and not result.get_string(1): 
-			if result.get_string(4):
-				replacement = "[url]%s[/url]" % result.get_string(4)
-			else:
-				# That can can be the user erroneously writing "[b](url)[\b]" need to be pointed in the doc
-				replacement = "[url=%s]%s[/url]" % [result.get_string(3), result.get_string(2)]
+		if result.get_string():
+			var height = result.get_string(1)
+			var width = result.get_string(2)
+			var path = result.get_string(3)
+			replacement = "[img=%sx%s]%s[/img]" % [height, width, path]
+			output = regex_replace(result, output, replacement)
+	text = output
+
+	# https://www.example.com
+	re.compile("([=\\[\\]\\(]?)(\\w+:\\/\\/[A-Za-z0-9\\.\\-\\_\\@\\/]+)([\\]\\[\\)]?)")
+	for result in re.search_all(text):
+		if result.get_string():
+			if !result.get_string(1).empty():
+				continue
+			if !result.get_string(3).empty():
+				continue
+
+			replacement = "[url]%s[/url]" % result.get_string(2)
+			output = regex_replace(result, output, replacement)
+	text = output
+
+	# [link](path/to/file.md)
+	re.compile("(\\]?)\\[(.+)\\]\\(([A-Za-z0-9\\.-_@\\/]+)\\)")
+	for result in re.search_all(text):
+		if result.get_string():
+			if !result.get_string(1).empty():
+				continue
+			var _text = result.get_string(2)
+			var url = result.get_string(3)
+			replacement = "[url=%s]%s[/url]" % [url, _text]
 			output = regex_replace(result, output, replacement)
 	text = output
 
 	# **bold**
-	re.compile("\\*\\*([^\\*]+)\\*\\*")
+	re.compile("\\*\\*(.*?)\\*\\*")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[b]%s[/b]" % result.get_string(1)
 			output = regex_replace(result, output, replacement)
 	text = output
-
+	
 	# *italic*
-	re.compile("\\*([^\\*]+)\\*")
+	re.compile("\\*(.*?)\\*")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[i]%s[/i]" % result.get_string(1)
@@ -54,7 +77,7 @@ func convert_markdown(text:String) -> String:
 	text = output
 
 	# ~~strike through~~
-	re.compile("~~([^~]+)~~")
+	re.compile("~~(.*?)~~")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[s]%s[/s]" % result.get_string(1)
@@ -62,7 +85,7 @@ func convert_markdown(text:String) -> String:
 	text = output
 
 	# `code`
-	re.compile("`([^`]+)`")
+	re.compile("`{1,3}\n?(.*?)\n?`{1,3}")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[code]%s[/code]" % result.get_string(1)
@@ -89,9 +112,25 @@ func convert_markdown(text:String) -> String:
 			output = regex_replace(result, output, replacement)
 	text = output
 
-	# todo:
-	# @color=red{red text}
-	# @color=#c39f00{custom colored text}
+	# @color=red { text }
+	re.compile("@color=([a-z]+)\\s*\\{\\s*([^\\}]+)\\s*\\}")
+	for result in re.search_all(text):
+		if result.get_string():
+			var color = result.get_string(1)
+			var _text = result.get_string(2)
+			replacement = "[color=%s]%s[/color]" % [color, _text]
+			output = regex_replace(result, output, replacement)
+	text = output
+
+	# @color=#ffe820 { text }
+	re.compile("@color=(#[0-9a-f]{6})\\s*\\{\\s*([^\\}]+)\\s*\\}")
+	for result in re.search_all(text):
+		if result.get_string():
+			var color = result.get_string(1)
+			var _text = result.get_string(2)
+			replacement = "[color=%s]%s[/color]" % [color, _text]
+			output = regex_replace(result, output, replacement)
+	text = output
 
 	# @center { text }
 	output = parse_keyword(text, "center", "center")
@@ -137,10 +176,17 @@ func convert_markdown(text:String) -> String:
 	output = parse_effect(text, "fade", "start", "length")
 	text = output
 
-	# todo:
 	# @rainbow freq=0.2 sat=10 val=20{ text }
-
-
+	
+	for result in re.search_all(text):
+		if result.get_string():
+			var freq = result.get_string(1)
+			var sat = result.get_string(3)
+			var val = result.get_string(5)
+			var _text = result.get_string(6)
+			replacement = "[rainbow=%s,%s,%s]%s[/rainbow]" % [freq, sat, val, _text]
+			output = regex_replace(result, output, replacement)
+	text = output
 
 
 	return output
