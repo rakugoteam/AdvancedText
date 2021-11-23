@@ -9,14 +9,16 @@
 [node name="Control" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 264.0
+margin_right = 1.0
+margin_bottom = 395.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BBCodeTest" type="RichTextLabel" parent="."]
-margin_right = 338.0
-margin_bottom = 864.0
+visible = false
+margin_right = 364.0
+margin_bottom = 995.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 5 )
@@ -124,9 +126,9 @@ variables = {
 }
 
 [node name="RenPyTest" type="RichTextLabel" parent="."]
-margin_left = 342.0
-margin_right = 681.0
-margin_bottom = 864.0
+visible = false
+margin_right = 548.0
+margin_bottom = 995.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 5 )
@@ -237,9 +239,8 @@ variables = {
 }
 
 [node name="MarkdownTest" type="RichTextLabel" parent="."]
-margin_left = 685.0
-margin_right = 1024.0
-margin_bottom = 864.0
+margin_right = 1025.0
+margin_bottom = 995.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 5 )
@@ -274,11 +275,20 @@ bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header L
 [color=red]red text[/color]
 [color=#c39f00]custom colored text[/color]
 
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-@rainbow freq=0.2 sat=10 val=20{rainbow}
+@wave amp=50 freq=2 {waving text}
+[wave amp=  ][/wave]
+
+[tornado radius=  ][/tornado]
+@tornado radius=5 freq=2 {tornado text}
+
+[shake rate=  ][/shake]
+@shake rate=5 level=10 {shaking text }
+
+@fade start=4 length=14 {fadeing text}
+[fade start=  ][/fade]
+
+@rainbow freq=0.2 sat=10 val=20 {rainbow text}
+[rainbow freq=  ][/rainbow]
 
 
 "
@@ -309,11 +319,20 @@ justified text (alt to @fill)
 red text
 custom colored text
 
-wave
-tornado
-shake
-fade
-@rainbow freq=0.2 sat=10 val=20{rainbow}
+@wave amp=50 freq=2 {waving text}
+
+
+
+@tornado radius=5 freq=2 {tornado text}
+
+
+@shake rate=5 level=10 {shaking text }
+
+@fade start=4 length=14 {fadeing text}
+
+
+@rainbow freq=0.2 sat=10 val=20 {rainbow text}
+
 
 
 "
@@ -355,11 +374,20 @@ https://some_domain.com
 @color=red{red text}
 @color=#c39f00{custom colored text}
 
-@wave amp=50 freq=2{wave}
-@tornado radius=5 freq=2{tornado}
-@shake rate=5 level=10{shake}
-@fade start=4 length=14{fade}
-@rainbow freq=0.2 sat=10 val=20{rainbow}
+@wave amp=50 freq=2 {waving text}
+@wave 50, 2 {waving text}
+
+@tornado 5, 2 {tornado text}
+@tornado radius=5 freq=2 {tornado text}
+
+@shake 5, 10 {shaking text}
+@shake rate=5 level=10 {shaking text }
+
+@fade start=4 length=14 {fadeing text}
+@fade 4, 14 {fading text}
+
+@rainbow freq=0.2 sat=10 val=20 {rainbow text}
+@rainbow 0.2,10,20 {rainbow text}
 
 
 "

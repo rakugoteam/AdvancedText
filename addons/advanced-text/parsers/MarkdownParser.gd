@@ -161,56 +161,60 @@ func convert_markdown(text:String) -> String:
 	text = output
 
 	# @wave amp=50 freq=2{ text }
-	output = parse_effect(text, "wave", "amp", "freq")
+	output = parse_effect(text, "wave", ["amp", "freq"])
 	text = output
 
 	# @tornado radius=5 freq=2{ text }
-	output = parse_effect(text, "tornado", "radius", "freq")
+	output = parse_effect(text, "tornado", ["radius", "freq"])
 	text = output
 
 	# @shake rate=5 level=10{ text }
-	output = parse_effect(text, "shake", "rate", "level")
+	output = parse_effect(text, "shake", ["rate", "level"])
 	text = output
 
 	# @fade start=4 length=14{ text }
-	output = parse_effect(text, "fade", "start", "length")
+	output = parse_effect(text, "fade", ["start", "length"])
 	text = output
 
 	# @rainbow freq=0.2 sat=10 val=20{ text }
-	
-	for result in re.search_all(text):
-		if result.get_string():
-			var freq = result.get_string(1)
-			var sat = result.get_string(3)
-			var val = result.get_string(5)
-			var _text = result.get_string(6)
-			replacement = "[rainbow=%s,%s,%s]%s[/rainbow]" % [freq, sat, val, _text]
-			output = regex_replace(result, output, replacement)
+	output = parse_effect(text, "rainbow", ["freq", "sat", "val"])
 	text = output
 
+	return text
 
-	return output
-
-func parse_effect(text:String, effect:String, arg1:String, arg2:String) -> String:
+func parse_effect(text:String, effect:String, args:Array) -> String:
 	var re = RegEx.new()
 	var output = "" + text
 	var replacement = ""
 	
-	# @effect arg1=0 arg2=0 { text }
-	re.compile("@%s\\s%s=(\\d+)\\s%s=(\\d+)\\s*{(.+)}" % [effect, arg1, arg2])
+	# @effect args { text }
+	# where args: arg_name=arg_value, arg_name=arg_value
+	re.compile("@%s([\\s\\w=0-9\\.]+)\\s*{(.+)}" % effect)
 	for result in re.search_all(text):
 		if result.get_string():
-			var val1 = result.get_string(1)
-			var val2 = result.get_string(2)
-			var _text = result.get_string(3)
-			replacement = "[%s %s=%s %s=%s]%s[/%s]"
-			replacement = replacement % [effect, arg1, val1, arg2, val2, _text, effect]
+			var _args = result.get_string(1)
+			var _text = result.get_string(2)
+			replacement = "[%s %s]%s[/%s]" % [effect, _args, _text, effect]
 			output = regex_replace(result, output, replacement)
-	
-	return output
+	text = output
 
-
+	# @effect val1,val2 { text }
+	re.compile("@%s\\s([0-9\\.\\,\\s]+)\\s*{(.+)}" % effect)
+	for result in re.search_all(text):
+		if result.get_string():
+			var _values = result.get_string(1)
+			_values = _values.replace(" ", "")
+			_values = _values.split(",", false)
+			var _text = result.get_string(2)
+			var _args = ""
+			for i in range(0, _values.size()):
+				_args += "%s=%s " % [args[i], _values[i]]
+			replacement = "[%s %s]%s[/%s]" % [effect, _args, _text, effect]
+			output = regex_replace(result, output, replacement)
+	text = output
 	
+	return text
+
 
 func parse_keyword(text:String, keyword:String, tag:String) -> String:
 	var re = RegEx.new()
@@ -223,8 +227,9 @@ func parse_keyword(text:String, keyword:String, tag:String) -> String:
 		if result.get_string():
 			replacement = "[%s]%s[/%s]" % [tag, result.get_string(1), tag]
 			output = regex_replace(result, output, replacement)
+	text = output
 
-	return output
+	return text
 
 func parse_headers(text:String, headers_fonts:=[]) -> String:
 	var headers_count = headers_fonts.size()

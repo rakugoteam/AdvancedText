@@ -31,10 +31,19 @@ https://some_domain.com
 @color=red{red text}
 @color=#c39f00{custom colored text}
 
-@wave amp=50 freq=2{wave}
-@tornado radius=5 freq=2{tornado}
-@shake rate=5 level=10{shake}
-@fade start=4 length=14{fade}
-@rainbow freq=0.2 sat=10 val=20{rainbow}
+@wave amp=50 freq=2 {waving text}
+@wave 50, 2 {waving text}
+
+@tornado radius=5 freq=2 {tornado text}
+@tornado 5, 2 {tornado text}
+
+@shake rate=5 level=10 {shaking text }
+@shake 5, 10 {shaking text}
+
+@fade start=4 length=14 {fade text}
+@fade 4, 14 {fade text}
+
+@rainbow freq=0.2 sat=10 val=20 {rainbow text}
+@rainbow 0.2,10,20 {rainbow text}
 
 
