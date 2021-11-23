@@ -12,7 +12,12 @@ var _plugin_enabled : = false
 
 func _init():
 	if !_plugin_enabled:
-		var plugins : Array = ProjectSettings.get_setting("editor_plugins/enabled")
+		var plugins :=[] 
+		plugins = ProjectSettings.get_setting("editor_plugins/enabled")
+		if plugins.empty():
+			push_warning("emojis-for-godot are not enabled")
+			return
+			
 		_plugin_enabled = emoji_plugin_path in plugins
 
 	if !_plugin_enabled:

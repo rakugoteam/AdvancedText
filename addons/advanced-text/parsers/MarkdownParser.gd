@@ -85,7 +85,7 @@ func convert_markdown(text:String) -> String:
 	text = output
 
 	# `code`
-	re.compile("`{1,3}\n?(.*?)\n?`{1,3}")
+	re.compile("`{1,3}(.*?)`{1,3}")
 	for result in re.search_all(text):
 		if result.get_string():
 			replacement = "[code]%s[/code]" % result.get_string(1)

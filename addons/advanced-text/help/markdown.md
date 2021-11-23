@@ -1,19 +1,20 @@
 # Header Level 1
 ## Header Level 2
 ### Header Level 3
+
 **bold**
 *italic*
-~strike through~
-`some_code()`
+~~strike through~~
+`mono-spaced text`
 
-```
-some code block
-```
 [link](https://some_domain.com)
 https://some_domain.com
-<test_var>
+
+test_var = <test_var>
+
 :grinning:
 ![](res://icon.png)
+![24x24](res://icon.png)
 
 @table=3 {
 |1|2|3|
@@ -24,10 +25,13 @@ https://some_domain.com
 @u{underlined text}
 @center{centered text}
 @right{right aligned text}
+
 @fill{fill aligned text}
 @justified{justified text *(alt to @fill)* }
+
 @indent{indent text}
 @tab {indent text *(alt to @indent)*}
+
 @color=red{red text}
 @color=#c39f00{custom colored text}
 

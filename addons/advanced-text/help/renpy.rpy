@@ -2,15 +2,20 @@
 {h1}Header Level 1{/h1}
 {h2}Header Level 2{/h2}
 {h3}Header Level 3{/h3}
+
 {b}bold{/b}
 {i}italic{/i}
 {s}strike through{/s}
-{code}some_code(){/code}
-{url=https://some_domain.com}link{/url}
-{url}https://some_domain.com{/url}
-[test_var]
+{code}mono-spaced text{/code}
+
+{a=https://some_domain.com}link{/a}
+{a}https://some_domain.com{/a}
+
+test_var = [test_var]
+
 :grinning:
-{img}res://icon.png{/img}
+{img=res://icon.png}
+{img=res://icon.png size=24x24}
 
 {table=3}
 {cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
@@ -24,6 +29,7 @@
 {fill}fill{/fill}
 {indent}text{/indent}
 {color=red}red{/color}
+{color=#c39f00}colored text{/color}
 
 {wave amp=50 freq=2}wave{/wave}
 {tornado radius=5 freq=2}tornado{/tornado}

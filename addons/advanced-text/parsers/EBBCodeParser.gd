@@ -14,13 +14,12 @@ func _init():
 	emojis_gd = EmojisImport.get_emojis()
 
 func parse(text:String, editor:=false, headers_fonts:=[], variables:={}) -> String:
-	text = dirty_escaping(text)
 
 	# Parse headers
 	text = parse_headers(text, headers_fonts)
 
 	if !variables.empty():
-		text = replace_variables(text, editor)
+		text = replace_variables(text, editor, variables)
 	
 	# prints("emojis_gd:", emojis_gd)
 	if emojis_gd:
@@ -28,18 +27,7 @@ func parse(text:String, editor:=false, headers_fonts:=[], variables:={}) -> Stri
 		
 	return text
 
-func dirty_escaping(text:String) -> String:
-	var re = RegEx.new()
-	var output = "" + text
-	
-	re.compile("(\\\\)(.)")
-	for result in re.search_all(text):
-		if result.get_string():
-			output = regex_replace(result, output, "\u200B" + result.get_string(2) + "\u200B")
-	
-	return output
-
-func replace_variables(text:String, editor:=false, open:="<", close:=">") -> String:
+func replace_variables(text:String, editor:bool, variables:Dictionary, open:="<", close:=">") -> String:
 	var re = RegEx.new()
 	var output = "" + text
 	var replacement = ""
@@ -48,10 +36,10 @@ func replace_variables(text:String, editor:=false, open:="<", close:=">") -> Str
 	for result in re.search_all(text):
 		if result.get_string():
 			
-			if !editor:
-				replacement = str(get_variable(result.get_string(1)))
-			else:
-				replacement = "[code]" + result.get_string(1) + "[/code]"
+			# if !editor:
+			replacement = str(get_variable(result.get_string(1), variables))
+			# else:
+			# 	replacement = "[code]%s[/code]" % result.get_string(1)
 
 			output = regex_replace(result, output, replacement)
 	
@@ -63,7 +51,7 @@ func regex_replace(result:RegExMatch, output:String, replacement:String, string_
 	var right = output.right(result.get_end(string_to_replace) + offset)
 	return left + replacement + right 
 
-func get_variable(var_name:String, variables:={}):
+func get_variable(var_name:String, variables:Dictionary) -> String:
 	var parts = var_name.split('.', false)
 	
 	var output = variables

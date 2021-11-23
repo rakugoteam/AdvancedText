@@ -10,8 +10,8 @@ func parse(text:String, editor:=false, headers_fonts:=[], variables:={}) -> Stri
 	text = .parse(text, editor, headers_fonts, variables)
 	return text
 
-func replace_variables(text:String, editor:=false, open:="[", close:="]") -> String:
-	return .replace_variables(text, editor, open, close)
+func replace_variables(text:String, editor:bool, variables:Dictionary, open:="[", close:="]") -> String:
+	return .replace_variables(text, editor, variables, open, close)
 
 func convert_renpy_markup(text:String) -> String:
 	var re = RegEx.new()
@@ -22,17 +22,24 @@ func convert_renpy_markup(text:String) -> String:
 	re.compile("(?<!\\{)\\{(\\/{0,1})a(?:(=[^\\}]+)\\}|\\})")
 	for result in re.search_all(text):
 		if result.get_string():
-			replacement = "[" + result.get_string(1) + "url" + result.get_string(2) + "]"
+			replacement = "[%surl%s]" % [result.get_string(1), result.get_string(2)]
 			output = regex_replace(result, output, replacement)
 	text = output
 	
 	# match unescaped "{img=<path>}"
-	re.compile("(?<!\\{)\\{img=([^\\}]+)\\}")
+	re.compile("(?<!\\{)\\{img=([^\\}\\s]+)\\}")
 	for result in re.search_all(text):
 		if result.get_string():
-			replacement = "[img]" + result.get_string(1) + "[/img]"
+			replacement = "[img]%s[/img]" % result.get_string(1)
 			output = regex_replace(result, output, replacement)
 	text = output
+
+	# match unescaped "{img=<path> size=<height>x<width>}"
+	re.compile("(?<!\\{)\\{img=([^\\}\\s]+) size=([^\\}]+)\\}")
+	for result in re.search_all(text):
+		if result.get_string():
+			replacement = "[img=%s]%s[/img]" % [result.get_string(2), result.get_string(1)]
+			output = regex_replace(result, output, replacement)
 	
 	# math "}" part of a valid tag
 	re.compile("(?:(?<!\\{)\\{[^\\{\\}]+)(\\})")

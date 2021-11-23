@@ -8,7 +8,7 @@ export(String, FILE, "*.md, *.rpy, *.txt") var markup_text_file := "" setget _se
 export(String, MULTILINE) var markup_text := "" setget _set_markup_text, _get_markup_text
 export(String, "markdown", "renpy", "bbcode") var markup := "markdown" setget _set_markup, _get_markup
 export(Array, DynamicFont) var headers_fonts := [] 
-export var variables := {}
+export(Dictionary) var variables := {}
 
 var _markup_text := ""
 var _markup := "markdown"
