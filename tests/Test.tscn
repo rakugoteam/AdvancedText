@@ -294,11 +294,11 @@ bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header L
 [url=https://some_domain.com]link[/url]
 [url]https://some_domain.com[/url]
 
-test_string = <test_string>
-test_int = <test_int>
-test_bool = <test_bool>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
+test_string = test string
+test_int = 1
+test_bool = True
+test_list[0] = 1
+test_dict.key1 = value1
 
 :grinning:
 [img]res://icon.png[/img]
@@ -351,11 +351,11 @@ mono-spaced text
 link
 https://some_domain.com
 
-test_string = <test_string>
-test_int = <test_int>
-test_bool = <test_bool>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
+test_string = test string
+test_int = 1
+test_bool = True
+test_list[0] = 1
+test_dict.key1 = value1
 
 :grinning:
 

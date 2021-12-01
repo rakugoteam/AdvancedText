@@ -11,8 +11,8 @@ func parse(text:String, headers_fonts:=[], variables:={}) -> String:
 	text = .parse(text, headers_fonts, variables)
 	return text
 
-func replace_variables(text:String, variables:Dictionary, placeholder:= "[_]") -> String:
-	return .replace_variables(text, variables, placeholder)
+func replace_variables(text:String, variables:Dictionary) -> String:
+	return .replace_variables(text, variables)
 
 func convert_renpy_markup(text:String) -> String:
 	var re = RegEx.new()

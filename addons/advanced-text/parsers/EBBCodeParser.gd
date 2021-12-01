@@ -28,20 +28,50 @@ func parse(text:String, headers_fonts:=[], variables:={}) -> String:
 		
 	return text
 
-func replace_variables(text:String, variables:Dictionary, placeholder := "<_>") -> String:
-	var variables_array = []
-	for k in variables.keys():
-		variables_array.append([k, variables[k]])
+func replace_variables(text:String, variables:Dictionary) -> String:
+	text = text.format(variables, "<_>")
 
+	for k in variables.keys():
 		if variables[k] is Dictionary:
-			for k2 in variables[k].keys():
-				variables_array.append([k + "." + k2, variables[k][k2]])
+			text = parse_variable(text, k, variables[k])
 
 		if variables[k] is Array:
-			for i in range(0, variables[k].size()):
-				variables_array.append([k + "[" + str(i) + "]", variables[k][i]])
+			text = parse_variable(text, k, variables[k])
 
-	return text.format(variables_array, placeholder)
+		if variables[k] is String:
+			text = parse_variable(text, k, variables[k])
+
+	return text
+
+func parse_variable(text:String, variable:String, value) -> String:
+	var re = RegEx.new()
+	var output = "" + text
+
+	re.compile("<(" + variable + ".*?)>")
+	for result in re.search_all(text):
+		if result.get_string():
+			if "." in result.get_string(1):
+				var parts = result.get_string(1).split(".")
+				var key = parts[1]
+				var _value = value[key]
+
+				# if parts.size() > 2:
+				# 	return parse_variable(text, , va)
+				
+				output = regex_replace(result, output, str(_value))
+			
+			if "[" in result.get_string():
+				if "]" in result.get_string():
+					var parts = result.get_string().split("[")
+					var index = int(parts[1].split("]")[0])
+					var _value = value[index]
+					# if parts.size() > 2:
+					# 	return parse_variable(text, variable + "[" + index + "]", _value)
+
+					output = regex_replace(result, output, str(_value))
+
+	return output
+
 
 func regex_replace(result:RegExMatch, output:String, replacement:String, string_to_replace=0) -> String:
 	var offset = output.length() - result.subject.length()
