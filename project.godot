@@ -53,9 +53,23 @@ _global_script_class_icons={
 config/name="AdvencedTextLabel"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/exclude_addons=false
+gdscript/completion/autocomplete_setters_and_getters=true
+gdscript/warnings/unassigned_variable=false
+gdscript/warnings/unassigned_variable_op_assign=false
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/return_value_discarded=false
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/advanced-text/plugin.cfg" )
+
+[global]
+
+debug=false
 
 [physics]
 

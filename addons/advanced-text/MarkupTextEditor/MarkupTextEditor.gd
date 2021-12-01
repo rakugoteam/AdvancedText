@@ -109,7 +109,7 @@ func load_last_session(files_ram_path : String):
 	for data in loaded_data.values():
 		var path : String = data["path"]
 		var modified : bool = data["modified"]
-		var text := ""
+		var _text := ""
 		if modified:
 			text = data["text"]
 			_on_file_open(path, text)
@@ -517,14 +517,14 @@ func _on_new_file_button_pressed():
 func _on_file_save_button_pressed():
 	var f_data : Dictionary = current_file_data
 	var file_path : String = f_data["path"]
-	var text : String = f_data["text"]
+	var _text : String = f_data["text"]
 
 	if file_path.begins_with("NewFile"):
 		_on_file_save_as_button_pressed()
 		return
 
 	f.open(file_path, File.WRITE)
-	f.store_string(text)
+	f.store_string(_text)
 	f.close()
 
 	f_data["modified"] = false

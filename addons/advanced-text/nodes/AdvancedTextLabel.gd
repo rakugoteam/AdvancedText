@@ -25,8 +25,8 @@ func _ready() -> void:
 
 func get_hf_paths() -> Array:
 	var paths := []
-	for f in headers_fonts:
-		paths.append(f.resource_path)
+	for font in headers_fonts:
+		paths.append(font.resource_path)
 
 	return paths 
 
