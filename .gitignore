@@ -9,7 +9,7 @@ export_presets.cfg
 data_*/
 
 # project specific
-.vscode/*
+.vscode/
 addons/advanced-text/MarkupTextEditor/ram.data
 
 # addons

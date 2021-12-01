@@ -1,0 +1,138 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H2.tres" type="DynamicFont" id=1]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H1.tres" type="DynamicFont" id=2]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=3]
+[ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=4]
+[ext_resource path="res://addons/advanced-text/font/theme_with_fonts.tres" type="Theme" id=5]
+
+[node name="RenPyTest" type="RichTextLabel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 245.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "\"\"\"
+[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 1[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 3[/font]
+
+[b]bold[/b]
+[i]italic[/i]
+[s]strike through[/s]
+[code]mono-spaced text[/code]
+
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+
+test_var = [test_var]
+
+[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
+[img]res://icon.png[/img]
+[img=24x24]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+[color=#c39f00]colored text[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+\"\"\""
+text = "\"\"\"
+Header Level 1
+Header Level 2
+Header Level 3
+
+bold
+italic
+strike through
+mono-spaced text
+
+link
+https://some_domain.com
+
+test_var = [test_var]
+
+
+
+
+
+123456789
+
+underline
+center
+right
+fill
+	text
+red
+colored text
+
+wave
+tornado
+shake
+fade
+rainbow
+\"\"\""
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+markup_text_file = "res://addons/advanced-text/help/renpy.rpy"
+markup_text = "\"\"\"
+{h1}Header Level 1{/h1}
+{h2}Header Level 2{/h2}
+{h3}Header Level 3{/h3}
+
+{b}bold{/b}
+{i}italic{/i}
+{s}strike through{/s}
+{code}mono-spaced text{/code}
+
+{a=https://some_domain.com}link{/a}
+{a}https://some_domain.com{/a}
+
+test_var = [test_var]
+
+:grinning:
+{img=res://icon.png}
+{img=res://icon.png size=24x24}
+
+{table=3}
+{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
+{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
+{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
+{/table}
+
+{u}underline{/u}
+{center}center{/center}
+{right}right{/right}
+{fill}fill{/fill}
+{indent}text{/indent}
+{color=red}red{/color}
+{color=#c39f00}colored text{/color}
+
+{wave amp=50 freq=2}wave{/wave}
+{tornado radius=5 freq=2}tornado{/tornado}
+{shake rate=5 level=10}shake{/shake}
+{fade start=4 length=14}fade{/fade}
+{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
+\"\"\""
+markup = "renpy"
+headers_fonts = [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ) ]
+variables = {
+}

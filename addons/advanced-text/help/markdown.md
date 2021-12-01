@@ -1,30 +1,53 @@
+# Header Level 1
+## Header Level 2
+### Header Level 3
+
 **bold**
 *italic*
-~~strikethrough~~
-`code`
+~~strike through~~
+`mono-spaced text`
+
 [link](https://some_domain.com)
 https://some_domain.com
-<test_var>
+
+test_var = <test_var>
+
 :grinning:
 ![](res://icon.png)
+![24x24](res://icon.png)
 
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
+@table=3 {
+|1|2|3|
+|4|5|6|
+|7|8|9|
+}
 
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
+@u{underlined text}
+@center{centered text}
+@right{right aligned text}
 
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+@fill{fill aligned text}
+@justified{justified text *(alt to @fill)* }
+
+@indent{indent text}
+@tab {indent text *(alt to @indent)*}
+
+@color=red{red text}
+@color=#c39f00{custom colored text}
+
+@wave amp=50 freq=2 {waving text}
+@wave 50, 2 {waving text}
+
+@tornado radius=5 freq=2 {tornado text}
+@tornado 5, 2 {tornado text}
+
+@shake rate=5 level=10 {shaking text }
+@shake 5, 10 {shaking text}
+
+@fade start=4 length=14 {fade text}
+@fade 4, 14 {fade text}
+
+@rainbow freq=0.2 sat=10 val=20 {rainbow text}
+@rainbow 0.2,10,20 {rainbow text}
 
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/screenshot_export.png-e77d637744960750654bc8e433584754.stex"
+path="res://.import/window-close.svg-836a3da0c56f3c6722b1bfd975f44cdc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screenshot_export.png"
-dest_files=[ "res://.import/screenshot_export.png-e77d637744960750654bc8e433584754.stex" ]
+source_file="res://examples/TextBrowser/TextView/window-close.svg"
+dest_files=[ "res://.import/window-close.svg-836a3da0c56f3c6722b1bfd975f44cdc.stex" ]
 
 [params]
 

@@ -94,7 +94,7 @@ func import_emojis():
 	EmojisImport = preload("../emojis_import.gd")
 	EmojisImport = EmojisImport.new()
 
-	if EmojisImport.is_emojis_plugin_enabled():
+	if EmojisImport.is_plugin_enabled():
 		var emoji_panel : Popup = EmojisImport.get_emoji_panel()
 		emoji_panel.visible = false
 		add_child(emoji_panel)
@@ -109,7 +109,7 @@ func load_last_session(files_ram_path : String):
 	for data in loaded_data.values():
 		var path : String = data["path"]
 		var modified : bool = data["modified"]
-		var text := ""
+		var _text := ""
 		if modified:
 			text = data["text"]
 			_on_file_open(path, text)
@@ -364,7 +364,7 @@ func _on_file_selected(file_path:String):
 				else:
 					_on_file_open(file_path, f_data["text"])
 
-			_on_save_file_button_pressed()
+			_on_file_save_button_pressed()
 
 
 func _on_files_selected(file_paths:Array):
@@ -514,17 +514,17 @@ func _on_new_file_button_pressed():
 	_on_file_open(file_name)
 
 
-func _on_save_file_button_pressed():
+func _on_file_save_button_pressed():
 	var f_data : Dictionary = current_file_data
 	var file_path : String = f_data["path"]
-	var text : String = f_data["text"]
+	var _text : String = f_data["text"]
 
 	if file_path.begins_with("NewFile"):
 		_on_file_save_as_button_pressed()
 		return
 
 	f.open(file_path, File.WRITE)
-	f.store_string(text)
+	f.store_string(_text)
 	f.close()
 
 	f_data["modified"] = false
