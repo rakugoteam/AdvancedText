@@ -55,7 +55,6 @@ config/icon="res://icon.png"
 
 [debug]
 
-gdscript/warnings/exclude_addons=false
 gdscript/completion/autocomplete_setters_and_getters=true
 gdscript/warnings/unassigned_variable=false
 gdscript/warnings/unassigned_variable_op_assign=false

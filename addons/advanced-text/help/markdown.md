@@ -10,7 +10,11 @@
 [link](https://some_domain.com)
 https://some_domain.com
 
-test_var = <test_var>
+test_string = <test_string>
+test_int = <test_int>
+test_bool = <test_bool>
+test_list[0] = <test_list[0]>
+test_dict.key1 = <test_dict.key1>
 
 :grinning:
 ![](res://icon.png)

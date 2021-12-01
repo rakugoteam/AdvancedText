@@ -1,3 +1,4 @@
+tool
 extends EBBCodeParser
 class_name MarkdownParser
 
@@ -5,10 +6,10 @@ class_name MarkdownParser
 # With support for <values> and :emojis:
 # For emojis you need to install emojis-for-godot
 
-func parse(text:String, editor:=false, headers_fonts :=[], variables:={}) -> String:
+func parse(text:String, headers_fonts :=[], variables:={}) -> String:
 	# run base.parse
 	text = convert_markdown(text)
-	text = .parse(text, editor, headers_fonts, variables)
+	text = .parse(text, headers_fonts, variables)
 	return text
 
 func convert_markdown(text:String) -> String:

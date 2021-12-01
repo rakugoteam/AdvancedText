@@ -11,7 +11,12 @@
 {a=https://some_domain.com}link{/a}
 {a}https://some_domain.com{/a}
 
-test_var = [test_var]
+test_string = [test_string]
+test_int = [test_int]
+test_bool = [test_bool]
+test_list[0] = [test_list[0]]
+test_dict.key1 = [test_dict.key1]
+
 
 :grinning:
 {img=res://icon.png}
