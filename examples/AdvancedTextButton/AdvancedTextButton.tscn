@@ -26,5 +26,3 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 markup_text = "[center][shake rate=5 level=10]**Advanced Text Button**[/shake][/center]"
-variables = {
-}
