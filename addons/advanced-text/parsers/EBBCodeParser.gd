@@ -64,7 +64,7 @@ func parse_variable(text:String, placeholder:String, variable:String, value) -> 
 	regex = regex.replace("]", "\\]")
 	regex = regex.replace("(", "\\(")
 	regex = regex.replace(")", "\\)")
-	regex = regex.replace("_", "(%s(\\.[A-Za-z0-9_]*?))" % variable)
+	regex = regex.replace("_", "%s([\\.A-Z_a-z\\[0-9\\]]*?)" % variable)
 
 	re.compile(regex)
 	for result in re.search_all(text):

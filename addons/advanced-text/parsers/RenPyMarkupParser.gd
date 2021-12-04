@@ -3,6 +3,7 @@ extends EBBCodeParser
 class_name RenPyMarkupParser
 
 # RenPy Markup Parser
+# it used '<' and '>' for values instead of '[' and ']'
 # Adds support for :emojis:
 # For emojis you need to install emojis-for-godot
 
@@ -10,7 +11,9 @@ func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
 	var output = ""	+ text
 	# prints("renpy_parser run with variables:", variables)
 	if !variables.empty():
-		output = replace_variables(output, variables, "[_]")
+		# like in renpy - don't work with arrays indexing :(
+		# output = replace_variables(output, variables, "[_]")
+		output = replace_variables(output, variables, "<_>")
 
 	output = convert_renpy_markup(output)
 

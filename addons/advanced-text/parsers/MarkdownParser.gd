@@ -149,7 +149,7 @@ func convert_markdown(text:String) -> String:
 	output = parse_keyword(text, "center", "center")
 	text = output
 
-	# @u { text}
+	# @u { text }
 	output = parse_keyword(text, "u", "u")
 	text = output
 
