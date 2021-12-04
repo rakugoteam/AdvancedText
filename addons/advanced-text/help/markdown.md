@@ -15,6 +15,7 @@ test_int = <test_int>
 test_bool = <test_bool>
 test_list[0] = <test_list[0]>
 test_dict.key1 = <test_dict.key1>
+@color=<test_color> {text in custom color from variable}
 
 :grinning:
 ![](res://icon.png)
@@ -36,8 +37,8 @@ test_dict.key1 = <test_dict.key1>
 @indent{indent text}
 @tab {indent text *(alt to @indent)*}
 
-@color=red{red text}
-@color=#c39f00{custom colored text}
+@color=red {red text}
+@color=#c39f00 {custom colored text}
 
 @wave amp=50 freq=2 {waving text}
 @wave 50, 2 {waving text}

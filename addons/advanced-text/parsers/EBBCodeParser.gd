@@ -46,7 +46,7 @@ func replace_variables(text:String, variables:Dictionary, placeholder := "<_>") 
 
 		if variables[k] is Color:
 			var var_text = placeholder.replace("_", k)
-			output = output.replace(var_text, variables[k].to_html())
+			output = output.replace(var_text, "#"+variables[k].to_html(false))
 		
 		if variables[k] is Resource:
 			var var_text = placeholder.replace("_", k)

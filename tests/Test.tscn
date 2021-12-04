@@ -30,11 +30,11 @@ bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header L
 [url=https://some_domain.com]link[/url]
 [url]https://some_domain.com[/url]
 
-test_string = <test_string>
-test_int = <test_int>
-test_bool = <test_bool>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
+test_string = test string
+test_int = 1
+test_bool = True
+test_list[0] = 1
+test_dict.key1 = value1
 
 :grinning:
 [img]res://icon.png[/img]
@@ -72,11 +72,11 @@ mono-spaced text
 link
 https://some_domain.com
 
-test_string = <test_string>
-test_int = <test_int>
-test_bool = <test_bool>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
+test_string = test string
+test_int = 1
+test_bool = True
+test_list[0] = 1
+test_dict.key1 = value1
 
 :grinning:
 
@@ -147,8 +147,7 @@ anchor_bottom = 0.0
 margin_left = 343.0
 margin_right = 682.0
 margin_bottom = 1133.0
-bbcode_text = "\"\"\"
-[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 1[/font]
+bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 1[/font]
 [font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
 [font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 3[/font]
 
@@ -189,10 +188,8 @@ test_dict.key1 = [test_dict.key1]
 [tornado radius=5 freq=2]tornado[/tornado]
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-\"\"\""
-text = "\"\"\"
-Header Level 1
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
+text = "Header Level 1
 Header Level 2
 Header Level 3
 
@@ -229,8 +226,7 @@ wave
 tornado
 shake
 fade
-rainbow
-\"\"\""
+rainbow"
 markup_text = "\"\"\"
 {h1}Header Level 1{/h1}
 {h2}Header Level 2{/h2}
@@ -297,8 +293,9 @@ bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header L
 test_string = test string
 test_int = 1
 test_bool = True
-test_list[0] = <test_list[0]>
+test_list[0] = 1
 test_dict.key1 = value1
+@color=#ff1acfa0 {text in custom color from variable}
 
 :grinning:
 [img]res://icon.png[/img]
@@ -354,8 +351,9 @@ https://some_domain.com
 test_string = test string
 test_int = 1
 test_bool = True
-test_list[0] = <test_list[0]>
+test_list[0] = 1
 test_dict.key1 = value1
+@color=#ff1acfa0 {text in custom color from variable}
 
 :grinning:
 
@@ -410,6 +408,7 @@ test_int = <test_int>
 test_bool = <test_bool>
 test_list[0] = <test_list[0]>
 test_dict.key1 = <test_dict.key1>
+@color=<test_color> {text in custom color from variable}
 
 :grinning:
 ![](res://icon.png)
@@ -431,8 +430,8 @@ test_dict.key1 = <test_dict.key1>
 @indent{indent text}
 @tab {indent text *(alt to @indent)*}
 
-@color=red{red text}
-@color=#c39f00{custom colored text}
+@color=red {red text}
+@color=#c39f00 {custom colored text}
 
 @wave amp=50 freq=2 {waving text}
 @wave 50, 2 {waving text}
