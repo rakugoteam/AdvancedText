@@ -9,6 +9,13 @@ class_name RenPyMarkupParser
 
 func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
 	var output = ""	+ text
+	if output.begins_with('"""\n'):
+		var lines : Array = output.split('\n')
+		lines.pop_at(0)
+		if lines.back() == '"""':
+			lines.pop_back()
+		output = PoolStringArray(lines).join('\n')
+
 	# prints("renpy_parser run with variables:", variables)
 	if !variables.empty():
 		# like in renpy - don't work with arrays indexing :(
