@@ -297,7 +297,7 @@ bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header L
 test_string = test string
 test_int = 1
 test_bool = True
-test_list[0] = 1
+test_list[0] = <test_list[0]>
 test_dict.key1 = value1
 
 :grinning:
@@ -354,7 +354,7 @@ https://some_domain.com
 test_string = test string
 test_int = 1
 test_bool = True
-test_list[0] = 1
+test_list[0] = <test_list[0]>
 test_dict.key1 = value1
 
 :grinning:

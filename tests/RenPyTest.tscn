@@ -134,5 +134,4 @@ test_var = [test_var]
 \"\"\""
 markup = "renpy"
 headers_fonts = [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ) ]
-variables = {
-}
+

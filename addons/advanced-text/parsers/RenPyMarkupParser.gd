@@ -6,13 +6,23 @@ class_name RenPyMarkupParser
 # Adds support for :emojis:
 # For emojis you need to install emojis-for-godot
 
-func parse(text:String, headers_fonts:=[], variables:={}) -> String:
-	text = convert_renpy_markup(text)
-	text = .parse(text, headers_fonts, variables)
-	return text
+func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
+	var output = ""	+ text
+	# prints("renpy_parser run with variables:", variables)
+	if !variables.empty():
+		output = replace_variables(output, variables, "[_]")
 
-func replace_variables(text:String, variables:Dictionary) -> String:
-	return .replace_variables(text, variables)
+	output = convert_renpy_markup(output)
+
+	# Parse headers
+	if !headers_fonts.empty():
+		output = parse_headers(output, headers_fonts)
+
+	# prints("emojis_gd:", emojis_gd)
+	if emojis_gd:
+		output = emojis_gd.parse_emojis(output)
+
+	return output
 
 func convert_renpy_markup(text:String) -> String:
 	var re = RegEx.new()

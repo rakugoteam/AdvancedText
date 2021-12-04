@@ -14,61 +14,87 @@ func _init():
 	EmojisImport = EmojisImport.new()
 	emojis_gd = EmojisImport.get_emojis()
 
-func parse(text:String, headers_fonts:=[], variables:={}) -> String:
+func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
+	var output = "" + text
+
+	# prints("bbcode_parser run with variables:", variables)
+	if !variables.empty():
+		output = replace_variables(output, variables)
 
 	# Parse headers
-	text = parse_headers(text, headers_fonts)
+	if !headers_fonts.empty():
+		output = parse_headers(output, headers_fonts)
 
-	if !variables.empty():
-		text = replace_variables(text, variables)
-	
 	# prints("emojis_gd:", emojis_gd)
 	if emojis_gd:
-		text = emojis_gd.parse_emojis(text)
+		output = emojis_gd.parse_emojis(output)
 		
-	return text
+	return output
 
-func replace_variables(text:String, variables:Dictionary) -> String:
-	text = text.format(variables, "<_>")
+func replace_variables(text:String, variables:Dictionary, placeholder := "<_>") -> String:
+	var output = "" + text
 
 	for k in variables.keys():
 		if variables[k] is Dictionary:
-			text = parse_variable(text, k, variables[k])
+			output = parse_variable(output, placeholder, k, variables[k])
 
 		if variables[k] is Array:
-			text = parse_variable(text, k, variables[k])
+			output = parse_variable(output, placeholder, k, variables[k])
 
 		if variables[k] is String:
-			text = parse_variable(text, k, variables[k])
+			output = parse_variable(output, placeholder, k, variables[k])
 
-	return text
+		if variables[k] is Color:
+			var var_text = placeholder.replace("_", k)
+			output = output.replace(var_text, variables[k].to_html())
+		
+		if variables[k] is Resource:
+			var var_text = placeholder.replace("_", k)
+			output = output.replace(var_text, variables[k].get_path())
 
-func parse_variable(text:String, variable:String, value) -> String:
+	output = output.format(variables, placeholder)
+
+	return output
+
+func parse_variable(text:String, placeholder:String, variable:String, value) -> String:
 	var re = RegEx.new()
 	var output = "" + text
 
-	re.compile("<(" + variable + ".*?)>")
+	var regex = placeholder.replace("[", "\\[")
+	regex = regex.replace("]", "\\]")
+	regex = regex.replace("(", "\\(")
+	regex = regex.replace(")", "\\)")
+	regex = regex.replace("_", "(%s(\\.[A-Za-z0-9_]*?))" % variable)
+
+	re.compile(regex)
 	for result in re.search_all(text):
-		if result.get_string():
+		if result.get_string(1):
+			# check if result is key in dictionary
 			if "." in result.get_string(1):
 				var parts = result.get_string(1).split(".")
 				var key = parts[1]
 				var _value = value[key]
 
-				# if parts.size() > 2:
-				# 	return parse_variable(text, , va)
-				
-				output = regex_replace(result, output, str(_value))
+				if parts.size() > 1:
+					for i in range(2, parts.size()):
+						key = parts[i]
+						_value = _value[key]
+					
+				return output.replace(result.get_string(), _value)
 			
-			if "[" in result.get_string():
-				if "]" in result.get_string():
-					var parts = result.get_string().split("[")
+			# check if result is index in array
+			if "[" in result.get_string(1):
+				if "]" in result.get_string(1):
+					var parts = result.get_string(1).split("[")
 					var index = int(parts[1].split("]")[0])
 					var _value = value[index]
-					# if parts.size() > 2:
-					# 	return parse_variable(text, variable + "[" + index + "]", _value)
 
-					output = regex_replace(result, output, str(_value))
+					if parts.size() > 1:
+						for i in range(2, parts.size()):
+							index = parts[i]
+							_value = _value[index]
+					
+					return output.replace(result.get_string(), _value)
 
 	return output
 
