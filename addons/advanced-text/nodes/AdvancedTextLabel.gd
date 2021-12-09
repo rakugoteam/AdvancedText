@@ -8,7 +8,19 @@ export(String, FILE, "*.md, *.rpy, *.txt") var markup_text_file := "" setget _se
 export(String, MULTILINE) var markup_text := "" setget _set_markup_text, _get_markup_text
 export(String, "markdown", "renpy", "bbcode") var markup := "markdown" setget _set_markup, _get_markup
 export(Array, DynamicFont) var headers_fonts := [] 
-export(Dictionary) var variables := {}
+
+var variables := {
+	# vars just for testing
+	# should be overrider by the user
+	"test_string" : "test string",
+	"test_int" : 1,
+	"test_bool" : true,
+	"test_list" : [1],
+	"test_dict" : {
+		"key1" : "value1"
+	},
+	"test_color" : Color("#1acfa0"),
+}
 
 var _markup_text := ""
 var _markup := "markdown"
@@ -82,7 +94,7 @@ func _set_markup_text(value:String) -> void:
 	if p == null:
 		return
 	
-	bbcode_text = p.parse(value, Engine.editor_hint, get_hf_paths(), variables)
+	bbcode_text = p.parse(value, get_hf_paths(), variables)
 	
 func _get_markup_text() -> String:
 	if _markup_text_file:

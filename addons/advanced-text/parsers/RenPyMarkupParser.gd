@@ -1,17 +1,38 @@
+tool
 extends EBBCodeParser
 class_name RenPyMarkupParser
 
 # RenPy Markup Parser
+# it used '<' and '>' for values instead of '[' and ']'
 # Adds support for :emojis:
 # For emojis you need to install emojis-for-godot
 
-func parse(text:String, editor:=false, headers_fonts:=[], variables:={}) -> String:
-	text = convert_renpy_markup(text)
-	text = .parse(text, editor, headers_fonts, variables)
-	return text
+func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
+	var output = ""	+ text
+	if output.begins_with('"""\n'):
+		var lines : Array = output.split('\n')
+		lines.pop_at(0)
+		if lines.back() == '"""':
+			lines.pop_back()
+		output = PoolStringArray(lines).join('\n')
 
-func replace_variables(text:String, editor:bool, variables:Dictionary, open:="[", close:="]") -> String:
-	return .replace_variables(text, editor, variables, open, close)
+	# prints("renpy_parser run with variables:", variables)
+	if !variables.empty():
+		# like in renpy - don't work with arrays indexing :(
+		# output = replace_variables(output, variables, "[_]")
+		output = replace_variables(output, variables, "<_>")
+
+	output = convert_renpy_markup(output)
+
+	# Parse headers
+	if !headers_fonts.empty():
+		output = parse_headers(output, headers_fonts)
+
+	# prints("emojis_gd:", emojis_gd)
+	if emojis_gd:
+		output = emojis_gd.parse_emojis(output)
+
+	return output
 
 func convert_renpy_markup(text:String) -> String:
 	var re = RegEx.new()

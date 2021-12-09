@@ -33,8 +33,6 @@ toggle_mode = true
 bbcode_text = "[center][shake rate=5 level=10][b]Clik to edit me[/b][/shake][/center]"
 text = "Clik to edit me"
 markup_text = "[center][shake rate=5 level=10]**Clik to edit me**[/shake][/center]"
-variables = {
-}
 
 [node name="Popup" type="Popup" parent="."]
 visible = true

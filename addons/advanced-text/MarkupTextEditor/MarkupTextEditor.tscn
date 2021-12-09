@@ -616,9 +616,6 @@ wave amp=50 freq=2]wave[/wave]
 
 "
 headers_fonts = [ ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ]
-variables = {
-"test_var": "x"
-}
 
 [node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
 visible = false
@@ -736,9 +733,6 @@ markup_text = "\"\"\"
 \"\"\""
 markup = "renpy"
 headers_fonts = [ ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ]
-variables = {
-"test_var": "x"
-}
 
 [node name="BBCodeTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
 visible = false
@@ -853,9 +847,6 @@ markup_text = "[h1]Header Level 1[/h1]
 "
 markup = "bbcode"
 headers_fonts = [ ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ]
-variables = {
-"test_var": "x"
-}
 
 [node name="PopupHelp" type="WindowDialog" parent="."]
 margin_right = 1004.0
@@ -1053,9 +1044,6 @@ wave amp=50 freq=2]wave[/wave]
 
 "
 headers_fonts = [ ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ]
-variables = {
-"test_var": "x"
-}
 
 [node name="RenPyHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
 visible = false
@@ -1230,9 +1218,6 @@ markup_text = "\"\"\"
 \"\"\""
 markup = "renpy"
 headers_fonts = [ ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ]
-variables = {
-"test_var": "x"
-}
 
 [node name="BBCodeHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
 visible = false
@@ -1405,9 +1390,6 @@ markup_text = "[h1]Header Level 1[/h1]
 "
 markup = "bbcode"
 headers_fonts = [ ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ]
-variables = {
-"test_var": "x"
-}
 
 [node name="TextFileDialog" type="FileDialog" parent="."]
 margin_right = 1004.0

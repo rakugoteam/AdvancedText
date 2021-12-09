@@ -11,7 +11,12 @@
 {a=https://some_domain.com}link{/a}
 {a}https://some_domain.com{/a}
 
-test_var = [test_var]
+test_string = [test_string]
+test_int = [test_int]
+test_bool = [test_bool]
+test_list[0] = [test_list[0]]
+test_dict.key1 = [test_dict.key1]
+
 
 :grinning:
 {img=res://icon.png}
@@ -30,6 +35,8 @@ test_var = [test_var]
 {indent}text{/indent}
 {color=red}red{/color}
 {color=#c39f00}colored text{/color}
+{color=<test_color>}text in custom color from variable{/color}
+
 
 {wave amp=50 freq=2}wave{/wave}
 {tornado radius=5 freq=2}tornado{/tornado}

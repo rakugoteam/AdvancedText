@@ -1,3 +1,4 @@
+tool
 extends Object
 class_name EBBCodeParser
 
@@ -13,63 +14,96 @@ func _init():
 	EmojisImport = EmojisImport.new()
 	emojis_gd = EmojisImport.get_emojis()
 
-func parse(text:String, editor:=false, headers_fonts:=[], variables:={}) -> String:
+func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
+	var output = "" + text
+
+	# prints("bbcode_parser run with variables:", variables)
+	if !variables.empty():
+		output = replace_variables(output, variables)
 
 	# Parse headers
-	text = parse_headers(text, headers_fonts)
+	if !headers_fonts.empty():
+		output = parse_headers(output, headers_fonts)
 
-	if !variables.empty():
-		text = replace_variables(text, editor, variables)
-	
 	# prints("emojis_gd:", emojis_gd)
 	if emojis_gd:
-		text = emojis_gd.parse_emojis(text)
+		output = emojis_gd.parse_emojis(output)
 		
-	return text
+	return output
 
-func replace_variables(text:String, editor:bool, variables:Dictionary, open:="<", close:=">") -> String:
+func replace_variables(text:String, variables:Dictionary, placeholder := "<_>") -> String:
+	var output = "" + text
+
+	for k in variables.keys():
+		if variables[k] is Dictionary:
+			output = parse_variable(output, placeholder, k, variables[k])
+
+		if variables[k] is Array:
+			output = parse_variable(output, placeholder, k, variables[k])
+
+		if variables[k] is String:
+			output = parse_variable(output, placeholder, k, variables[k])
+
+		if variables[k] is Color:
+			var var_text = placeholder.replace("_", k)
+			output = output.replace(var_text, "#"+variables[k].to_html(false))
+		
+		if variables[k] is Resource:
+			var var_text = placeholder.replace("_", k)
+			output = output.replace(var_text, variables[k].get_path())
+
+	output = output.format(variables, placeholder)
+
+	return output
+
+func parse_variable(text:String, placeholder:String, variable:String, value) -> String:
 	var re = RegEx.new()
 	var output = "" + text
-	var replacement = ""
-	
-	re.compile("%s([\\w.]+)%s" % [open, close])
-	for result in re.search_all(text):
-		if result.get_string():
-			
-			# if !editor:
-			replacement = str(get_variable(result.get_string(1), variables))
-			# else:
-			# 	replacement = "[code]%s[/code]" % result.get_string(1)
 
-			output = regex_replace(result, output, replacement)
-	
+	var regex = placeholder.replace("[", "\\[")
+	regex = regex.replace("]", "\\]")
+	regex = regex.replace("(", "\\(")
+	regex = regex.replace(")", "\\)")
+	regex = regex.replace("_", "%s([\\.A-Z_a-z\\[0-9\\]]*?)" % variable)
+
+	re.compile(regex)
+	for result in re.search_all(text):
+		if result.get_string(1):
+			# check if result is key in dictionary
+			if "." in result.get_string(1):
+				var parts = result.get_string(1).split(".")
+				var key = parts[1]
+				var _value = value[key]
+
+				if parts.size() > 1:
+					for i in range(2, parts.size()):
+						key = parts[i]
+						_value = _value[key]
+					
+				return output.replace(result.get_string(), _value)
+			
+			# check if result is index in array
+			if "[" in result.get_string(1):
+				if "]" in result.get_string(1):
+					var parts = result.get_string(1).split("[")
+					var index = int(parts[1].split("]")[0])
+					var _value = value[index]
+
+					if parts.size() > 1:
+						for i in range(2, parts.size()):
+							index = parts[i]
+							_value = _value[index]
+					
+					return output.replace(result.get_string(), _value)
+
 	return output
+
 
 func regex_replace(result:RegExMatch, output:String, replacement:String, string_to_replace=0) -> String:
 	var offset = output.length() - result.subject.length()
 	var left = output.left(result.get_start(string_to_replace) + offset)
 	var right = output.right(result.get_end(string_to_replace) + offset)
-	return left + replacement + right 
-
-func get_variable(var_name:String, variables:Dictionary) -> String:
-	var parts = var_name.split('.', false)
-	
-	var output = variables
-	var i = 0
-	var error = false
-
-	while output and i < parts.size():
-		output = output.get(parts[i])
-		i += 1
-
-		if not output:
-			error = true
-			push_warning("The variable '%s' does not exist." % var_name)
-
-	if error:
-		output = null
-
-	return output
+	return left + replacement + right
 
 func parse_headers(text:String, headers_fonts:Array) -> String:
 	var headers_count = headers_fonts.size()
