@@ -35,6 +35,7 @@ test_int = 1
 test_bool = True
 test_list[0] = 1
 test_dict.key1 = value1
+[color=#1acfa0]text in custom color from variable[/color]
 
 :grinning:
 [img]res://icon.png[/img]
@@ -77,6 +78,7 @@ test_int = 1
 test_bool = True
 test_list[0] = 1
 test_dict.key1 = value1
+text in custom color from variable
 
 :grinning:
 
@@ -115,6 +117,7 @@ test_int = <test_int>
 test_bool = <test_bool>
 test_list[0] = <test_list[0]>
 test_dict.key1 = <test_dict.key1>
+[color=<test_color>]text in custom color from variable[/color]
 
 :grinning:
 [img]res://icon.png[/img]
@@ -183,6 +186,8 @@ test_dict.key1 = [test_dict.key1]
 [indent]text[/indent]
 [color=red]red[/color]
 [color=#c39f00]colored text[/color]
+[color=#1acfa0]text in custom color from variable[/color]
+
 
 [wave amp=50 freq=2]wave[/wave]
 [tornado radius=5 freq=2]tornado[/tornado]
@@ -221,6 +226,8 @@ fill
 	text
 red
 colored text
+text in custom color from variable
+
 
 wave
 tornado
@@ -264,6 +271,8 @@ test_dict.key1 = [test_dict.key1]
 {indent}text{/indent}
 {color=red}red{/color}
 {color=#c39f00}colored text{/color}
+{color=<test_color>}text in custom color from variable{/color}
+
 
 {wave amp=50 freq=2}wave{/wave}
 {tornado radius=5 freq=2}tornado{/tornado}
@@ -295,7 +304,7 @@ test_int = 1
 test_bool = True
 test_list[0] = 1
 test_dict.key1 = value1
-@color=#ff1acfa0 {text in custom color from variable}
+[color=#1acfa0]text in custom color from variable[/color]
 
 :grinning:
 [img]res://icon.png[/img]
@@ -353,7 +362,7 @@ test_int = 1
 test_bool = True
 test_list[0] = 1
 test_dict.key1 = value1
-@color=#ff1acfa0 {text in custom color from variable}
+text in custom color from variable
 
 :grinning:
 

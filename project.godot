@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/advanced-text/nodes/AdvancedTextLabel.gd"
 }, {
+"base": "TextEdit",
+"class": "CodeEdit",
+"language": "GDScript",
+"path": "res://addons/advanced-text/nodes/CodeEdit.gd"
+}, {
 "base": "Object",
 "class": "EBBCodeParser",
 "language": "GDScript",
@@ -29,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/advanced-text/parsers/MarkdownParser.gd"
 }, {
-"base": "TextEdit",
-"class": "MarkupEdit",
-"language": "GDScript",
-"path": "res://addons/advanced-text/nodes/MarkupEdit.gd"
-}, {
 "base": "EBBCodeParser",
 "class": "RenPyMarkupParser",
 "language": "GDScript",
@@ -42,9 +42,9 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AdvancedTextButton": "",
 "AdvancedTextLabel": "res://addons/advanced-text/icons/AdvancedTextLabel.svg",
+"CodeEdit": "res://addons/advanced-text/icons/CodeEdit.svg",
 "EBBCodeParser": "",
 "MarkdownParser": "",
-"MarkupEdit": "",
 "RenPyMarkupParser": ""
 }
 

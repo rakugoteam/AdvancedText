@@ -1,6 +1,6 @@
 tool
 extends TextEdit
-class_name MarkupEdit
+class_name CodeEdit, "res://addons/advanced-text/icons/CodeEdit.svg"
 
 var f : File
 var EmojisImport
