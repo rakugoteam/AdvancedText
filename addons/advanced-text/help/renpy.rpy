@@ -16,7 +16,7 @@ test_bool = <test_bool>
 test_int = <test_int>
 test_list[0] = <test_list[0]>
 test_dict.key1 = <test_dict.key1>
-{color=<test_color}text in custom color from variable{/color}
+{color=<test_color>}text in custom color from variable{/color}
 
 
 :grinning:
