@@ -6,9 +6,6 @@
       ">"
     ]
   },
-  "emojis": {
-    "color": "#98C320"
-  },
   "tag-open": {
     "color": "#D19A66",
     "region": [
@@ -22,5 +19,8 @@
       "{/",
       "}"
     ]
+  },
+  "emojis": {
+    "color": "#56B6C2"
   }
 }

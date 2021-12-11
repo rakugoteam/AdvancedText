@@ -6,8 +6,8 @@ var f : File
 var EmojisImport
 var emojis_gd
 
-export(String, FILE, "*.md, *.rpy, *.txt") var text_file := "" setget _set_text_file, _get_text_file
-export var color_colors := true
+export(String, FILE, "*.gd, *.json, *.md, *.rpy, *.txt") var text_file := "" setget _set_text_file, _get_text_file
+export var highlight_colors := true
 export(Array, String, FILE, "*.json") var configs
 
 var _text_file := ""
@@ -16,7 +16,7 @@ func _ready() -> void:
 	EmojisImport = preload("../emojis_import.gd")
 	EmojisImport = EmojisImport.new()
 	syntax_highlighting = true
-	# clear_colors()
+	clear_colors()
 	_add_keywords_highlighting()
 	if _text_file:
 		_set_text_file(_text_file)
@@ -47,10 +47,10 @@ func _add_keywords_highlighting() -> void:
 		for json in configs:
 			load_json_config(json)
 	
-	if color_colors:
-		_color_colors()
+	if highlight_colors:
+		_highlight_colors()
 
-func _color_colors():
+func _highlight_colors():
 	var colors := [ 
 		"aqua", "black",
 		"blue", "fuchsia",
@@ -102,16 +102,23 @@ func load_json_config(json: String) -> void:
 	for conf in config:
 		read_conf_element(config, conf)
 
-func read_conf_element(config : Dictionary, conf):
+func read_conf_element(config:Dictionary, conf):
 	var c = config[conf]
-	var color := Color(c["color"].to_lower())
-
+	
 	match conf:
 		"emojis":
-			load_emojis_if_exists(color)
+			load_emojis_if_exists(read_color(c, "color"))
+		"class":
+			read_class_conf_if_exist(c)
+		_:
+			if c.has("region"):
+				read_region_if_exist(c, read_color(c, "color"))
 
-	read_region_if_exist(c, color)
-	read_keywords_if_exist(c, color)
+			if c.has("keywords"):
+				read_keywords_if_exist(c, read_color(c, "color"))
+
+func read_color(c:Dictionary, color:String) -> Color:
+	return Color(c[color].to_lower())
 
 func load_emojis_if_exists(color: Color) -> void:
 	if emojis_gd == null:
@@ -131,6 +138,20 @@ func read_keywords_if_exist(c, color:Color):
 		var keywords = c["keywords"]
 		for k in keywords:
 			add_keyword_color(k, color)
+
+func read_class_conf_if_exist(c):
+	var class_color := read_color(c, "class_color")
+	var variables_color := read_color(c, "variables_color")
+	if c.has("load") and c["load"]:
+		for c in ClassDB.get_class_list():
+			add_keyword_color(c, class_color)
+			for m in ClassDB.class_get_property_list(c):
+				for key in m:
+					add_keyword_color(key, variables_color)
+
+	if c.has("custom_classes"):
+		for _class in c["custom_classes"]:
+			add_keyword_color(_class, class_color)
 
 func get_file_content(path:String) -> String:
 	var file = File.new()
