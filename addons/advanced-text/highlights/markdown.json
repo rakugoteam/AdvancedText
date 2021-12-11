@@ -14,31 +14,31 @@
     "color": "#ffff6d"
   },
   "strike": {
-    "color": "#7d7d7d",
+    "color": "#E06C75",
     "region": [
       "~~",
       "~~"
     ]
   },
-  "img": {
-    "color": "#923423",
+  "brackets-1": {
+    "color": "#98C379",
     "region": [
-      "![](",
+      "(",
       ")"
     ]
   },
-  "link-array": {
-    "color": "#923423",
+  "brackets-2": {
+    "color": "#98C379",
+    "region": [
+      "{",
+      "}"
+    ]
+  },
+  "brackets-3": {
+    "color": "#61AFEF",
     "region": [
       "[",
       "]"
-    ]
-  },
-  "code": {
-    "color": "#959595",
-    "region": [
-      " `",
-      "` "
     ]
   },
   "variable": {
@@ -73,7 +73,7 @@
     ]
   },
   "font-style": {
-    "color": "#5C6370",
+    "color": "#528BFF",
     "keywords": [
       "b",
       "i",
@@ -85,7 +85,7 @@
     ]
   },
   "text-aliment": {
-    "color": "#ABB2BF",
+    "color": "#6087CF",
     "keywords": [
       "right",
       "center",
