@@ -183,7 +183,6 @@ test_dict.key1 = <test_dict.key1>
 
 "
 syntax_highlighting = true
-scroll_vertical = 28.0
 script = ExtResource( 1 )
 text_file = "res://addons/advanced-text/help/markdown.md"
 configs = [ "res://addons/advanced-text/highlights/markdown.json" ]
@@ -242,7 +241,6 @@ test_dict.key1 = <test_dict.key1>
 [rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
 "
 syntax_highlighting = true
-scroll_vertical = 12.0
 script = ExtResource( 1 )
 text_file = "res://addons/advanced-text/help/bbcode.txt"
 configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
@@ -305,7 +303,6 @@ test_dict.key1 = <test_dict.key1>
 {rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
 \"\"\""
 syntax_highlighting = true
-scroll_vertical = 16.0
 script = ExtResource( 1 )
 text_file = "res://addons/advanced-text/help/renpy.rpy"
 configs = [ "res://addons/advanced-text/highlights/renpy.json" ]
