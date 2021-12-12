@@ -6,7 +6,7 @@ var f : File
 var EmojisImport
 var emojis_gd
 
-export(String, FILE, "*.gd, *.json, *.md, *.rpy, *.txt") var text_file := "" setget _set_text_file, _get_text_file
+export(String, FILE) var text_file := "" setget _set_text_file, _get_text_file
 export var highlight_colors := true
 export(Array, String, FILE, "*.json") var configs
 
