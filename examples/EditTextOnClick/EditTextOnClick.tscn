@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://examples/AdvancedTextButton/AdvancedTextButton.tscn" type="PackedScene" id=1]
-[ext_resource path="res://addons/advanced-text/nodes/MarkupEdit.gd" type="Script" id=2]
+[ext_resource path="res://addons/advanced-text/nodes/CodeEdit.gd" type="Script" id=2]
 [ext_resource path="res://examples/EditTextOnClick/EditTextOnClick.gd" type="Script" id=3]
 
 [node name="EditTextOnClick" type="TabContainer"]

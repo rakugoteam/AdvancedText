@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RakugoTextLabel.svg-afd0163c7a613a431bf598f6e30d8a74.stex"
+path="res://.import/CodeEdit.svg-fd021b790a715be4233dc34017c567bd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/advanced-text/icons/RakugoTextLabel.svg"
-dest_files=[ "res://.import/RakugoTextLabel.svg-afd0163c7a613a431bf598f6e30d8a74.stex" ]
+source_file="res://addons/advanced-text/icons/CodeEdit.svg"
+dest_files=[ "res://.import/CodeEdit.svg-fd021b790a715be4233dc34017c567bd.stex" ]
 
 [params]
 

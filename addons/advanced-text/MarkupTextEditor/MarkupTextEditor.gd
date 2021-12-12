@@ -5,7 +5,7 @@ var EmojisImport
 var emojis_gd
 
 export var AdvancedTextLabelIcon : Texture
-export var MarkupEditIcon : Texture
+export var CodeEditIcon : Texture
 export var MarkdownIcon : Texture
 export var RpyIcon : Texture
 export var BBCodeIcon : Texture
@@ -207,7 +207,7 @@ func get_current_edit_tab() -> TextEdit:
 	return e_tabs[e_id]
 
 
-func update_text_preview(caller:MarkupEdit, text_from_edit_tab := true):
+func update_text_preview(caller:CodeEdit, text_from_edit_tab := true):
 	if not caller.visible:
 		return
 		
@@ -224,7 +224,7 @@ func update_text_preview(caller:MarkupEdit, text_from_edit_tab := true):
 	current_preview_tab.markup_text = text
 
 
-func _on_text_changed(caller:MarkupEdit):
+func _on_text_changed(caller:CodeEdit):
 	if !caller.visible:
 		return
 
@@ -245,7 +245,7 @@ func _on_text_changed(caller:MarkupEdit):
 			else:
 				selected_node.text = caller.text
 		
-		if selected_node is MarkupEdit:
+		if selected_node is CodeEdit:
 			selected_node.text = caller.text
 
 
@@ -317,7 +317,7 @@ func _process(delta: float) -> void:
 		update_text_preview(get_current_edit_tab(), false)
 		file_icon.texture = get_icon("RichTextLabel", "EditorIcons")
 	
-	elif selected_node is MarkupEdit:
+	elif selected_node is CodeEdit:
 		markups_options.disabled = true
 		preview_toggle.pressed = false
 		preview_tabs.visible = false
@@ -329,7 +329,7 @@ func _process(delta: float) -> void:
 		else:
 			text = selected_node.text
 			update_text_preview(get_current_edit_tab(), false)
-			# file_icon.icon = MarkupEditIcon
+			# file_icon.icon = CodeEditIcon
 			file_icon.texture = get_icon("TextEdit", "EditorIcons")
 		
 	else:

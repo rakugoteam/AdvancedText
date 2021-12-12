@@ -14,24 +14,65 @@
     "color": "#ffff6d"
   },
   "strike": {
-    "color": "#7d7d7d",
+    "color": "#E06C75",
     "region": [
       "~~",
       "~~"
     ]
   },
-  "img": {
-    "color": "#923423",
-    "region": [
-      "![](",
-      ")"
+  "effects": {
+    "color": "#98C379",
+    "keywords": [
+      "wave",
+      "tornado",
+      "shake",
+      "fade",
+      "rainbow"
     ]
   },
-  "code": {
-    "color": "#959595",
-    "region": [
-      " `",
-      "` "
+  "effects-args": {
+    "color": "#D19A66",
+    "keywords": [
+      "amp",
+      "freq",
+      "radius",
+      "rate",
+      "level",
+      "start",
+      "length",
+      "sat",
+      "val"
     ]
+  },
+  "font-style": {
+    "color": "#528BFF",
+    "keywords": [
+      "b",
+      "i",
+      "u",
+      "s",
+      "code",
+      "font",
+      "color"
+    ]
+  },
+  "text-aliment": {
+    "color": "#6087CF",
+    "keywords": [
+      "right",
+      "center",
+      "fill",
+      "indent"
+    ]
+  },
+  "table": {
+    "color": "#56B6C2",
+    "keywords": [
+      "table",
+      "cell"
+    ]
+  },
+  "emojis": {
+    "color": "#56B6C2"
   }
 }

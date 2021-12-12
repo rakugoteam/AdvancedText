@@ -5,7 +5,7 @@
 **bold**
 *italic*
 ~~strike through~~
-`mono-spaced text`
+```mono-spaced text```
 
 [link](https://some_domain.com)
 https://some_domain.com

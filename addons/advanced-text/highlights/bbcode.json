@@ -1,4 +1,25 @@
 {
+  "brackets-1": {
+    "color": "#98C379",
+    "region": [
+      "(",
+      ")"
+    ]
+  },
+  "brackets-2": {
+    "color": "#98C379",
+    "region": [
+      "{",
+      "}"
+    ]
+  },
+  "brackets-3": {
+    "color": "#61AFEF",
+    "region": [
+      "[",
+      "]"
+    ]
+  },
   "variable": {
     "color": "#D19A66",
     "region": [
@@ -7,70 +28,6 @@
     ]
   },
   "emojis": {
-    "color": "#98C320"
-  },
-  "font-style": {
-    "color": "#5C6370",
-    "keywords": [
-      "b",
-      "i",
-      "u",
-      "s",
-      "code",
-      "font",
-      "color"
-    ]
-  },
-  "text-aliment": {
-    "color": "#ABB2BF",
-    "keywords": [
-      "right",
-      "center",
-      "fill",
-      "indent"
-    ]
-  },
-  "url": {
-    "color": "#61AFEF",
-    "keywords": [
-      "url"
-    ]
-  },
-  "table": {
-    "color": "#56B6C2",
-    "keywords": [
-      "table",
-      "cell"
-    ]
-  },
-  "effects": {
-    "color": "#98C379",
-    "keywords": [
-      "wave",
-      "tornado",
-      "shake",
-      "fade",
-      "rainbow"
-    ]
-  },
-  "effects-args": {
-    "color": "#D19A66",
-    "keywords": [
-      "amp",
-      "freq",
-      "radius",
-      "rate",
-      "level",
-      "start",
-      "length",
-      "sat",
-      "val"
-    ]
-  },
-  "img": {
-    "color": "#923423",
-    "keywords": [
-      "img"
-    ]
+    "color": "#56B6C2"
   }
 }
