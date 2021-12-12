@@ -9,17 +9,8 @@ export(String, MULTILINE) var markup_text := "" setget _set_markup_text, _get_ma
 export(String, "markdown", "renpy", "bbcode") var markup := "markdown" setget _set_markup, _get_markup
 export(Array, DynamicFont) var headers_fonts := [] 
 
+# should be overrider by the user
 var variables := {
-	# vars just for testing
-	# should be overrider by the user
-	"test_string" : "test string",
-	"test_int" : 1,
-	"test_bool" : true,
-	"test_list" : [1],
-	"test_dict" : {
-		"key1" : "value1"
-	},
-	"test_color" : Color("#1acfa0"),
 }
 
 var _markup_text := ""

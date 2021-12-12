@@ -15,7 +15,17 @@ var default_property_list:Dictionary = {
 		],
 	"advanced_text/default_vars" : [
 		# json string
-		"", PropertyInfo.new(
+		JSON.print({
+			"test_string" : "test string",
+			"test_int" : 1,
+			"test_bool" : true,
+			"test_list" : [1],
+			"test_dict" : {
+				"key1" : "value1"
+			},
+			"test_color" : Color("#1acfa0"),
+		}, "\t"),
+		PropertyInfo.new(
 			"", TYPE_STRING, PROPERTY_HINT_MULTILINE_TEXT, 
 			"",
 			PROPERTY_USAGE_CATEGORY)
@@ -37,7 +47,7 @@ func _enter_tree():
 	markup_text_editor_button.toggle_mode = true
 	markup_text_editor_button.pressed = false
 	markup_text_editor_button.action_mode = ToolButton.ACTION_MODE_BUTTON_RELEASE
-	
+
 	# hack to add the button to the editor modes tabs
 	add_control_to_container(CONTAINER_TOOLBAR, markup_text_editor_button)
 	button_parent = markup_text_editor_button.get_parent()
