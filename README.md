@@ -13,3 +13,9 @@ Soon there will be docs for most of the features.
 ### Nodes
 - **AdvancedTextLabel** - A label that supports Markdown and RenPy
 - **CodeEdit** - A text edit that supports Markdown, RenPy, BBCode, GDScript and JSON all with code highlighting
+
+### Examples
+- **AdvancedTextButton** - how combine **AdvancedTextLabel** with a **Button**
+- **EditTextOnClick** - how combine **AdvancedTextButton** with a **CodeEdit**, so you can edit the text on click
+- **EditTextOnClickPopup** - the same as **AdvancedTextButton** but with use popup
+- **TextBrowser** - a simple text browser that supports Markdown, RenPy and BBCode, links to other text files in project and web links
