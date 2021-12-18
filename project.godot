@@ -60,6 +60,10 @@ _global_script_class_icons={
 "RenPyMarkupParser": ""
 }
 
+[advanced_text]
+
+default_vars="{\"test_setting\" : \"variable from project settings\"}"
+
 [application]
 
 config/name="AdvancedTextLabel"

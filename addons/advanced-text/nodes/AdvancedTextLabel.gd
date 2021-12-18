@@ -11,6 +11,12 @@ export(Array, DynamicFont) var headers_fonts := []
 
 # should be overrider by the user
 var variables := {
+	"test_string" : "test string",
+	"test_int" : 1,
+	"test_bool" : true,
+	"test_list" : [1],
+	"test_dict" : {"key1" : "value1"},
+	"test_color" : Color("#1acfa0"),
 }
 
 var _markup_text := ""
@@ -85,7 +91,18 @@ func _set_markup_text(value:String) -> void:
 	if p == null:
 		return
 	
+	var default_vars = parse_json(ProjectSettings.get("advanced_text/default_vars"))
+	if default_vars:
+		variables = join_dicts([default_vars, variables])
 	bbcode_text = p.parse(value, get_hf_paths(), variables)
+
+func join_dicts(dicts:Array) -> Dictionary:
+	var result := {}
+	for dict in dicts:
+		for key in dict:
+			result[key] = dict[key]
+
+	return result
 	
 func _get_markup_text() -> String:
 	if _markup_text_file:

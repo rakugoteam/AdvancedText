@@ -16,14 +16,7 @@ var default_property_list:Dictionary = {
 	"advanced_text/default_vars" : [
 		# json string
 		JSON.print({
-			"test_string" : "test string",
-			"test_int" : 1,
-			"test_bool" : true,
-			"test_list" : [1],
-			"test_dict" : {
-				"key1" : "value1"
-			},
-			"test_color" : Color("#1acfa0"),
+			"test_setting" : "variable from project settings" 
 		}, "\t"),
 		PropertyInfo.new(
 			"", TYPE_STRING, PROPERTY_HINT_MULTILINE_TEXT, 
