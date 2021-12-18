@@ -6,7 +6,7 @@ var f : File
 
 export(String, FILE, "*.md, *.rpy, *.txt") var markup_text_file := "" setget _set_markup_text_file, _get_markup_text_file
 export(String, MULTILINE) var markup_text := "" setget _set_markup_text, _get_markup_text
-export(String, "markdown", "renpy", "bbcode") var markup := "markdown" setget _set_markup, _get_markup
+export(String, "default", "markdown", "renpy", "bbcode") var markup := "default" setget _set_markup, _get_markup
 export(Array, DynamicFont) var headers_fonts := [] 
 
 # should be overrider by the user
@@ -20,7 +20,7 @@ var variables := {
 }
 
 var _markup_text := ""
-var _markup := "markdown"
+var _markup := "default"
 var _markup_text_file := ""
 var _parser
 
@@ -43,10 +43,13 @@ func get_text_parser() -> EBBCodeParser:
 	if _parser:
 		return _parser
 	
-	return _get_text_parser()
+	return _get_text_parser(_markup)
 
-func _get_text_parser() -> EBBCodeParser:
-	match _markup:
+func _get_text_parser(_markup_str:String) -> EBBCodeParser:
+	match _markup_str:
+		"default":
+			var default = ProjectSettings.get("advanced_text/markup")
+			return _get_text_parser(default)
 		"bbcode":
 			_parser = EBBCodeParser.new()
 		"renpy":
@@ -113,7 +116,7 @@ func _get_markup_text() -> String:
 func _set_markup(value:String) -> void:
 	if value != _markup:
 		_markup = value
-		_get_text_parser()
+		_get_text_parser(value)
 		_set_markup_text(_markup_text)
 
 func _get_markup() -> String:
