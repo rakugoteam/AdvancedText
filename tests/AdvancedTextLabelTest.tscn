@@ -449,7 +449,7 @@ markup_text = "# Header Level 1
 **bold**
 *italic*
 ~~strike through~~
-`mono-spaced text`
+```mono-spaced text```
 
 [link](https://some_domain.com)
 https://some_domain.com
@@ -501,4 +501,5 @@ test_dict.key1 = <test_dict.key1>
 
 
 "
+markup = "markdown"
 headers_fonts = [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ) ]
