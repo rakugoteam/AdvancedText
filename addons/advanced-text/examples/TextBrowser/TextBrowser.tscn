@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://examples/TextBrowser/TextView/TextView.tscn" type="PackedScene" id=1]
-[ext_resource path="res://examples/TextBrowser/TextBrowser.gd" type="Script" id=2]
+[ext_resource path="res://addons/advanced-text/examples/TextBrowser/TextView/TextView.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/advanced-text/examples/TextBrowser/TextBrowser.gd" type="Script" id=2]
 [ext_resource path="res://addons/advanced-text/shared/TabButton.tscn" type="PackedScene" id=3]
 
 [node name="TextBrowser" type="Panel"]
