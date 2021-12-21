@@ -26,9 +26,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 1[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 3[/font]
+bbcode_text = "[h1]Header Level 1[/h1]
+[h2]Header Level 2[/h2]
+[h3]Header Level 3[/h3]
 
 [b]bold[/b]
 [i]italic[/i]
@@ -69,9 +69,9 @@ test_dict.key1 = value1
 [fade start=4 length=14]fade[/fade]
 [rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
 "
-text = "Header Level 1
-Header Level 2
-Header Level 3
+text = "[h1]Header Level 1[/h1]
+[h2]Header Level 2[/h2]
+[h3]Header Level 3[/h3]
 
 bold
 italic
@@ -109,9 +109,6 @@ fade
 rainbow
 "
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 markup_text_file = "res://addons/advanced-text/help/bbcode.txt"
 markup_text = "[h1]Header Level 1[/h1]
 [h2]Header Level 2[/h2]
@@ -157,7 +154,7 @@ test_dict.key1 = <test_dict.key1>
 [rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
 "
 markup = "bbcode"
-headers_fonts = [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ) ]
+headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
 
 [node name="RenPyTest" type="RichTextLabel" parent="."]
 visible = false
@@ -171,9 +168,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 1[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 3[/font]
+bbcode_text = "[h1]Header Level 1[/h1]
+[h2]Header Level 2[/h2]
+[h3]Header Level 3[/h3]
 
 [b]bold[/b]
 [i]italic[/i]
@@ -216,9 +213,9 @@ test_dict.key1 = value1
 [shake rate=5 level=10]shake[/shake]
 [fade start=4 length=14]fade[/fade]
 [rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
-text = "Header Level 1
-Header Level 2
-Header Level 3
+text = "[h1]Header Level 1[/h1]
+[h2]Header Level 2[/h2]
+[h3]Header Level 3[/h3]
 
 bold
 italic
@@ -259,7 +256,7 @@ fade
 rainbow"
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_editor_description_": ""
 }
 markup_text_file = "res://addons/advanced-text/help/renpy.rpy"
 markup_text = "\"\"\"
@@ -310,7 +307,7 @@ test_dict.key1 = <test_dict.key1>
 {rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
 \"\"\""
 markup = "renpy"
-headers_fonts = [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ) ]
+headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
 
 [node name="MarkdownTest" type="RichTextLabel" parent="."]
 visible = false
@@ -324,9 +321,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 1[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 3[/font]
+bbcode_text = "# Header Level 1
+## Header Level 2
+### Header Level 3
 
 [b]bold[/b]
 [i]italic[/i]
@@ -382,9 +379,9 @@ test_dict.key1 = value1
 
 
 "
-text = "Header Level 1
-Header Level 2
-Header Level 3
+text = "# Header Level 1
+## Header Level 2
+### Header Level 3
 
 bold
 italic
@@ -439,7 +436,7 @@ rainbow text
 "
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_editor_description_": ""
 }
 markup_text_file = "res://addons/advanced-text/help/markdown.md"
 markup_text = "# Header Level 1
@@ -502,4 +499,25 @@ test_dict.key1 = <test_dict.key1>
 
 "
 markup = "markdown"
-headers_fonts = [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ) ]
+headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
+
+[node name="DefaultSettingTest" type="RichTextLabel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[b]This is normally Markdown[/b]
+[color=#c39f00]variable from settings:[/color] [color=lime]variable from project settings[/color]"
+text = "This is normally Markdown
+variable from settings: variable from project settings"
+script = ExtResource( 1 )
+markup_text = "**This is normally Markdown**
+@color=#c39f00 {variable from settings:} @color=lime{<test_setting>}"
+headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
