@@ -86,7 +86,7 @@ func _on_toggled(value:bool):
 "
 syntax_highlighting = true
 script = ExtResource( 1 )
-text_file = "res://examples/AdvancedTextButton/AdvancedTextButton.gd"
+text_file = "res://addons/advanced-text/examples/AdvancedTextButton/AdvancedTextButton.gd"
 configs = [ "res://addons/advanced-text/highlights/gdscript.json" ]
 
 [node name="JSONEdit" type="TextEdit" parent="HBoxContainer"]

@@ -12,8 +12,7 @@ func _ready():
 	connect("toggled", self, "_on_toggled")
 
 func _set_label_color(color_name:String):
-	var color_path := "Button/colors/" + color_name
-	adv_label.modulate = theme.get(color_path)
+	adv_label.modulate = get_color(color_name, "Button")
 
 func _set(property:String, value)->bool:
 	if  property in get_property_list():
