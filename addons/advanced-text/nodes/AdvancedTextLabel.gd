@@ -27,12 +27,19 @@ func _ready() -> void:
 	bbcode_enabled = true
 	connect("update", self, "_on_update")
 
-func get_hf_paths() -> Array:
-	var paths := []
-	for font in headers_fonts:
-		paths.append(font.resource_path)
+func _set_headers_fonts(value : Array) -> void:
+	headers_fonts = value
+	emit_signal("update")
 
-	return paths 
+func get_hf_paths() -> Array:
+	if not Engine.editor_hint:
+		if not hf_paths.empty():
+			return hf_paths
+
+	for font in headers_fonts:
+		hf_paths.append(font.resource_path)
+
+	return hf_paths
 
 func get_text_parser(_markup:String) -> EBBCodeParser:
 	if _parser == null:
@@ -95,11 +102,8 @@ func _on_update() -> void:
 	
 	if default_vars:
 		variables = join_dicts([default_vars, variables])
-	
-	if hf_paths == null:
-		hf_paths = get_hf_paths()
-	
-	bbcode_text = p.parse(markup_text, hf_paths, variables)
+
+	bbcode_text = p.parse(markup_text, get_hf_paths(), variables)
 
 func join_dicts(dicts:Array) -> Dictionary:
 	var result := {}
