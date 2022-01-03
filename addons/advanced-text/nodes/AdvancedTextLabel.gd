@@ -20,7 +20,7 @@ var variables := {
 	"test_color" : Color("#1acfa0"),
 }
 
-var _parser : EBBCodeParser
+var _parser
 var hf_paths : Array
 
 func _ready() -> void:
@@ -41,7 +41,7 @@ func get_hf_paths() -> Array:
 
 	return hf_paths
 
-func get_text_parser(_markup:String) -> EBBCodeParser:
+func get_text_parser(_markup:String):
 	if _parser == null:
 		_parser = _get_text_parser(_markup)
 	elif markup != _markup:
@@ -49,17 +49,27 @@ func get_text_parser(_markup:String) -> EBBCodeParser:
 	
 	return _parser
 
-func _get_text_parser(_markup_str:String) -> EBBCodeParser:
+func _get_text_parser(_markup_str:String):
 	match _markup_str:
 		"default":
-			var default = ProjectSettings.get("advanced_text/markup")
+
+			var default := ""
+			# for some reason loading default parser setting works only in editor
+			# so I save it as metadata and load it during runtime
+			if Engine.editor_hint:
+				default = ProjectSettings.get("advanced_text/markup")
+				set_meta("_default_markup", default)
+			else:
+				default = get_meta("_default_markup")
+		
 			return _get_text_parser(default)
+		
 		"bbcode":
-			_parser = EBBCodeParser.new()
+			_parser = EBBCodeParser
 		"renpy":
-			_parser = RenPyMarkupParser.new()
+			_parser = RenpyParser
 		"markdown":
-			_parser = MarkdownParser.new()
+			_parser = MarkdownParser
 
 	return _parser
 

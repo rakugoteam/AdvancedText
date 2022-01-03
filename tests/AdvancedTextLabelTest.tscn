@@ -513,12 +513,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "**This is normally Markdown**
-@color=#c39f00 {variable from settings:} @color=lime{variable from project settings}"
-text = "**This is normally Markdown**
-@color=#c39f00 {variable from settings:} @color=lime{variable from project settings}"
+bbcode_text = "[b]This is normally Markdown[/b]
+[color=#c39f00]variable from settings:[/color] [color=lime]variable from project settings[/color]"
+text = "This is normally Markdown
+variable from settings: variable from project settings"
 script = ExtResource( 1 )
+__meta__ = {
+"_default_markup": "markdown"
+}
 markup_text = "**This is normally Markdown**
 @color=#c39f00 {variable from settings:} @color=lime{<test_setting>}"
-markup = "bbcode"
 headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]
