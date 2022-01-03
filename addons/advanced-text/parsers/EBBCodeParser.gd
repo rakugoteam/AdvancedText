@@ -1,6 +1,6 @@
 tool
-extends Object
-class_name EBBCodeParser
+extends Node
+# now is added as autoload singleton : "EBBCodeParser"
 
 # Extended BBCode Parser
 # Adds support for <values> and :emojis:

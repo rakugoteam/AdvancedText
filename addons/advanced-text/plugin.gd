@@ -26,6 +26,13 @@ var default_property_list:Dictionary = {
 }
 
 func _enter_tree():
+	# loads all parser onces
+	var parsers_dir := "res://addons/advanced-text/parsers/" 
+	add_autoload_singleton("EBBCodeParser",  parsers_dir + "EBBCodeParser.gd")
+	add_autoload_singleton("MarkdownParser", parsers_dir + "MarkdownParser.gd")
+	add_autoload_singleton("RenpyParser", 	parsers_dir + "RenpyParser.gd")
+
+	# load and add MarkupTextEditor to EditorUI
 	markup_text_editor = preload("MarkupTextEditor/MarkupTextEditor.tscn")
 	markup_text_editor = markup_text_editor.instance()
 	editor_parent = get_editor_interface().get_editor_viewport()
@@ -35,6 +42,7 @@ func _enter_tree():
 	markup_text_editor.editor = get_editor_interface()
 	editor_parent.add_child(markup_text_editor)
 	
+	# add button for MarkupTextEditor to toolbar
 	markup_text_editor_button.text = "Markup Text Editor"
 	markup_text_editor_button.icon = preload("icons/MarkupTextEditor.svg")
 	markup_text_editor_button.toggle_mode = true
@@ -62,8 +70,16 @@ func _enter_tree():
 		ProjectTools.set_setting(property_key, property_value[0], property_value[1])
 
 func _exit_tree():
+	# remove MarkupTextEditor from EditorUI
 	markup_text_editor.queue_free()
+
+	# remove button from toolbar
 	markup_text_editor_button.queue_free()
+	
+	# unloaded all parsers
+	remove_autoload_singleton("EBBCodeParser")
+	remove_autoload_singleton("MarkdownParser")
+	remove_autoload_singleton("RenpyParser")
 
 func hide_current_editor():
 	for editor in editor_parent.get_children():
@@ -117,5 +133,3 @@ func _on_toggle(toggled:bool, button:ToolButton):
 
 	markup_text_editor_button.pressed = toggled
 	markup_text_editor.visible = toggled
-
-
