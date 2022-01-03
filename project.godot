@@ -24,16 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/advanced-text/nodes/CodeEdit.gd"
 }, {
-"base": "Object",
-"class": "EBBCodeParser",
-"language": "GDScript",
-"path": "res://addons/advanced-text/parsers/EBBCodeParser.gd"
-}, {
-"base": "EBBCodeParser",
-"class": "MarkdownParser",
-"language": "GDScript",
-"path": "res://addons/advanced-text/parsers/MarkdownParser.gd"
-}, {
 "base": "Reference",
 "class": "ProjectTools",
 "language": "GDScript",
@@ -43,21 +33,13 @@ _global_script_classes=[ {
 "class": "PropertyInfo",
 "language": "GDScript",
 "path": "res://addons/project-settings-helpers/PropertyInfo.gd"
-}, {
-"base": "EBBCodeParser",
-"class": "RenPyMarkupParser",
-"language": "GDScript",
-"path": "res://addons/advanced-text/parsers/RenPyMarkupParser.gd"
 } ]
 _global_script_class_icons={
 "AdvancedTextButton": "",
 "AdvancedTextLabel": "res://addons/advanced-text/icons/AdvancedTextLabel.svg",
 "CodeEdit": "res://addons/advanced-text/icons/CodeEdit.svg",
-"EBBCodeParser": "",
-"MarkdownParser": "",
 "ProjectTools": "",
-"PropertyInfo": "",
-"RenPyMarkupParser": ""
+"PropertyInfo": ""
 }
 
 [advanced_text]
@@ -68,6 +50,12 @@ default_vars="{\"test_setting\" : \"variable from project settings\"}"
 
 config/name="AdvancedTextLabel"
 config/icon="res://icon.png"
+
+[autoload]
+
+EBBCodeParser="*res://addons/advanced-text/parsers/EBBCodeParser.gd"
+MarkdownParser="*res://addons/advanced-text/parsers/MarkdownParser.gd"
+RenpyParser="*res://addons/advanced-text/parsers/RenpyParser.gd"
 
 [debug]
 

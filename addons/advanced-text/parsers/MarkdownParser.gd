@@ -1,6 +1,6 @@
 tool
-extends EBBCodeParser
-class_name MarkdownParser
+extends "EBBCodeParser.gd"
+# now is added as autoload singleton : "MarkdownParser"
 
 # Markdown Parser
 # With support for <values> and :emojis:

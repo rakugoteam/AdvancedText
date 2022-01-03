@@ -1,6 +1,6 @@
 tool
-extends EBBCodeParser
-class_name RenPyMarkupParser
+extends "EBBCodeParser.gd"
+# now is added as autoload singleton : "RenpyParser"
 
 # RenPy Markup Parser
 # it used '<' and '>' for values instead of '[' and ']'
