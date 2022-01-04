@@ -182,8 +182,15 @@ func _on_nodes_toggle(toggled:bool):
 	text = ""
 	var tab = get_current_edit_tab()
 	update_text_preview(tab, false)
-	file_icon.texture = get_icon("NodeWarning", "EditorIcons")
-	file_name_label.text = "Unsupported Node Type"
+
+	var selected_node = get_selected_node()
+
+	if selected_node:
+		_on_node_selected(selected_node)
+	else:
+		file_icon.texture = get_icon("NodeWarning", "EditorIcons")
+		file_name_label.text = "None Node is Selected"
+
 	set_process(toggled)
 
 
@@ -274,62 +281,83 @@ func _on_help_button_pressed():
 	help_popup.window_title = m + " Help"
 	help_popup.popup_centered(Vector2(700, 500))
 
+func toggle_nodes_mode():
+	selected_node_toggle.pressed = true
+	_on_nodes_toggle(true)
+
+func toggle_files_mode():
+	files_toggle.pressed = true
+	_on_files_toggle(true)
+
+func get_selected_node() -> Node:
+	if editor == null:
+		return null
+
+	var s = editor.get_selection()
+	var selected_nodes = s.get_selected_nodes()
+	if selected_nodes.size() == 0:
+		return null
+
+	if selected_node != selected_nodes[0]:
+		return selected_nodes[0]
+	else:
+		return null
 
 func _process(delta: float) -> void:
 	if not editor:
 		return
 	
-	var s = editor.get_selection()
-	var selected_nodes = s.get_selected_nodes()
-	if selected_nodes.size() == 0:
-		return
-
-	if selected_node != selected_nodes[0]:
-		selected_node = selected_nodes[0]
-	else:
+	var selected_node = get_selected_node()
+	if !selected_node:
 		return
 
 	preview_toggle.pressed = true
 	preview_tabs.visible = true
 	file_name_label.text = selected_node.name
+	toggle_nodes_mode()
 
 	# print("type", selected_node.get_class())
 
-	if selected_node is AdvancedTextLabel:
-		var _markup_str_id = selected_node.markup
+func _on_node_selected(node: Node):
+	if node is AdvancedTextLabel:
+		var _markup_str_id = node.markup
+		
+		if _markup_str_id == "default":
+			_markup_str_id = ProjectSettings.get("advanced_text/markup")
+
 		var _markup_id = markups_str.find(_markup_str_id)
 		markups_options.disabled = false
 		_set_markup_id(_markup_id)
 
-		if selected_node.markup_text_file:
-			_on_files_toggle(true)
-			_on_file_open(selected_node.markup_text_file)
+		if node.markup_text_file:
+			toggle_files_mode()
+			_on_file_open(node.markup_text_file)
 		
 		else:
-			text = selected_node.markup_text
+			text = node.markup_text
 			update_text_preview(get_current_edit_tab(), false)
 			file_icon.texture = AdvancedTextLabelIcon
 		
-	elif selected_node is RichTextLabel:
+	elif node is RichTextLabel:
 		_set_markup_id(2)
 		markups_options.disabled = true
-		text = selected_node.bbcode_text
+		text = node.bbcode_text
 		update_text_preview(get_current_edit_tab(), false)
 		file_icon.texture = get_icon("RichTextLabel", "EditorIcons")
 	
-	elif selected_node is CodeEdit:
+	elif node is CodeEdit:
 		markups_options.disabled = true
 		preview_toggle.pressed = false
 		preview_tabs.visible = false
 
-		if selected_node.text_file:
-			_on_files_toggle(true)
-			_on_file_open(selected_node.text_file)
+		if node.text_file:
+			toggle_files_mode()
+			_on_file_open(node.text_file)
 		
 		else:
-			text = selected_node.text
+			text = node.text
 			update_text_preview(get_current_edit_tab(), false)
-			# file_icon.icon = CodeEditIcon
+			file_icon.icon = CodeEditIcon
 			file_icon.texture = get_icon("TextEdit", "EditorIcons")
 		
 	else:
@@ -467,10 +495,12 @@ func _update_file_data(f_data):
 			_set_markup_id(0)
 			b.icon = MarkdownIcon
 			file_icon.texture = MarkdownIcon
+
 		"rpy":
 			_set_markup_id(1)
 			b.icon = RpyIcon
 			file_icon.texture = RpyIcon
+
 		"txt":
 			_set_markup_id(2)
 			markups_options.disabled = false
@@ -482,11 +512,9 @@ func _update_file_data(f_data):
 	file_save_button.disabled = not f_data["modified"]
 	# print("file loaded")
 
-
 func _on_file_button_pressed(file_box: Node):
 	var f_data = files_ram[file_box]
 	_update_file_data(f_data)
-
 
 func _on_file_close_button_pressed(file_box: Node):
 	var f_data = files_ram[file_box]
@@ -507,12 +535,10 @@ func _on_file_close_button_pressed(file_box: Node):
 	file_box.queue_free()
 	save_files_ram()
 
-
 func _on_new_file_button_pressed():
 	var id := files_ram.size()
 	var file_name = "NewFile " + str(id)
 	_on_file_open(file_name)
-
 
 func _on_file_save_button_pressed():
 	var f_data : Dictionary = current_file_data
@@ -530,4 +556,3 @@ func _on_file_save_button_pressed():
 	f_data["modified"] = false
 	_update_file_data(f_data)
 	save_files_ram()
-	
