@@ -214,7 +214,7 @@ func get_current_edit_tab() -> TextEdit:
 	return e_tabs[e_id]
 
 
-func update_text_preview(caller:CodeEdit, text_from_edit_tab := true):
+func update_text_preview(caller:TextEdit, text_from_edit_tab := true):
 	if not caller.visible:
 		return
 		
@@ -231,7 +231,7 @@ func update_text_preview(caller:CodeEdit, text_from_edit_tab := true):
 	current_preview_tab.markup_text = text
 
 
-func _on_text_changed(caller:CodeEdit):
+func _on_text_changed(caller:TextEdit):
 	if !caller.visible:
 		return
 
@@ -262,7 +262,6 @@ func _on_option_selected(id: int):
 		var current := get_current_edit_tab()
 		update_text_preview(current, text.empty())
 
-
 func _set_markup_id(id: int):
 	if id != markup_id:
 		markups_options.selected = id
@@ -274,7 +273,6 @@ func _set_markup_id(id: int):
 		if selected_node:
 			if selected_node is AdvancedTextLabel:
 				selected_node.markup = markups_str[id]
-
 
 func _on_help_button_pressed():
 	var m = markups_options.get_item_text(markup_id) 
@@ -394,12 +392,10 @@ func _on_file_selected(file_path:String):
 
 			_on_file_save_button_pressed()
 
-
 func _on_files_selected(file_paths:Array):
 	# print("open files", file_paths)
 	for file_path in file_paths:
 		_on_file_open(file_path)
-
 
 func _on_file_open(file_path:String, modified_text := ""):
 	if file_path.empty():
@@ -503,6 +499,11 @@ func _update_file_data(f_data):
 
 		"txt":
 			_set_markup_id(2)
+			markups_options.disabled = false
+			b.icon = get_icon("TextFile", "EditorIcons")
+
+		_:
+			_set_markup_id(3)
 			markups_options.disabled = false
 			b.icon = get_icon("TextFile", "EditorIcons")
 
