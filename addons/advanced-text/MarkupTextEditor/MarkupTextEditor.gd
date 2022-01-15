@@ -324,6 +324,9 @@ func _process(delta: float) -> void:
 	# print("type", selected_node.get_class())
 
 func _on_node_selected(node: Node):
+	if selected_node == node:
+		return
+
 	if node is AdvancedTextLabel:
 		var _markup_str_id = node.markup
 		
@@ -465,7 +468,6 @@ func _on_file_open(file_path:String, modified_text := ""):
 	files_boxes[file_name] = f_box
 	_update_file_data(f_data)
 	save_files_ram()
-
 
 func save_files_ram():
 	print("save files ram")
