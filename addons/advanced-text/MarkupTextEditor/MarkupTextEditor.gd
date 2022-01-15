@@ -75,7 +75,7 @@ onready var file_save_as_button : Button = get_node(file_save_as_button_nodepath
 var markup_id := 0
 var text: = ""
 var editor : EditorInterface
-var selected_node : Node
+var last_selected_node : Node
 var saving_as_mode := false
 const markups_str := ["markdown", "renpy", "bbcode"]
 
@@ -172,8 +172,7 @@ func _ready():
 		ch.connect("text_changed", self, "_on_text_changed", [ch])
 
 func _on_visibility_changed():
-	var edit_node := selected_node_toggle.pressed
-	set_process(edit_node && visible)
+	set_process(visible)
 
 func _on_nodes_toggle(toggled:bool):
 	last_file_data = current_file_data
@@ -181,16 +180,14 @@ func _on_nodes_toggle(toggled:bool):
 	var tab = get_current_edit_tab()
 	update_text_preview(tab, false)
 
-	var selected_node = get_selected_node()
+	var last_selected_node = get_selected_node()
 
-	if selected_node:
-		_on_node_selected(selected_node)
+	if last_selected_node:
+		_on_node_selected(last_selected_node)
 
 	else:
 		file_icon.texture = get_icon("NodeWarning", "EditorIcons")
 		file_name_label.text = "None Node is Selected"
-
-	set_process(toggled)
 
 func _on_files_toggle(toggled:bool):
 	files_tab.visible = toggled
@@ -236,18 +233,18 @@ func _on_text_changed(caller:TextEdit):
 		file_modified_icon.show()
 		file_save_button.disabled = false
 		
-	if selected_node:
-		if selected_node is AdvancedTextLabel:
-			selected_node.markup_text = caller.text
+	if last_selected_node:
+		if last_selected_node is AdvancedTextLabel:
+			last_selected_node.markup_text = caller.text
 		
-		if selected_node is RichTextLabel:
-			if selected_node.bbcode_enabled:
-				selected_node.markup_text = caller.text
+		if last_selected_node is RichTextLabel:
+			if last_selected_node.bbcode_enabled:
+				last_selected_node.markup_text = caller.text
 			else:
-				selected_node.text = caller.text
+				last_selected_node.text = caller.text
 		
-		if selected_node is CodeEdit:
-			selected_node.text = caller.text
+		if last_selected_node is CodeEdit:
+			last_selected_node.text = caller.text
 
 func _on_option_selected(id: int):
 	if id != markup_id:
@@ -272,9 +269,9 @@ func _set_markup_id(id: int):
 	preview_tabs.current_tab = id
 	help_tabs.current_tab = id
 	
-	if selected_node:
-		if selected_node is AdvancedTextLabel:
-			selected_node.markup = markups_str[id]
+	if last_selected_node:
+		if last_selected_node is AdvancedTextLabel:
+			last_selected_node.markup = markups_str[id]
 
 func _on_help_button_pressed():
 	var m = markups_options.get_item_text(markup_id) 
@@ -296,36 +293,59 @@ func get_selected_node() -> Node:
 	var s = editor.get_selection()
 	var selected_nodes = s.get_selected_nodes()
 
-	print("selected_nodes ", selected_nodes.size())
+	# print("selected_nodes ", selected_nodes.size())
 	if selected_nodes.size() == 0:
 		return null
 
-	if selected_node != selected_nodes[0]:
+	if last_selected_node != selected_nodes[0]:
 		return selected_nodes[0]
 	else:
 		return null
 
+var mouse_button_released = true
+var mouse_button_just_pressed = false
+
 func _process(delta: float) -> void:
 	if not editor:
 		return
-
-	if Input.is_action_just_pressed("mouse_left_button"):
-		var selected_node = get_selected_node()
-		if !selected_node:
-			return
-
-		preview_toggle.pressed = true
-		preview_tabs.visible = true
-		file_name_label.text = selected_node.name
-		toggle_nodes_mode()
-
-		# print("type", selected_node.get_class())
-
-func _on_node_selected(node: Node):
-	if selected_node == node:
+	
+	# there is no selected node changed signal
+	# so I need to check if the selected node changed in _process()
+	# also adding InputMap.add_action() doesn't work in editor
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		if mouse_button_released:
+			mouse_button_just_pressed = true
+			mouse_button_released = false
+		else:
+			mouse_button_just_pressed = false
+	
+	else:
+		mouse_button_released = true
+		mouse_button_just_pressed = false
+		
+	if !mouse_button_just_pressed:
 		return
 
-	selected_node = node
+	var selected_node = get_selected_node()
+	if !selected_node:
+		return
+	
+	if selected_node == last_selected_node:
+		return
+
+	last_selected_node = selected_node
+	preview_toggle.pressed = true
+	preview_tabs.visible = true
+	file_name_label.text = selected_node.name
+	toggle_nodes_mode()
+
+	# print("type", last_selected_node.get_class())
+
+func _on_node_selected(node: Node):
+	if last_selected_node == node:
+		return
+
+	last_selected_node = node
 
 	if node is AdvancedTextLabel:
 		var _markup_str_id = node.markup
