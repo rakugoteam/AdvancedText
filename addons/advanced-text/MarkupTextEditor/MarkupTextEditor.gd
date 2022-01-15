@@ -266,8 +266,15 @@ func _set_markup_id(id: int):
 	if id != markup_id:
 		markups_options.selected = id
 		edit_tabs.current_tab = id
-		preview_tabs.current_tab = id
-		help_tabs.current_tab = id
+
+		preview_toggle.visible = id != 3
+		preview_tabs.visible = id != 3
+		help_button.visible = id != 3
+
+		if id != 3:
+			preview_tabs.current_tab = id
+			help_tabs.current_tab = id
+		
 		markup_id = id
 
 		if selected_node:
@@ -321,7 +328,7 @@ func _on_node_selected(node: Node):
 		var _markup_str_id = node.markup
 		
 		if _markup_str_id == "default":
-			_markup_str_id = ProjectSettings.get("advanced_text/markup")
+			_markup_str_id = ProjectSettings.get("addons/advanced_text/markup")
 
 		var _markup_id = markups_str.find(_markup_str_id)
 		markups_options.disabled = false
