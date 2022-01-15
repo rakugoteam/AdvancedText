@@ -81,6 +81,7 @@ const markups_str := ["markdown", "renpy", "bbcode"]
 
 var files_ram := {}
 var files_boxes := {}
+var current_file_path := ""
 var current_file_data := {}
 var last_file_data := {}
 var paths_dir := {}
@@ -213,7 +214,6 @@ func get_current_edit_tab() -> TextEdit:
 	var e_id := edit_tabs.current_tab
 	return e_tabs[e_id]
 
-
 func update_text_preview(caller:TextEdit, text_from_edit_tab := true):
 	if not caller.visible:
 		return
@@ -229,7 +229,6 @@ func update_text_preview(caller:TextEdit, text_from_edit_tab := true):
 	var current_preview_tab = l_tabs[l_id]
 
 	current_preview_tab.markup_text = text
-
 
 func _on_text_changed(caller:TextEdit):
 	if !caller.visible:
@@ -254,7 +253,6 @@ func _on_text_changed(caller:TextEdit):
 		
 		if selected_node is CodeEdit:
 			selected_node.text = caller.text
-
 
 func _on_option_selected(id: int):
 	if id != markup_id:
@@ -372,17 +370,14 @@ func _on_node_selected(node: Node):
 		file_icon.texture = get_icon("NodeWarning", "EditorIcons")
 		file_name_label.text = "Unsupported Node Type"
 
-
 func _on_file_open_button_pressed():
 	file_popup.mode = FileDialog.MODE_OPEN_FILES
 	file_popup.popup_centered(Vector2(700, 500))
-
 
 func _on_file_save_as_button_pressed():
 	file_popup.mode = FileDialog.MODE_SAVE_FILE
 	saving_as_mode = true
 	file_popup.popup_centered(Vector2(700, 500))
-
 
 func _on_file_selected(file_path:String):
 	# var file_path = file_popup.current_path
@@ -410,7 +405,14 @@ func _on_files_selected(file_paths:Array):
 func _on_file_open(file_path:String, modified_text := ""):
 	if file_path.empty():
 		return
+
+	if current_file_path == file_path:
+		return
+
+	current_file_path = file_path
 	
+	# print_debug("open file ", file_path)
+
 	# file is already open so just switch to it
 	var file_name = file_path.get_file()
 	var file_ext = file_path.get_extension()
@@ -418,7 +420,7 @@ func _on_file_open(file_path:String, modified_text := ""):
 	if file_path in paths_dir.keys():
 		# add switching to file
 		var f_tab = paths_dir[file_path]
-		f_tab.emit_signal("pressed", f_tab)
+		f_tab.emit_signal("pressed")
 		return
 
 	# print("open not opened file", file_path)
@@ -467,7 +469,11 @@ func _on_file_open(file_path:String, modified_text := ""):
 	files_ram[f_box] = f_data
 	files_boxes[file_name] = f_box
 	_update_file_data(f_data)
+
 	save_files_ram()
+
+	f_button.emit_signal("pressed")
+
 
 func save_files_ram():
 	print("save files ram")
