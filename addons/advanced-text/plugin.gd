@@ -29,6 +29,11 @@ func _enter_tree():
 	var property_keys := default_properties.keys()
 	ProjectTools.set_settings_order(property_keys, 1)
 
+	InputMap.add_action("mouse_left_button")
+	var mouse_left_button_event := InputEventMouseButton.new()
+	mouse_left_button_event.device = BUTTON_LEFT 
+	InputMap.action_add_event("mouse_left_button", mouse_left_button_event)
+
 	# loads all parser onces
 	var parsers_dir := "res://addons/advanced-text/parsers/" 
 	add_autoload_singleton("EBBCodeParser",  parsers_dir + "EBBCodeParser.gd")

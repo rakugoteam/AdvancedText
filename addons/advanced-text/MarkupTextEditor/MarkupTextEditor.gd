@@ -120,7 +120,6 @@ func load_last_session(files_ram_path : String):
 	
 	files_tab.visible = true
 
-
 func _ready():
 	emoji_button.hide()
 	_on_nodes_toggle(true)
@@ -186,6 +185,7 @@ func _on_nodes_toggle(toggled:bool):
 
 	if selected_node:
 		_on_node_selected(selected_node)
+
 	else:
 		file_icon.texture = get_icon("NodeWarning", "EditorIcons")
 		file_name_label.text = "None Node is Selected"
@@ -201,10 +201,8 @@ func _on_files_toggle(toggled:bool):
 		file_icon.texture = get_icon("New", "EditorIcons")
 		file_name_label.text = "Unnamed Text File"
 
-
 func _on_toggle(toggled: bool):
 	preview_tabs.visible = toggled
-
 
 func get_current_edit_tab() -> TextEdit:
 	var e_tabs := edit_tabs.get_children()
@@ -258,23 +256,25 @@ func _on_option_selected(id: int):
 		update_text_preview(current, text.empty())
 
 func _set_markup_id(id: int):
-	if id != markup_id:
-		markups_options.selected = id
-		edit_tabs.current_tab = id
-
-		preview_toggle.visible = id != 3
-		preview_tabs.visible = id != 3
-		help_button.visible = id != 3
-
-		if id != 3:
-			preview_tabs.current_tab = id
-			help_tabs.current_tab = id
+	if id == markup_id:
+		return
 		
-		markup_id = id
+	markup_id = id
+	markups_options.selected = id
+	edit_tabs.current_tab = id
+	preview_toggle.visible = id != 3
+	preview_tabs.visible = id != 3
+	help_button.visible = id != 3
 
-		if selected_node:
-			if selected_node is AdvancedTextLabel:
-				selected_node.markup = markups_str[id]
+	if id == 3:
+		return
+
+	preview_tabs.current_tab = id
+	help_tabs.current_tab = id
+	
+	if selected_node:
+		if selected_node is AdvancedTextLabel:
+			selected_node.markup = markups_str[id]
 
 func _on_help_button_pressed():
 	var m = markups_options.get_item_text(markup_id) 
@@ -295,6 +295,8 @@ func get_selected_node() -> Node:
 
 	var s = editor.get_selection()
 	var selected_nodes = s.get_selected_nodes()
+
+	print("selected_nodes ", selected_nodes.size())
 	if selected_nodes.size() == 0:
 		return null
 
@@ -306,21 +308,24 @@ func get_selected_node() -> Node:
 func _process(delta: float) -> void:
 	if not editor:
 		return
-	
-	var selected_node = get_selected_node()
-	if !selected_node:
-		return
 
-	preview_toggle.pressed = true
-	preview_tabs.visible = true
-	file_name_label.text = selected_node.name
-	toggle_nodes_mode()
+	if Input.is_action_just_pressed("mouse_left_button"):
+		var selected_node = get_selected_node()
+		if !selected_node:
+			return
 
-	# print("type", selected_node.get_class())
+		preview_toggle.pressed = true
+		preview_tabs.visible = true
+		file_name_label.text = selected_node.name
+		toggle_nodes_mode()
+
+		# print("type", selected_node.get_class())
 
 func _on_node_selected(node: Node):
 	if selected_node == node:
 		return
+
+	selected_node = node
 
 	if node is AdvancedTextLabel:
 		var _markup_str_id = node.markup
@@ -334,6 +339,7 @@ func _on_node_selected(node: Node):
 
 		if node.markup_text_file:
 			toggle_files_mode()
+			print("loading text file from node")
 			_on_file_open(node.markup_text_file)
 		
 		else:
@@ -470,7 +476,6 @@ func _on_file_open(file_path:String, modified_text := ""):
 
 	f_button.emit_signal("pressed")
 
-
 func save_files_ram():
 	print("save files ram")
 	f.open_compressed(files_ram_path, File.WRITE)
@@ -490,14 +495,15 @@ func save_files_ram():
 	f.store_var(data_to_save)
 	f.close()
 
-
 func _update_file_data(f_data:Dictionary, file_path:String):
 	if last_file_data == f_data:
 		return
 	
+	last_file_data = f_data
+
 	if file_path == current_file_path:
 		return
-
+	
 	current_file_path = file_path
 
 	print("load file data to ram")
