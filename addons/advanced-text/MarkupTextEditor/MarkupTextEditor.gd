@@ -172,11 +172,9 @@ func _ready():
 		ch.connect("text_changed", self, "update_text_preview", [ch, true])
 		ch.connect("text_changed", self, "_on_text_changed", [ch])
 
-
 func _on_visibility_changed():
 	var edit_node := selected_node_toggle.pressed
 	set_process(edit_node && visible)
-
 
 func _on_nodes_toggle(toggled:bool):
 	last_file_data = current_file_data
@@ -194,11 +192,10 @@ func _on_nodes_toggle(toggled:bool):
 
 	set_process(toggled)
 
-
 func _on_files_toggle(toggled:bool):
 	files_tab.visible = toggled
 	if last_file_data:
-		_update_file_data(last_file_data)
+		_update_file_data(last_file_data, current_file_path)
 
 	else:
 		file_icon.texture = get_icon("New", "EditorIcons")
@@ -398,7 +395,7 @@ func _on_file_selected(file_path:String):
 			_on_file_save_button_pressed()
 
 func _on_files_selected(file_paths:Array):
-	# print("open files", file_paths)
+	print("open files", file_paths)
 	for file_path in file_paths:
 		_on_file_open(file_path)
 
@@ -408,22 +405,21 @@ func _on_file_open(file_path:String, modified_text := ""):
 
 	if current_file_path == file_path:
 		return
-
-	current_file_path = file_path
 	
-	# print_debug("open file ", file_path)
-
-	# file is already open so just switch to it
+	print_debug("open file ", file_path)
 	var file_name = file_path.get_file()
 	var file_ext = file_path.get_extension()
-
+	
+	# if file is already open so just switch to it
 	if file_path in paths_dir.keys():
 		# add switching to file
-		var f_tab = paths_dir[file_path]
-		f_tab.emit_signal("pressed")
+		print_debug("file already open")
+		var f_tab_button = paths_dir[file_path].get_node("FileButton")
+		print_debug("switch to tab ", f_tab_button.text)
+		f_tab_button.emit_signal("pressed")
 		return
 
-	# print("open not opened file", file_path)
+	print("open not opened file", file_path)
 
 	var f_box = file_box_scene.instance()
 	f_box.name = file_name
@@ -468,7 +464,7 @@ func _on_file_open(file_path:String, modified_text := ""):
 	paths_dir[file_path] = f_box
 	files_ram[f_box] = f_data
 	files_boxes[file_name] = f_box
-	_update_file_data(f_data)
+	_update_file_data(f_data, file_path)
 
 	save_files_ram()
 
@@ -495,8 +491,16 @@ func save_files_ram():
 	f.close()
 
 
-func _update_file_data(f_data):
-	# print("load file data to ram")
+func _update_file_data(f_data:Dictionary, file_path:String):
+	if last_file_data == f_data:
+		return
+	
+	if file_path == current_file_path:
+		return
+
+	current_file_path = file_path
+
+	print("load file data to ram")
 
 	markups_options.disabled = true
 	var b : Button = f_data["f_button"]
@@ -526,11 +530,12 @@ func _update_file_data(f_data):
 	update_text_preview(get_current_edit_tab(), false)
 	current_file_data = f_data
 	file_save_button.disabled = not f_data["modified"]
-	# print("file loaded")
+	print("file loaded")
 
 func _on_file_button_pressed(file_box: Node):
 	var f_data = files_ram[file_box]
-	_update_file_data(f_data)
+	var file_path = f_data["path"]
+	_update_file_data(f_data, file_path)
 
 func _on_file_close_button_pressed(file_box: Node):
 	var f_data = files_ram[file_box]
@@ -570,5 +575,5 @@ func _on_file_save_button_pressed():
 	f.close()
 
 	f_data["modified"] = false
-	_update_file_data(f_data)
+	_update_file_data(f_data, file_path)
 	save_files_ram()
