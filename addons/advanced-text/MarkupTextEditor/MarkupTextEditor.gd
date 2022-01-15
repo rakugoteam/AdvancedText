@@ -338,15 +338,11 @@ func _process(delta: float) -> void:
 	preview_tabs.visible = true
 	file_name_label.text = selected_node.name
 	toggle_nodes_mode()
+	_on_node_selected(selected_node)
 
 	# print("type", last_selected_node.get_class())
 
 func _on_node_selected(node: Node):
-	if last_selected_node == node:
-		return
-
-	last_selected_node = node
-
 	if node is AdvancedTextLabel:
 		var _markup_str_id = node.markup
 		
@@ -566,7 +562,7 @@ func _on_file_button_pressed(file_box: Node):
 func _on_file_close_button_pressed(file_box: Node):
 	var f_data = files_ram[file_box]
 	var f_button = f_data["f_button"]
-	# todo add ask for save if text is changed
+	# todo add ask for save if text was changed
 	files_box.remove_child(file_box)
 	files_boxes.erase(file_box.name)
 	files_ram.erase(file_box)
