@@ -57,7 +57,7 @@ func _get_text_parser(_markup_str:String):
 			# for some reason loading default parser setting works only in editor
 			# so I save it as metadata and load it during runtime
 			if Engine.editor_hint:
-				default = ProjectSettings.get("advanced_text/markup")
+				default = ProjectSettings.get("addons/advanced_text/markup")
 				set_meta("_default_markup", default)
 			else:
 				default = get_meta("_default_markup")
@@ -107,7 +107,7 @@ func _on_update() -> void:
 	if p == null:
 		return
 	
-	var vars_json = ProjectSettings.get("advanced_text/default_vars")
+	var vars_json = ProjectSettings.get("addons/advanced_text/default_vars")
 	var default_vars = parse_json(vars_json)
 	
 	if default_vars:

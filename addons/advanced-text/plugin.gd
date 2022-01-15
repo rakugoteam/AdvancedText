@@ -6,26 +6,29 @@ var markup_text_editor
 var editor_parent : Control
 var button_parent : Control
 
-var default_property_list:Dictionary = {
-	"advanced_text/markup" : [
+var default_properties := {
+	"addons/advanced_text/markup" : [
 		"markdown", PropertyInfo.new(
 			"", TYPE_STRING, PROPERTY_HINT_ENUM, 
 			"markdown,renpy,bbcode",
 			PROPERTY_USAGE_CATEGORY)
 		],
-	"advanced_text/default_vars" : [
+	"addons/advanced_text/default_vars" : [
 		# json string
 		JSON.print({
 			"test_setting" : "variable from project settings" 
 		}, "\t"),
 		PropertyInfo.new(
 			"", TYPE_STRING, PROPERTY_HINT_MULTILINE_TEXT, 
-			"",
-			PROPERTY_USAGE_CATEGORY)
+			"", PROPERTY_USAGE_CATEGORY)
 		],
 }
 
 func _enter_tree():
+	ProjectTools.set_settings_dict(default_properties)
+	var property_keys := default_properties.keys()
+	ProjectTools.set_settings_order(property_keys, 1)
+
 	# loads all parser onces
 	var parsers_dir := "res://addons/advanced-text/parsers/" 
 	add_autoload_singleton("EBBCodeParser",  parsers_dir + "EBBCodeParser.gd")
@@ -64,10 +67,6 @@ func _enter_tree():
 		b.connect("pressed", self, "_on_toggle", args)
 	
 	connect("scene_changed", self, "_on_scene_changed")
-
-	for property_key in default_property_list.keys():
-		var property_value = default_property_list[property_key]
-		ProjectTools.set_setting(property_key, property_value[0], property_value[1])
 
 func _exit_tree():
 	# remove MarkupTextEditor from EditorUI
