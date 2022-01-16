@@ -124,9 +124,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer2"]
-margin_left = 96.0
+margin_left = 80.0
 margin_top = 12.0
-margin_right = 176.0
+margin_right = 191.0
 margin_bottom = 28.0
 
 [node name="FileIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
@@ -134,7 +134,7 @@ margin_right = 16.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 13 )
+texture = ExtResource( 12 )
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
@@ -143,10 +143,10 @@ __meta__ = {
 [node name="FileName" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
 margin_left = 20.0
 margin_top = 1.0
-margin_right = 80.0
+margin_right = 111.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
-text = "renpy.rpy"
+text = "markdown.md"
 
 [node name="ModifiedIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
 visible = false
@@ -187,12 +187,12 @@ margin_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 disabled = true
-text = "RenPy"
-icon = ExtResource( 13 )
+text = "Markdown"
+icon = ExtResource( 12 )
 flat = true
 clip_text = true
 items = [ "Markdown", ExtResource( 12 ), false, 0, null, "RenPy", ExtResource( 13 ), false, 1, null, "BBCode", ExtResource( 14 ), false, 2, null ]
-selected = 1
+selected = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 800.0
@@ -328,7 +328,6 @@ __meta__ = {
 }
 
 [node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -409,6 +408,7 @@ __meta__ = {
 configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
 
 [node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -613,7 +613,6 @@ size_flags_vertical = 3
 tabs_visible = false
 
 [node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -809,6 +808,7 @@ test_dict.key1 = <test_dict.key1>
 headers_fonts = [ ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ]
 
 [node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -1128,7 +1128,6 @@ __meta__ = {
 }
 
 [node name="MarkdownHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -1308,6 +1307,7 @@ wave amp=50 freq=2]wave[/wave]
 headers_fonts = [ ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ]
 
 [node name="RenPyHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
