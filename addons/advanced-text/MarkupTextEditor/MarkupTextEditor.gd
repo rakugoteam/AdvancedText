@@ -101,6 +101,8 @@ func import_emojis():
 		add_child(emoji_panel)
 		emoji_button.connect("pressed", emoji_panel, "popup_centered", [Vector2(450, 400)])
 		emoji_button.show()
+	else:
+		EmojisImport.free()
 
 func load_last_session(files_ram_path : String):
 	f.open_compressed(files_ram_path, File.READ)
@@ -347,7 +349,7 @@ func _on_node_selected(node: Node):
 		var _markup_str_id = node.markup
 		
 		if _markup_str_id == "default":
-			_markup_str_id = ProjectSettings.get("addons/advanced_text/markup")
+			_markup_str_id = ProjectSettings.get_setting("addons/advanced_text/markup")
 
 		var _markup_id = markups_str.find(_markup_str_id)
 		markups_options.disabled = false
