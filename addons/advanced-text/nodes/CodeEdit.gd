@@ -104,7 +104,11 @@ func read_conf_element(config:Dictionary, conf):
 	
 	match conf:
 		"emojis":
-			load_emojis_if_exists(read_color(c, "color"))
+			if EmojisImport.is_plugin_enabled():
+				load_emojis_if_exists(read_color(c, "color"))
+			else:
+				EmojisImport.free()
+				
 		"class":
 			read_class_conf_if_exist(c)
 		_:

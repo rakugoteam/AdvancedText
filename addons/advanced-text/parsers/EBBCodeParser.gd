@@ -7,12 +7,15 @@ extends Node
 # For emojis you need to install emojis-for-godot
 
 var EmojisImport
-var emojis_gd
+var emojis_gd = null
 
 func _init():
 	EmojisImport = preload("../emojis_import.gd")
 	EmojisImport = EmojisImport.new()
-	emojis_gd = EmojisImport.get_emojis()
+	if EmojisImport.is_plugin_enabled():
+		emojis_gd = EmojisImport.get_emojis()
+	else:
+		EmojisImport.free()
 
 func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
 	var output = "" + text
