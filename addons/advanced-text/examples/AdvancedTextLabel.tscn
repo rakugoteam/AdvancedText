@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=1]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H2.tres" type="DynamicFont" id=2]
+[ext_resource path="res://addons/advanced-text/font/theme_with_fonts.tres" type="Theme" id=3]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H1.tres" type="DynamicFont" id=4]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=5]
+
+[node name="AdvancedTextLabel" type="RichTextLabel"]
+margin_right = 386.0
+margin_bottom = 103.0
+theme = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[font=res://addons/material-design-icons/fonts/%s.tres]󰀅[/font] [b]some text[/b]
+[font=res://addons/material-design-icons/fonts/%s.tres]󰀅[/font]
+
+
+ "
+text = "󰀅 some text
+󰀅
+
+
+ "
+script = ExtResource( 1 )
+markup_text = "[icon=account-alert] **some text**
+[icon=account-alert,48]
+
+
+ "
+markup = "markdown"
+headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]

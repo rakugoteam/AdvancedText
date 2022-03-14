@@ -94,7 +94,7 @@ gdscript/warnings/return_value_discarded=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/advanced-text/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/advanced-text/plugin.cfg", "res://addons/emojis-for-godot/plugin.cfg", "res://addons/material-design-icons/plugin.cfg" )
 
 [global]
 

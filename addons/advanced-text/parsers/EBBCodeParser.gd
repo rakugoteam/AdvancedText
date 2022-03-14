@@ -43,10 +43,9 @@ func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
 	# prints("emojis_gd:", emojis_gd)
 	if emojis_gd:
 		output = emojis_gd.parse_emojis(output)
-
+			
 	if icons_gd:
-		output = icons_gd.parse_icons(output)
-		
+		output = parse_icons(output)
 	return output
 
 func replace_variables(text:String, variables:Dictionary, placeholder := "<_>") -> String:
@@ -147,14 +146,27 @@ func parse_icons(text:String):
 	var re = RegEx.new()
 	var output = "" + text
 	var replacement = ""
-	var ch = ""
 	
-	# [icon:icon_name]
-	re.compile("\\[icon:([^\\]]+)\\]")
+	# [icon=icon-name]
+	re.compile("\\[icon=([\\w\\d-]+)\\]")
 	for result in re.search_all(text):
 		if result.get_string():
-			ch = icons_gd.get_icon_char(result.get_string())
-			replacement = "[font=%s]%s[/font]" %  [icons_font, ch]
+			var icon = result.get_string(1)
+			replacement = _parse_icon(icon)
+		output = regex_replace(result, output, replacement)
+
+	# [icon=icon-name,size]
+	re.compile("\\[icon=([\\w\\d-]+)\\,\\s*([0-9]+)\\]")
+	for result in re.search_all(text):
+		if result.get_string():
+			var icon = result.get_string(1)
+			var size = result.get_string(2)
+			replacement = _parse_icon(icon, size)
 			output = regex_replace(result, output, replacement)
 	
 	return output
+
+func _parse_icon(icon_name:String, size:="24") -> String:
+	var ch = icons_gd.get_icon_char(icon_name)
+	var font = icons_font % size
+	return "[font=%s]%s[/font]" %  [font, ch]
