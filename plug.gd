@@ -5,3 +5,4 @@ func _plugging():
     # By default, only "addons/" directory will be installed
     plug("rakugoteam/project-settings-helpers")
     plug("rakugoteam/Emojis-For-Godot")
+    plug("rakugoteam/Godot-Material-Icons")
