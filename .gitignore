@@ -7,3 +7,4 @@ mono_crash.*.json
 !/addons/gd-plug/
 !/addons/advanced-text/*
 addons/advanced-text/MarkupTextEditor/ram.data
+addons.cfg
