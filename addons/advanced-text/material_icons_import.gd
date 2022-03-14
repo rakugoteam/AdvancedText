@@ -7,6 +7,7 @@ const mi_path := "res://addons/material-design-icons/icons/icons.gd"
 const mi_plugin_path := "res://addons/material-design-icons/plugin.cfg"
 const mi_panel := "res://addons/material-design-icons/icon_finder/IconFinder.tscn"
 const mi_icon_path := "res://addons/material-design-icons/nodes/MaterialIcon.svg"
+const mi_font_path := "res://addons/material-design-icons/fonts/24.tres"
 
 var f := File.new()
 var _icons
@@ -54,3 +55,4 @@ func get_icon() -> Texture:
 
   var icon = load(mi_icon_path)
   return icon
+
