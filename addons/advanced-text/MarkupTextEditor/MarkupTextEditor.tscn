@@ -22,7 +22,7 @@
 
 [sub_resource type="ButtonGroup" id=1]
 
-[sub_resource type="Image" id=2]
+[sub_resource type="Image" id=4]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -34,7 +34,7 @@ data = {
 [sub_resource type="ImageTexture" id=3]
 flags = 4
 flags = 4
-image = SubResource( 2 )
+image = SubResource( 4 )
 size = Vector2( 16, 16 )
 
 [node name="MarkupTextEditor" type="Control"]
@@ -44,9 +44,6 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 AdvancedTextLabelIcon = ExtResource( 10 )
 CodeEditIcon = ExtResource( 19 )
 MarkdownIcon = ExtResource( 12 )
@@ -124,9 +121,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/CenterContainer2"]
-margin_left = 80.0
+margin_left = 96.0
 margin_top = 12.0
-margin_right = 191.0
+margin_right = 176.0
 margin_bottom = 28.0
 
 [node name="FileIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
@@ -134,7 +131,7 @@ margin_right = 16.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
@@ -143,10 +140,10 @@ __meta__ = {
 [node name="FileName" type="Label" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
 margin_left = 20.0
 margin_top = 1.0
-margin_right = 111.0
+margin_right = 80.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
-text = "markdown.md"
+text = "renpy.rpy"
 
 [node name="ModifiedIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/CenterContainer2/HBoxContainer"]
 visible = false
@@ -187,12 +184,12 @@ margin_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 disabled = true
-text = "Markdown"
-icon = ExtResource( 12 )
+text = "RenPy"
+icon = ExtResource( 13 )
 flat = true
 clip_text = true
 items = [ "Markdown", ExtResource( 12 ), false, 0, null, "RenPy", ExtResource( 13 ), false, 1, null, "BBCode", ExtResource( 14 ), false, 2, null ]
-selected = 0
+selected = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 800.0
@@ -328,6 +325,7 @@ __meta__ = {
 }
 
 [node name="MarkdownEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -408,7 +406,6 @@ __meta__ = {
 configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
 
 [node name="RenPyEdit" type="TextEdit" parent="VBoxContainer/HSplitContainer/HBox/EditorsContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -613,6 +610,7 @@ size_flags_vertical = 3
 tabs_visible = false
 
 [node name="MarkdownTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -808,7 +806,6 @@ test_dict.key1 = <test_dict.key1>
 headers_fonts = [ ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ]
 
 [node name="RenPyTextLabel" type="RichTextLabel" parent="VBoxContainer/HSplitContainer/HBox/PreviewsContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -1122,36 +1119,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-tabs_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarkdownHelp" type="HSplitContainer" parent="PopupHelp/HelperContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 8.0
+margin_top = 24.0
 margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="MarkdownCode" type="TextEdit" parent="PopupHelp/HelperContainer/MarkdownHelp"]
 margin_right = 684.0
-margin_bottom = 578.0
+margin_bottom = 562.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "# Header Level 1
 ## Header Level 2
 ### Header Level 3
+
 **bold**
 *italic*
 ~~strike through~~
-`code`
+```mono-spaced text```
+
 [link](https://some_domain.com)
 https://some_domain.com
-<test_var>
+
+test_string = <test_string>
+test_int = <test_int>
+test_bool = <test_bool>
+test_list[0] = <test_list[0]>
+test_dict.key1 = <test_dict.key1>
+@color=<test_color> {text in custom color from variable}
+
 :grinning:
 ![](res://icon.png)
+![24x24](res://icon.png)
 
 @table=3 {
 |1|2|3|
@@ -1159,18 +1162,33 @@ https://some_domain.com
 |7|8|9|
 }
 
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
+@u{underlined text}
+@center{centered text}
+@right{right aligned text}
 
-wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+@fill{fill aligned text}
+@justified{justified text *(alt to @fill)* }
+
+@indent{indent text}
+@tab {indent text *(alt to @indent)*}
+
+@color=red {red text}
+@color=#c39f00 {custom colored text}
+
+@wave amp=50 freq=2 {waving text}
+@wave 50, 2 {waving text}
+
+@tornado radius=5 freq=2 {tornado text}
+@tornado 5, 2 {tornado text}
+
+@shake rate=5 level=10 {shaking text }
+@shake 5, 10 {shaking text}
+
+@fade start=4 length=14 {fade text}
+@fade 4, 14 {fade text}
+
+@rainbow freq=0.2 sat=10 val=20 {rainbow text}
+@rainbow 0.2,10,20 {rainbow text}
 
 
 "
@@ -1191,7 +1209,7 @@ configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/a
 [node name="MarkdownPreview" type="RichTextLabel" parent="PopupHelp/HelperContainer/MarkdownHelp"]
 margin_left = 696.0
 margin_right = 996.0
-margin_bottom = 578.0
+margin_bottom = 562.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
@@ -1311,13 +1329,13 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 8.0
+margin_top = 24.0
 margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="RenPyCode" type="TextEdit" parent="PopupHelp/HelperContainer/RenPyHelp"]
 margin_right = 684.0
-margin_bottom = 578.0
+margin_bottom = 562.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "\"\"\"
@@ -1370,7 +1388,7 @@ configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 [node name="RenPy" type="RichTextLabel" parent="PopupHelp/HelperContainer/RenPyHelp"]
 margin_left = 696.0
 margin_right = 996.0
-margin_bottom = 578.0
+margin_bottom = 562.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
@@ -1485,7 +1503,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 8.0
+margin_top = 24.0
 margin_right = -4.0
 margin_bottom = -4.0
 size_flags_horizontal = 3
@@ -1497,7 +1515,7 @@ __meta__ = {
 
 [node name="BBCodeCode" type="TextEdit" parent="PopupHelp/HelperContainer/BBCodeHelp"]
 margin_right = 684.0
-margin_bottom = 578.0
+margin_bottom = 562.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "[h1]Header Level 1[/h1]
@@ -1549,7 +1567,7 @@ configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
 [node name="BBCode" type="RichTextLabel" parent="PopupHelp/HelperContainer/BBCodeHelp"]
 margin_left = 696.0
 margin_right = 996.0
-margin_bottom = 578.0
+margin_bottom = 562.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
