@@ -1,7 +1,7 @@
 tool
 extends EditorPlugin
 
-var markup_text_editor_button := ToolButton.new()
+var markup_text_editor_button : ToolButton
 var markup_text_editor
 var markup_edit_enabled := "false"
 var editor_parent : Control
@@ -74,6 +74,7 @@ func load_and_enable_markup_edit():
 	editor_parent.add_child(markup_text_editor)
 	
 	# add button for MarkupTextEditor to toolbar
+	markup_text_editor_button = ToolButton.new()
 	markup_text_editor_button.text = "Markup Text Editor"
 	markup_text_editor_button.icon = preload("icons/MarkupTextEditor.svg")
 	markup_text_editor_button.toggle_mode = true
@@ -96,7 +97,6 @@ func load_and_enable_markup_edit():
 	
 	connect("scene_changed", self, "_on_scene_changed")
 
-
 func unload_and_disable_markup_edit():
 	# remove MarkupTextEditor from EditorUI
 	if markup_text_editor != null:
@@ -110,7 +110,7 @@ func unload_and_disable_markup_edit():
 			if b == markup_text_editor_button:
 				args[0] = true
 			
-			b.disconnect("pressed", self, "_on_toggle", args)
+			b.disconnect("pressed", self, "_on_toggle")
 		markup_text_editor_button.queue_free()
 
 func _exit_tree():
