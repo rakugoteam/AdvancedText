@@ -72,6 +72,10 @@ _global_script_class_icons={
 "PropertyInfo": ""
 }
 
+[addons]
+
+advanced_text/enable_MarkupEdit=true
+
 [application]
 
 config/name="AdvancedTextLabel"

@@ -22,6 +22,11 @@ var default_properties := {
 			"", TYPE_STRING, PROPERTY_HINT_MULTILINE_TEXT, 
 			"", PROPERTY_USAGE_CATEGORY)
 		],
+	"addons/advanced_text/enable_MarkupEdit" : [
+		"", PropertyInfo.new(
+			"", TYPE_BOOL, PROPERTY_HINT_FLAGS, 
+			"true", PROPERTY_USAGE_CATEGORY)
+		],
 }
 
 func _enter_tree():
@@ -35,38 +40,40 @@ func _enter_tree():
 	add_autoload_singleton("MarkdownParser", parsers_dir + "MarkdownParser.gd")
 	add_autoload_singleton("RenpyParser", 	parsers_dir + "RenpyParser.gd")
 
-	# load and add MarkupTextEditor to EditorUI
-	markup_text_editor = preload("MarkupTextEditor/MarkupTextEditor.tscn")
-	markup_text_editor = markup_text_editor.instance()
-	editor_parent = get_editor_interface().get_editor_viewport()
-	markup_text_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	markup_text_editor.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	markup_text_editor.visible = false
-	markup_text_editor.editor = get_editor_interface()
-	editor_parent.add_child(markup_text_editor)
-	
-	# add button for MarkupTextEditor to toolbar
-	markup_text_editor_button.text = "Markup Text Editor"
-	markup_text_editor_button.icon = preload("icons/MarkupTextEditor.svg")
-	markup_text_editor_button.toggle_mode = true
-	markup_text_editor_button.pressed = false
-	markup_text_editor_button.action_mode = ToolButton.ACTION_MODE_BUTTON_RELEASE
-
-	# hack to add the button to the editor modes tabs
-	add_control_to_container(CONTAINER_TOOLBAR, markup_text_editor_button)
-	button_parent = markup_text_editor_button.get_parent()
-	button_parent.remove_child(markup_text_editor_button)
-	button_parent = button_parent.get_child(2)
-	button_parent.add_child(markup_text_editor_button)
-
-	for b in button_parent.get_children():
-		var args := [false, b]
-		if b == markup_text_editor_button:
-			args[0] = true
+	var markup_edit_enabled = ProjectTools.get_addon_setting("addons/advanced_text/enable_MarkupEdit")
+	if markup_edit_enabled == "true":
+		# load and add MarkupTextEditor to EditorUI
+		markup_text_editor = preload("MarkupTextEditor/MarkupTextEditor.tscn")
+		markup_text_editor = markup_text_editor.instance()
+		editor_parent = get_editor_interface().get_editor_viewport()
+		markup_text_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		markup_text_editor.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		markup_text_editor.visible = false
+		markup_text_editor.editor = get_editor_interface()
+		editor_parent.add_child(markup_text_editor)
 		
-		b.connect("pressed", self, "_on_toggle", args)
-	
-	connect("scene_changed", self, "_on_scene_changed")
+		# add button for MarkupTextEditor to toolbar
+		markup_text_editor_button.text = "Markup Text Editor"
+		markup_text_editor_button.icon = preload("icons/MarkupTextEditor.svg")
+		markup_text_editor_button.toggle_mode = true
+		markup_text_editor_button.pressed = false
+		markup_text_editor_button.action_mode = ToolButton.ACTION_MODE_BUTTON_RELEASE
+
+		# hack to add the button to the editor modes tabs
+		add_control_to_container(CONTAINER_TOOLBAR, markup_text_editor_button)
+		button_parent = markup_text_editor_button.get_parent()
+		button_parent.remove_child(markup_text_editor_button)
+		button_parent = button_parent.get_child(2)
+		button_parent.add_child(markup_text_editor_button)
+
+		for b in button_parent.get_children():
+			var args := [false, b]
+			if b == markup_text_editor_button:
+				args[0] = true
+			
+			b.connect("pressed", self, "_on_toggle", args)
+		
+		connect("scene_changed", self, "_on_scene_changed")
 
 func _exit_tree():
 	# remove MarkupTextEditor from EditorUI

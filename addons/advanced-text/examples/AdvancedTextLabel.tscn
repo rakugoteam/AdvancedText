@@ -7,24 +7,18 @@
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=5]
 
 [node name="AdvancedTextLabel" type="RichTextLabel"]
-margin_right = 386.0
-margin_bottom = 103.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[font=res://addons/material-design-icons/fonts/%s.tres]󰀅[/font] [b]some text[/b]
-[font=res://addons/material-design-icons/fonts/%s.tres]󰀅[/font]
-
+bbcode_text = "
 
  "
-text = "󰀅 some text
-󰀅
-
+text = "
 
  "
 script = ExtResource( 1 )
-markup_text = "[icon=account-alert] **some text**
-[icon=account-alert,48]
-
+markup_text = "
 
  "
 markup = "markdown"
