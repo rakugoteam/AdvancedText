@@ -3,6 +3,7 @@ extends EditorPlugin
 
 var markup_text_editor_button := ToolButton.new()
 var markup_text_editor
+var markup_edit_enabled := "false"
 var editor_parent : Control
 var button_parent : Control
 
@@ -39,48 +40,81 @@ func _enter_tree():
 	add_autoload_singleton("EBBCodeParser",  parsers_dir + "EBBCodeParser.gd")
 	add_autoload_singleton("MarkdownParser", parsers_dir + "MarkdownParser.gd")
 	add_autoload_singleton("RenpyParser", 	parsers_dir + "RenpyParser.gd")
+	markup_edit_enabled = ProjectSettings.get_setting("addons/advanced_text/enable_MarkupEdit")
+	toggle_markup_edit(markup_edit_enabled)
+	add_tool_menu_item("Toggle Markup Edit", self, "toggle_markup_edit", "toggle")
 
-	var markup_edit_enabled = ProjectTools.get_addon_setting("addons/advanced_text/enable_MarkupEdit")
-	if markup_edit_enabled == "true":
-		# load and add MarkupTextEditor to EditorUI
-		markup_text_editor = preload("MarkupTextEditor/MarkupTextEditor.tscn")
-		markup_text_editor = markup_text_editor.instance()
-		editor_parent = get_editor_interface().get_editor_viewport()
-		markup_text_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		markup_text_editor.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		markup_text_editor.visible = false
-		markup_text_editor.editor = get_editor_interface()
-		editor_parent.add_child(markup_text_editor)
+func toggle_markup_edit(enable: String):
+	match enable:
+		"true":
+			load_and_enable_markup_edit()
+		"false":
+			unload_and_disable_markup_edit()
+		"toggle":
+			if markup_edit_enabled == "true":
+				markup_edit_enabled = "false"
+				enable = "false"
+				unload_and_disable_markup_edit()
+			else:
+				markup_edit_enabled = "true"
+				enable = "true"
+				load_and_enable_markup_edit()
+
+	ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", enable)
+
+func load_and_enable_markup_edit():
+	# load and add MarkupTextEditor to EditorUI
+	markup_text_editor = preload("MarkupTextEditor/MarkupTextEditor.tscn")
+	markup_text_editor = markup_text_editor.instance()
+	editor_parent = get_editor_interface().get_editor_viewport()
+	markup_text_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	markup_text_editor.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	markup_text_editor.visible = false
+	markup_text_editor.editor = get_editor_interface()
+	editor_parent.add_child(markup_text_editor)
+	
+	# add button for MarkupTextEditor to toolbar
+	markup_text_editor_button.text = "Markup Text Editor"
+	markup_text_editor_button.icon = preload("icons/MarkupTextEditor.svg")
+	markup_text_editor_button.toggle_mode = true
+	markup_text_editor_button.pressed = false
+	markup_text_editor_button.action_mode = ToolButton.ACTION_MODE_BUTTON_RELEASE
+
+	# hack to add the button to the editor modes tabs
+	add_control_to_container(CONTAINER_TOOLBAR, markup_text_editor_button)
+	button_parent = markup_text_editor_button.get_parent()
+	button_parent.remove_child(markup_text_editor_button)
+	button_parent = button_parent.get_child(2)
+	button_parent.add_child(markup_text_editor_button)
+
+	for b in button_parent.get_children():
+		var args := [false, b]
+		if b == markup_text_editor_button:
+			args[0] = true
 		
-		# add button for MarkupTextEditor to toolbar
-		markup_text_editor_button.text = "Markup Text Editor"
-		markup_text_editor_button.icon = preload("icons/MarkupTextEditor.svg")
-		markup_text_editor_button.toggle_mode = true
-		markup_text_editor_button.pressed = false
-		markup_text_editor_button.action_mode = ToolButton.ACTION_MODE_BUTTON_RELEASE
+		b.connect("pressed", self, "_on_toggle", args)
+	
+	connect("scene_changed", self, "_on_scene_changed")
 
-		# hack to add the button to the editor modes tabs
-		add_control_to_container(CONTAINER_TOOLBAR, markup_text_editor_button)
-		button_parent = markup_text_editor_button.get_parent()
-		button_parent.remove_child(markup_text_editor_button)
-		button_parent = button_parent.get_child(2)
-		button_parent.add_child(markup_text_editor_button)
 
+func unload_and_disable_markup_edit():
+	# remove MarkupTextEditor from EditorUI
+	if markup_text_editor != null:
+		disconnect("scene_changed", self, "_on_scene_changed")
+		markup_text_editor.queue_free()
+
+	# remove button from toolbar
+	if markup_text_editor_button != null:
 		for b in button_parent.get_children():
 			var args := [false, b]
 			if b == markup_text_editor_button:
 				args[0] = true
 			
-			b.connect("pressed", self, "_on_toggle", args)
-		
-		connect("scene_changed", self, "_on_scene_changed")
+			b.disconnect("pressed", self, "_on_toggle", args)
+		markup_text_editor_button.queue_free()
 
 func _exit_tree():
-	# remove MarkupTextEditor from EditorUI
-	markup_text_editor.queue_free()
-
-	# remove button from toolbar
-	markup_text_editor_button.queue_free()
+	unload_and_disable_markup_edit()
 	
 	# unloaded all parsers
 	remove_autoload_singleton("EBBCodeParser")
