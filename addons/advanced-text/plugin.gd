@@ -6,6 +6,8 @@ var markup_text_editor
 var markup_edit_enabled := "false"
 var editor_parent : Control
 var button_parent : Control
+var last_editor : Control
+
 
 var default_properties := {
 	"addons/advanced_text/markup" : [
@@ -23,11 +25,6 @@ var default_properties := {
 			"", TYPE_STRING, PROPERTY_HINT_MULTILINE_TEXT, 
 			"", PROPERTY_USAGE_CATEGORY)
 		],
-	"addons/advanced_text/enable_MarkupEdit" : [
-		"", PropertyInfo.new(
-			"", TYPE_BOOL, PROPERTY_HINT_FLAGS, 
-			"true", PROPERTY_USAGE_CATEGORY)
-		],
 }
 
 func _enter_tree():
@@ -40,7 +37,7 @@ func _enter_tree():
 	add_autoload_singleton("EBBCodeParser",  parsers_dir + "EBBCodeParser.gd")
 	add_autoload_singleton("MarkdownParser", parsers_dir + "MarkdownParser.gd")
 	add_autoload_singleton("RenpyParser", 	parsers_dir + "RenpyParser.gd")
-	markup_edit_enabled = ProjectSettings.get_setting("addons/advanced_text/enable_MarkupEdit")
+	markup_edit_enabled =	ProjectTools.load_from_config("addons/advanced_text/enable_MarkupEdit", "true")
 	toggle_markup_edit(markup_edit_enabled)
 	add_tool_menu_item("Toggle Markup Edit", self, "toggle_markup_edit", "toggle")
 
@@ -60,7 +57,7 @@ func toggle_markup_edit(enable: String):
 				enable = "true"
 				load_and_enable_markup_edit()
 
-	ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", enable)
+	ProjectTools.save_to_config("addons/advanced_text/enable_MarkupEdit", enable)
 
 func load_and_enable_markup_edit():
 	# load and add MarkupTextEditor to EditorUI
@@ -98,6 +95,9 @@ func load_and_enable_markup_edit():
 	connect("scene_changed", self, "_on_scene_changed")
 
 func unload_and_disable_markup_edit():
+	if last_editor:
+		last_editor.show()
+
 	# remove MarkupTextEditor from EditorUI
 	if markup_text_editor != null:
 		disconnect("scene_changed", self, "_on_scene_changed")
@@ -136,29 +136,33 @@ func hide_current_editor():
 func _on_scene_changed(scene_root: Node):
 	for b in button_parent.get_children():
 		if b.pressed:
-			show_editor(b)
+			_on_show_editor(b)
 		
 	markup_text_editor_button.pressed = false
 	markup_text_editor.visible = false
 
-func show_editor(button: ToolButton):
+func _on_show_editor(button: ToolButton):
 	for editor in editor_parent.get_children():
 		if editor is Control:
 			match button.text:
 				"2D":
 					if editor.get_class() == "CanvasItemEditor":
+						last_editor = editor
 						editor.show()
 
 				"3D":
 					if editor.get_class() == "SpatialEditor":
+						last_editor = editor
 						editor.show()
 
 				"Script":
 					if editor.get_class() == "ScriptEditor":
+						last_editor = editor
 						editor.show()
 
 				"AssetLib":
 					if editor.get_class() == "AssetLibraryEditor":
+						last_editor = editor
 						editor.show()
 				_:
 					continue
@@ -169,7 +173,7 @@ func _on_toggle(toggled:bool, button:ToolButton):
 	
 	else:
 		button.pressed = true
-		show_editor(button)
+		_on_show_editor(button)
 
 	markup_text_editor_button.pressed = toggled
 	markup_text_editor.visible = toggled
