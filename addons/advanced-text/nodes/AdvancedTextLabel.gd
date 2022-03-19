@@ -52,7 +52,7 @@ func get_text_parser(_markup:String):
 func _get_text_parser(_markup_str:String):
 	match _markup_str:
 		"default":
-			var default = ProjectTools.get_addon_setting("addons/advanced_text/markup")
+			var default = ProjectTools.get_setting("addons/advanced_text/markup", "markdown")
 			return _get_text_parser(default)
 		
 		"bbcode":
@@ -98,7 +98,7 @@ func _on_update() -> void:
 	if p == null:
 		return
 	
-	var vars_json = ProjectTools.get_addon_setting("addons/advanced_text/default_vars")
+	var vars_json = ProjectTools.get_setting("addons/advanced_text/default_vars", "{}")
 	var default_vars = parse_json(vars_json)
 	
 	if default_vars:
