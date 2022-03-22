@@ -35,19 +35,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="FilesOptionsContainer" type="VBoxContainer" parent="."]
-margin_right = 64.0
+margin_right = 202.0
 margin_bottom = 546.0
-rect_min_size = Vector2( 64, 0 )
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="FilesOptionsContainer"]
-margin_right = 64.0
+margin_right = 202.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 columns = 2
 
 [node name="NewFileButton" type="Button" parent="FilesOptionsContainer/GridContainer"]
-margin_right = 30.0
+margin_right = 99.0
 margin_bottom = 22.0
 hint_tooltip = "Create New Text File"
 size_flags_horizontal = 3
@@ -59,8 +59,8 @@ __meta__ = {
 }
 
 [node name="OpenFileButton" type="Button" parent="FilesOptionsContainer/GridContainer"]
-margin_left = 34.0
-margin_right = 64.0
+margin_left = 103.0
+margin_right = 202.0
 margin_bottom = 22.0
 hint_tooltip = "Open Text File"
 size_flags_horizontal = 3
@@ -70,7 +70,7 @@ clip_text = true
 
 [node name="SaveFileButton" type="Button" parent="FilesOptionsContainer/GridContainer"]
 margin_top = 26.0
-margin_right = 30.0
+margin_right = 99.0
 margin_bottom = 48.0
 hint_tooltip = "Save File"
 size_flags_horizontal = 3
@@ -80,9 +80,9 @@ icon = SubResource( 3 )
 clip_text = true
 
 [node name="SaveAsFileButton" type="Button" parent="FilesOptionsContainer/GridContainer"]
-margin_left = 34.0
+margin_left = 103.0
 margin_top = 26.0
-margin_right = 64.0
+margin_right = 202.0
 margin_bottom = 48.0
 hint_tooltip = "Save As File"
 size_flags_horizontal = 3
@@ -92,13 +92,13 @@ clip_text = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="FilesOptionsContainer"]
 margin_top = 52.0
-margin_right = 64.0
+margin_right = 202.0
 margin_bottom = 546.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="FilesOptionsContainer/ScrollContainer"]
-margin_right = 64.0
+margin_right = 202.0
 margin_bottom = 494.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -114,7 +114,7 @@ __meta__ = {
 }
 
 [node name="HBox" type="HSplitContainer" parent="."]
-margin_left = 76.0
+margin_left = 214.0
 margin_right = 1014.0
 margin_bottom = 546.0
 grow_horizontal = 2
@@ -123,23 +123,9 @@ rect_min_size = Vector2( 800, 500 )
 mouse_default_cursor_shape = 10
 size_flags_vertical = 3
 
-[node name="EditorsContainer" type="TabContainer" parent="HBox"]
-margin_right = 626.0
+[node name="MarkupEdit" type="TextEdit" parent="HBox"]
+margin_right = 688.0
 margin_bottom = 546.0
-rect_min_size = Vector2( 200, 0 )
-size_flags_horizontal = 11
-tabs_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarkdownEdit" type="TextEdit" parent="HBox/EditorsContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "# Header Level 1
@@ -213,220 +199,12 @@ __meta__ = {
 }
 configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
 
-[node name="RenPyEdit" type="TextEdit" parent="HBox/EditorsContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "\"\"\"
-{h1}Header Level 1{/h1}
-{h2}Header Level 2{/h2}
-{h3}Header Level 3{/h3}
-
-{b}bold{/b}
-{i}italic{/i}
-{s}strike through{/s}
-{code}mono-spaced text{/code}
-
-{a=https://some_domain.com}link{/a}
-{a}https://some_domain.com{/a}
-
-test_string = <test_string>
-test_bool = <test_bool>
-test_int = <test_int>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
-{color=<test_color>}text in custom color from variable{/color}
-
-
-:grinning:
-{img=res://icon.png}
-{img=res://icon.png size=24x24}
-
-{table=3}
-{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
-{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
-{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
-{/table}
-
-{u}underline{/u}
-{center}center{/center}
-{right}right{/right}
-{fill}fill{/fill}
-{indent}text{/indent}
-{color=red}red{/color}
-{color=#c39f00}colored text{/color}
-{color=<test_color>}text in custom color from variable{/color}
-
-
-{wave amp=50 freq=2}wave{/wave}
-{tornado radius=5 freq=2}tornado{/tornado}
-{shake rate=5 level=10}shake{/shake}
-{fade start=4 length=14}fade{/fade}
-{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
-\"\"\""
-highlight_current_line = true
-syntax_highlighting = true
-show_line_numbers = true
-highlight_all_occurrences = true
-smooth_scrolling = true
-minimap_draw = true
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
-
-[node name="BBCodeEdit" type="TextEdit" parent="HBox/EditorsContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "[h1]Header Level 1[/h1]
-[h2]Header Level 2[/h2]
-[h3]Header Level 3[/h3]
-
-[b]bold[/b]
-[i]italic[/i]
-[s]strike through[/s]
-[code]mono-spaced text[/code]
-
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com[/url]
-
-test_string = <test_string>
-test_int = <test_int>
-test_bool = <test_bool>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
-[color=<test_color>]text in custom color from variable[/color]
-
-:grinning:
-[img]res://icon.png[/img]
-[img=24x24]res://icon.png[/img]
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-[color=#c39f00]colored text[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-"
-highlight_current_line = true
-syntax_highlighting = true
-show_line_numbers = true
-highlight_all_occurrences = true
-smooth_scrolling = true
-minimap_draw = true
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
-
-[node name="TextEdit" type="TextEdit" parent="HBox/EditorsContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "[h1]Header Level 1[/h1]
-[h2]Header Level 2[/h2]
-[h3]Header Level 3[/h3]
-
-[b]bold[/b]
-[i]italic[/i]
-[s]strike through[/s]
-[code]mono-spaced text[/code]
-
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com[/url]
-
-test_string = <test_string>
-test_int = <test_int>
-test_bool = <test_bool>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
-[color=<test_color>]text in custom color from variable[/color]
-
-:grinning:
-[img]res://icon.png[/img]
-[img=24x24]res://icon.png[/img]
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-[color=#c39f00]colored text[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-"
-highlight_current_line = true
-syntax_highlighting = true
-show_line_numbers = true
-highlight_all_occurrences = true
-smooth_scrolling = true
-minimap_draw = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PreviewsContainer" type="TabContainer" parent="HBox"]
-margin_left = 638.0
-margin_right = 938.0
+[node name="Preview" type="RichTextLabel" parent="HBox"]
+margin_left = 700.0
+margin_right = 800.0
 margin_bottom = 546.0
-rect_min_size = Vector2( 300, 0 )
-size_flags_vertical = 3
-tabs_visible = false
-
-[node name="MarkdownTextLabel" type="RichTextLabel" parent="HBox/PreviewsContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
+rect_min_size = Vector2( 100, 0 )
 mouse_filter = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 4 )
 custom_fonts/mono_font = ExtResource( 8 )
@@ -611,306 +389,5 @@ test_dict.key1 = <test_dict.key1>
 
 
 "
-headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
-
-[node name="RenPyTextLabel" type="RichTextLabel" parent="HBox/PreviewsContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 4 )
-custom_fonts/mono_font = ExtResource( 8 )
-custom_fonts/bold_italics_font = ExtResource( 6 )
-custom_fonts/italics_font = ExtResource( 3 )
-custom_fonts/bold_font = ExtResource( 5 )
-custom_fonts/normal_font = ExtResource( 9 )
-bbcode_enabled = true
-bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 1[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 3[/font]
-
-[b]bold[/b]
-[i]italic[/i]
-[s]strike through[/s]
-[code]mono-spaced text[/code]
-
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com[/url]
-
-test_string = test string
-test_bool = True
-test_int = 1
-test_list[0] = 1
-test_dict.key1 = value1
-[color=#1acfa0]text in custom color from variable[/color]
-
-
-[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
-[img]res://icon.png[/img]
-[img=24x24]res://icon.png[/img]
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-[color=#c39f00]colored text[/color]
-[color=#1acfa0]text in custom color from variable[/color]
-
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
-text = "Header Level 1
-Header Level 2
-Header Level 3
-
-bold
-italic
-strike through
-mono-spaced text
-
-link
-https://some_domain.com
-
-test_string = test string
-test_bool = True
-test_int = 1
-test_list[0] = 1
-test_dict.key1 = value1
-text in custom color from variable
-
-
-
-
-
-
-123456789
-
-underline
-center
-right
-fill
-	text
-red
-colored text
-text in custom color from variable
-
-
-wave
-tornado
-shake
-fade
-rainbow"
-script = ExtResource( 2 )
-markup_text = "\"\"\"
-{h1}Header Level 1{/h1}
-{h2}Header Level 2{/h2}
-{h3}Header Level 3{/h3}
-
-{b}bold{/b}
-{i}italic{/i}
-{s}strike through{/s}
-{code}mono-spaced text{/code}
-
-{a=https://some_domain.com}link{/a}
-{a}https://some_domain.com{/a}
-
-test_string = <test_string>
-test_bool = <test_bool>
-test_int = <test_int>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
-{color=<test_color>}text in custom color from variable{/color}
-
-
-:grinning:
-{img=res://icon.png}
-{img=res://icon.png size=24x24}
-
-{table=3}
-{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
-{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
-{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
-{/table}
-
-{u}underline{/u}
-{center}center{/center}
-{right}right{/right}
-{fill}fill{/fill}
-{indent}text{/indent}
-{color=red}red{/color}
-{color=#c39f00}colored text{/color}
-{color=<test_color>}text in custom color from variable{/color}
-
-
-{wave amp=50 freq=2}wave{/wave}
-{tornado radius=5 freq=2}tornado{/tornado}
-{shake rate=5 level=10}shake{/shake}
-{fade start=4 length=14}fade{/fade}
-{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
-\"\"\""
-markup = "renpy"
-headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
-
-[node name="BBCodeTextLabel" type="RichTextLabel" parent="HBox/PreviewsContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 4 )
-custom_fonts/mono_font = ExtResource( 8 )
-custom_fonts/bold_italics_font = ExtResource( 6 )
-custom_fonts/italics_font = ExtResource( 3 )
-custom_fonts/bold_font = ExtResource( 5 )
-custom_fonts/normal_font = ExtResource( 9 )
-bbcode_enabled = true
-bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 1[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 3[/font]
-
-[b]bold[/b]
-[i]italic[/i]
-[s]strike through[/s]
-[code]mono-spaced text[/code]
-
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com[/url]
-
-test_string = test string
-test_int = 1
-test_bool = True
-test_list[0] = 1
-test_dict.key1 = value1
-[color=#1acfa0]text in custom color from variable[/color]
-
-[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
-[img]res://icon.png[/img]
-[img=24x24]res://icon.png[/img]
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-[color=#c39f00]colored text[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-"
-text = "Header Level 1
-Header Level 2
-Header Level 3
-
-bold
-italic
-strike through
-mono-spaced text
-
-link
-https://some_domain.com
-
-test_string = test string
-test_int = 1
-test_bool = True
-test_list[0] = 1
-test_dict.key1 = value1
-text in custom color from variable
-
-
-
-
-
-123456789
-
-underline
-center
-right
-fill
-	text
-red
-colored text
-
-wave
-tornado
-shake
-fade
-rainbow
-"
-script = ExtResource( 2 )
-markup_text = "[h1]Header Level 1[/h1]
-[h2]Header Level 2[/h2]
-[h3]Header Level 3[/h3]
-
-[b]bold[/b]
-[i]italic[/i]
-[s]strike through[/s]
-[code]mono-spaced text[/code]
-
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com[/url]
-
-test_string = <test_string>
-test_int = <test_int>
-test_bool = <test_bool>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
-[color=<test_color>]text in custom color from variable[/color]
-
-:grinning:
-[img]res://icon.png[/img]
-[img=24x24]res://icon.png[/img]
-
-[table=3]
-[cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underline[/u]
-[center]center[/center]
-[right]right[/right]
-[fill]fill[/fill]
-[indent]text[/indent]
-[color=red]red[/color]
-[color=#c39f00]colored text[/color]
-
-[wave amp=50 freq=2]wave[/wave]
-[tornado radius=5 freq=2]tornado[/tornado]
-[shake rate=5 level=10]shake[/shake]
-[fade start=4 length=14]fade[/fade]
-[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
-"
-markup = "bbcode"
+markup = "markdown"
 headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]

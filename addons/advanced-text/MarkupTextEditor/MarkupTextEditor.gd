@@ -137,19 +137,7 @@ func _ready():
 
 	markups_options.connect("item_selected", self, "_on_option_selected")
 
-	preview_toggle.connect("toggled", self, "_on_toggle")
-	preview_toggle.icon = get_icon("RichTextEffect", "EditorIcons")
-
-	help_button.connect("pressed", self, "_on_help_button_pressed")
-	help_button.icon = get_icon("Help", "EditorIcons")
-
 	self.connect("visibility_changed", self, "_on_visibility_changed")
-
-	selected_node_toggle.connect("toggled", self, "_on_nodes_toggle")
-	selected_node_toggle.icon = get_icon("Control", "EditorIcons")
-
-	files_toggle.connect("toggled", self, "_on_files_toggle")
-	files_toggle.icon = get_icon("TextFile", "EditorIcons")
 
 	new_file_button.icon = get_icon("New", "EditorIcons")
 	new_file_button.connect("pressed", self, "_on_new_file_button_pressed")

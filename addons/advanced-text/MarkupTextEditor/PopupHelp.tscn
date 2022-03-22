@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://addons/advanced-text/nodes/CodeEdit.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=2]
@@ -11,11 +11,13 @@
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans.tres" type="DynamicFont" id=9]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H2.tres" type="DynamicFont" id=10]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=11]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/PopupHelp.gd" type="Script" id=12]
 
 [node name="PopupHelp" type="WindowDialog"]
 margin_right = 1004.0
 margin_bottom = 590.0
 rect_min_size = Vector2( 500, 100 )
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -27,7 +29,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarkdownHelp" type="HSplitContainer" parent="HelperContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -232,6 +233,7 @@ wave amp=50 freq=2]wave[/wave]
 headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
 
 [node name="RenPyHelp" type="HSplitContainer" parent="HelperContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
