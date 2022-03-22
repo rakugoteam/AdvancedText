@@ -6,3 +6,4 @@ func _plugging():
     plug("rakugoteam/project-settings-helpers")
     plug("rakugoteam/Emojis-For-Godot")
     plug("rakugoteam/Godot-Material-Icons")
+    plug("Xrayez/godot-editor-icons-previewer")
