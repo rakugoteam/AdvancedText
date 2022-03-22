@@ -20,6 +20,7 @@ func _ready():
 
 	toolbar.connect("selected_preview", self, "_on_preview_selected")
 	toolbar.connect("preview_toggled", self, "_on_preview_toggled")
+	toolbar.connect("selected_markup", self, "_on_markup_selected")
 
 func _on_preview_selected(mode:String):
 	current_preview.hide()
@@ -35,3 +36,8 @@ func _on_preview_selected(mode:String):
 func _on_preview_toggled(toggle:bool):
 	current_preview.visible = toggle
 
+func _on_markup_selected(markup:String):
+	markup = markup.to_lower()
+	current_preview.markup = markup
+
+		
