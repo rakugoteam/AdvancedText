@@ -23,7 +23,7 @@ onready var preview_switch : OptionButton = $HBoxContainer/HBoxContainer/Preview
 onready var emoji_button : Button = $HBoxContainer/HBoxContainer/EmojisButton
 onready var icon_button : Button = $HBoxContainer/HBoxContainer/IconsButton
 
-signal preview_toggle
+signal preview_toggled(toggle)
 signal help_pressed
 signal selected_mode(mode)
 signal selected_markup(mode)
@@ -32,7 +32,7 @@ signal selected_preview(mode)
 func _ready():
 	import_emojis()
 	import_mat_icons()
-	preview_toggle.connect("toggled", self, "emit_signal", ["preview_toggle"])
+	preview_toggle.connect("toggled", self, "_on_preview_toggled")
 	preview_toggle.icon = get_icon("RichTextEffect", "EditorIcons")
 
 	preview_switch.connect("item_selected", self, "_on_preview_changed")
@@ -43,11 +43,14 @@ func _ready():
 	help_button.icon = get_icon("Help", "EditorIcons")
 	markup_switch.connect("item_selected", self, "_on_markup_changed")
 
-	selected_node_toggle.connect("toggled", self, "emit_signal", ["selected_mode", "node"])
+	selected_node_toggle.connect("pressed", self, "_on_node_mode_toggled")
 	selected_node_toggle.icon = get_icon("Control", "EditorIcons")
 
-	files_toggle.connect("toggled", self, "emit_signal", ["selected_mode", "file"])
+	files_toggle.connect("pressed", self, "_on_files_mode_toggled")
 	files_toggle.icon = get_icon("TextFile", "EditorIcons")
+
+func _on_preview_toggled(toggle:bool):
+	emit_signal("preview_toggled", toggle)
 
 func _on_help_pressed():
 	var mode_id = markup_switch.selected
@@ -60,6 +63,12 @@ func _on_preview_changed(mode):
 func _on_markup_changed(mode):
 	var txt_mode = markup_switch.get_item_text(mode)
 	emit_signal("selected_markup", txt_mode)
+
+func _on_node_mode_toggled():
+	emit_signal("selected_mode", "node")
+
+func _on_file_mode_toggled():
+	emit_signal("selected_mode", "file")
 
 func import_emojis():
 	EmojisImport = preload("../emojis_import.gd")
