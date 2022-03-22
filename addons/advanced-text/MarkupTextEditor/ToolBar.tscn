@@ -105,15 +105,15 @@ flat = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
 margin_left = 248.0
-margin_right = 721.0
+margin_right = 703.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer2"]
-margin_left = 196.0
+margin_left = 187.0
 margin_top = 12.0
-margin_right = 276.0
+margin_right = 267.0
 margin_bottom = 28.0
 
 [node name="FileIcon" type="TextureRect" parent="HBoxContainer/CenterContainer2/HBoxContainer"]
@@ -149,8 +149,8 @@ __meta__ = {
 }
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
-margin_left = 725.0
-margin_right = 777.0
+margin_left = 707.0
+margin_right = 759.0
 margin_bottom = 40.0
 hint_tooltip = "Select Markup"
 size_flags_vertical = 3
@@ -181,7 +181,7 @@ items = [ "Markdown", ExtResource( 1 ), false, 0, null, "RenPy", ExtResource( 2 
 selected = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
-margin_left = 781.0
+margin_left = 763.0
 margin_right = 1024.0
 margin_bottom = 40.0
 
@@ -198,20 +198,21 @@ align = 2
 
 [node name="PreviewOption" type="OptionButton" parent="HBoxContainer/HBoxContainer"]
 margin_left = 104.0
-margin_right = 133.0
+margin_right = 151.0
 margin_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 hint_tooltip = "Choose Preview Side"
 text = "Bottom"
+icon = SubResource( 12 )
 flat = true
 clip_text = true
-items = [ "Right", null, false, 0, null, "Bottom", null, false, 1, null ]
+items = [ "Right", SubResource( 12 ), false, 0, null, "Bottom", SubResource( 12 ), false, 1, null ]
 selected = 1
 
 [node name="HelpButton" type="Button" parent="HBoxContainer/HBoxContainer"]
-margin_left = 137.0
-margin_right = 167.0
+margin_left = 155.0
+margin_right = 185.0
 margin_bottom = 40.0
 hint_tooltip = "Show Makrups Help"
 text = "Help"
@@ -219,8 +220,8 @@ icon = SubResource( 12 )
 clip_text = true
 
 [node name="EmojisButton" type="Button" parent="HBoxContainer/HBoxContainer"]
-margin_left = 171.0
-margin_right = 201.0
+margin_left = 189.0
+margin_right = 219.0
 margin_bottom = 40.0
 hint_tooltip = "Find Emoji Code"
 text = "Emojis"
@@ -228,8 +229,8 @@ icon = ExtResource( 3 )
 clip_text = true
 
 [node name="IconsButton" type="Button" parent="HBoxContainer/HBoxContainer"]
-margin_left = 205.0
-margin_right = 243.0
+margin_left = 223.0
+margin_right = 261.0
 margin_bottom = 40.0
 hint_tooltip = "Find Material Icon Code"
 text = "Material Icons"
@@ -244,3 +245,6 @@ margin_bottom = 572.0
 window_title = "Help"
 resizable = true
 tb_path = NodePath("..")
+
+[connection signal="about_to_show" from="PopupDialog" to="PopupDialog/Emoji" method="_on_about_to_show"]
+[connection signal="resized" from="PopupDialog" to="PopupDialog/Emoji" method="_on_resized"]
