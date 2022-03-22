@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://addons/advanced-text/nodes/CodeEdit.gd" type="Script" id=1]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/MarkupEdit.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=2]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=3]
 [ext_resource path="res://addons/advanced-text/font/theme_with_fonts.tres" type="Theme" id=4]
@@ -210,7 +210,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
 
 [node name="PreviewRight" type="RichTextLabel" parent="HSplitContainer/VSplit/HSplit"]
 margin_left = 700.0
