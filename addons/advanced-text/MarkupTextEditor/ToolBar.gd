@@ -1,4 +1,3 @@
-tool
 extends Control
 
 var EmojisImport
@@ -13,15 +12,15 @@ export var MarkdownIcon : Texture
 export var RpyIcon : Texture
 export var BBCodeIcon : Texture
 
-onready var preview_toggle : Button = $HBoxContainer/HBoxContainer/PreviewToggle
-onready var help_button : Button = $HBoxContainer/HBoxContainer/HelpButton
-onready var selected_node_toggle : Button = $HBoxContainer/EditSelectedNode
-onready var files_toggle : Button = $HBoxContainer/EditSelectedFile
-onready var help_popup : Popup = $PopupHelp
-onready var markup_switch : OptionButton = $HBoxContainer/CenterContainer/HBoxContainer/MarkupOption
-onready var preview_switch : OptionButton = $HBoxContainer/HBoxContainer/PreviewOption
-onready var emoji_button : Button = $HBoxContainer/HBoxContainer/EmojisButton
-onready var icon_button : Button = $HBoxContainer/HBoxContainer/IconsButton
+export (NodePath) onready var preview_toggle = get_node(preview_toggle) as Button
+export (NodePath) onready var help_button = get_node(help_button) as Button
+export (NodePath) onready var node_toggle = get_node(node_toggle) as Button
+export (NodePath) onready var files_toggle = get_node(files_toggle) as Button
+export (NodePath) onready var help_popup = get_node(help_popup) as Popup
+export (NodePath) onready var markup_switch = get_node(markup_switch) as OptionButton
+export (NodePath) onready var preview_switch = get_node(preview_switch) as OptionButton
+export (NodePath) onready var emoji_button = get_node(emoji_button) as Button
+export (NodePath) onready var icon_button = get_node(icon_button) as Button
 
 signal preview_toggled(toggle)
 signal help_pressed
@@ -43,8 +42,8 @@ func _ready():
 	help_button.icon = get_icon("Help", "EditorIcons")
 	markup_switch.connect("item_selected", self, "_on_markup_changed")
 
-	selected_node_toggle.connect("pressed", self, "_on_node_mode_toggled")
-	selected_node_toggle.icon = get_icon("Control", "EditorIcons")
+	node_toggle.connect("pressed", self, "_on_node_mode_toggled")
+	node_toggle.icon = get_icon("Control", "EditorIcons")
 
 	files_toggle.connect("pressed", self, "_on_files_mode_toggled")
 	files_toggle.icon = get_icon("TextFile", "EditorIcons")

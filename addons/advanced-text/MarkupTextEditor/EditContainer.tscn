@@ -38,6 +38,9 @@ script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+preview_right = NodePath("HSplitContainer/VSplit/HSplit/PreviewRight")
+preview_bottom = NodePath("HSplitContainer/VSplit/PreviewBottom")
+edit = NodePath("HSplitContainer/VSplit/HSplit/MarkupEdit")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 anchor_right = 1.0

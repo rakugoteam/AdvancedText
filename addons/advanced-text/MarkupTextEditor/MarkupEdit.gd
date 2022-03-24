@@ -1,8 +1,5 @@
-tool
 extends CodeEdit
 
-export var p_path : NodePath 
-export (NodePath) onready var parent = get_node(parent)
 export var configs_dict := {
 		"markdown": "res://addons/advanced-text/highlights/bbcode.json",
 		"bbcode": "res://addons/advanced-text/highlights/bbcode.json",
@@ -10,12 +7,6 @@ export var configs_dict := {
 		"json": "res://addons/advanced-text/highlights/json.json",
 		"gdscript": "res://addons/advanced-text/highlights/gdscript.json",
 	}
-
-func _ready():
-	parent.connect("ready", self, "_on_parent_ready")
-
-func _on_parent_ready():
-	parent.toolbar.connect("selected_markup", self, "_on_markup_selected")
 
 func _on_markup_selected(markup:String):
 	var lang = [markup.to_lower()]

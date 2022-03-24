@@ -64,6 +64,15 @@ CodeEditIcon = ExtResource( 10 )
 MarkdownIcon = ExtResource( 8 )
 RpyIcon = ExtResource( 2 )
 BBCodeIcon = ExtResource( 4 )
+preview_toggle = NodePath("HBoxContainer/HBoxContainer/PreviewToggle")
+help_button = NodePath("HBoxContainer/HBoxContainer/HelpButton")
+node_toggle = NodePath("HBoxContainer/EditSelectedNode")
+files_toggle = NodePath("HBoxContainer/EditSelectedFile")
+help_popup = NodePath("PopupHelp")
+markup_switch = NodePath("HBoxContainer/CenterContainer/HBoxContainer/MarkupSwitch")
+preview_switch = NodePath("HBoxContainer/HBoxContainer/PreviewSwitch")
+emoji_button = NodePath("HBoxContainer/HBoxContainer/EmojisButton")
+icon_button = NodePath("HBoxContainer/HBoxContainer/IconsButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -161,7 +170,7 @@ margin_bottom = 18.0
 text = "Select Markup"
 clip_text = true
 
-[node name="MarkupOption" type="OptionButton" parent="HBoxContainer/CenterContainer/HBoxContainer"]
+[node name="MarkupSwitch" type="OptionButton" parent="HBoxContainer/CenterContainer/HBoxContainer"]
 margin_left = 5.0
 margin_right = 52.0
 margin_bottom = 22.0
@@ -190,7 +199,7 @@ icon = SubResource( 11 )
 clip_text = true
 align = 2
 
-[node name="PreviewOption" type="OptionButton" parent="HBoxContainer/HBoxContainer"]
+[node name="PreviewSwitch" type="OptionButton" parent="HBoxContainer/HBoxContainer"]
 margin_left = 104.0
 margin_right = 151.0
 margin_bottom = 40.0
@@ -238,7 +247,4 @@ margin_right = 876.0
 margin_bottom = 572.0
 window_title = "Help"
 resizable = true
-tb_path = NodePath("..")
-
-[connection signal="about_to_show" from="PopupDialog" to="PopupDialog/Emoji" method="_on_about_to_show"]
-[connection signal="resized" from="PopupDialog" to="PopupDialog/Emoji" method="_on_resized"]
+toolbar = NodePath("..")
