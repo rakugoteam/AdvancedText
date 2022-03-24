@@ -2,7 +2,7 @@
 extends Button
 class_name AdvancedTextButton
 
-onready var adv_label := get_node("AdvancedTextLabel")
+export (NodePath) onready var adv_label = get_node(adv_label)
 
 func _ready():
 	adv_label.connect("resized", self, "_on_button_resized")

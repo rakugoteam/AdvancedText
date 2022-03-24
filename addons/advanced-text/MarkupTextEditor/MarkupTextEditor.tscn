@@ -27,7 +27,4 @@ anchor_bottom = 0.0
 margin_top = 44.0
 margin_right = 1024.0
 margin_bottom = 600.0
-tb_path = NodePath("../ToolBar")
-
-[connection signal="about_to_show" from="VBoxContainer/ToolBar/PopupDialog" to="VBoxContainer/ToolBar/PopupDialog/Emoji" method="_on_about_to_show"]
-[connection signal="resized" from="VBoxContainer/ToolBar/PopupDialog" to="VBoxContainer/ToolBar/PopupDialog/Emoji" method="_on_resized"]
+toolbar = NodePath("../ToolBar")

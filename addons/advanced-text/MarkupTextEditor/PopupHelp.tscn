@@ -21,6 +21,7 @@ script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+tabs = NodePath("HelperContainer")
 
 [node name="HelperContainer" type="TabContainer" parent="."]
 anchor_right = 1.0

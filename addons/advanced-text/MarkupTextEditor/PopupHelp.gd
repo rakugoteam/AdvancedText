@@ -1,8 +1,7 @@
 extends WindowDialog
 
-export var tb_path : NodePath
-onready var toolbar : Control = get_node(tb_path)
-onready var tabs : TabContainer = $HelperContainer
+export (NodePath) onready var toolbar = get_node(toolbar) as Control
+export (NodePath) onready var tabs = get_node(tabs) as TabContainer
 
 func _ready():
 	toolbar.connect("help_pressed", self, "_on_help_pressed")
