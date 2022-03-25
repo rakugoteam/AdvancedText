@@ -36,12 +36,13 @@ func _ready():
 	open_file_button.connect("pressed", self, "_on_open_file_pressed")
 	# save_file_button.connect("pressed", self, "_on_save_file_pressed")
 	save_file_as_button.connect("pressed", self, "_on_save_file_as_pressed")
+	file_dialog.connect("files_selected", self, "_on_files_selected")
 
-func _on_file_open_pressed():
+func _on_open_file_pressed():
 	file_dialog.mode = FileDialog.MODE_OPEN_FILES
 	file_dialog.popup_centered(file_dialog_size)
 
-func _on_file_save_as_pressed():
+func _on_save_file_as_pressed():
 	file_dialog.mode = FileDialog.MODE_SAVE_FILE
 	file_dialog.popup_centered(file_dialog_size)
 
@@ -173,40 +174,41 @@ func _update_file_data(f_data:Dictionary, file_path:String):
 
 	var t = parent.toolbar
 	t.file_name.text = f_data["file_name"]
-	t.markups_options.disabled = false
+	t.markup_switch.disabled = false
 
 	match f_data["file_ext"]:
 		"md":
-			t.emit_signal("selected_markup", "markdown")
-			t.markups_options.disabled = true
+			t.set_markup("markdown")
+			t.markup_switch.disabled = true
 			b.icon = MarkdownIcon
 
 		"rpy":
-			t.emit_signal("selected_markup", "renpy")
-			t.markups_options.disabled = true
+			t.set_markup("renpy")
+			t.markup_switch.disabled = true
 			b.icon = RpyIcon
 
 		"txt":
-			t.emit_signal("selected_markup", "bbcode")
+			t.set_markup("bbcode")
 			b.icon = get_icon("TextFile", "EditorIcons")
 			
 
 		"json":
-			t.emit_signal("selected_markup", "json")
+			t.set_markup("selected_markup", "json")
 			b.icon = get_icon("Dictionary", "EditorIcons")
 
 		"gdscript":
-			t.emit_signal("selected_markup", "gdscript")
+			t.set_markup("selected_markup", "gdscript")
 			b.icon = get_icon("GDScript", "EditorIcons")
 
 		_:
-			t.emit_signal("selected_markup", "plain")
+			t.set_markup("selected_markup", "plain")
 			b.icon = get_icon("TextFile", "EditorIcons")
 
 	t.file_icon.texture = b.icon
 
-	text = f_data["text"]
-	# update_text_preview(get_current_edit_tab(), false)
+	parent.edit.text = f_data["text"]
+	parent.current_preview.markup_text = f_data["text"]
+
 	current_file_data = f_data
 	save_file_button.disabled = not f_data["modified"]
 	print("file loaded")

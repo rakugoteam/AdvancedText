@@ -36,7 +36,7 @@ func _ready():
 
 	help_button.connect("pressed", self, "_on_help_pressed")
 	help_button.icon = get_icon("Help", "EditorIcons")
-	markup_switch.connect("item_selected", self, "_on_markup_changed")
+	markup_switch.connect("item_selected", self, "set_markup")
 
 	node_toggle.connect("pressed", self, "_on_node_mode_toggled")
 	node_toggle.icon = get_icon("Control", "EditorIcons")
@@ -55,7 +55,7 @@ func _on_preview_changed(mode):
 	var txt_mode = preview_switch.get_item_text(mode)
 	emit_signal("selected_preview", txt_mode)
 
-func _on_markup_changed(mode):
+func set_markup(mode):
 	var txt_mode = markup_switch.get_item_text(mode)
 	emit_signal("selected_markup", txt_mode)
 

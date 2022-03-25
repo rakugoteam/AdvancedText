@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/MarkupEdit.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=2]
@@ -14,6 +14,11 @@
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/EditContainer.gd" type="Script" id=12]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/FilesOptions.gd" type="Script" id=13]
 [ext_resource path="res://addons/advanced-text/shared/TabButton.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/advanced-text/icons/bbcode.svg" type="Texture" id=15]
+[ext_resource path="res://addons/advanced-text/icons/MarkupTextEditor.svg" type="Texture" id=16]
+[ext_resource path="res://addons/advanced-text/icons/ren16.png" type="Texture" id=17]
+[ext_resource path="res://addons/advanced-text/icons/AdvancedTextLabel.svg" type="Texture" id=18]
+[ext_resource path="res://addons/advanced-text/icons/CodeEdit.svg" type="Texture" id=19]
 
 [sub_resource type="Image" id=4]
 data = {
@@ -58,12 +63,18 @@ rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 13 )
+AdvancedTextLabelIcon = ExtResource( 18 )
+CodeEditIcon = ExtResource( 19 )
+MarkdownIcon = ExtResource( 16 )
+RpyIcon = ExtResource( 17 )
+BBCodeIcon = ExtResource( 15 )
 parent = NodePath("../..")
 new_file_button = NodePath("GridContainer/NewFileButton")
 open_file_button = NodePath("GridContainer/OpenFileButton")
 save_file_button = NodePath("GridContainer/SaveFileButton")
 save_file_as_button = NodePath("GridContainer/SaveAsFileButton")
 files_box = NodePath("ScrollContainer/Panel/FilesBox")
+file_dialog = NodePath("../../TextFileDialog")
 file_tab_scene = ExtResource( 14 )
 
 [node name="GridContainer" type="GridContainer" parent="HSplitContainer/FilesOptions"]
