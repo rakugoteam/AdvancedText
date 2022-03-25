@@ -21,6 +21,8 @@ export (NodePath) onready var markup_switch = get_node(markup_switch) as OptionB
 export (NodePath) onready var preview_switch = get_node(preview_switch) as OptionButton
 export (NodePath) onready var emoji_button = get_node(emoji_button) as Button
 export (NodePath) onready var icon_button = get_node(icon_button) as Button
+export (NodePath) onready var file_icon = get_node(file_icon) as TextureRect
+export (NodePath) onready var file_name = get_node(file_name) as Label
 
 signal preview_toggled(toggle)
 signal help_pressed

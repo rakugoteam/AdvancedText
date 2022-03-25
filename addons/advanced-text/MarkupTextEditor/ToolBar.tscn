@@ -73,6 +73,8 @@ markup_switch = NodePath("HBoxContainer/CenterContainer/HBoxContainer/MarkupSwit
 preview_switch = NodePath("HBoxContainer/HBoxContainer/PreviewSwitch")
 emoji_button = NodePath("HBoxContainer/HBoxContainer/EmojisButton")
 icon_button = NodePath("HBoxContainer/HBoxContainer/IconsButton")
+file_icon = NodePath("HBoxContainer/CenterContainer2/HBoxContainer/FileIcon")
+file_name = NodePath("HBoxContainer/CenterContainer2/HBoxContainer/FileName")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0

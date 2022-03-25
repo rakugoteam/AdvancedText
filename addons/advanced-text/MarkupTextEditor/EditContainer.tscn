@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/MarkupEdit.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H2.tres" type="DynamicFont" id=10]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=11]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/EditContainer.gd" type="Script" id=12]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/FilesOptions.gd" type="Script" id=13]
+[ext_resource path="res://addons/advanced-text/shared/TabButton.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Image" id=4]
 data = {
@@ -49,20 +51,28 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="FilesOptionsContainer" type="VBoxContainer" parent="HSplitContainer"]
+[node name="FilesOptions" type="VBoxContainer" parent="HSplitContainer"]
 margin_right = 212.0
 margin_bottom = 602.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 13 )
+parent = NodePath("../..")
+new_file_button = NodePath("GridContainer/NewFileButton")
+open_file_button = NodePath("GridContainer/OpenFileButton")
+save_file_button = NodePath("GridContainer/SaveFileButton")
+save_file_as_button = NodePath("GridContainer/SaveAsFileButton")
+files_box = NodePath("ScrollContainer/Panel/FilesBox")
+file_tab_scene = ExtResource( 14 )
 
-[node name="GridContainer" type="GridContainer" parent="HSplitContainer/FilesOptionsContainer"]
+[node name="GridContainer" type="GridContainer" parent="HSplitContainer/FilesOptions"]
 margin_right = 212.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 columns = 2
 
-[node name="NewFileButton" type="Button" parent="HSplitContainer/FilesOptionsContainer/GridContainer"]
+[node name="NewFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
 margin_right = 104.0
 margin_bottom = 22.0
 hint_tooltip = "Create New Text File"
@@ -74,7 +84,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OpenFileButton" type="Button" parent="HSplitContainer/FilesOptionsContainer/GridContainer"]
+[node name="OpenFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
 margin_left = 108.0
 margin_right = 212.0
 margin_bottom = 22.0
@@ -84,7 +94,7 @@ text = "Open Text File"
 icon = SubResource( 3 )
 clip_text = true
 
-[node name="SaveFileButton" type="Button" parent="HSplitContainer/FilesOptionsContainer/GridContainer"]
+[node name="SaveFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
 margin_top = 26.0
 margin_right = 104.0
 margin_bottom = 48.0
@@ -95,7 +105,7 @@ text = "Save File"
 icon = SubResource( 3 )
 clip_text = true
 
-[node name="SaveAsFileButton" type="Button" parent="HSplitContainer/FilesOptionsContainer/GridContainer"]
+[node name="SaveAsFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
 margin_left = 108.0
 margin_top = 26.0
 margin_right = 212.0
@@ -106,20 +116,20 @@ text = "Save As File"
 icon = SubResource( 3 )
 clip_text = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/FilesOptionsContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/FilesOptions"]
 margin_top = 52.0
 margin_right = 212.0
 margin_bottom = 602.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="HSplitContainer/FilesOptionsContainer/ScrollContainer"]
+[node name="Panel" type="Panel" parent="HSplitContainer/FilesOptions/ScrollContainer"]
 margin_right = 212.0
 margin_bottom = 550.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="FilesBox" type="VBoxContainer" parent="HSplitContainer/FilesOptionsContainer/ScrollContainer/Panel"]
+[node name="FilesBox" type="VBoxContainer" parent="HSplitContainer/FilesOptions/ScrollContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
