@@ -9,6 +9,10 @@ export var configs_dict := {
 	}
 
 func _on_markup_selected(markup:String):
+	if markup == "plain":
+		clear_colors()
+		return
+		
 	var lang = [markup.to_lower()]
 	change_configs(lang)
 

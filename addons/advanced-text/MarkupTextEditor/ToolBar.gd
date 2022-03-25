@@ -6,12 +6,6 @@ var emojis_gd
 var IconsImport
 var icons_gd
 
-export var AdvancedTextLabelIcon : Texture
-export var CodeEditIcon : Texture
-export var MarkdownIcon : Texture
-export var RpyIcon : Texture
-export var BBCodeIcon : Texture
-
 export (NodePath) onready var preview_toggle = get_node(preview_toggle) as Button
 export (NodePath) onready var help_button = get_node(help_button) as Button
 export (NodePath) onready var node_toggle = get_node(node_toggle) as Button

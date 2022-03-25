@@ -1,5 +1,11 @@
 extends VBoxContainer
 
+export var AdvancedTextLabelIcon : Texture
+export var CodeEditIcon : Texture
+export var MarkdownIcon : Texture
+export var RpyIcon : Texture
+export var BBCodeIcon : Texture
+
 export (NodePath) onready var parent = get_node(parent) as Control
 export (NodePath) onready var new_file_button = get_node(new_file_button) as Button
 export (NodePath) onready var open_file_button = get_node(open_file_button) as Button
@@ -24,7 +30,6 @@ var f := File.new()
 var b_group := ButtonGroup.new()
 
 const files_ram_path := "res://addons/advanced-text/MarkupTextEditor/ram.data"
-
 
 func _ready():
 	# new_file_button.connect("pressed", self, "_on_new_file_pressed")
@@ -165,33 +170,45 @@ func _update_file_data(f_data:Dictionary, file_path:String):
 
 	print("load file data to ram")
 	var b : Button = f_data["f_button"]
+
 	var t = parent.toolbar
-	t.file_name = f_data["file_name"]
+	t.file_name.text = f_data["file_name"]
+	t.markups_options.disabled = false
+
 	match f_data["file_ext"]:
 		"md":
-			_set_markup_id(0)
+			t.emit_signal("selected_markup", "markdown")
+			t.markups_options.disabled = true
 			b.icon = MarkdownIcon
-			file_icon.texture = MarkdownIcon
 
 		"rpy":
-			_set_markup_id(1)
+			t.emit_signal("selected_markup", "renpy")
+			t.markups_options.disabled = true
 			b.icon = RpyIcon
-			file_icon.texture = RpyIcon
 
 		"txt":
-			_set_markup_id(2)
-			markups_options.disabled = false
+			t.emit_signal("selected_markup", "bbcode")
 			b.icon = get_icon("TextFile", "EditorIcons")
+			
+
+		"json":
+			t.emit_signal("selected_markup", "json")
+			b.icon = get_icon("Dictionary", "EditorIcons")
+
+		"gdscript":
+			t.emit_signal("selected_markup", "gdscript")
+			b.icon = get_icon("GDScript", "EditorIcons")
 
 		_:
-			_set_markup_id(3)
-			markups_options.disabled = false
+			t.emit_signal("selected_markup", "plain")
 			b.icon = get_icon("TextFile", "EditorIcons")
 
+	t.file_icon.texture = b.icon
+
 	text = f_data["text"]
-	update_text_preview(get_current_edit_tab(), false)
+	# update_text_preview(get_current_edit_tab(), false)
 	current_file_data = f_data
-	file_save_button.disabled = not f_data["modified"]
+	save_file_button.disabled = not f_data["modified"]
 	print("file loaded")
 
 func _on_file_button_pressed(file_box: Node):
@@ -209,8 +226,8 @@ func _on_file_close_button_pressed(file_box: Node):
 
 	if files_ram.empty():
 		text = ""
-		update_text_preview(get_current_edit_tab(), false)
-		_on_files_toggle(true)
+		# update_text_preview(get_current_edit_tab(), false)
+		# _on_files_toggle(true)
 
 	else:
 		_on_file_button_pressed(files_ram.keys().back())
@@ -229,7 +246,7 @@ func _on_file_save_button_pressed():
 	var _text : String = f_data["text"]
 
 	if file_path.begins_with("NewFile"):
-		_on_file_save_as_button_pressed()
+		# _on_file_save_as_button_pressed()
 		return
 
 	f.open(file_path, File.WRITE)
