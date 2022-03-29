@@ -3,61 +3,56 @@ extends EditorPlugin
 
 var markup_text_editor_button : ToolButton
 var markup_text_editor
-var markup_edit_enabled := "false"
+var markup_edit_enabled := false
 var editor_parent : Control
 var button_parent : Control
 var last_editor : Control
 
-
-var default_properties := {
-	"addons/advanced_text/markup" : [
-		"markdown", PropertyInfo.new(
-			"", TYPE_STRING, PROPERTY_HINT_ENUM, 
-			"markdown,renpy,bbcode",
-			PROPERTY_USAGE_CATEGORY)
-		],
-	"addons/advanced_text/default_vars" : [
-		# json string
-		JSON.print({
-			"test_setting" : "variable from project settings" 
-		}, "\t"),
-		PropertyInfo.new(
-			"", TYPE_STRING, PROPERTY_HINT_MULTILINE_TEXT, 
-			"", PROPERTY_USAGE_CATEGORY)
-		],
-}
-
 func _enter_tree():
-	ProjectTools.set_settings_dict(default_properties)
-	var property_keys := default_properties.keys()
-	ProjectTools.set_settings_order(property_keys, 1)
+	ProjectSettings.set_setting(
+		"addons/advanced_text/markup", 
+		"markdown"
+	)
+	ProjectSettings.add_property_info({
+		"name": "addons/advanced_text/markup",
+    "type": TYPE_STRING,
+		"hint": PROPERTY_HINT_ENUM,
+		"hint_string": "markdown,renpy,bbcode"
+	})
+
+	ProjectSettings.set_setting(
+		"addons/advanced_text/default_vars",
+		JSON.print({
+		"test_setting": "variable from project settings" 
+		}, "\t"
+	))
+	ProjectSettings.add_property_info({
+		"name": "addons/advanced_text/default_vars",
+		"type": TYPE_STRING,
+		"hint": PROPERTY_HINT_MULTILINE_TEXT,
+		"hint_string": ""
+	})
+	ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", true)
 
 	# loads all parser onces
 	var parsers_dir := "res://addons/advanced-text/parsers/" 
 	add_autoload_singleton("EBBCodeParser",  parsers_dir + "EBBCodeParser.gd")
 	add_autoload_singleton("MarkdownParser", parsers_dir + "MarkdownParser.gd")
 	add_autoload_singleton("RenpyParser", 	parsers_dir + "RenpyParser.gd")
-	markup_edit_enabled =	ProjectTools.load_from_config("addons/advanced_text/enable_MarkupEdit", "true")
-	toggle_markup_edit(markup_edit_enabled)
-	add_tool_menu_item("Toggle Markup Edit", self, "toggle_markup_edit", "toggle")
+	markup_edit_enabled =	ProjectSettings.get_setting("addons/advanced_text/enable_MarkupEdit")
+	if markup_edit_enabled:
+		load_and_enable_markup_edit()
+	add_tool_menu_item("Toggle Markup Edit", self, "toggle_markup_edit")
 
-func toggle_markup_edit(enable: String):
-	match enable:
-		"true":
-			load_and_enable_markup_edit()
-		"false":
-			unload_and_disable_markup_edit()
-		"toggle":
-			if markup_edit_enabled == "true":
-				markup_edit_enabled = "false"
-				enable = "false"
-				unload_and_disable_markup_edit()
-			else:
-				markup_edit_enabled = "true"
-				enable = "true"
-				load_and_enable_markup_edit()
-
-	ProjectTools.save_to_config("addons/advanced_text/enable_MarkupEdit", enable)
+func toggle_markup_edit():
+	markup_edit_enabled = !markup_edit_enabled
+	
+	if markup_edit_enabled:
+		load_and_enable_markup_edit()
+	else:
+		unload_and_disable_markup_edit()
+	
+	ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", markup_edit_enabled)
 
 func load_and_enable_markup_edit():
 	# load and add MarkupTextEditor to EditorUI

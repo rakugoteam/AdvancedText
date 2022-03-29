@@ -48,16 +48,6 @@ _global_script_classes=[ {
 "class": "MaterialIcon",
 "language": "GDScript",
 "path": "res://addons/material-design-icons/nodes/MaterialIcon.gd"
-}, {
-"base": "Reference",
-"class": "ProjectTools",
-"language": "GDScript",
-"path": "res://addons/project-settings-helpers/ProjectTools.gd"
-}, {
-"base": "Reference",
-"class": "PropertyInfo",
-"language": "GDScript",
-"path": "res://addons/project-settings-helpers/PropertyInfo.gd"
 } ]
 _global_script_class_icons={
 "AdvancedTextButton": "",
@@ -67,14 +57,16 @@ _global_script_class_icons={
 "EmojiIcon": "res://addons/emojis-for-godot/icons/EmojiIcon.svg",
 "Emojis": "",
 "MaterialButton": "res://addons/material-design-icons/nodes/MaterialButton.svg",
-"MaterialIcon": "res://addons/material-design-icons/nodes/MaterialIcon.svg",
-"ProjectTools": "",
-"PropertyInfo": ""
+"MaterialIcon": "res://addons/material-design-icons/nodes/MaterialIcon.svg"
 }
 
 [addons]
 
-advanced_text/enable_MarkupEdit="False"
+advanced_text/enable_MarkupEdit=true
+advanced_text/markup="markdown"
+advanced_text/default_vars="{
+	\"test_setting\": \"variable from project settings\"
+}"
 
 [application]
 
