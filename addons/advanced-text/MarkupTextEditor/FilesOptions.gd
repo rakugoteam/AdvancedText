@@ -32,9 +32,9 @@ var b_group := ButtonGroup.new()
 const files_ram_path := "res://addons/advanced-text/MarkupTextEditor/ram.data"
 
 func _ready():
-	# new_file_button.connect("pressed", self, "_on_new_file_pressed")
+	new_file_button.connect("pressed", self, "_on_new_file_pressed")
 	open_file_button.connect("pressed", self, "_on_open_file_pressed")
-	# save_file_button.connect("pressed", self, "_on_save_file_pressed")
+	save_file_button.connect("pressed", self, "_on_save_file_pressed")
 	save_file_as_button.connect("pressed", self, "_on_save_file_as_pressed")
 	file_dialog.connect("files_selected", self, "_on_files_selected")
 
@@ -61,12 +61,43 @@ func _on_file_selected(file_path:String):
 				else:
 					_on_file_open(file_path, f_data["text"])
 
-			_on_file_save_button_pressed()
+			_on_save_file_pressed()
 
 func _on_files_selected(file_paths:Array):
 	print("open files", file_paths)
 	for file_path in file_paths:
 		_on_file_open(file_path)
+
+func create_new_file_tab(file_path:String, text:String):
+	var file_name = file_path.get_file()
+	var file_ext = file_path.get_extension()
+	var f_tab = file_tab_scene.instance()
+	f_tab.name = file_name
+
+	var f_button : Button = f_tab.get_node("FileButton")
+	f_button.text = file_name
+	files_box.add_child(f_tab)
+	f_button.group = b_group
+	f_button.pressed = true
+	f_button.connect("pressed", self, "_on_file_pressed", [f_tab])
+
+	var f_close_button : Button = f_tab.get_node("CloseButton")
+	f_close_button.connect("pressed", self, "_on_file_close_pressed", [f_tab])
+	f_close_button.text = ""
+	f_close_button.icon = get_icon("Close", "EditorIcons")
+
+	var f_modified_icon : TextureRect = f_tab.get_node("ModifiedIcon")
+	f_modified_icon.texture = get_icon("Edit", "EditorIcons")
+	f_modified_icon.hide()
+	return [f_tab, {
+	"f_button": f_button,
+	"file_name": file_name,
+	"file_ext": file_ext,
+	"path": file_path,
+	"text": "",
+	"modified": false,
+	"modified_icon": f_modified_icon,
+}]
 
 func _on_file_open(file_path:String, modified_text := ""):
 	if file_path.empty():
@@ -76,61 +107,24 @@ func _on_file_open(file_path:String, modified_text := ""):
 		return
 	
 	print_debug("open file ", file_path)
-	var file_name = file_path.get_file()
-	var file_ext = file_path.get_extension()
 	
 	# if file is already open so just switch to it
 	if file_path in paths_dir.keys():
 		# add switching to file
 		print_debug("file already open")
 		var f_tab_button = paths_dir[file_path].get_node("FileButton")
-		print_debug("switch to tab ", f_tab_button.text)
+		# print_debug("switch to tab ", f_tab_button.text)
 		f_tab_button.emit_signal("pressed")
 		return
 
-	print("open not opened file", file_path)
+	# print("open not opened file", file_path)
+	var f_data_arry = create_new_file_tab(file_path, modified_text)
+	var f_tab = f_data_arry[0]
+	var f_data = f_data_arry[1]
+	var file_name = f_data["file_name"]
+	var f_button = f_data["f_button"]
 
-	var f_tab = file_tab_scene.instance()
-	f_tab.name = file_name
-
-	var f_button : Button = f_tab.get_node("FileButton")
-	f_button.text = file_name
-	files_box.add_child(f_tab)
-	f_button.group = b_group
-	f_button.pressed = true
-	f_button.connect("pressed", self, "_on_file_button_pressed", [f_tab])
-
-	var f_close_button : Button = f_tab.get_node("CloseButton")
-	f_close_button.connect("pressed", self, "_on_file_close_button_pressed", [f_tab])
-	f_close_button.text = ""
-	f_close_button.icon = get_icon("Close", "EditorIcons")
-
-	var f_modified_icon : TextureRect = f_tab.get_node("ModifiedIcon")
-	f_modified_icon.texture = get_icon("Edit", "EditorIcons")
-	f_modified_icon.hide()
-
-	var data := ""
-	
-	if modified_text:
-		f_modified_icon.show()
-		data = text
-	
-	elif f.file_exists(file_path):
-		f.open(file_path, File.READ)
-		data = f.get_as_text()
-		f.close()
-
-	var f_data = {
-		"f_button": f_button,
-		"file_name": file_name,
-		"file_ext": file_ext,
-		"path": file_path,
-		"text": data,
-		"modified": false,
-		"modified_icon": f_modified_icon,
-	}
-
-	paths_dir[file_path] = f_tab
+	paths_dir[file_path] = f_data
 	files_ram[f_tab] = f_data
 	files_boxes[file_name] = f_tab
 	_update_file_data(f_data, file_path)
@@ -178,30 +172,25 @@ func _update_file_data(f_data:Dictionary, file_path:String):
 
 	match f_data["file_ext"]:
 		"md":
-			t.set_markup("markdown")
+			t.emit_signal("selected_markup", "markdown")
 			t.markup_switch.disabled = true
 			b.icon = MarkdownIcon
 
 		"rpy":
-			t.set_markup("renpy")
+			t.emit_signal("selected_markup", "renpy")
 			t.markup_switch.disabled = true
 			b.icon = RpyIcon
-
-		"txt":
-			t.set_markup("bbcode")
-			b.icon = get_icon("TextFile", "EditorIcons")
 			
-
 		"json":
-			t.set_markup("selected_markup", "json")
+			t.emit_signal("selected_markup", "json")
 			b.icon = get_icon("Dictionary", "EditorIcons")
 
 		"gdscript":
-			t.set_markup("selected_markup", "gdscript")
+			t.emit_signal("selected_markup", "gdscript")
 			b.icon = get_icon("GDScript", "EditorIcons")
 
 		_:
-			t.set_markup("selected_markup", "plain")
+			t.emit_signal("selected_markup", "plain")
 			b.icon = get_icon("TextFile", "EditorIcons")
 
 	t.file_icon.texture = b.icon
@@ -213,12 +202,12 @@ func _update_file_data(f_data:Dictionary, file_path:String):
 	save_file_button.disabled = not f_data["modified"]
 	print("file loaded")
 
-func _on_file_button_pressed(file_box: Node):
+func _on_file_pressed(file_box: Node):
 	var f_data = files_ram[file_box]
 	var file_path = f_data["path"]
 	_update_file_data(f_data, file_path)
 
-func _on_file_close_button_pressed(file_box: Node):
+func _on_file_close_pressed(file_box: Node):
 	var f_data = files_ram[file_box]
 	var f_button = f_data["f_button"]
 	# todo add ask for save if text was changed
@@ -232,23 +221,23 @@ func _on_file_close_button_pressed(file_box: Node):
 		# _on_files_toggle(true)
 
 	else:
-		_on_file_button_pressed(files_ram.keys().back())
+		_on_file_pressed(files_ram.keys().back())
 
 	file_box.queue_free()
 	save_files_ram()
 
-func _on_new_file_button_pressed():
+func _on_new_file_pressed():
 	var id := files_ram.size()
 	var file_name = "NewFile " + str(id)
 	_on_file_open(file_name)
 
-func _on_file_save_button_pressed():
+func _on_save_file_pressed():
 	var f_data : Dictionary = current_file_data
 	var file_path : String = f_data["path"]
 	var _text : String = f_data["text"]
 
 	if file_path.begins_with("NewFile"):
-		# _on_file_save_as_button_pressed()
+		_on_save_file_as_pressed()
 		return
 
 	f.open(file_path, File.WRITE)

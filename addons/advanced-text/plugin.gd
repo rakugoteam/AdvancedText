@@ -115,6 +115,7 @@ func unload_and_disable_markup_edit():
 				args[0] = true
 			
 			b.disconnect("pressed", self, "_on_toggle")
+			
 		markup_text_editor_button.queue_free()
 
 func _exit_tree():
