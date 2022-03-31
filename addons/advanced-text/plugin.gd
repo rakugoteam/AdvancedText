@@ -9,30 +9,39 @@ var button_parent : Control
 var last_editor : Control
 
 func _enter_tree():
-	ProjectSettings.set_setting(
-		"addons/advanced_text/markup", 
-		"markdown"
+	if !ProjectSettings.has_setting("markup_text_editor"):
+		ProjectSettings.set_setting(
+			"addons/advanced_text/markup", 
+			"markdown"
+		)
+
+	ProjectSettings.set_order(
+		"addons/advanced_text/markup", 0
 	)
 	ProjectSettings.add_property_info({
 		"name": "addons/advanced_text/markup",
-    "type": TYPE_STRING,
+		"type": TYPE_STRING,
 		"hint": PROPERTY_HINT_ENUM,
 		"hint_string": "markdown,renpy,bbcode"
 	})
 
-	ProjectSettings.set_setting(
-		"addons/advanced_text/default_vars",
-		JSON.print({
-		"test_setting": "variable from project settings" 
-		}, "\t"
-	))
+	if !ProjectSettings.has_setting("addons/advanced_text/default_vars"):
+		ProjectSettings.set_setting(
+			"addons/advanced_text/default_vars",
+			JSON.print({
+			"test_setting": "variable from project settings" 
+			}, "\t"
+		))
+
 	ProjectSettings.add_property_info({
 		"name": "addons/advanced_text/default_vars",
 		"type": TYPE_STRING,
 		"hint": PROPERTY_HINT_MULTILINE_TEXT,
 		"hint_string": ""
 	})
-	ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", true)
+
+	if !ProjectSettings.has_setting("addons/advanced_text/enable_MarkupEdit"):
+		ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", true)
 
 	# loads all parser onces
 	var parsers_dir := "res://addons/advanced-text/parsers/" 
@@ -109,6 +118,9 @@ func unload_and_disable_markup_edit():
 		markup_text_editor_button.queue_free()
 
 func _exit_tree():
+	ProjectSettings.set_setting("addons/advanced_text/markup", null)
+	ProjectSettings.set_setting("addons/advanced_text/default_vars", null)
+	ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", null)
 	unload_and_disable_markup_edit()
 	
 	# unloaded all parsers

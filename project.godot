@@ -62,8 +62,8 @@ _global_script_class_icons={
 
 [addons]
 
-advanced_text/enable_MarkupEdit=true
 advanced_text/markup="markdown"
+advanced_text/enable_MarkupEdit=true
 advanced_text/default_vars="{
 	\"test_setting\": \"variable from project settings\"
 }"
