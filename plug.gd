@@ -5,10 +5,11 @@ func _plugging():
     # By default, only "addons/" directory will be installed
     
     # dependencies
+    
+    # optional plugins to help with development
+    plug("Xrayez/godot-editor-icons-previewer")
 
     # optional supported plugins
     plug("rakugoteam/Emojis-For-Godot", {"include": [".import/"]})
     plug("rakugoteam/Godot-Material-Icons", {"include": [".import/"]})
-    
-    # optional plugins to help with development
-    plug("Xrayez/godot-editor-icons-previewer")
+  
