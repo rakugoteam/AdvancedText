@@ -1,25 +1,19 @@
 tool
 extends Object
 
-const emoji_path = "res://addons/emojis-for-godot/emojis/emojis.gd"
-const emoji_plugin_path = "res://addons/emojis-for-godot/plugin.cfg"
-const emoji_panel = "res://addons/emojis-for-godot/EmojiPanel/EmojiPanel.tscn"
-const emoji_icon_path ="res://addons/emojis-for-godot/icon.png"
+const emoji_path := "res://addons/emojis-for-godot/emojis/emojis.gd"
+const emoji_plugin_path := "res://addons/emojis-for-godot/plugin.cfg"
+const emoji_panel := "res://addons/emojis-for-godot/EmojiPanel/EmojiPanel.tscn"
+const emoji_icon_path :="res://addons/emojis-for-godot/icon.png"
 
 var f := File.new()
 var _emojis
-var _plugin_enabled : = false
-var _warning_shown : = false
+var _plugin_enabled := false
+var _warning_shown := false
 
 func _init():
 	if !_plugin_enabled:
 		var plugins = ProjectSettings.get_setting("editor_plugins/enabled")
-		if plugins.empty():
-			if !_warning_shown:
-				push_warning("emojis-for-godot are not enabled")
-				_warning_shown = true
-			return
-			
 		_plugin_enabled = emoji_plugin_path in plugins
 
 	if !_plugin_enabled && !_warning_shown:

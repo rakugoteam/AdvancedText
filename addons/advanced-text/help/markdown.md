@@ -18,6 +18,8 @@ test_dict.key1 = <test_dict.key1>
 @color=<test_color> {text in custom color from variable}
 
 :grinning:
+[icon=folder-open]
+[icon=folder-open, 32]
 ![](res://icon.png)
 ![24x24](res://icon.png)
 

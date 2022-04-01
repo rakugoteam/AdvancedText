@@ -4,8 +4,8 @@ export(String, FILE, "*.md, *.rpy, *.txt") var home_text_file := ""
 export var tab_button_scene : PackedScene
 export var text_view_scene : PackedScene
 
-onready var tabs : TabContainer = $HSplitContainer/TabContainer
-onready var tabs_box : VBoxContainer = $HSplitContainer/ScrollContainer/VBoxContainer
+export (NodePath) onready var tabs = get_node(tabs) as TabContainer
+export (NodePath) onready var tabs_box = get_node(tabs_box) as VBoxContainer
 
 var current_text_view : AdvancedTextLabel
 var tabs_group := ButtonGroup.new()

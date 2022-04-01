@@ -9,6 +9,10 @@ extends Node
 var EmojisImport
 var emojis_gd = null
 
+var IconsImport
+var icons_gd = null
+var icons_font := ""
+
 func _init():
 	EmojisImport = preload("../emojis_import.gd")
 	EmojisImport = EmojisImport.new()
@@ -16,6 +20,14 @@ func _init():
 		emojis_gd = EmojisImport.get_emojis()
 	else:
 		EmojisImport.free()
+	
+	IconsImport = preload("../material_icons_import.gd")
+	IconsImport = IconsImport.new()
+	if IconsImport.is_plugin_enabled():
+		icons_gd = IconsImport.get_icons()
+		icons_font = IconsImport.mi_font_path
+	else:
+		IconsImport.free()
 
 func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
 	var output = "" + text
@@ -31,7 +43,9 @@ func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
 	# prints("emojis_gd:", emojis_gd)
 	if emojis_gd:
 		output = emojis_gd.parse_emojis(output)
-		
+			
+	if icons_gd:
+		output = parse_icons(output)
 	return output
 
 func replace_variables(text:String, variables:Dictionary, placeholder := "<_>") -> String:
@@ -101,7 +115,6 @@ func parse_variable(text:String, placeholder:String, variable:String, value) -> 
 
 	return output
 
-
 func regex_replace(result:RegExMatch, output:String, replacement:String, string_to_replace=0) -> String:
 	var offset = output.length() - result.subject.length()
 	var left = output.left(result.get_start(string_to_replace) + offset)
@@ -128,3 +141,32 @@ func parse_headers(text:String, headers_fonts:Array) -> String:
 			output = regex_replace(result, output, replacement)
 	
 	return output
+
+func parse_icons(text:String):
+	var re = RegEx.new()
+	var output = "" + text
+	var replacement = ""
+	
+	# [icon=icon-name]
+	re.compile("\\[icon=([\\w\\d-]+)\\]")
+	for result in re.search_all(text):
+		if result.get_string():
+			var icon = result.get_string(1)
+			replacement = _parse_icon(icon)
+		output = regex_replace(result, output, replacement)
+
+	# [icon=icon-name,size]
+	re.compile("\\[icon=([\\w\\d-]+)\\,\\s*([0-9]+)\\]")
+	for result in re.search_all(text):
+		if result.get_string():
+			var icon = result.get_string(1)
+			var size = result.get_string(2)
+			replacement = _parse_icon(icon, size)
+			output = regex_replace(result, output, replacement)
+	
+	return output
+
+func _parse_icon(icon_name:String, size:="24") -> String:
+	var ch = icons_gd.get_icon_char(icon_name)
+	var font = icons_font % size
+	return "[font=%s]%s[/font]" %  [font, ch]

@@ -519,8 +519,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_default_markup": "markdown"
 }
-markup_text_file = ""
 markup_text = "**This is normally Markdown**
 @color=#c39f00 {variable from settings:} @color=lime{<test_setting>}"
-markup = "default"
 headers_fonts = [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ) ]

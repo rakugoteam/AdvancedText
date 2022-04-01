@@ -27,10 +27,13 @@ func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
 	# Parse headers
 	if !headers_fonts.empty():
 		output = parse_headers(output, headers_fonts)
-
+		
 	# prints("emojis_gd:", emojis_gd)
 	if emojis_gd:
 		output = emojis_gd.parse_emojis(output)
+
+	if icons_gd:
+		output = parse_icons(output)
 
 	return output
 
