@@ -10,6 +10,6 @@ func _plugging():
     plug("Xrayez/godot-editor-icons-previewer")
 
     # optional supported plugins
-    plug("rakugoteam/Emojis-For-Godot", {"include": [".import/"]})
-    plug("rakugoteam/Godot-Material-Icons", {"include": [".import/"]})
+    plug("rakugoteam/Emojis-For-Godot", {"include": ["addons", ".import/"]})
+    plug("rakugoteam/Godot-Material-Icons", {"include": ["addons", ".import/"]})
   
