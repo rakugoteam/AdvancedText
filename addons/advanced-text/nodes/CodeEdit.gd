@@ -27,6 +27,7 @@ func _ready() -> void:
 	clear_colors()
 	_add_keywords_highlighting()
 	connect("update", self, "_on_update")
+	emit_signal("update")
 
 func _set_text_file(value:String) -> void:
 	text_file = value

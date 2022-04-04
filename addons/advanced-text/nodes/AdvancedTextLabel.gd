@@ -26,6 +26,7 @@ var hf_paths : Array
 func _ready() -> void:
 	bbcode_enabled = true
 	connect("update", self, "_on_update")
+	emit_signal("update")
 
 func _set_headers_fonts(value : Array) -> void:
 	headers_fonts = value

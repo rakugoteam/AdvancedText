@@ -64,6 +64,9 @@ func toggle_markup_edit():
 	ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", markup_edit_enabled)
 
 func load_and_enable_markup_edit():
+	# load ram / last file session
+	add_autoload_singleton("FilesRam", "res://addons/advanced-text/MarkupTextEditor/FileRam.gd")
+
 	# load and add MarkupTextEditor to EditorUI
 	markup_text_editor = preload("MarkupTextEditor/MarkupEdit.tscn")
 	markup_text_editor = markup_text_editor.instance()
@@ -106,7 +109,9 @@ func unload_and_disable_markup_edit():
 	if markup_text_editor != null:
 		if is_connected("scene_changed", self, "_on_scene_changed"):
 			disconnect("scene_changed", self, "_on_scene_changed")
+
 		markup_text_editor.queue_free()
+		remove_autoload_singleton("FilesRam") 
 
 	# remove button from toolbar
 	if markup_text_editor_button != null:

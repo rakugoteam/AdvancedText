@@ -7,17 +7,21 @@ var emojis_gd
 var IconsImport
 var icons_gd
 
-export (NodePath) onready var help_button = get_node(help_button) as Button
 export (NodePath) onready var node_toggle = get_node(node_toggle) as Button
 export (NodePath) onready var files_toggle = get_node(files_toggle) as Button
-export (NodePath) onready var help_popup = get_node(help_popup) as Popup
-export (NodePath) onready var markup_switch = get_node(markup_switch) as OptionButton
-export (NodePath) onready var preview_toggle = get_node(preview_toggle) as Button
-export (NodePath) onready var preview_switch = get_node(preview_switch) as OptionButton
-export (NodePath) onready var emoji_button = get_node(emoji_button) as Button
-export (NodePath) onready var icon_button = get_node(icon_button) as Button
+
 export (NodePath) onready var file_icon = get_node(file_icon) as TextureRect
 export (NodePath) onready var file_name = get_node(file_name) as Label
+export (NodePath) onready var markup_switch = get_node(markup_switch) as OptionButton
+
+export (NodePath) onready var preview_toggle = get_node(preview_toggle) as Button
+export (NodePath) onready var preview_switch = get_node(preview_switch) as OptionButton
+
+export (NodePath) onready var help_button = get_node(help_button) as Button
+export (NodePath) onready var help_popup = get_node(help_popup) as Popup
+
+export (NodePath) onready var emoji_button = get_node(emoji_button) as Button
+export (NodePath) onready var icon_button = get_node(icon_button) as Button
 
 signal preview_toggled(toggle)
 signal help_pressed

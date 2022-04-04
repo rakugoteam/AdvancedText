@@ -60,10 +60,25 @@ _global_script_class_icons={
 "MaterialIcon": "res://addons/material-design-icons/nodes/MaterialIcon.svg"
 }
 
+[addons]
+
+advanced_text/markup="markdown"
+advanced_text/default_vars="{
+	\"test_setting\": \"variable from project settings\"
+}"
+advanced_text/enable_MarkupEdit=true
+
 [application]
 
 config/name="AdvancedTextLabel"
 config/icon="res://icon.png"
+
+[autoload]
+
+EBBCodeParser="*res://addons/advanced-text/parsers/EBBCodeParser.gd"
+MarkdownParser="*res://addons/advanced-text/parsers/MarkdownParser.gd"
+RenpyParser="*res://addons/advanced-text/parsers/RenpyParser.gd"
+FilesRam="*res://addons/advanced-text/MarkupTextEditor/FileRam.gd"
 
 [debug]
 
@@ -76,7 +91,7 @@ gdscript/warnings/return_value_discarded=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/editor_icon_previewer/plugin.cfg", "res://addons/emojis-for-godot/plugin.cfg", "res://addons/material-design-icons/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/advanced-text/plugin.cfg", "res://addons/editor_icon_previewer/plugin.cfg", "res://addons/emojis-for-godot/plugin.cfg", "res://addons/material-design-icons/plugin.cfg" )
 
 [global]
 

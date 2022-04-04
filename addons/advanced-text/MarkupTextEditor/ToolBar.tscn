@@ -51,17 +51,17 @@ __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": ""
 }
-help_button = NodePath("HBoxContainer/HBoxContainer/Help")
 node_toggle = NodePath("HBoxContainer/EditSelectedNode")
 files_toggle = NodePath("HBoxContainer/EditSelectedFile")
-help_popup = NodePath("PopupHelp")
+file_icon = NodePath("HBoxContainer/LabelContainer/HBoxContainer/FileIcon")
+file_name = NodePath("HBoxContainer/LabelContainer/HBoxContainer/FileName")
 markup_switch = NodePath("HBoxContainer/MarkupSwitch")
 preview_toggle = NodePath("HBoxContainer/HBoxContainer/PreviewToggle")
 preview_switch = NodePath("HBoxContainer/HBoxContainer/PreviewSwitch")
+help_button = NodePath("HBoxContainer/HBoxContainer/Help")
+help_popup = NodePath("PopupHelp")
 emoji_button = NodePath("HBoxContainer/HBoxContainer/Emojis")
 icon_button = NodePath("HBoxContainer/HBoxContainer/Icons")
-file_icon = NodePath("HBoxContainer/HBoxContainer/Icons")
-file_name = NodePath("HBoxContainer/LabelContainer/HBoxContainer/FileName")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -223,17 +223,7 @@ margin_right = 876.0
 margin_bottom = 572.0
 window_title = "Help"
 resizable = true
-toolbar = Object(Control,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"visible":true,"modulate":Color( 1, 1, 1, 1 ),"self_modulate":Color( 1, 1, 1, 1 ),"show_behind_parent":false,"light_mask":1,"material":null,"use_parent_material":false,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":1.0,"anchor_bottom":0.0,"margin_left":0.0,"margin_top":0.0,"margin_right":0.0,"margin_bottom":40.0,"grow_horizontal":1,"grow_vertical":1,"rect_min_size":Vector2( 0, 0 ),"rect_rotation":0.0,"rect_scale":Vector2( 1, 1 ),"rect_pivot_offset":Vector2( 0, 0 ),"rect_clip_content":false,"hint_tooltip":"","focus_neighbour_left":NodePath(""),"focus_neighbour_top":NodePath(""),"focus_neighbour_right":NodePath(""),"focus_neighbour_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":2,"mouse_default_cursor_shape":0,"input_pass_on_modal_close_click":true,"size_flags_horizontal":3,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"theme":null,"script":ExtResource( 5 ),"__meta__":{
-"_edit_use_anchors_": true,
-"_editor_description_": ""
-},"EmojisImport":Object(Object,"script":Resource( "res://addons/advanced-text/emojis_import.gd" ),"f":Object(_File,"endian_swap":false,"script":null)
-,"_emojis":null,"_plugin_enabled":true,"_warning_shown":false)
-,"emojis_gd":null,"IconsImport":Object(Object,"script":Resource( "res://addons/advanced-text/material_icons_import.gd" ),"f":Object(_File,"endian_swap":false,"script":null)
-,"_icons":null,"_plugin_enabled":true,"_warning_shown":false)
-,"icons_gd":null,"help_button":NodePath("HBoxContainer/HBoxContainer/Help"),"node_toggle":NodePath("HBoxContainer/EditSelectedNode"),"files_toggle":NodePath("HBoxContainer/EditSelectedFile"),"help_popup":NodePath("PopupHelp"),"markup_switch":NodePath("HBoxContainer/MarkupSwitch"),"preview_toggle":NodePath("HBoxContainer/HBoxContainer/PreviewToggle"),"preview_switch":NodePath("HBoxContainer/HBoxContainer/PreviewSwitch"),"emoji_button":NodePath("HBoxContainer/HBoxContainer/Emojis"),"icon_button":NodePath("HBoxContainer/HBoxContainer/Icons"),"file_icon":NodePath("HBoxContainer/HBoxContainer/Icons"),"file_name":NodePath("HBoxContainer/LabelContainer/HBoxContainer/FileName"))
-
-tabs = Object(TabContainer,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"visible":true,"modulate":Color( 1, 1, 1, 1 ),"self_modulate":Color( 1, 1, 1, 1 ),"show_behind_parent":false,"light_mask":1,"material":null,"use_parent_material":false,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":1.0,"anchor_bottom":1.0,"margin_left":0.0,"margin_top":0.0,"margin_right":0.0,"margin_bottom":0.0,"grow_horizontal":1,"grow_vertical":1,"rect_min_size":Vector2( 0, 0 ),"rect_rotation":0.0,"rect_scale":Vector2( 1, 1 ),"rect_pivot_offset":Vector2( 0, 0 ),"rect_clip_content":false,"hint_tooltip":"","focus_neighbour_left":NodePath(""),"focus_neighbour_top":NodePath(""),"focus_neighbour_right":NodePath(""),"focus_neighbour_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":0,"mouse_default_cursor_shape":0,"input_pass_on_modal_close_click":true,"size_flags_horizontal":3,"size_flags_vertical":3,"size_flags_stretch_ratio":1.0,"theme":null,"tab_align":1,"tabs_visible":true,"all_tabs_in_front":false,"drag_to_rearrange_enabled":false,"use_hidden_tabs_for_min_size":false,"script":null)
-
+toolbar = NodePath("..")
 
 [connection signal="about_to_show" from="PopupDialog" to="PopupDialog/Emoji" method="_on_about_to_show"]
 [connection signal="resized" from="PopupDialog" to="PopupDialog/Emoji" method="_on_resized"]
