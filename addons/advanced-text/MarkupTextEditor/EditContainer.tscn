@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/MarkupEdit.gd" type="Script" id=1]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/Edit.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=2]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=3]
 [ext_resource path="res://addons/advanced-text/font/theme_with_fonts.tres" type="Theme" id=4]
@@ -12,13 +12,6 @@
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H2.tres" type="DynamicFont" id=10]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=11]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/EditContainer.gd" type="Script" id=12]
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/FilesOptions.gd" type="Script" id=13]
-[ext_resource path="res://addons/advanced-text/shared/TabButton.tscn" type="PackedScene" id=14]
-[ext_resource path="res://addons/advanced-text/icons/bbcode.svg" type="Texture" id=15]
-[ext_resource path="res://addons/advanced-text/icons/MarkupTextEditor.svg" type="Texture" id=16]
-[ext_resource path="res://addons/advanced-text/icons/ren16.png" type="Texture" id=17]
-[ext_resource path="res://addons/advanced-text/icons/AdvancedTextLabel.svg" type="Texture" id=18]
-[ext_resource path="res://addons/advanced-text/icons/CodeEdit.svg" type="Texture" id=19]
 
 [sub_resource type="Image" id=4]
 data = {
@@ -45,9 +38,10 @@ script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+toolbar = null
 preview_right = NodePath("HSplitContainer/VSplit/HSplit/PreviewRight")
 preview_bottom = NodePath("HSplitContainer/VSplit/PreviewBottom")
-edit = NodePath("HSplitContainer/VSplit/HSplit/MarkupEdit")
+edit = NodePath("HSplitContainer/VSplit/HSplit/Edit")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 anchor_right = 1.0
@@ -62,35 +56,22 @@ margin_bottom = 602.0
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 13 )
-AdvancedTextLabelIcon = ExtResource( 18 )
-CodeEditIcon = ExtResource( 19 )
-MarkdownIcon = ExtResource( 16 )
-RpyIcon = ExtResource( 17 )
-BBCodeIcon = ExtResource( 15 )
-parent = NodePath("../..")
-new_file_button = NodePath("GridContainer/NewFileButton")
-open_file_button = NodePath("GridContainer/OpenFileButton")
-save_file_button = NodePath("GridContainer/SaveFileButton")
-save_file_as_button = NodePath("GridContainer/SaveAsFileButton")
-files_box = NodePath("ScrollContainer/Panel/FilesBox")
-file_dialog = NodePath("../../TextFileDialog")
-file_tab_scene = ExtResource( 14 )
 
 [node name="GridContainer" type="GridContainer" parent="HSplitContainer/FilesOptions"]
 margin_right = 212.0
-margin_bottom = 48.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 columns = 2
 
 [node name="NewFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
 margin_right = 104.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 hint_tooltip = "Create New Text File"
-size_flags_horizontal = 3
-text = "Create New Text File"
+size_flags_horizontal = 15
+text = "New File"
 icon = SubResource( 3 )
 clip_text = true
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -98,37 +79,40 @@ __meta__ = {
 [node name="OpenFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
 margin_left = 108.0
 margin_right = 212.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 hint_tooltip = "Open Text File"
-size_flags_horizontal = 3
-text = "Open Text File"
+size_flags_horizontal = 15
+text = "Open File"
 icon = SubResource( 3 )
 clip_text = true
+expand_icon = true
 
 [node name="SaveFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
-margin_top = 26.0
+margin_top = 24.0
 margin_right = 104.0
-margin_bottom = 48.0
+margin_bottom = 44.0
 hint_tooltip = "Save File"
-size_flags_horizontal = 3
+size_flags_horizontal = 15
 disabled = true
 text = "Save File"
 icon = SubResource( 3 )
 clip_text = true
+expand_icon = true
 
 [node name="SaveAsFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
 margin_left = 108.0
-margin_top = 26.0
+margin_top = 24.0
 margin_right = 212.0
-margin_bottom = 48.0
+margin_bottom = 44.0
 hint_tooltip = "Save As File"
-size_flags_horizontal = 3
+size_flags_horizontal = 15
 text = "Save As File"
 icon = SubResource( 3 )
 clip_text = true
+expand_icon = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/FilesOptions"]
-margin_top = 52.0
+margin_top = 48.0
 margin_right = 212.0
 margin_bottom = 602.0
 size_flags_horizontal = 3
@@ -136,7 +120,7 @@ size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="HSplitContainer/FilesOptions/ScrollContainer"]
 margin_right = 212.0
-margin_bottom = 550.0
+margin_bottom = 554.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -160,70 +144,11 @@ grow_vertical = 2
 rect_min_size = Vector2( 800, 500 )
 mouse_default_cursor_shape = 10
 
-[node name="MarkupEdit" type="TextEdit" parent="HSplitContainer/VSplit/HSplit"]
+[node name="Edit" type="TextEdit" parent="HSplitContainer/VSplit/HSplit"]
 margin_right = 688.0
 margin_bottom = 500.0
 rect_clip_content = true
 size_flags_horizontal = 3
-text = "# Header Level 1
-## Header Level 2
-### Header Level 3
-
-**bold**
-*italic*
-~~strike through~~
-```mono-spaced text```
-
-[link](https://some_domain.com)
-https://some_domain.com
-
-test_string = <test_string>
-test_int = <test_int>
-test_bool = <test_bool>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
-@color=<test_color> {text in custom color from variable}
-
-:grinning:
-![](res://icon.png)
-![24x24](res://icon.png)
-
-@table=3 {
-|1|2|3|
-|4|5|6|
-|7|8|9|
-}
-
-@u{underlined text}
-@center{centered text}
-@right{right aligned text}
-
-@fill{fill aligned text}
-@justified{justified text *(alt to @fill)* }
-
-@indent{indent text}
-@tab {indent text *(alt to @indent)*}
-
-@color=red {red text}
-@color=#c39f00 {custom colored text}
-
-@wave amp=50 freq=2 {waving text}
-@wave 50, 2 {waving text}
-
-@tornado radius=5 freq=2 {tornado text}
-@tornado 5, 2 {tornado text}
-
-@shake rate=5 level=10 {shaking text }
-@shake 5, 10 {shaking text}
-
-@fade start=4 length=14 {fade text}
-@fade 4, 14 {fade text}
-
-@rainbow freq=0.2 sat=10 val=20 {rainbow text}
-@rainbow 0.2,10,20 {rainbow text}
-
-
-"
 highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
@@ -233,6 +158,13 @@ minimap_draw = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
+}
+configs_dict = {
+"bbcode": "res://addons/advanced-text/highlights/bbcode.json",
+"gdscript": "res://addons/advanced-text/highlights/gdscript.json",
+"json": "res://addons/advanced-text/highlights/json.json",
+"markdown": "res://addons/advanced-text/highlights/bbcode.json",
+"renpy": "res://addons/advanced-text/highlights/renpy.json"
 }
 
 [node name="PreviewRight" type="RichTextLabel" parent="HSplitContainer/VSplit/HSplit"]
@@ -249,182 +181,12 @@ custom_fonts/italics_font = ExtResource( 3 )
 custom_fonts/bold_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 9 )
 bbcode_enabled = true
-bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 1[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 3[/font]
-
-[b]bold[/b]
-[i]italic[/i]
-[s]strike through[/s]
-[code]mono-spaced text[/code]
-
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com[/url]
-
-test_string = test string
-test_int = 1
-test_bool = True
-test_list[0] = 1
-test_dict.key1 = value1
-[color=#1acfa0]text in custom color from variable[/color]
-
-[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
-[img]res://icon.png[/img]
-[img=24x24]res://icon.png[/img]
-
-[table=3][cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underlined text[/u]
-[center]centered text[/center]
-[right]right aligned text[/right]
-
-[fill]fill aligned text[/fill]
-[fill]justified text [i](alt to @fill)[/i] [/fill]
-
-[indent]indent text[/indent]
-[indent]indent text [i](alt to @indent)[/i][/indent]
-
-[color=red]red text[/color]
-[color=#c39f00]custom colored text[/color]
-
-[wave  amp=50 freq=2 ]waving text[/wave]
-[wave amp=50 freq=2 ]waving text[/wave]
-
-[tornado  radius=5 freq=2 ]tornado text[/tornado]
-[tornado radius=5 freq=2 ]tornado text[/tornado]
-
-[shake  rate=5 level=10 ]shaking text [/shake]
-[shake rate=5 level=10 ]shaking text[/shake]
-
-[fade  start=4 length=14 ]fade text[/fade]
-[fade start=4 length=14 ]fade text[/fade]
-
-[rainbow  freq=0.2 sat=10 val=20 ]rainbow text[/rainbow]
-[rainbow freq=0.2 sat=10 val=20 ]rainbow text[/rainbow]
-
-
-"
-text = "Header Level 1
-Header Level 2
-Header Level 3
-
-bold
-italic
-strike through
-mono-spaced text
-
-link
-https://some_domain.com
-
-test_string = test string
-test_int = 1
-test_bool = True
-test_list[0] = 1
-test_dict.key1 = value1
-text in custom color from variable
-
-
-
-
-
-123456789
-
-underlined text
-centered text
-right aligned text
-
-fill aligned text
-justified text (alt to @fill) 
-
-	indent text
-	indent text (alt to @indent)
-
-red text
-custom colored text
-
-waving text
-waving text
-
-tornado text
-tornado text
-
-shaking text 
-shaking text
-
-fade text
-fade text
-
-rainbow text
-rainbow text
-
-
-"
 script = ExtResource( 2 )
 __meta__ = {
 "_default_markup": "markdown"
 }
-markup_text = "# Header Level 1
-## Header Level 2
-### Header Level 3
-
-**bold**
-*italic*
-~~strike through~~
-```mono-spaced text```
-
-[link](https://some_domain.com)
-https://some_domain.com
-
-test_string = <test_string>
-test_int = <test_int>
-test_bool = <test_bool>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
-@color=<test_color> {text in custom color from variable}
-
-:grinning:
-![](res://icon.png)
-![24x24](res://icon.png)
-
-@table=3 {
-|1|2|3|
-|4|5|6|
-|7|8|9|
-}
-
-@u{underlined text}
-@center{centered text}
-@right{right aligned text}
-
-@fill{fill aligned text}
-@justified{justified text *(alt to @fill)* }
-
-@indent{indent text}
-@tab {indent text *(alt to @indent)*}
-
-@color=red {red text}
-@color=#c39f00 {custom colored text}
-
-@wave amp=50 freq=2 {waving text}
-@wave 50, 2 {waving text}
-
-@tornado radius=5 freq=2 {tornado text}
-@tornado 5, 2 {tornado text}
-
-@shake rate=5 level=10 {shaking text }
-@shake 5, 10 {shaking text}
-
-@fade start=4 length=14 {fade text}
-@fade 4, 14 {fade text}
-
-@rainbow freq=0.2 sat=10 val=20 {rainbow text}
-@rainbow 0.2,10,20 {rainbow text}
-
-
-"
+markup_text_file = ""
+markup_text = ""
 markup = "markdown"
 headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
 
@@ -442,182 +204,12 @@ custom_fonts/italics_font = ExtResource( 3 )
 custom_fonts/bold_font = ExtResource( 5 )
 custom_fonts/normal_font = ExtResource( 9 )
 bbcode_enabled = true
-bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 1[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
-[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 3[/font]
-
-[b]bold[/b]
-[i]italic[/i]
-[s]strike through[/s]
-[code]mono-spaced text[/code]
-
-[url=https://some_domain.com]link[/url]
-[url]https://some_domain.com[/url]
-
-test_string = test string
-test_int = 1
-test_bool = True
-test_list[0] = 1
-test_dict.key1 = value1
-[color=#1acfa0]text in custom color from variable[/color]
-
-[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
-[img]res://icon.png[/img]
-[img=24x24]res://icon.png[/img]
-
-[table=3][cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
-
-[u]underlined text[/u]
-[center]centered text[/center]
-[right]right aligned text[/right]
-
-[fill]fill aligned text[/fill]
-[fill]justified text [i](alt to @fill)[/i] [/fill]
-
-[indent]indent text[/indent]
-[indent]indent text [i](alt to @indent)[/i][/indent]
-
-[color=red]red text[/color]
-[color=#c39f00]custom colored text[/color]
-
-[wave  amp=50 freq=2 ]waving text[/wave]
-[wave amp=50 freq=2 ]waving text[/wave]
-
-[tornado  radius=5 freq=2 ]tornado text[/tornado]
-[tornado radius=5 freq=2 ]tornado text[/tornado]
-
-[shake  rate=5 level=10 ]shaking text [/shake]
-[shake rate=5 level=10 ]shaking text[/shake]
-
-[fade  start=4 length=14 ]fade text[/fade]
-[fade start=4 length=14 ]fade text[/fade]
-
-[rainbow  freq=0.2 sat=10 val=20 ]rainbow text[/rainbow]
-[rainbow freq=0.2 sat=10 val=20 ]rainbow text[/rainbow]
-
-
-"
-text = "Header Level 1
-Header Level 2
-Header Level 3
-
-bold
-italic
-strike through
-mono-spaced text
-
-link
-https://some_domain.com
-
-test_string = test string
-test_int = 1
-test_bool = True
-test_list[0] = 1
-test_dict.key1 = value1
-text in custom color from variable
-
-
-
-
-
-123456789
-
-underlined text
-centered text
-right aligned text
-
-fill aligned text
-justified text (alt to @fill) 
-
-	indent text
-	indent text (alt to @indent)
-
-red text
-custom colored text
-
-waving text
-waving text
-
-tornado text
-tornado text
-
-shaking text 
-shaking text
-
-fade text
-fade text
-
-rainbow text
-rainbow text
-
-
-"
 script = ExtResource( 2 )
 __meta__ = {
 "_default_markup": "markdown"
 }
-markup_text = "# Header Level 1
-## Header Level 2
-### Header Level 3
-
-**bold**
-*italic*
-~~strike through~~
-```mono-spaced text```
-
-[link](https://some_domain.com)
-https://some_domain.com
-
-test_string = <test_string>
-test_int = <test_int>
-test_bool = <test_bool>
-test_list[0] = <test_list[0]>
-test_dict.key1 = <test_dict.key1>
-@color=<test_color> {text in custom color from variable}
-
-:grinning:
-![](res://icon.png)
-![24x24](res://icon.png)
-
-@table=3 {
-|1|2|3|
-|4|5|6|
-|7|8|9|
-}
-
-@u{underlined text}
-@center{centered text}
-@right{right aligned text}
-
-@fill{fill aligned text}
-@justified{justified text *(alt to @fill)* }
-
-@indent{indent text}
-@tab {indent text *(alt to @indent)*}
-
-@color=red {red text}
-@color=#c39f00 {custom colored text}
-
-@wave amp=50 freq=2 {waving text}
-@wave 50, 2 {waving text}
-
-@tornado radius=5 freq=2 {tornado text}
-@tornado 5, 2 {tornado text}
-
-@shake rate=5 level=10 {shaking text }
-@shake 5, 10 {shaking text}
-
-@fade start=4 length=14 {fade text}
-@fade 4, 14 {fade text}
-
-@rainbow freq=0.2 sat=10 val=20 {rainbow text}
-@rainbow 0.2,10,20 {rainbow text}
-
-
-"
+markup_text_file = ""
+markup_text = ""
 markup = "markdown"
 headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
 
@@ -630,7 +222,7 @@ margin_left = -295.0
 margin_top = -209.0
 margin_right = 358.0
 margin_bottom = 201.0
-window_title = "Open File(s)"
+window_title = "Otwórz plik(i)"
 resizable = true
 mode = 1
 filters = PoolStringArray( "*.txt  ; Text File", "*.md ; Markdown File", "*.rpy ; Ren\'Py Markup File " )
