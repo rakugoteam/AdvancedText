@@ -65,7 +65,7 @@ func toggle_markup_edit():
 
 func load_and_enable_markup_edit():
 	# load and add MarkupTextEditor to EditorUI
-	markup_text_editor = preload("MarkupTextEditor/MarkupTextEditor.tscn")
+	markup_text_editor = preload("MarkupTextEditor/MarkupEdit.tscn")
 	markup_text_editor = markup_text_editor.instance()
 	editor_parent = get_editor_interface().get_editor_viewport()
 	markup_text_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -76,7 +76,7 @@ func load_and_enable_markup_edit():
 	
 	# add button for MarkupTextEditor to toolbar
 	markup_text_editor_button = ToolButton.new()
-	markup_text_editor_button.text = "Markup Text Editor"
+	markup_text_editor_button.text = "Markup Edit"
 	markup_text_editor_button.icon = preload("icons/MarkupTextEditor.svg")
 	markup_text_editor_button.toggle_mode = true
 	markup_text_editor_button.pressed = false
@@ -104,7 +104,8 @@ func unload_and_disable_markup_edit():
 
 	# remove MarkupTextEditor from EditorUI
 	if markup_text_editor != null:
-		disconnect("scene_changed", self, "_on_scene_changed")
+		if is_connected("scene_changed", self, "_on_scene_changed"):
+			disconnect("scene_changed", self, "_on_scene_changed")
 		markup_text_editor.queue_free()
 
 	# remove button from toolbar

@@ -1,3 +1,4 @@
+tool
 extends Control
 
 export (NodePath) onready var toolbar = get_node(toolbar) as Control

@@ -1,29 +1,56 @@
-extends CodeEdit
+tool
+extends Control
 
-export var configs_dict := {
-		"markdown": "res://addons/advanced-text/highlights/bbcode.json",
-		"bbcode": "res://addons/advanced-text/highlights/bbcode.json",
-		"renpy": "res://addons/advanced-text/highlights/renpy.json",
-		"json": "res://addons/advanced-text/highlights/json.json",
-		"gdscript": "res://addons/advanced-text/highlights/gdscript.json",
-	}
+var editor : EditorInterface
+var last_selected_node : Node
+var mouse_button_released = true
+var mouse_button_just_pressed = false
 
-func _on_markup_selected(markup:String):
-	if markup == "plain":
-		clear_colors()
+signal node_selected(node)
+
+func _process(delta:float):
+	if visible != true:
 		return
-		
-	var lang = [markup.to_lower()]
-	change_configs(lang)
-
-func change_configs(langues: Array) -> void:
-	clear_colors()
 	
-	configs = []
-	for langue in langues:
-		configs.append(configs_dict[langue])
+	# there is no selected node changed signal
+	# so I need to check if the selected node changed in _process()
+	# also adding InputMap.add_action() doesn't work in editor
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		if mouse_button_released:
+			mouse_button_just_pressed = true
+			mouse_button_released = false
+		else:
+			mouse_button_just_pressed = false
+	
+	else:
+		mouse_button_released = true
+		mouse_button_just_pressed = false
+		
+	if !mouse_button_just_pressed:
+		return
 
-	_add_keywords_highlighting()
+	var selected_node = get_selected_node()
+	if !selected_node:
+		return
+	
+	if selected_node == last_selected_node:
+		return
+	
+	last_selected_node = selected_node
+	emit_signal("node_selected", selected_node)
 
+func get_selected_node() -> Node:
+	if editor == null:
+		return null
 
+	var s = editor.get_selection()
+	var selected_nodes = s.get_selected_nodes()
 
+	# print("selected_nodes ", selected_nodes.size())
+	if selected_nodes.size() == 0:
+		return null
+
+	if last_selected_node != selected_nodes[0]:
+		return selected_nodes[0]
+	else:
+		return null
