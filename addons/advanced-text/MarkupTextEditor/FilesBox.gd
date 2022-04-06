@@ -10,10 +10,10 @@ var open_files := {}
 
 func _ready():
 	# maybe it should be called in other way as seesion_loaded can be called before ui is ready
-	FilesRam.connect("session_loaded", self, "_on_session_loaded")
+	EditorHelper.connect("session_loaded", self, "_on_session_loaded")
 
 func _on_session_loaded():
-	for file in FilesRam.files_ram:
+	for file in EditorHelper.files_ram:
 		pass
 
 func new_file_tab(file_path : String):
@@ -64,4 +64,4 @@ func new_file_tab(file_path : String):
 	}
 
 	open_files[file_path] = f_box
-	FilesRam.set(f_box, f_data)
+	EditorHelper.files_ram[f_box] = f_data

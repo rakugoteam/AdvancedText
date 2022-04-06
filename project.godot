@@ -79,6 +79,7 @@ EBBCodeParser="*res://addons/advanced-text/parsers/EBBCodeParser.gd"
 MarkdownParser="*res://addons/advanced-text/parsers/MarkdownParser.gd"
 RenpyParser="*res://addons/advanced-text/parsers/RenpyParser.gd"
 FilesRam="*res://addons/advanced-text/MarkupTextEditor/FileRam.gd"
+EditorHelper="*res://addons/advanced-text/MarkupTextEditor/EditorHelper.gd"
 
 [debug]
 

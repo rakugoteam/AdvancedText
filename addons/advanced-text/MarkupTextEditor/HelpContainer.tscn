@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/PopupHelp.tscn" type="PackedScene" id=1]
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/Help.gd" type="Script" id=2]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/HelpContainer.gd" type="Script" id=2]
 
 [sub_resource type="Image" id=6]
 data = {
@@ -24,6 +24,9 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 30, 40 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 2 )
+popup = NodePath("PopupHelp")
+button = NodePath("Help")
 
 [node name="Help" type="Button" parent="."]
 anchor_right = 1.0
@@ -34,8 +37,6 @@ size_flags_vertical = 3
 text = "Help"
 icon = SubResource( 5 )
 clip_text = true
-script = ExtResource( 2 )
-help_popup = null
 
 [node name="PopupHelp" parent="." instance=ExtResource( 1 )]
 margin_left = 170.0

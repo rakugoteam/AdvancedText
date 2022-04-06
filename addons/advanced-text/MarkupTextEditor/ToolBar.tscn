@@ -4,33 +4,21 @@
 [ext_resource path="res://addons/advanced-text/icons/ren16.png" type="Texture" id=2]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/LabelContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/advanced-text/icons/bbcode.svg" type="Texture" id=4]
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/ToolBar.gd" type="Script" id=5]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/HelpContainer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/AddonsContainer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/PreviewOptions.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/ModeSwitch.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/MarkupSwitch.gd" type="Script" id=10]
 
 [node name="ToolBar" type="Control"]
 anchor_right = 1.0
 margin_bottom = 40.0
 mouse_filter = 2
 size_flags_horizontal = 3
-script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": ""
 }
-node_toggle = null
-files_toggle = null
-file_icon = null
-file_name = null
-markup_switch = null
-preview_toggle = null
-preview_switch = null
-help_button = null
-help_popup = null
-emoji_button = null
-icon_button = null
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -66,12 +54,17 @@ flat = true
 clip_text = true
 items = [ "Markdown", ExtResource( 1 ), false, 0, null, "RenPy", ExtResource( 2 ), false, 1, null, "BBCode", ExtResource( 4 ), false, 2, null, "None", null, false, 3, null ]
 selected = 1
+script = ExtResource( 10 )
 
 [node name="HelpContainer" parent="HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 699.0
 margin_right = 729.0
 size_flags_horizontal = 1
+popup = null
+button = null
 
 [node name="PreviewOptions" parent="HBoxContainer" instance=ExtResource( 8 )]
+preview_toggle = null
+preview_switch = null
 
 [node name="AddonsContainer" parent="HBoxContainer" instance=ExtResource( 7 )]
