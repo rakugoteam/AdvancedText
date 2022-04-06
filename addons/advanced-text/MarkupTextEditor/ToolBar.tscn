@@ -1,47 +1,14 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/advanced-text/icons/md.svg" type="Texture" id=1]
 [ext_resource path="res://addons/advanced-text/icons/ren16.png" type="Texture" id=2]
-[ext_resource path="res://addons/advanced-text/icons/emojis.svg" type="Texture" id=3]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/LabelContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/advanced-text/icons/bbcode.svg" type="Texture" id=4]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/ToolBar.gd" type="Script" id=5]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/HelpContainer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/advanced-text/icons/MaterialIcon.svg" type="Texture" id=7]
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/ColorPicker.gd" type="Script" id=8]
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/Emojis.gd" type="Script" id=9]
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/Icons.gd" type="Script" id=10]
-
-[sub_resource type="ButtonGroup" id=1]
-
-[sub_resource type="Image" id=6]
-data = {
-"data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
-"format": "LumAlpha8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
-
-[sub_resource type="ImageTexture" id=5]
-flags = 4
-flags = 4
-image = SubResource( 6 )
-size = Vector2( 16, 16 )
-
-[sub_resource type="Image" id=7]
-data = {
-"data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
-"format": "LumAlpha8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
-
-[sub_resource type="ImageTexture" id=3]
-flags = 4
-flags = 4
-image = SubResource( 7 )
-size = Vector2( 16, 16 )
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/AddonsContainer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/PreviewOptions.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/ModeSwitch.tscn" type="PackedScene" id=9]
 
 [node name="ToolBar" type="Control"]
 anchor_right = 1.0
@@ -72,83 +39,14 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="ModeSwitch" type="HBoxContainer" parent="HBoxContainer"]
-margin_right = 204.0
-margin_bottom = 40.0
-
-[node name="Label" type="Label" parent="HBoxContainer/ModeSwitch"]
-margin_top = 13.0
-margin_right = 83.0
-margin_bottom = 27.0
-text = "Edit Selected"
-
-[node name="FileMode" type="CheckBox" parent="HBoxContainer/ModeSwitch"]
-margin_left = 87.0
-margin_right = 138.0
-margin_bottom = 40.0
-pressed = true
-group = SubResource( 1 )
-text = "File"
-icon = SubResource( 5 )
-flat = true
-expand_icon = true
-
-[node name="NodeMode" type="CheckBox" parent="HBoxContainer/ModeSwitch"]
-margin_left = 142.0
-margin_right = 204.0
-margin_bottom = 40.0
-group = SubResource( 1 )
-text = "Node"
-icon = SubResource( 5 )
-flat = true
-expand_icon = true
+[node name="ModeSwitch" parent="HBoxContainer" instance=ExtResource( 9 )]
 
 [node name="VSeparator3" type="VSeparator" parent="HBoxContainer"]
 margin_left = 208.0
 margin_right = 212.0
 margin_bottom = 40.0
 
-[node name="LabelContainer" type="CenterContainer" parent="HBoxContainer"]
-margin_left = 216.0
-margin_right = 636.0
-margin_bottom = 40.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LabelContainer"]
-margin_left = 177.0
-margin_top = 13.0
-margin_right = 243.0
-margin_bottom = 27.0
-
-[node name="FileIcon" type="TextureRect" parent="HBoxContainer/LabelContainer/HBoxContainer"]
-margin_bottom = 14.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="FileName" type="Label" parent="HBoxContainer/LabelContainer/HBoxContainer"]
-margin_left = 4.0
-margin_right = 66.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-text = "Open File"
-
-[node name="ModifiedIcon" type="TextureRect" parent="HBoxContainer/LabelContainer/HBoxContainer"]
-visible = false
-margin_left = 108.0
-margin_right = 124.0
-margin_bottom = 16.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = SubResource( 3 )
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="LabelContainer" parent="HBoxContainer" instance=ExtResource( 3 )]
 
 [node name="VSeparator4" type="VSeparator" parent="HBoxContainer"]
 margin_left = 640.0
@@ -174,69 +72,6 @@ margin_left = 699.0
 margin_right = 729.0
 size_flags_horizontal = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
-margin_left = 733.0
-margin_right = 1024.0
-margin_bottom = 40.0
+[node name="PreviewOptions" parent="HBoxContainer" instance=ExtResource( 8 )]
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer/HBoxContainer"]
-margin_right = 4.0
-margin_bottom = 40.0
-
-[node name="PreviewToggle" type="CheckButton" parent="HBoxContainer/HBoxContainer"]
-margin_left = 8.0
-margin_right = 108.0
-margin_bottom = 40.0
-hint_tooltip = "Show Preview"
-pressed = true
-text = "Preview"
-icon = SubResource( 5 )
-clip_text = true
-align = 2
-
-[node name="PreviewSwitch" type="OptionButton" parent="HBoxContainer/HBoxContainer"]
-margin_left = 112.0
-margin_right = 159.0
-margin_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
-hint_tooltip = "Choose Preview Side"
-text = "Bottom"
-icon = SubResource( 5 )
-flat = true
-clip_text = true
-items = [ "Right", SubResource( 5 ), false, 0, null, "Bottom", SubResource( 5 ), false, 1, null ]
-selected = 1
-
-[node name="VSeparator2" type="VSeparator" parent="HBoxContainer/HBoxContainer"]
-margin_left = 163.0
-margin_right = 167.0
-margin_bottom = 40.0
-
-[node name="ColorPicker" type="ColorPickerButton" parent="HBoxContainer/HBoxContainer"]
-margin_left = 171.0
-margin_right = 215.0
-margin_bottom = 40.0
-text = "color"
-color = Color( 1, 1, 1, 1 )
-script = ExtResource( 8 )
-
-[node name="Emojis" type="Button" parent="HBoxContainer/HBoxContainer"]
-margin_left = 219.0
-margin_right = 249.0
-margin_bottom = 40.0
-hint_tooltip = "Find Emoji Code"
-text = "Emojis"
-icon = ExtResource( 3 )
-clip_text = true
-script = ExtResource( 9 )
-
-[node name="Icons" type="Button" parent="HBoxContainer/HBoxContainer"]
-margin_left = 253.0
-margin_right = 291.0
-margin_bottom = 40.0
-hint_tooltip = "Find Material Icon Code"
-text = "Material Icons"
-icon = ExtResource( 7 )
-clip_text = true
-script = ExtResource( 10 )
+[node name="AddonsContainer" parent="HBoxContainer" instance=ExtResource( 7 )]

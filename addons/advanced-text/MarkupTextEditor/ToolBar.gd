@@ -1,9 +1,6 @@
 tool
 extends Control
 
-export (NodePath) onready var node_toggle = get_node(node_toggle) as Button
-export (NodePath) onready var files_toggle = get_node(files_toggle) as Button
-
 export (NodePath) onready var file_icon = get_node(file_icon) as TextureRect
 export (NodePath) onready var file_name = get_node(file_name) as Label
 export (NodePath) onready var markup_switch = get_node(markup_switch) as OptionButton
@@ -12,7 +9,6 @@ export (NodePath) onready var preview_toggle = get_node(preview_toggle) as Butto
 export (NodePath) onready var preview_switch = get_node(preview_switch) as OptionButton
 
 signal preview_toggled(toggle)
-signal selected_mode(mode)
 signal selected_markup(mode)
 signal selected_preview(mode)
 
@@ -26,12 +22,6 @@ func _ready():
 
 	markup_switch.connect("item_selected", self, "set_markup")
 
-	node_toggle.connect("pressed", self, "_on_node_mode_toggled")
-	node_toggle.icon = get_icon("Control", "EditorIcons")
-
-	files_toggle.connect("pressed", self, "_on_files_mode_toggled")
-	files_toggle.icon = get_icon("TextFile", "EditorIcons")
-
 func _on_preview_toggled(toggle:bool):
 	emit_signal("preview_toggled", toggle)
 
@@ -43,9 +33,5 @@ func set_markup(mode):
 	var txt_mode = markup_switch.get_item_text(mode)
 	emit_signal("selected_markup", txt_mode)
 
-func _on_node_mode_toggled():
-	emit_signal("selected_mode", "node")
 
-func _on_file_mode_toggled():
-	emit_signal("selected_mode", "file")
 
