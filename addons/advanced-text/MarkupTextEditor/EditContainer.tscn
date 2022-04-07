@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/Edit.gd" type="Script" id=1]
 [ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=2]
@@ -12,21 +12,7 @@
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H2.tres" type="DynamicFont" id=10]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=11]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/EditContainer.gd" type="Script" id=12]
-
-[sub_resource type="Image" id=4]
-data = {
-"data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
-"format": "LumAlpha8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
-
-[sub_resource type="ImageTexture" id=3]
-flags = 4
-flags = 4
-image = SubResource( 4 )
-size = Vector2( 16, 16 )
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/FilesOptions.tscn" type="PackedScene" id=13]
 
 [node name="EditContainer" type="Control"]
 anchor_right = 1.0
@@ -50,86 +36,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="FilesOptions" type="VBoxContainer" parent="HSplitContainer"]
-margin_right = 212.0
-margin_bottom = 602.0
-rect_clip_content = true
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="GridContainer" type="GridContainer" parent="HSplitContainer/FilesOptions"]
-margin_right = 212.0
-margin_bottom = 44.0
-size_flags_horizontal = 3
-columns = 2
-
-[node name="NewFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
-margin_right = 104.0
-margin_bottom = 20.0
-hint_tooltip = "Create New Text File"
-size_flags_horizontal = 15
-text = "New File"
-icon = SubResource( 3 )
-clip_text = true
-expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OpenFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
-margin_left = 108.0
-margin_right = 212.0
-margin_bottom = 20.0
-hint_tooltip = "Open Text File"
-size_flags_horizontal = 15
-text = "Open File"
-icon = SubResource( 3 )
-clip_text = true
-expand_icon = true
-
-[node name="SaveFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
-margin_top = 24.0
-margin_right = 104.0
-margin_bottom = 44.0
-hint_tooltip = "Save File"
-size_flags_horizontal = 15
-disabled = true
-text = "Save File"
-icon = SubResource( 3 )
-clip_text = true
-expand_icon = true
-
-[node name="SaveAsFileButton" type="Button" parent="HSplitContainer/FilesOptions/GridContainer"]
-margin_left = 108.0
-margin_top = 24.0
-margin_right = 212.0
-margin_bottom = 44.0
-hint_tooltip = "Save As File"
-size_flags_horizontal = 15
-text = "Save As File"
-icon = SubResource( 3 )
-clip_text = true
-expand_icon = true
-
-[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/FilesOptions"]
-margin_top = 48.0
-margin_right = 212.0
-margin_bottom = 602.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Panel" type="Panel" parent="HSplitContainer/FilesOptions/ScrollContainer"]
-margin_right = 212.0
-margin_bottom = 554.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="FilesBox" type="VBoxContainer" parent="HSplitContainer/FilesOptions/ScrollContainer/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 5
+[node name="FilesOptions" parent="HSplitContainer" instance=ExtResource( 13 )]
 
 [node name="VSplit" type="VSplitContainer" parent="HSplitContainer"]
 margin_left = 224.0
@@ -212,17 +119,3 @@ markup_text_file = ""
 markup_text = ""
 markup = "markdown"
 headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
-
-[node name="TextFileDialog" type="FileDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -295.0
-margin_top = -209.0
-margin_right = 358.0
-margin_bottom = 201.0
-window_title = "Otwórz plik(i)"
-resizable = true
-mode = 1
-filters = PoolStringArray( "*.txt  ; Text File", "*.md ; Markdown File", "*.rpy ; Ren\'Py Markup File " )
