@@ -11,7 +11,7 @@
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans.tres" type="DynamicFont" id=9]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H2.tres" type="DynamicFont" id=10]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=11]
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/EditContainer.gd" type="Script" id=12]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/PreviewEditContainer.gd" type="Script" id=12]
 [ext_resource path="res://addons/advanced-text/MarkupTextEditor/FilesOptions.tscn" type="PackedScene" id=13]
 
 [node name="EditContainer" type="Control"]
@@ -20,14 +20,9 @@ anchor_bottom = 1.0
 margin_bottom = 2.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-toolbar = null
-preview_right = NodePath("HSplitContainer/VSplit/HSplit/PreviewRight")
-preview_bottom = NodePath("HSplitContainer/VSplit/PreviewBottom")
-edit = NodePath("HSplitContainer/VSplit/HSplit/Edit")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
 anchor_right = 1.0
@@ -38,12 +33,13 @@ __meta__ = {
 
 [node name="FilesOptions" parent="HSplitContainer" instance=ExtResource( 13 )]
 
-[node name="VSplit" type="VSplitContainer" parent="HSplitContainer"]
+[node name="PreviewEditContainer" type="VSplitContainer" parent="HSplitContainer"]
 margin_left = 224.0
 margin_right = 1024.0
 margin_bottom = 602.0
+script = ExtResource( 12 )
 
-[node name="HSplit" type="HSplitContainer" parent="HSplitContainer/VSplit"]
+[node name="HSplit" type="HSplitContainer" parent="HSplitContainer/PreviewEditContainer"]
 margin_right = 800.0
 margin_bottom = 500.0
 grow_horizontal = 2
@@ -51,7 +47,7 @@ grow_vertical = 2
 rect_min_size = Vector2( 800, 500 )
 mouse_default_cursor_shape = 10
 
-[node name="Edit" type="TextEdit" parent="HSplitContainer/VSplit/HSplit"]
+[node name="Edit" type="TextEdit" parent="HSplitContainer/PreviewEditContainer/HSplit"]
 margin_right = 688.0
 margin_bottom = 500.0
 rect_clip_content = true
@@ -74,7 +70,7 @@ configs_dict = {
 "renpy": "res://addons/advanced-text/highlights/renpy.json"
 }
 
-[node name="PreviewRight" type="RichTextLabel" parent="HSplitContainer/VSplit/HSplit"]
+[node name="PreviewRight" type="RichTextLabel" parent="HSplitContainer/PreviewEditContainer/HSplit"]
 margin_left = 700.0
 margin_right = 800.0
 margin_bottom = 500.0
@@ -92,12 +88,10 @@ script = ExtResource( 2 )
 __meta__ = {
 "_default_markup": "markdown"
 }
-markup_text_file = ""
-markup_text = ""
 markup = "markdown"
 headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
 
-[node name="PreviewBottom" type="RichTextLabel" parent="HSplitContainer/VSplit"]
+[node name="PreviewBottom" type="RichTextLabel" parent="HSplitContainer/PreviewEditContainer"]
 margin_top = 512.0
 margin_right = 800.0
 margin_bottom = 602.0
@@ -115,7 +109,5 @@ script = ExtResource( 2 )
 __meta__ = {
 "_default_markup": "markdown"
 }
-markup_text_file = ""
-markup_text = ""
 markup = "markdown"
 headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]

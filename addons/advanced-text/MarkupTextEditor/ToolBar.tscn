@@ -60,8 +60,6 @@ script = ExtResource( 10 )
 margin_left = 699.0
 margin_right = 729.0
 size_flags_horizontal = 1
-popup = null
-button = null
 
 [node name="PreviewOptions" parent="HBoxContainer" instance=ExtResource( 8 )]
 preview_toggle = null

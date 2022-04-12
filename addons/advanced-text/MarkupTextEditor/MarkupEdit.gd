@@ -3,8 +3,6 @@ extends Control
 
 var editor : EditorInterface
 var last_selected_node : Node
-var mouse_button_released = true
-var mouse_button_just_pressed = false
 
 signal node_selected(node)
 
@@ -14,25 +12,7 @@ func _process(delta:float):
 	
 	# there is no selected node changed signal
 	# so I need to check if the selected node changed in _process()
-	# also adding InputMap.add_action() doesn't work in editor
-	if Input.is_mouse_button_pressed(BUTTON_LEFT):
-		if mouse_button_released:
-			mouse_button_just_pressed = true
-			mouse_button_released = false
-		else:
-			mouse_button_just_pressed = false
-	
-	else:
-		mouse_button_released = true
-		mouse_button_just_pressed = false
-		
-	if !mouse_button_just_pressed:
-		return
-
 	var selected_node = get_selected_node()
-	if !selected_node:
-		return
-	
 	if selected_node == last_selected_node:
 		return
 	
@@ -52,5 +32,5 @@ func get_selected_node() -> Node:
 
 	if last_selected_node != selected_nodes[0]:
 		return selected_nodes[0]
-	else:
-		return null
+	
+	return null

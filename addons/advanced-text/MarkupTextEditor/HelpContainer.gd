@@ -1,8 +1,8 @@
 tool
 extends Control
 
-export (NodePath) onready var popup = get_node(popup) as Popup
-export (NodePath) onready var button = get_node(button) as Button
+onready var popup := $PopupHelp
+onready var button := $Help
 
 func _ready():
 	button.connect("pressed", self, "_on_help_pressed")
