@@ -1,8 +1,8 @@
 tool
 extends HBoxContainer
 
-export (NodePath) onready var preview_toggle = get_node(preview_toggle) as Button
-export (NodePath) onready var preview_switch = get_node(preview_switch) as OptionButton
+onready var preview_toggle = $PreviewToggle
+onready var preview_switch = $PreviewSwitch
 
 
 func _ready():
@@ -12,13 +12,18 @@ func _ready():
 	preview_switch.connect("item_selected", self, "_on_preview_changed")
 	preview_switch.set_item_icon(0, get_icon("ControlAlignRightWide", "EditorIcons"))
 	preview_switch.set_item_icon(1, get_icon("ControlAlignBottomWide", "EditorIcons"))
+	
+	var preview_setting = ProjectSettings.get_setting("addons/advanced_text/MarkupEdit/preview_enabled")
+	_on_preview_toggled(preview_setting != "none")
 
 func _on_preview_toggled(toggle:bool):
 	EditorHelper.emit_signal("preview_toggled", toggle)
+	preview_switch.disabled = not toggle
 
 func _on_preview_changed(mode):
-	var txt_mode = preview_switch.get_item_text(mode)
+	var txt_mode = preview_switch.get_item_text(mode).to_lower()
 	EditorHelper.emit_signal("selected_preview", txt_mode)
+	
 
 
 

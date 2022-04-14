@@ -40,15 +40,27 @@ func _enter_tree():
 		"hint_string": ""
 	})
 
-	if !ProjectSettings.has_setting("addons/advanced_text/enable_MarkupEdit"):
-		ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", true)
+	if !ProjectSettings.has_setting("addons/advanced_text/MarkupEdit/enabled"):
+		ProjectSettings.set_setting("addons/advanced_text/MarkupEdit/enabled", true)
+	
+	markup_edit_enabled =	ProjectSettings.get_setting("addons/advanced_text/MarkupEdit/enabled")
+
+	if !ProjectSettings.has_setting("addons/advanced_text/MarkupEdit/preview_enabled"):
+		ProjectSettings.set_setting("addons/advanced_text/MarkupEdit/preview_enabled", "right")
+
+	ProjectSettings.add_property_info({
+		"name": "addons/advanced_text/MarkupEdit/preview_enabled", 
+		"type": TYPE_STRING,
+		"hint": PROPERTY_HINT_ENUM,
+		"hint_string": "right,bottom,none"
+	})
 
 	# loads all parser onces
 	var parsers_dir := "res://addons/advanced-text/parsers/" 
 	add_autoload_singleton("EBBCodeParser",  parsers_dir + "EBBCodeParser.gd")
 	add_autoload_singleton("MarkdownParser", parsers_dir + "MarkdownParser.gd")
 	add_autoload_singleton("RenpyParser", 	parsers_dir + "RenpyParser.gd")
-	markup_edit_enabled =	ProjectSettings.get_setting("addons/advanced_text/enable_MarkupEdit")
+
 	if markup_edit_enabled:
 		load_and_enable_markup_edit()
 	add_tool_menu_item("Toggle Markup Edit", self, "toggle_markup_edit")
@@ -61,7 +73,7 @@ func toggle_markup_edit():
 	else:
 		unload_and_disable_markup_edit()
 	
-	ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", markup_edit_enabled)
+	ProjectSettings.set_setting("addons/advanced_text/MarkupEdit/enabled", markup_edit_enabled)
 
 func load_and_enable_markup_edit():
 	# load ram / last file session
@@ -127,7 +139,8 @@ func unload_and_disable_markup_edit():
 func _exit_tree():
 	ProjectSettings.set_setting("addons/advanced_text/markup", null)
 	ProjectSettings.set_setting("addons/advanced_text/default_vars", null)
-	ProjectSettings.set_setting("addons/advanced_text/enable_MarkupEdit", null)
+	ProjectSettings.set_setting("addons/advanced_text/MarkupEdit/enabled", null)
+	ProjectSettings.set_setting("addons/advanced_text/MarkupEdit/preview_enabled", null)
 	unload_and_disable_markup_edit()
 	
 	# unloaded all parsers
