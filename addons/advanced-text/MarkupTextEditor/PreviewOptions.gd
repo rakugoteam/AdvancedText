@@ -9,7 +9,6 @@ var previews := {
 	"bottom": 1
 }
 
-
 func _ready():
 	preview_toggle.connect("toggled", self, "_on_preview_toggled")
 	preview_toggle.icon = get_icon("RichTextEffect", "EditorIcons")
