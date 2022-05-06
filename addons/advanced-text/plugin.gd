@@ -80,7 +80,7 @@ func load_and_enable_markup_edit():
 	add_autoload_singleton("EditorHelper", "res://addons/advanced-text/MarkupTextEditor/EditorHelper.gd")
 
 	# load and add MarkupTextEditor to EditorUI
-	markup_text_editor = preload("MarkupTextEditor/MarkupEdit.tscn")
+	markup_text_editor = preload("res://addons/advanced-text/MarkupTextEditor/Main.tscn")
 	markup_text_editor = markup_text_editor.instance()
 	editor_parent = get_editor_interface().get_editor_viewport()
 	markup_text_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL

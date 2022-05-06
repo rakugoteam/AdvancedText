@@ -5,7 +5,7 @@ var IconsImport
 var icons_gd
 
 func _ready():
-	IconsImport = preload("../material_icons_import.gd")
+	IconsImport = preload("res://addons/advanced-text/material_icons_import.gd")
 	IconsImport = IconsImport.new()
 
 	if IconsImport.is_plugin_enabled():

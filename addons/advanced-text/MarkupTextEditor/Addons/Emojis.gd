@@ -5,7 +5,7 @@ var EmojisImport
 var emojis_gd
 
 func _ready():
-	EmojisImport = preload("../emojis_import.gd")
+	EmojisImport = preload("res://addons/advanced-text/emojis_import.gd")
 	EmojisImport = EmojisImport.new()
 
 	if EmojisImport.is_plugin_enabled():

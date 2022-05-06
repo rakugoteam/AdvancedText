@@ -1,15 +1,15 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/advanced-text/nodes/CodeEdit.gd" type="Script" id=1]
-[ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=2]
-[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=3]
-[ext_resource path="res://addons/advanced-text/font/theme_with_fonts.tres" type="Theme" id=4]
+[ext_resource path="res://addons/advanced-text/font/theme_with_fonts.tres" type="Theme" id=2]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-BoldOblique.tres" type="DynamicFont" id=3]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=4]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-Bold.tres" type="DynamicFont" id=5]
-[ext_resource path="res://addons/advanced-text/font/DejaVuSans-BoldOblique.tres" type="DynamicFont" id=6]
-[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H1.tres" type="DynamicFont" id=7]
-[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Mono.tres" type="DynamicFont" id=8]
-[ext_resource path="res://addons/advanced-text/font/DejaVuSans.tres" type="DynamicFont" id=9]
-[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H2.tres" type="DynamicFont" id=10]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Mono.tres" type="DynamicFont" id=6]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans.tres" type="DynamicFont" id=7]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H1.tres" type="DynamicFont" id=8]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H2.tres" type="DynamicFont" id=9]
+[ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=10]
 [ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=11]
 
 [node name="PopupHelp" type="WindowDialog"]
@@ -121,11 +121,11 @@ margin_bottom = 554.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 8 )
-custom_fonts/bold_italics_font = ExtResource( 6 )
-custom_fonts/italics_font = ExtResource( 3 )
+custom_fonts/mono_font = ExtResource( 6 )
+custom_fonts/bold_italics_font = ExtResource( 3 )
+custom_fonts/italics_font = ExtResource( 4 )
 custom_fonts/bold_font = ExtResource( 5 )
-custom_fonts/normal_font = ExtResource( 9 )
+custom_fonts/normal_font = ExtResource( 7 )
 bbcode_enabled = true
 bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 1[/font]
 [font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
@@ -244,7 +244,7 @@ rainbow text
 
 
 "
-script = ExtResource( 2 )
+script = ExtResource( 10 )
 markup_text_file = "res://addons/advanced-text/help/markdown.md"
 markup_text = "# Header Level 1
 ## Header Level 2
@@ -308,7 +308,7 @@ test_dict.key1 = <test_dict.key1>
 
 "
 markup = "markdown"
-headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
+headers_fonts = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ) ]
 
 [node name="RenPyHelp" type="HSplitContainer" parent="HelperContainer"]
 visible = false
@@ -393,11 +393,11 @@ margin_bottom = 554.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
-custom_fonts/mono_font = ExtResource( 8 )
-custom_fonts/bold_italics_font = ExtResource( 6 )
-custom_fonts/italics_font = ExtResource( 3 )
+custom_fonts/mono_font = ExtResource( 6 )
+custom_fonts/bold_italics_font = ExtResource( 3 )
+custom_fonts/italics_font = ExtResource( 4 )
 custom_fonts/bold_font = ExtResource( 5 )
-custom_fonts/normal_font = ExtResource( 9 )
+custom_fonts/normal_font = ExtResource( 7 )
 bbcode_enabled = true
 bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 1[/font]
 [font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
@@ -487,7 +487,7 @@ tornado
 shake
 fade
 rainbow"
-script = ExtResource( 2 )
+script = ExtResource( 10 )
 markup_text_file = "res://addons/advanced-text/help/renpy.rpy"
 markup_text = "\"\"\"
 {h1}Header Level 1{/h1}
@@ -538,7 +538,7 @@ test_dict.key1 = <test_dict.key1>
 {rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
 \"\"\""
 markup = "renpy"
-headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
+headers_fonts = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ) ]
 
 [node name="BBCodeHelp" type="HSplitContainer" parent="HelperContainer"]
 visible = false
@@ -626,7 +626,7 @@ margin_bottom = 554.0
 rect_min_size = Vector2( 300, 300 )
 mouse_filter = 2
 size_flags_vertical = 3
-theme = ExtResource( 4 )
+theme = ExtResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 1[/font]
 [font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
@@ -714,7 +714,7 @@ shake
 fade
 rainbow
 "
-script = ExtResource( 2 )
+script = ExtResource( 10 )
 markup_text_file = "res://addons/advanced-text/help/bbcode.txt"
 markup_text = "[h1]Header Level 1[/h1]
 [h2]Header Level 2[/h2]
@@ -762,4 +762,4 @@ test_dict.key1 = <test_dict.key1>
 [rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
 "
 markup = "bbcode"
-headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
+headers_fonts = [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ) ]

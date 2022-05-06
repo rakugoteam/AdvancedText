@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/Colors.gd" type="Script" id=1]
-[ext_resource path="res://addons/advanced-text/icons/MaterialIcon.svg" type="Texture" id=2]
-[ext_resource path="res://addons/advanced-text/icons/emojis.svg" type="Texture" id=3]
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/Emojis.gd" type="Script" id=4]
-[ext_resource path="res://addons/advanced-text/MarkupTextEditor/Icons.gd" type="Script" id=5]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/Addons/Icons.gd" type="Script" id=1]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/Addons/Emojis.gd" type="Script" id=2]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/Addons/Colors.gd" type="Script" id=3]
+[ext_resource path="res://addons/advanced-text/icons/MaterialIcon.svg" type="Texture" id=4]
+[ext_resource path="res://addons/advanced-text/icons/emojis.svg" type="Texture" id=5]
 
-[sub_resource type="Image" id=1]
+[sub_resource type="Image" id=3]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -18,7 +18,7 @@ data = {
 [sub_resource type="ImageTexture" id=2]
 flags = 4
 flags = 4
-image = SubResource( 1 )
+image = SubResource( 3 )
 size = Vector2( 16, 16 )
 
 [node name="AddonsContainer" type="HBoxContainer"]
@@ -33,7 +33,7 @@ hint_tooltip = "Pick Color to put in text"
 text = "Color"
 icon = SubResource( 2 )
 clip_text = true
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="WindowDialog" type="WindowDialog" parent="Colors"]
 margin_left = -675.0
@@ -49,8 +49,10 @@ resizable = true
 [node name="ColorPicker" type="ColorPicker" parent="Colors/WindowDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 8.0
+margin_bottom = 8.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -60,9 +62,9 @@ margin_right = 64.0
 margin_bottom = 40.0
 hint_tooltip = "Find Emoji Code"
 text = "Emojis"
-icon = ExtResource( 3 )
+icon = ExtResource( 5 )
 clip_text = true
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 
 [node name="Icons" type="Button" parent="."]
 margin_left = 68.0
@@ -70,9 +72,6 @@ margin_right = 106.0
 margin_bottom = 40.0
 hint_tooltip = "Find Material Icon Code"
 text = "Material Icons"
-icon = ExtResource( 2 )
+icon = ExtResource( 4 )
 clip_text = true
-script = ExtResource( 5 )
-
-[connection signal="about_to_show" from="Emojis/PopupDialog" to="Emojis/PopupDialog/Emoji" method="_on_about_to_show"]
-[connection signal="resized" from="Emojis/PopupDialog" to="Emojis/PopupDialog/Emoji" method="_on_resized"]
+script = ExtResource( 1 )
