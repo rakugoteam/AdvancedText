@@ -9,7 +9,7 @@ var f = File.new()
 var open_files := {}
 
 func _ready():
-	# maybe it should be called in other way as seesion_loaded can be called before ui is ready
+	# maybe it should be called in other way as session_loaded can be called before ui is ready
 	EditorHelper.connect("session_loaded", self, "_on_session_loaded")
 
 func _on_session_loaded():
