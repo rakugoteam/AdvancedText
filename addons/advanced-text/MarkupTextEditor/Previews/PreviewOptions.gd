@@ -23,14 +23,14 @@ func _ready():
 		preview_switch.selected = previews[preview_setting]
 
 func _on_preview_toggled(toggle:bool):
-	EditorHelper.emit_signal("preview_toggled", toggle)	
+	TextEditorHelper.emit_signal("preview_toggled", toggle)	
 	preview_switch.disabled = not toggle
 	if !toggle:
 		ProjectSettings.set_setting("addons/advanced_text/MarkupEdit/preview_enabled", "none")
 
 func _on_preview_changed(mode):
 	var txt_mode = preview_switch.get_item_text(mode).to_lower()
-	EditorHelper.emit_signal("selected_preview", txt_mode)
+	TextEditorHelper.emit_signal("selected_preview", txt_mode)
 	ProjectSettings.set_setting("addons/advanced_text/MarkupEdit/preview_enabled", txt_mode)
 	
 

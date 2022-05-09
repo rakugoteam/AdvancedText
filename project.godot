@@ -76,7 +76,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-EditorHelper="*res://addons/advanced-text/MarkupTextEditor/EditorHelper.gd"
+TextEditorHelper="*res://addons/advanced-text/MarkupTextEditor/TextEditorHelper.gd"
 EBBCodeParser="*res://addons/advanced-text/parsers/EBBCodeParser.gd"
 MarkdownParser="*res://addons/advanced-text/parsers/MarkdownParser.gd"
 RenpyParser="*res://addons/advanced-text/parsers/RenpyParser.gd"

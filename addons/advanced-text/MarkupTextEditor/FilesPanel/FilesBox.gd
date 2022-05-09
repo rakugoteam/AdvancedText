@@ -4,16 +4,15 @@ extends VBoxContainer
 export var file_box_scene : PackedScene
 
 var b_group := ButtonGroup.new()
-var f = File.new()
-
+var f := File.new()
 var open_files := {}
 
 func _ready():
 	# maybe it should be called in other way as session_loaded can be called before ui is ready
-	EditorHelper.connect("session_loaded", self, "_on_session_loaded")
+	TextEditorHelper.connect("session_loaded", self, "_on_session_loaded")
 
 func _on_session_loaded():
-	for file in EditorHelper.files_ram:
+	for file in TextEditorHelper.files_ram:
 		pass
 
 func new_file_tab(file_path : String):
@@ -64,4 +63,4 @@ func new_file_tab(file_path : String):
 	}
 
 	open_files[file_path] = f_box
-	EditorHelper.files_ram[f_box] = f_data
+	TextEditorHelper.files_ram[f_box] = f_data

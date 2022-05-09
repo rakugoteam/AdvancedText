@@ -77,7 +77,7 @@ func toggle_markup_edit():
 
 func load_and_enable_markup_edit():
 	# load ram / last file session
-	add_autoload_singleton("EditorHelper", "res://addons/advanced-text/MarkupTextEditor/EditorHelper.gd")
+	add_autoload_singleton("TextEditorHelper", "res://addons/advanced-text/MarkupTextEditor/TextEditorHelper.gd")
 
 	# load and add MarkupTextEditor to EditorUI
 	markup_text_editor = preload("res://addons/advanced-text/MarkupTextEditor/Main.tscn")
@@ -147,6 +147,9 @@ func _exit_tree():
 	remove_autoload_singleton("EBBCodeParser")
 	remove_autoload_singleton("MarkdownParser")
 	remove_autoload_singleton("RenpyParser")
+	
+	if markup_edit_enabled:
+		remove_autoload_singleton("TextEditorHelper")
 
 func hide_current_editor():
 	for editor in editor_parent.get_children():

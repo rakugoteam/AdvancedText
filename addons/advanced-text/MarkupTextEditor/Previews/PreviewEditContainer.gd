@@ -12,8 +12,8 @@ var current_preview_setting := "none"
 func _ready():
 	set_preview("none")
 	set_preview(ProjectSettings.get_setting("addons/advanced_text/MarkupEdit/preview_enabled"))
-	EditorHelper.connect("preview_toggled", self, "_on_preview_toggled")
-	EditorHelper.connect("selected_preview", self, "set_preview")
+	TextEditorHelper.connect("preview_toggled", self, "_on_preview_toggled")
+	TextEditorHelper.connect("selected_preview", self, "set_preview")
 
 func _on_preview_toggled(toggle : bool):
 	if toggle:

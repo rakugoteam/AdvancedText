@@ -6,4 +6,4 @@ func _ready():
 
 func set_markup(mode):
 	var txt_mode = get_item_text(mode)
-	EditorHelper.set_markup(txt_mode)
+	TextEditorHelper.set_markup(txt_mode)

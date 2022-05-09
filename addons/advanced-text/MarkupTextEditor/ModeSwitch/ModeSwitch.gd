@@ -12,9 +12,9 @@ func _ready():
 	files_toggle.icon = get_icon("TextFile", "EditorIcons")
 
 func _on_node_mode_toggled():
-	EditorHelper.mode = "node"
-	EditorHelper.emit_signal("selected_mode", "node")
+	TextEditorHelper.mode = "node"
+	TextEditorHelper.emit_signal("selected_mode", "node")
 
 func _on_file_mode_toggled():
-	EditorHelper.mode = "file"
-	EditorHelper.emit_signal("selected_mode", "file")
+	TextEditorHelper.mode = "file"
+	TextEditorHelper.emit_signal("selected_mode", "file")

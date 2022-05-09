@@ -10,6 +10,6 @@ func _ready():
 	button.icon = get_icon("Help", "EditorIcons")
 
 func _on_help_pressed():
-	var mode_id = EditorHelper.get_current_markup()
+	var mode_id = TextEditorHelper.get_current_markup()
 	tabs.current_tab = mode_id
 	popup.popup_centered(Vector2(700, 500))
