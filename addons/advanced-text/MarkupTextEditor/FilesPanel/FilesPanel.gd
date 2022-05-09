@@ -18,7 +18,6 @@ func _ready():
 	file_dialog.connect("file_selected", self, "_on_file_selected")
 	file_dialog.connect("files_selected", self, "_on_files_selected")
 
-
 func _on_open_file():
 	file_dialog.mode = FileDialog.MODE_OPEN_FILES
 	file_dialog.popup_centered(file_dialog_size)
@@ -29,8 +28,8 @@ func _on_save_as_file():
 
 func _on_file_selected(file_path:String):
 	match file_dialog.mode:
-		FileDialog.MODE_OPEN_FILES:
-			files_box.new_file_tab(file_path)
+		# FileDialog.MODE_OPEN_FILES:
+		# 	files_box.new_file_tab(file_path)
 		FileDialog.MODE_SAVE_FILE:
 			pass
 

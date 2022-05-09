@@ -15,7 +15,7 @@ func _on_session_loaded():
 	for file in TextEditorHelper.files_ram:
 		pass
 
-func new_file_tab(file_path : String):
+func new_file_tab(file_path : String, select: bool = false):
 	if file_path.empty():
 		return
 
@@ -35,10 +35,9 @@ func new_file_tab(file_path : String):
 	add_child(f_box)
 	f_button.group = b_group
 	f_button.pressed = true
-	f_button.connect("pressed", self, "_on_file_button_pressed", [f_box])
 
 	var f_close_button : Button = f_box.get_node("CloseButton")
-	f_close_button.connect("pressed", self, "_on_file_close_button_pressed", [f_box])
+	# f_close_button.connect("pressed", self, "_on_file_close_button_pressed", [f_box])
 	f_close_button.text = ""
 	f_close_button.icon = get_icon("Close", "EditorIcons")
 
@@ -52,7 +51,7 @@ func new_file_tab(file_path : String):
 		text = f.get_as_text()
 		f.close()
 
-	var f_data = {
+	var f_data := {
 		"f_button": f_button,
 		"file_name": file_name,
 		"file_ext": file_ext,
@@ -62,5 +61,9 @@ func new_file_tab(file_path : String):
 		"modified_icon": f_modified_icon,
 	}
 
+	f_button.connect("pressed", TextEditorHelper, "emit_signal", ["selected_file", f_data])
+
 	open_files[file_path] = f_box
 	TextEditorHelper.files_ram[f_box] = f_data
+	if select:
+		TextEditorHelper.emit_signal("selected_file", f_data)

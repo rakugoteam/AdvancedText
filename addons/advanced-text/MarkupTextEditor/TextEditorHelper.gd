@@ -14,6 +14,7 @@ signal selected_mode(mode)
 signal selected_markup(markup)
 signal preview_toggled(toggle)
 signal selected_preview(mode)
+signal selected_file(file_data)
 
 func _ready():
 	if f.file_exists(files_ram_path):
