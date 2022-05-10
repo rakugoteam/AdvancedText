@@ -36,8 +36,11 @@ func _on_file_selected(file_path:String):
 func _on_files_selected(file_paths:PoolStringArray):
 	match file_dialog.mode:
 		FileDialog.MODE_OPEN_FILES:
+			var i := 0 
 			for file_path in file_paths:
-				files_box.new_file_tab(file_path)
+				# automatic select last file
+				var select := file_paths.size() - 1 == i
+				files_box.new_file_tab(file_path, select)
 
 func _on_new_file():
 	var number : int = files_box.open_files.size()

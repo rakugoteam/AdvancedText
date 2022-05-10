@@ -61,9 +61,9 @@ func new_file_tab(file_path : String, select: bool = false):
 		"modified_icon": f_modified_icon,
 	}
 
-	f_button.connect("pressed", TextEditorHelper, "emit_signal", ["selected_file", f_data])
+	f_button.connect("pressed", TextEditorHelper, "select_file", [f_data])
 
 	open_files[file_path] = f_box
 	TextEditorHelper.files_ram[f_box] = f_data
 	if select:
-		TextEditorHelper.emit_signal("selected_file", f_data)
+		TextEditorHelper.select_file(f_data)

@@ -16,6 +16,7 @@ func _ready():
 	TextEditorHelper.connect("selected_preview", self, "set_preview")
 	TextEditorHelper.connect("selected_markup", self, "_on_selected_markup")
 	TextEditorHelper.connect("selected_file", self, "_on_file_selected")
+	TextEditorHelper.connect("update_preview", self, "_on_preview_update")
 
 func _on_preview_toggled(toggle : bool):
 	if toggle:
@@ -51,3 +52,5 @@ func _on_markup_selected(markup : String):
 func _on_file_selected(f_data:Dictionary):
 	current_preview.markup_text = f_data["text"]
 
+func _on_preview_update(f_data:Dictionary):
+	current_preview.markup_text = f_data["text"]
