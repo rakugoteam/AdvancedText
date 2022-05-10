@@ -1,0 +1,765 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://addons/advanced-text/nodes/CodeEdit.gd" type="Script" id=1]
+[ext_resource path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" type="Script" id=2]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Oblique.tres" type="DynamicFont" id=3]
+[ext_resource path="res://addons/advanced-text/font/theme_with_fonts.tres" type="Theme" id=4]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Bold.tres" type="DynamicFont" id=5]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-BoldOblique.tres" type="DynamicFont" id=6]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H1.tres" type="DynamicFont" id=7]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-Mono.tres" type="DynamicFont" id=8]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans.tres" type="DynamicFont" id=9]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H2.tres" type="DynamicFont" id=10]
+[ext_resource path="res://addons/advanced-text/font/DejaVuSans-H3.tres" type="DynamicFont" id=11]
+
+[node name="PopupHelp" type="WindowDialog"]
+margin_right = 1004.0
+margin_bottom = 590.0
+rect_min_size = Vector2( 500, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HelperContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarkdownHelp" type="HSplitContainer" parent="HelperContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="MarkdownCode" type="TextEdit" parent="HelperContainer/MarkdownHelp"]
+margin_right = 684.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "# Header Level 1
+## Header Level 2
+### Header Level 3
+
+**bold**
+*italic*
+~~strike through~~
+```mono-spaced text```
+
+[link](https://some_domain.com)
+https://some_domain.com
+
+test_string = <test_string>
+test_int = <test_int>
+test_bool = <test_bool>
+test_list[0] = <test_list[0]>
+test_dict.key1 = <test_dict.key1>
+@color=<test_color> {text in custom color from variable}
+
+:grinning:
+[icon=folder-open]
+[icon=folder-open, 32]
+![](res://icon.png)
+![24x24](res://icon.png)
+
+@table=3 {
+|1|2|3|
+|4|5|6|
+|7|8|9|
+}
+
+@u{underlined text}
+@center{centered text}
+@right{right aligned text}
+
+@fill{fill aligned text}
+@justified{justified text *(alt to @fill)* }
+
+@indent{indent text}
+@tab {indent text *(alt to @indent)*}
+
+@color=red {red text}
+@color=#c39f00 {custom colored text}
+
+@wave amp=50 freq=2 {waving text}
+@wave 50, 2 {waving text}
+
+@tornado radius=5 freq=2 {tornado text}
+@tornado 5, 2 {tornado text}
+
+@shake rate=5 level=10 {shaking text }
+@shake 5, 10 {shaking text}
+
+@fade start=4 length=14 {fade text}
+@fade 4, 14 {fade text}
+
+@rainbow freq=0.2 sat=10 val=20 {rainbow text}
+@rainbow 0.2,10,20 {rainbow text}
+
+
+"
+readonly = true
+syntax_highlighting = true
+context_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+selecting_enabled = false
+v_scroll_speed = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+text_file = "res://addons/advanced-text/help/markdown.md"
+configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
+
+[node name="MarkdownPreview" type="RichTextLabel" parent="HelperContainer/MarkdownHelp"]
+margin_left = 696.0
+margin_right = 996.0
+margin_bottom = 554.0
+rect_min_size = Vector2( 300, 300 )
+mouse_filter = 2
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 8 )
+custom_fonts/bold_italics_font = ExtResource( 6 )
+custom_fonts/italics_font = ExtResource( 3 )
+custom_fonts/bold_font = ExtResource( 5 )
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 1[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 3[/font]
+
+[b]bold[/b]
+[i]italic[/i]
+[s]strike through[/s]
+[code]mono-spaced text[/code]
+
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+
+test_string = test string
+test_int = 1
+test_bool = True
+test_list[0] = 1
+test_dict.key1 = value1
+[color=#1acfa0]text in custom color from variable[/color]
+
+[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
+[font=res://addons/material-design-icons/fonts/24.tres]󰝰[/font]
+[font=res://addons/material-design-icons/fonts/32.tres]󰝰[/font]
+[img]res://icon.png[/img]
+[img=24x24]res://icon.png[/img]
+
+[table=3][cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underlined text[/u]
+[center]centered text[/center]
+[right]right aligned text[/right]
+
+[fill]fill aligned text[/fill]
+[fill]justified text [i](alt to @fill)[/i] [/fill]
+
+[indent]indent text[/indent]
+[indent]indent text [i](alt to @indent)[/i][/indent]
+
+[color=red]red text[/color]
+[color=#c39f00]custom colored text[/color]
+
+[wave  amp=50 freq=2 ]waving text[/wave]
+[wave amp=50 freq=2 ]waving text[/wave]
+
+[tornado  radius=5 freq=2 ]tornado text[/tornado]
+[tornado radius=5 freq=2 ]tornado text[/tornado]
+
+[shake  rate=5 level=10 ]shaking text [/shake]
+[shake rate=5 level=10 ]shaking text[/shake]
+
+[fade  start=4 length=14 ]fade text[/fade]
+[fade start=4 length=14 ]fade text[/fade]
+
+[rainbow  freq=0.2 sat=10 val=20 ]rainbow text[/rainbow]
+[rainbow freq=0.2 sat=10 val=20 ]rainbow text[/rainbow]
+
+
+"
+text = "Header Level 1
+Header Level 2
+Header Level 3
+
+bold
+italic
+strike through
+mono-spaced text
+
+link
+https://some_domain.com
+
+test_string = test string
+test_int = 1
+test_bool = True
+test_list[0] = 1
+test_dict.key1 = value1
+text in custom color from variable
+
+
+󰝰
+󰝰
+
+
+
+123456789
+
+underlined text
+centered text
+right aligned text
+
+fill aligned text
+justified text (alt to @fill) 
+
+	indent text
+	indent text (alt to @indent)
+
+red text
+custom colored text
+
+waving text
+waving text
+
+tornado text
+tornado text
+
+shaking text 
+shaking text
+
+fade text
+fade text
+
+rainbow text
+rainbow text
+
+
+"
+script = ExtResource( 2 )
+markup_text_file = "res://addons/advanced-text/help/markdown.md"
+markup_text = "# Header Level 1
+## Header Level 2
+### Header Level 3
+
+**bold**
+*italic*
+~~strike through~~
+```mono-spaced text```
+
+[link](https://some_domain.com)
+https://some_domain.com
+
+test_string = <test_string>
+test_int = <test_int>
+test_bool = <test_bool>
+test_list[0] = <test_list[0]>
+test_dict.key1 = <test_dict.key1>
+@color=<test_color> {text in custom color from variable}
+
+:grinning:
+[icon=folder-open]
+[icon=folder-open, 32]
+![](res://icon.png)
+![24x24](res://icon.png)
+
+@table=3 {
+|1|2|3|
+|4|5|6|
+|7|8|9|
+}
+
+@u{underlined text}
+@center{centered text}
+@right{right aligned text}
+
+@fill{fill aligned text}
+@justified{justified text *(alt to @fill)* }
+
+@indent{indent text}
+@tab {indent text *(alt to @indent)*}
+
+@color=red {red text}
+@color=#c39f00 {custom colored text}
+
+@wave amp=50 freq=2 {waving text}
+@wave 50, 2 {waving text}
+
+@tornado radius=5 freq=2 {tornado text}
+@tornado 5, 2 {tornado text}
+
+@shake rate=5 level=10 {shaking text }
+@shake 5, 10 {shaking text}
+
+@fade start=4 length=14 {fade text}
+@fade 4, 14 {fade text}
+
+@rainbow freq=0.2 sat=10 val=20 {rainbow text}
+@rainbow 0.2,10,20 {rainbow text}
+
+
+"
+markup = "markdown"
+headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
+
+[node name="RenPyHelp" type="HSplitContainer" parent="HelperContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="RenPyCode" type="TextEdit" parent="HelperContainer/RenPyHelp"]
+margin_right = 684.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "\"\"\"
+{h1}Header Level 1{/h1}
+{h2}Header Level 2{/h2}
+{h3}Header Level 3{/h3}
+
+{b}bold{/b}
+{i}italic{/i}
+{s}strike through{/s}
+{code}mono-spaced text{/code}
+
+{a=https://some_domain.com}link{/a}
+{a}https://some_domain.com{/a}
+
+test_string = <test_string>
+test_bool = <test_bool>
+test_int = <test_int>
+test_list[0] = <test_list[0]>
+test_dict.key1 = <test_dict.key1>
+{color=<test_color>}text in custom color from variable{/color}
+
+:grinning:
+{icon=folder-open}
+{icon=folder-open, 32}
+{img=res://icon.png}
+{img=res://icon.png size=24x24}
+
+{table=3}
+{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
+{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
+{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
+{/table}
+
+{u}underline{/u}
+{center}center{/center}
+{right}right{/right}
+{fill}fill{/fill}
+{indent}text{/indent}
+{color=red}red{/color}
+{color=#c39f00}colored text{/color}
+{color=<test_color>}text in custom color from variable{/color}
+
+
+{wave amp=50 freq=2}wave{/wave}
+{tornado radius=5 freq=2}tornado{/tornado}
+{shake rate=5 level=10}shake{/shake}
+{fade start=4 length=14}fade{/fade}
+{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
+\"\"\""
+readonly = true
+syntax_highlighting = true
+context_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+selecting_enabled = false
+v_scroll_speed = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+text_file = "res://addons/advanced-text/help/renpy.rpy"
+configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
+
+[node name="RenPy" type="RichTextLabel" parent="HelperContainer/RenPyHelp"]
+margin_left = 696.0
+margin_right = 996.0
+margin_bottom = 554.0
+rect_min_size = Vector2( 300, 300 )
+mouse_filter = 2
+size_flags_vertical = 3
+custom_fonts/mono_font = ExtResource( 8 )
+custom_fonts/bold_italics_font = ExtResource( 6 )
+custom_fonts/italics_font = ExtResource( 3 )
+custom_fonts/bold_font = ExtResource( 5 )
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 1[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 3[/font]
+
+[b]bold[/b]
+[i]italic[/i]
+[s]strike through[/s]
+[code]mono-spaced text[/code]
+
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+
+test_string = test string
+test_bool = True
+test_int = 1
+test_list[0] = 1
+test_dict.key1 = value1
+[color=#1acfa0]text in custom color from variable[/color]
+
+[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
+[font=res://addons/material-design-icons/fonts/24.tres]󰝰[/font]
+[font=res://addons/material-design-icons/fonts/32.tres]󰝰[/font]
+[img]res://icon.png[/img]
+[img=24x24]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+[color=#c39f00]colored text[/color]
+[color=#1acfa0]text in custom color from variable[/color]
+
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]"
+text = "Header Level 1
+Header Level 2
+Header Level 3
+
+bold
+italic
+strike through
+mono-spaced text
+
+link
+https://some_domain.com
+
+test_string = test string
+test_bool = True
+test_int = 1
+test_list[0] = 1
+test_dict.key1 = value1
+text in custom color from variable
+
+
+󰝰
+󰝰
+
+
+
+123456789
+
+underline
+center
+right
+fill
+	text
+red
+colored text
+text in custom color from variable
+
+
+wave
+tornado
+shake
+fade
+rainbow"
+script = ExtResource( 2 )
+markup_text_file = "res://addons/advanced-text/help/renpy.rpy"
+markup_text = "\"\"\"
+{h1}Header Level 1{/h1}
+{h2}Header Level 2{/h2}
+{h3}Header Level 3{/h3}
+
+{b}bold{/b}
+{i}italic{/i}
+{s}strike through{/s}
+{code}mono-spaced text{/code}
+
+{a=https://some_domain.com}link{/a}
+{a}https://some_domain.com{/a}
+
+test_string = <test_string>
+test_bool = <test_bool>
+test_int = <test_int>
+test_list[0] = <test_list[0]>
+test_dict.key1 = <test_dict.key1>
+{color=<test_color>}text in custom color from variable{/color}
+
+:grinning:
+{icon=folder-open}
+{icon=folder-open, 32}
+{img=res://icon.png}
+{img=res://icon.png size=24x24}
+
+{table=3}
+{cell}1{/cell}{cell}2{/cell}{cell}3{/cell}
+{cell}4{/cell}{cell}5{/cell}{cell}6{/cell}
+{cell}7{/cell}{cell}8{/cell}{cell}9{/cell}
+{/table}
+
+{u}underline{/u}
+{center}center{/center}
+{right}right{/right}
+{fill}fill{/fill}
+{indent}text{/indent}
+{color=red}red{/color}
+{color=#c39f00}colored text{/color}
+{color=<test_color>}text in custom color from variable{/color}
+
+
+{wave amp=50 freq=2}wave{/wave}
+{tornado radius=5 freq=2}tornado{/tornado}
+{shake rate=5 level=10}shake{/shake}
+{fade start=4 length=14}fade{/fade}
+{rainbow freq=0.2 sat=10 val=20}rainbow{/rainbow}
+\"\"\""
+markup = "renpy"
+headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]
+
+[node name="BBCodeHelp" type="HSplitContainer" parent="HelperContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+dragger_visibility = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BBCodeCode" type="TextEdit" parent="HelperContainer/BBCodeHelp"]
+margin_right = 684.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "[h1]Header Level 1[/h1]
+[h2]Header Level 2[/h2]
+[h3]Header Level 3[/h3]
+
+[b]bold[/b]
+[i]italic[/i]
+[s]strike through[/s]
+[code]mono-spaced text[/code]
+
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+
+test_string = <test_string>
+test_int = <test_int>
+test_bool = <test_bool>
+test_list[0] = <test_list[0]>
+test_dict.key1 = <test_dict.key1>
+[color=<test_color>]text in custom color from variable[/color]
+
+:grinning:
+[icon=folder-open]
+[icon=folder-open, 32]
+[img]res://icon.png[/img]
+[img=24x24]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+[color=#c39f00]colored text[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+"
+readonly = true
+syntax_highlighting = true
+context_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+selecting_enabled = false
+v_scroll_speed = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+text_file = "res://addons/advanced-text/help/bbcode.txt"
+configs = [ "res://addons/advanced-text/highlights/bbcode.json" ]
+
+[node name="BBCode" type="RichTextLabel" parent="HelperContainer/BBCodeHelp"]
+margin_left = 696.0
+margin_right = 996.0
+margin_bottom = 554.0
+rect_min_size = Vector2( 300, 300 )
+mouse_filter = 2
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[font=res://addons/advanced-text/font/DejaVuSans-H3.tres]Header Level 1[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H2.tres]Header Level 2[/font]
+[font=res://addons/advanced-text/font/DejaVuSans-H1.tres]Header Level 3[/font]
+
+[b]bold[/b]
+[i]italic[/i]
+[s]strike through[/s]
+[code]mono-spaced text[/code]
+
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+
+test_string = test string
+test_int = 1
+test_bool = True
+test_list[0] = 1
+test_dict.key1 = value1
+[color=#1acfa0]text in custom color from variable[/color]
+
+[img]res://addons/emojis-for-godot/emojis/16x16/1f600.tres[/img]
+[font=res://addons/material-design-icons/fonts/24.tres]󰝰[/font]
+[font=res://addons/material-design-icons/fonts/32.tres]󰝰[/font]
+[img]res://icon.png[/img]
+[img=24x24]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+[color=#c39f00]colored text[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+"
+text = "Header Level 1
+Header Level 2
+Header Level 3
+
+bold
+italic
+strike through
+mono-spaced text
+
+link
+https://some_domain.com
+
+test_string = test string
+test_int = 1
+test_bool = True
+test_list[0] = 1
+test_dict.key1 = value1
+text in custom color from variable
+
+
+󰝰
+󰝰
+
+
+
+123456789
+
+underline
+center
+right
+fill
+	text
+red
+colored text
+
+wave
+tornado
+shake
+fade
+rainbow
+"
+script = ExtResource( 2 )
+markup_text_file = "res://addons/advanced-text/help/bbcode.txt"
+markup_text = "[h1]Header Level 1[/h1]
+[h2]Header Level 2[/h2]
+[h3]Header Level 3[/h3]
+
+[b]bold[/b]
+[i]italic[/i]
+[s]strike through[/s]
+[code]mono-spaced text[/code]
+
+[url=https://some_domain.com]link[/url]
+[url]https://some_domain.com[/url]
+
+test_string = <test_string>
+test_int = <test_int>
+test_bool = <test_bool>
+test_list[0] = <test_list[0]>
+test_dict.key1 = <test_dict.key1>
+[color=<test_color>]text in custom color from variable[/color]
+
+:grinning:
+[icon=folder-open]
+[icon=folder-open, 32]
+[img]res://icon.png[/img]
+[img=24x24]res://icon.png[/img]
+
+[table=3]
+[cell]1[/cell][cell]2[/cell][cell]3[/cell]
+[cell]4[/cell][cell]5[/cell][cell]6[/cell]
+[cell]7[/cell][cell]8[/cell][cell]9[/cell]
+[/table]
+
+[u]underline[/u]
+[center]center[/center]
+[right]right[/right]
+[fill]fill[/fill]
+[indent]text[/indent]
+[color=red]red[/color]
+[color=#c39f00]colored text[/color]
+
+[wave amp=50 freq=2]wave[/wave]
+[tornado radius=5 freq=2]tornado[/tornado]
+[shake rate=5 level=10]shake[/shake]
+[fade start=4 length=14]fade[/fade]
+[rainbow freq=0.2 sat=10 val=20]rainbow[/rainbow]
+"
+markup = "bbcode"
+headers_fonts = [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ]

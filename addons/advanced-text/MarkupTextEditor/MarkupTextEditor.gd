@@ -1,4 +1,3 @@
-tool
 extends Control
 
 var EmojisImport
@@ -12,65 +11,26 @@ export var BBCodeIcon : Texture
 
 export var file_box_scene : PackedScene
 
-export var markups_options_nodepath : NodePath
-onready var markups_options : OptionButton = get_node(markups_options_nodepath)
-
-export var edit_tabs_nodepath : NodePath
-onready var edit_tabs : TabContainer = get_node(edit_tabs_nodepath)
-
-export var preview_tabs_nodepath : NodePath
-onready var preview_tabs : TabContainer = get_node(preview_tabs_nodepath)
-
-export var preview_toggle_nodepath : NodePath
-onready var preview_toggle : CheckButton = get_node(preview_toggle_nodepath)
-
-export var help_button_nodepath : NodePath
-onready var help_button : Button = get_node(help_button_nodepath)
-
-export var help_tabs_nodepath : NodePath
-
-onready var help_tabs : TabContainer = get_node(help_tabs_nodepath)
-export var help_popup_nodepath : NodePath
-onready var help_popup : WindowDialog = get_node(help_popup_nodepath)
-
-export var emoji_button_nodepath : NodePath
-onready var emoji_button : Button = get_node(emoji_button_nodepath)
-
-export var selected_node_toggle_nodepath : NodePath
-onready var selected_node_toggle : CheckBox = get_node(selected_node_toggle_nodepath)
-
-export var files_tab_nodepath : NodePath
-onready var files_tab : VBoxContainer = get_node(files_tab_nodepath)
-
-export var files_toggle_nodepath : NodePath
-onready var files_toggle : CheckBox = get_node(files_toggle_nodepath)
-
-export var file_name_label_nodepath : NodePath
-onready var file_name_label : Label = get_node(file_name_label_nodepath)
-
-export var file_icon_nodepath : NodePath
-onready var file_icon : TextureRect = get_node(file_icon_nodepath)
-
-export var file_modified_icon_nodepath : NodePath
-onready var file_modified_icon : TextureRect = get_node(file_modified_icon_nodepath)
-
-export var files_box_nodepath : NodePath
-onready var files_box : VBoxContainer = get_node(files_box_nodepath)
-
-export var new_file_button_nodepath : NodePath
-onready var new_file_button : Button = get_node(new_file_button_nodepath)
-
-export var file_open_button_nodepath : NodePath
-onready var file_open_button : Button = get_node(file_open_button_nodepath)
-
-export var file_popup_nodepath : NodePath
-onready var file_popup : FileDialog = get_node(file_popup_nodepath)
-
-export var file_save_button_nodepath : NodePath
-onready var file_save_button : Button = get_node(file_save_button_nodepath)
-
-export var file_save_as_button_nodepath : NodePath
-onready var file_save_as_button : Button = get_node(file_save_as_button_nodepath)
+export (NodePath) onready var markups_options = get_node(markups_options) as OptionButton
+export (NodePath) onready var edit_tabs = get_node(edit_tabs) as TabContainer
+export (NodePath) onready var preview_tabs = get_node(preview_tabs) as TabContainer
+export (NodePath) onready var preview_toggle = get_node(preview_toggle) as CheckButton
+export (NodePath) onready var help_button = get_node(help_button) as Button
+export (NodePath) onready var help_tabs = get_node(help_tabs) as TabContainer
+export (NodePath) onready var help_popup = get_node(help_popup) as WindowDialog
+export (NodePath) onready var emoji_button = get_node(emoji_button) as Button
+export (NodePath) onready var selected_node_toggle = get_node(selected_node_toggle) as CheckBox
+export (NodePath) onready var files_tab = get_node(files_tab) as VBoxContainer
+export (NodePath) onready var files_toggle = get_node(files_toggle) as CheckBox
+export (NodePath) onready var file_name_label = get_node(file_name_label) as Label
+export (NodePath) onready var file_icon = get_node(file_icon) as TextureRect
+export (NodePath) onready var file_modified_icon = get_node(file_modified_icon) as TextureRect
+export (NodePath) onready var files_box = get_node(files_box) as VBoxContainer
+export (NodePath) onready var new_file_button = get_node(new_file_button) as Button
+export (NodePath) onready var file_open_button = get_node(file_open_button) as Button
+export (NodePath) onready var file_popup = get_node(file_popup) as FileDialog
+export (NodePath) onready var file_save_button = get_node(file_save_button) as Button
+export (NodePath) onready var file_save_as_button = get_node(file_save_as_button) as Button
 
 var markup_id := 0
 var text: = ""
@@ -137,19 +97,7 @@ func _ready():
 
 	markups_options.connect("item_selected", self, "_on_option_selected")
 
-	preview_toggle.connect("toggled", self, "_on_toggle")
-	preview_toggle.icon = get_icon("RichTextEffect", "EditorIcons")
-
-	help_button.connect("pressed", self, "_on_help_button_pressed")
-	help_button.icon = get_icon("Help", "EditorIcons")
-
 	self.connect("visibility_changed", self, "_on_visibility_changed")
-
-	selected_node_toggle.connect("toggled", self, "_on_nodes_toggle")
-	selected_node_toggle.icon = get_icon("Control", "EditorIcons")
-
-	files_toggle.connect("toggled", self, "_on_files_toggle")
-	files_toggle.icon = get_icon("TextFile", "EditorIcons")
 
 	new_file_button.icon = get_icon("New", "EditorIcons")
 	new_file_button.connect("pressed", self, "_on_new_file_button_pressed")
@@ -204,8 +152,8 @@ func _on_toggle(toggled: bool):
 	preview_tabs.visible = toggled
 
 func get_current_edit_tab() -> TextEdit:
-	var e_tabs := edit_tabs.get_children()
-	var e_id := edit_tabs.current_tab
+	var e_tabs = edit_tabs.get_children()
+	var e_id = edit_tabs.current_tab
 	return e_tabs[e_id]
 
 func update_text_preview(caller:TextEdit, text_from_edit_tab := true):
@@ -218,8 +166,8 @@ func update_text_preview(caller:TextEdit, text_from_edit_tab := true):
 	else:
 		current_edit_tab.text = text
 
-	var l_tabs := preview_tabs.get_children()
-	var l_id := preview_tabs.current_tab
+	var l_tabs = preview_tabs.get_children()
+	var l_id = preview_tabs.current_tab
 	var current_preview_tab = l_tabs[l_id]
 
 	current_preview_tab.markup_text = text
@@ -601,3 +549,4 @@ func _on_file_save_button_pressed():
 	f_data["modified"] = false
 	_update_file_data(f_data, file_path)
 	save_files_ram()
+	

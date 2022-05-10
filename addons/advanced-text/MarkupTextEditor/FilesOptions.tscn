@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/FilesBox.gd" type="Script" id=1]
+[ext_resource path="res://addons/advanced-text/shared/TabButton.tscn" type="PackedScene" id=2]
+
+[node name="FilesOptions" type="VBoxContainer"]
+margin_right = 212.0
+margin_bottom = 602.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_right = 212.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+columns = 2
+
+[node name="NewFileButton" type="Button" parent="GridContainer"]
+margin_right = 104.0
+margin_bottom = 20.0
+hint_tooltip = "Create New Text File"
+size_flags_horizontal = 15
+text = "New File"
+clip_text = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenFileButton" type="Button" parent="GridContainer"]
+margin_left = 108.0
+margin_right = 212.0
+margin_bottom = 20.0
+hint_tooltip = "Open Text File"
+size_flags_horizontal = 15
+text = "Open File"
+clip_text = true
+expand_icon = true
+
+[node name="SaveFileButton" type="Button" parent="GridContainer"]
+margin_top = 24.0
+margin_right = 104.0
+margin_bottom = 44.0
+hint_tooltip = "Save File"
+size_flags_horizontal = 15
+disabled = true
+text = "Save File"
+clip_text = true
+expand_icon = true
+
+[node name="SaveAsFileButton" type="Button" parent="GridContainer"]
+margin_left = 108.0
+margin_top = 24.0
+margin_right = 212.0
+margin_bottom = 44.0
+hint_tooltip = "Save As File"
+size_flags_horizontal = 15
+text = "Save As File"
+clip_text = true
+expand_icon = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_top = 48.0
+margin_right = 212.0
+margin_bottom = 602.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="ScrollContainer"]
+margin_right = 212.0
+margin_bottom = 554.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FilesBox" type="VBoxContainer" parent="ScrollContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 5
+script = ExtResource( 1 )
+file_box_scene = ExtResource( 2 )
+
+[node name="FileDialog" type="FileDialog" parent="."]
+margin_right = 329.0
+margin_bottom = 130.0
+window_title = "Zapisz plik"
+resizable = true
+filters = PoolStringArray( "*.md, *.rpy, *.txt ; Text Files" )

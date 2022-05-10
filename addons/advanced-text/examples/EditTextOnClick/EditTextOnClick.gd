@@ -1,10 +1,10 @@
 extends TabContainer
 
 export(String, MULTILINE) var text := "[center][shake rate=5 level=10]**Clik to edit me**[/shake][/center]"
-onready var label := $AdvancedTextButton/AdvancedTextLabel
-onready var save_button := $MarkupEdit/Button
-onready var m_edit := $MarkupEdit
-onready var button := $AdvancedTextButton
+export (NodePath) onready var label = get_node(label)
+export (NodePath) onready var save_button = get_node(save_button)
+export (NodePath) onready var m_edit = get_node(m_edit)
+export (NodePath) onready var button = get_node(button)
 
 func _ready():
 	label.markup_text = text

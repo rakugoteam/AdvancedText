@@ -11,11 +11,14 @@ func parse(text:String, headers_fonts:Array, variables:Dictionary) -> String:
 
 	# prints("markdown_parser run with variables:", variables)
 	if !variables.empty():
-		output = replace_variables(output, variables)	
+		output = replace_variables(output, variables)
 	
 	# prints("emojis_gd:", emojis_gd)
 	if emojis_gd:
 		output = emojis_gd.parse_emojis(output)
+
+	if icons_gd:
+		output = parse_icons(output)
 
 	# Parse headers
 	if !headers_fonts.empty():

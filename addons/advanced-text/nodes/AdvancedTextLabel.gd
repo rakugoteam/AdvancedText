@@ -26,6 +26,7 @@ var hf_paths : Array
 func _ready() -> void:
 	bbcode_enabled = true
 	connect("update", self, "_on_update")
+	emit_signal("update")
 
 func _set_headers_fonts(value : Array) -> void:
 	headers_fonts = value
@@ -52,16 +53,7 @@ func get_text_parser(_markup:String):
 func _get_text_parser(_markup_str:String):
 	match _markup_str:
 		"default":
-
-			var default := ""
-			# for some reason loading default parser setting works only in editor
-			# so I save it as metadata and load it during runtime
-			if Engine.editor_hint:
-				default = ProjectSettings.get_setting("addons/advanced_text/markup")
-				set_meta("_default_markup", default)
-			else:
-				default = get_meta("_default_markup")
-		
+			var default = ProjectSettings.get_setting("addons/advanced_text/markup")
 			return _get_text_parser(default)
 		
 		"bbcode":

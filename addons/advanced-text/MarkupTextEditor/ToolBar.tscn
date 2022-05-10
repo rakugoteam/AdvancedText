@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/advanced-text/icons/md.svg" type="Texture" id=1]
+[ext_resource path="res://addons/advanced-text/icons/ren16.png" type="Texture" id=2]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/LabelContainer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/advanced-text/icons/bbcode.svg" type="Texture" id=4]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/HelpContainer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/AddonsContainer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/PreviewOptions.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/ModeSwitch.tscn" type="PackedScene" id=9]
+[ext_resource path="res://addons/advanced-text/MarkupTextEditor/MarkupSwitch.gd" type="Script" id=10]
+
+[node name="ToolBar" type="Control"]
+anchor_right = 1.0
+margin_bottom = 40.0
+mouse_filter = 2
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ModeSwitch" parent="HBoxContainer" instance=ExtResource( 9 )]
+
+[node name="VSeparator3" type="VSeparator" parent="HBoxContainer"]
+margin_left = 208.0
+margin_right = 212.0
+margin_bottom = 40.0
+
+[node name="LabelContainer" parent="HBoxContainer" instance=ExtResource( 3 )]
+
+[node name="VSeparator4" type="VSeparator" parent="HBoxContainer"]
+margin_left = 640.0
+margin_right = 644.0
+margin_bottom = 40.0
+
+[node name="MarkupSwitch" type="OptionButton" parent="HBoxContainer"]
+margin_left = 648.0
+margin_right = 695.0
+margin_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+hint_tooltip = "Select Markup"
+text = "RenPy"
+icon = ExtResource( 2 )
+flat = true
+clip_text = true
+items = [ "Markdown", ExtResource( 1 ), false, 0, null, "RenPy", ExtResource( 2 ), false, 1, null, "BBCode", ExtResource( 4 ), false, 2, null, "None", null, false, 3, null ]
+selected = 1
+script = ExtResource( 10 )
+
+[node name="HelpContainer" parent="HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 699.0
+margin_right = 729.0
+size_flags_horizontal = 1
+
+[node name="PreviewOptions" parent="HBoxContainer" instance=ExtResource( 8 )]
+preview_toggle = null
+preview_switch = null
+
+[node name="AddonsContainer" parent="HBoxContainer" instance=ExtResource( 7 )]
