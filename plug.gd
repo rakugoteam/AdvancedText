@@ -12,4 +12,4 @@ func _plugging():
     # optional supported plugins
     plug("rakugoteam/Emojis-For-Godot", {"include": ["addons", ".import/"]})
     plug("rakugoteam/Godot-Material-Icons", {"include": ["addons", ".import/"]})
-  
+

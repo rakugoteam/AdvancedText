@@ -66,8 +66,6 @@ advanced_text/markup="markdown"
 advanced_text/default_vars="{
 	\"test_setting\": \"variable from project settings\"
 }"
-advanced_text/MarkupEdit/enabled=true
-advanced_text/MarkupEdit/preview_enabled="right"
 
 [application]
 
@@ -76,7 +74,6 @@ config/icon="res://icon.png"
 
 [autoload]
 
-TextEditorHelper="*res://addons/advanced-text/MarkupTextEditor/TextEditorHelper.gd"
 EBBCodeParser="*res://addons/advanced-text/parsers/EBBCodeParser.gd"
 MarkdownParser="*res://addons/advanced-text/parsers/MarkdownParser.gd"
 RenpyParser="*res://addons/advanced-text/parsers/RenpyParser.gd"
