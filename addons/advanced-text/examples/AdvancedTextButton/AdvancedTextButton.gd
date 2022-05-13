@@ -2,8 +2,7 @@
 extends Button
 class_name AdvancedTextButton
 
-export (NodePath) onready var adv_label = get_node(adv_label)
-
+onready var adv_label := $AdvancedTextLabel
 func _ready():
 	adv_label.connect("resized", self, "_on_button_resized")
 	connect("mouse_entered", self, "_on_mouse_entered")
@@ -11,11 +10,17 @@ func _ready():
 	connect("pressed", self, "_on_pressed")
 	connect("toggled", self, "_on_toggled")
 
+func set_markup_text(text: String):
+	adv_label.markup_text = text
+
+func set_markup(markup: String):
+	adv_label.markup = markup
+
 func _set_label_color(color_name:String):
 	adv_label.modulate = get_color(color_name, "Button")
 
 func _set(property:String, value)->bool:
-	if  property in get_property_list():
+	if property in get_property_list():
 		set(property, value)
 	else:
 		return false
