@@ -44,11 +44,10 @@ func get_hf_paths() -> Array:
 
 func get_text_parser(_markup:String):
 	if _parser == null:
-		_parser = _get_text_parser(_markup)
-	elif markup != _markup:
-		_parser = _get_text_parser(_markup)
-	
-	return _parser
+		return _get_text_parser(_markup)
+
+	if markup != _markup:
+		return _get_text_parser(_markup)
 
 func _get_text_parser(_markup_str:String):
 	match _markup_str:
@@ -95,8 +94,9 @@ func _on_update() -> void:
 	if markup_text_file:
 		_load_file(markup_text_file)
 
-	var p = _get_text_parser(markup) 
+	var p = _get_text_parser(markup)
 	if p == null:
+		push_error("can't load parser for markup: "+ markup)
 		return
 	
 	var vars_json = ProjectSettings.get_setting("addons/advanced_text/default_vars")
