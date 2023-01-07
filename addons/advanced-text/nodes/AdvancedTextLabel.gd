@@ -86,7 +86,7 @@ func _load_file(file_path:String) -> void:
 	f.close()
 
 func _set_markup_text(value:String) -> void:
-	markup_text = value
+	markup_text = tr(value)
 	emit_signal("update")
 
 func _on_update() -> void:
