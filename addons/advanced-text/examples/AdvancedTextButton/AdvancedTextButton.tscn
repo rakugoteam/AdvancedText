@@ -5,24 +5,21 @@
 [ext_resource path="res://addons/advanced-text/examples/AdvancedTextButton/AdvancedTextButton.gd" type="Script" id=3]
 
 [node name="AdvancedTextButton" type="Button"]
-margin_right = 222.0
-margin_bottom = 22.0
+margin_right = 373.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 224, 24 )
 size_flags_horizontal = 3
 theme = ExtResource( 2 )
 script = ExtResource( 3 )
 
-[node name="AdvancedTextLabel" type="RichTextLabel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_right = 373.0
+margin_bottom = 20.0
+rect_clip_content = false
 mouse_filter = 1
 bbcode_enabled = true
-bbcode_text = "[center][shake rate=5 level=10][b]Advanced Text Button[/b][/shake][/center]"
-text = "Advanced Text Button"
+bbcode_text = "[center][shake rate=5 level=10][b]Advanced Teeeeeeeeeeeext Button[/b][/shake][/center]"
+text = "Advanced Teeeeeeeeeeeext Button"
 scroll_active = false
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-markup_text = "[center][shake rate=5 level=10]**Advanced Text Button**[/shake][/center]"
-markup = "markdown"
+markup_text = "[center][shake rate=5 level=10]**Advanced Teeeeeeeeeeeext Button**[/shake][/center]"
