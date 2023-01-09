@@ -1,0 +1,13 @@
+# .github/release.yml
+
+changelog:
+  categories:
+    - title: Major Updates
+      labels:
+        - majorChange
+    - title: Fixed Bugs
+      labels:
+        - bug
+    - title: Other Changes
+      labels:
+        - inChangelog
