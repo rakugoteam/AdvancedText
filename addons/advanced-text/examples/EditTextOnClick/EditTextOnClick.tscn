@@ -18,14 +18,17 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+button = NodePath("AdvancedTextButton")
+save_button = NodePath("MarkupEdit/SaveButton")
+m_edit = NodePath("MarkupEdit")
 
 [node name="AdvancedTextButton" parent="." instance=ExtResource( 1 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_right = 57.0
+margin_bottom = -177.0
 
 [node name="MarkupEdit" type="TextEdit" parent="."]
 visible = false
@@ -41,7 +44,7 @@ syntax_highlighting = true
 script = ExtResource( 2 )
 configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
 
-[node name="Button" type="Button" parent="MarkupEdit"]
+[node name="SaveButton" type="Button" parent="MarkupEdit"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0

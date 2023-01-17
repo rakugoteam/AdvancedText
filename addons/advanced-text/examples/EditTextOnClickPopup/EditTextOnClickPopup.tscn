@@ -17,22 +17,18 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+m_edit = NodePath("Popup/MarkupEdit")
+button = NodePath("AdvancedTextButton")
 
 [node name="AdvancedTextButton" parent="." instance=ExtResource( 3 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 8.0
-margin_right = -4.0
-margin_bottom = -4.0
-size_flags_horizontal = 3
+margin_right = 91.0
+margin_bottom = -2.0
 size_flags_vertical = 3
 toggle_mode = true
-
-[node name="AdvancedTextLabel" parent="AdvancedTextButton" index="0"]
-bbcode_text = "[center][shake rate=5 level=10][b]Clik to edit me[/b][/shake][/center]"
-text = "Clik to edit me"
-markup_text = "[center][shake rate=5 level=10]**Clik to edit me**[/shake][/center]"
 
 [node name="Popup" type="Popup" parent="."]
 visible = true
@@ -50,5 +46,3 @@ anchor_bottom = 1.0
 syntax_highlighting = true
 script = ExtResource( 1 )
 configs = [ "res://addons/advanced-text/highlights/bbcode.json", "res://addons/advanced-text/highlights/markdown.json" ]
-
-[editable path="AdvancedTextButton"]
