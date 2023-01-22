@@ -7,6 +7,8 @@ onready var adv_label := $AdvancedTextLabel
 export(String, MULTILINE) var markup_text := "" setget _set_markup_text
 export(String, "default", "markdown", "renpy", "bbcode") var markup := "default" setget _set_markup
 
+var ready := false
+
 
 func _ready():
 	if !adv_label:
@@ -22,26 +24,37 @@ func _ready():
 	connect("mouse_exited", self, "_on_mouse_exited")
 	connect("pressed", self, "_on_pressed")
 	connect("toggled", self, "_on_toggled")
+	ready = true
+
+
+func size_update():
+	rect_min_size = adv_label.rect_min_size
 
 
 func _set_markup_text(text: String):
+	if Engine.editor_hint or !ready:
+		return
+
 	if !adv_label:
 		return
 
 	markup_text = text
 	adv_label.markup_text = text
 	yield(get_tree(), "idle_frame")
-	rect_size = adv_label.rect_size
+	size_update()
 
 
 func _set_markup(markup: String):
+	if Engine.editor_hint or !ready:
+		return
+
 	if !adv_label:
 		return
 
 	markup = markup
 	adv_label.markup = markup
 	yield(get_tree(), "idle_frame")
-	rect_size = adv_label.rect_size
+	size_update()
 
 
 func _set_label_color(color_name: String):
