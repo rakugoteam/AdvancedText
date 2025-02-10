@@ -1,10 +1,10 @@
 @tool
 @icon("res://addons/advanced-text/icons/AdvancedTextLabel.svg")
-extends RichTextLabel
 
 ## This class parses given text to bbcode using given TextParser
 ## @tutorial: https://rakugoteam.github.io/advanced-text-docs/2.0/AdvancedTextLabel/
 class_name AdvancedTextLabel
+extends RichTextLabel
 
 ## By default links (staring from `http`) will be opened in web browser
 ## For custom links you can connect to `custom_link` signal
@@ -57,7 +57,6 @@ func _ready():
 func _parse_text() -> void:
 	if !is_node_ready(): return
 	if parser:
-			
 		if AdvancedText.rakugo:
 			var r = AdvancedText.rakugo
 			var sg = r.sg_variable_changed

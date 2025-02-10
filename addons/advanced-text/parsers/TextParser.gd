@@ -1,9 +1,9 @@
 @tool
-extends Resource
 
 ## Base class used by AdvancedTexts addon Parsers
 ## @tutorial: https://rakugoteam.github.io/advanced-text-docs/2.0/TextParser/
 class_name TextParser
+extends Resource
 
 ## RegEx used by this class
 var re := RegEx.new()

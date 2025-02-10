@@ -46,7 +46,7 @@ script/search_in_file_extensions=PackedStringArray("gd", "gdshader", "rk")
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Rakugo/plugin.cfg", "res://addons/advanced-text/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/icons-fonts/plugin.cfg", "res://addons/open_external_editor/plugin.cfg", "res://addons/rakugo-nodes/plugin.cfg")
+enabled=PackedStringArray("res://addons/Rakugo/plugin.cfg", "res://addons/advanced-text/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/icons-fonts/plugin.cfg", "res://addons/rakugo-nodes/plugin.cfg")
 
 [global]
 

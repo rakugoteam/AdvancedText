@@ -29,8 +29,8 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_uxkq8"]
 script = ExtResource("7_r0mph")
-italics = "*"
-bold = "**"
+italics = "both"
+bold = "both"
 points = "-"
 headers = Array[LabelSettings]([SubResource("LabelSettings_0sox2"), SubResource("LabelSettings_1rb2p"), SubResource("LabelSettings_cllr0"), SubResource("LabelSettings_633q0")])
 
@@ -86,7 +86,7 @@ bold = "**"
 points = "-"
 headers = Array[LabelSettings]([SubResource("LabelSettings_mqb2n"), SubResource("LabelSettings_c8yh7"), SubResource("LabelSettings_faw0r"), SubResource("LabelSettings_n4lgb")])
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jcwg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr80r"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -107,7 +107,7 @@ expand_margin_top = 2.0
 expand_margin_right = 2.0
 expand_margin_bottom = 2.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x25yl"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvxaw"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -147,9 +147,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 1
 
 [node name="MarkdownLabel" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_nhc5f")
 theme_override_fonts/mono_font = ExtResource("5_fmnql")
@@ -161,10 +162,11 @@ text = "[bgcolor=#00000000][font_size=22]Header Level 1[/font_size][/bgcolor]
 [bgcolor=#00000000][font_size=20]Header Level 2[/font_size][/bgcolor]
 [bgcolor=#00000000][font_size=18]Header Level 3[/font_size][/bgcolor]
 
- [b]bold[/b] 
- [i]italic[/i] 
- [s]strike through[/s] 
- [code]mono-spaced text[/code] 
+[b]bold[/b]
+[i]italic[/i]
+[i][b]bold-italic[/b][/i]
+[s]strike through[/s] 
+[code]mono-spaced text[/code]
 
 text with space 6
 [font_size=6] [/font_size]
@@ -206,10 +208,11 @@ test_color = <test_color>
 [img]res://icon.png[/img]
 [img=24x24]res://icon.png[/img]
 
-[table=3][cell]1[/cell][cell]2[/cell][cell]3[/cell]
-[cell]4[/cell][cell]5[/cell][cell]6[/cell]
-[cell]7[/cell][cell]8[/cell][cell]9[/cell]
-[/table]
+@table=3 {
+[i]1|2|3[/i]
+[i]4|5|6[/i]
+[i]7|8|9[/i]
+}
 
 [u]underlined text[/u]
 [center]centered text[/center]
@@ -219,7 +222,7 @@ test_color = <test_color>
 [right]right aligned text alt[/right]
 
 [indent]indent text[/indent]
-[indent]indent text alt[/indent]
+@[i]indent text alt[/i]@
 [indent]indent text alt 2s[/indent]
 
 [color=red]red text[/color]
@@ -244,10 +247,11 @@ _text = "# Header Level 1
 ## Header Level 2
 ### Header Level 3
 
- **bold** 
- *italic* 
- ~~strike through~~ 
- `mono-spaced text` 
+**bold**
+*italic*
+***bold-italic***
+~~strike through~~ 
+`mono-spaced text`
 
 text with space 6
 @space=6
@@ -320,7 +324,6 @@ metadata/_tab_index = 0
 
 [node name="RenPyStringLabel" type="RichTextLabel" parent="."]
 auto_translate_mode = 2
-visible = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_nhc5f")
 theme_override_fonts/mono_font = ExtResource("5_fmnql")
@@ -328,12 +331,13 @@ theme_override_fonts/italics_font = ExtResource("3_7l8y2")
 theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
 theme_override_fonts/bold_font = ExtResource("2_aml2b")
 bbcode_enabled = true
-text = "[bgcolor=#00000000][color=#ffffffff][font_size=22]Header Level 1[/font_size][/color][/bgcolor]
-[bgcolor=#00000000][color=#ffffffff][font_size=20]Header Level 2[/font_size][/color][/bgcolor]
-[bgcolor=#00000000][color=#ffffffff][font_size=18]Header Level 3[/font_size][/color][/bgcolor]
+text = "[h1]Header Level 1[/h1]
+[h2]Header Level 2[/h2]
+[h3]Header Level 3[/h3]
 
 [b]bold[/b]
 [i]italic[/i]
+[i][b]bold-italic[/b][/i]
 [s]strike through[/s]
 [code]mono-spaced text[/code]
 
@@ -341,7 +345,7 @@ text = "[bgcolor=#00000000][color=#ffffffff][font_size=22]Header Level 1[/font_s
 [url]https://some_domain.com[/url]
 
 text with space 6
-[font_size=6] [/font_size]
+[space=6]
 text with space 6
 
 [ul]
@@ -404,6 +408,7 @@ _text = "{h1}Header Level 1{/h1}
 
 {b}bold{/b}
 {i}italic{/i}
+{i}{b}bold-italic{/b}{/i}
 {s}strike through{/s}
 {code}mono-spaced text{/code}
 
@@ -654,8 +659,8 @@ grow_vertical = 2
 
 [node name="AdvancedTextButton" type="RichTextLabel" parent="AdvancedTextButton/VBoxContainer" groups=["test_btn"]]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_7jcwg")
-theme_override_styles/normal = SubResource("StyleBoxFlat_x25yl")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tr80r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hvxaw")
 bbcode_enabled = true
 text = "[center][rainbow  freq=0.2 sat=10 val=20 ] [b]Markdown Button[/b] [font=res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf]󱜙[/font][/rainbow][/center]"
 fit_content = true

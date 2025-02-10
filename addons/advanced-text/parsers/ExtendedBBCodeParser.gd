@@ -1,11 +1,11 @@
 @tool
 @icon("res://addons/advanced-text/icons/bbcode.svg")
-extends TextParser
 
 ## This parser adds Headers {h1} and support for IconsFonts
 ## add Rakugo variables with <var_name> to BBCode
 ## @tutorial: https://rakugoteam.github.io/advanced-text-docs/2.0/ExtendedBBCodeParser/
 class_name ExtendedBBCodeParser
+extends TextParser
 
 ## Setting for headers
 ## By default those settings are just sizes: 22, 20, 18 and 16
@@ -32,7 +32,7 @@ func _addons(text: String) -> String:
 		text = AdvancedText.rakugo.replace_variables(text)
 	
 	if AdvancedText.icons_fonts:
-		text = AdvancedText.icons_fonts.parse_text(text)
+			text = AdvancedText.icons_fonts.parse_text(text)
 	
 	return text
 
