@@ -90,3 +90,12 @@ func _on_meta(url: String) -> void:
 		return
 	
 	emit_signal("custom_link", url)
+
+func _validate_property(property: Dictionary) -> void:
+	match property.name:
+		&"text":
+			property.usage = PROPERTY_HINT_NONE
+		&"bbcode_enabled":
+			property.usage = PROPERTY_HINT_NONE
+
+
