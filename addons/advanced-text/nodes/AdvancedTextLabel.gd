@@ -6,25 +6,23 @@
 class_name AdvancedTextLabel
 extends RichTextLabel
 
-## By default links (staring from `http`) will be opened in web browser
+## By default links (begins with `http`) will be opened in web browser
 ## For custom links you can connect to `custom_link` signal
 signal custom_link(url:String)
 
 ## Text to be parsed in too BBCode
 ## Use it instead of `text` from RichTextLabel
 ## I had to make this way as I can't override `text` var behavior
-@export_multiline var _text := "":
+@export_multiline var advanced_text := "":
 	set(value):
-		_text = value
+		advanced_text = value
 		if value == "":
 			text = ""
 			return
 		
 		_parse_text()
-		
-	get: return _text
 
-## TextParser that will be used to parse `_text`
+## TextParser that will be used to parse `advanced_text`
 @export var parser: TextParser:
 	set(value):
 		parser = value
@@ -40,8 +38,6 @@ signal custom_link(url:String)
 
 			_parse_text()
 			# print("parse text")
-	
-	get: return parser
 
 var font_size : int:
 	get: return theme.get_font_size(get_class(), &"normal")
@@ -49,7 +45,7 @@ var font_size : int:
 func _ready():
 	bbcode_enabled = true
 	meta_clicked.connect(_on_meta)
-	if not _text:
+	if not advanced_text:
 		custom_minimum_size = Vector2.ONE * font_size
 
 	_parse_text()
@@ -65,20 +61,17 @@ func _parse_text() -> void:
 	
 	if !parser:
 		push_warning("parser is null at " + str(name))
-		text = _text
+		text = advanced_text
 		return
 	
-	text = parser.parse(_text)
+	text = parser.parse(advanced_text)
 
 func _on_rakuvars_changed(var_name, value) -> void:
-	if "<%s>" % var_name in _text:
+	if "<%s>" % var_name in advanced_text:
 		_parse_text()
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
-	if !bbcode_enabled:
-		warnings.append("BBCode must be enabled.")
-	
 	if !parser:
 		warnings.append("Need parser.")
 
