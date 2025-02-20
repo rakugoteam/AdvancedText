@@ -2,7 +2,7 @@
 @icon("res://addons/advanced-text/icons/AdvancedTextLabel.svg")
 
 ## This class parses given text to bbcode using given TextParser
-## @tutorial: https://rakugoteam.github.io/advanced-text-docs/3.0/AdvancedTextLabel/
+## @tutorial: https://rakugoteam.github.io/advanced-text-docs/2.0/AdvancedTextLabel/
 class_name AdvancedTextLabel
 extends RichTextLabel
 
@@ -45,6 +45,9 @@ var font_size : int:
 func _ready():
 	bbcode_enabled = true
 	meta_clicked.connect(_on_meta)
+	meta_hover_started.connect(_on_meta_hover_started)
+	meta_hover_ended.connect(_on_meta_hover_ended)
+
 	if not advanced_text:
 		custom_minimum_size = Vector2.ONE * font_size
 
@@ -84,9 +87,29 @@ func _on_meta(url: String) -> void:
 	
 	emit_signal("custom_link", url)
 
+func _on_meta_hover_started(url: String) -> void:
+	if url.begins_with("hint:"):
+		var hint_id := url.trim_prefix("hint:")
+		var hint := _hint_requested(hint_id)
+
+		if hint != tr(hint):
+			HintPopup.text = tr(hint)
+
+		var hint_rect: Rect2 = HintPopup.get_rect()
+		hint_rect.position = get_global_mouse_position()
+		hint_rect.size = Vector2(314, 100)
+		HintPopup.popup(hint_rect)
+
+func _on_meta_hover_ended(_url: String) -> void:
+	HintPopup.hide()
+
 func _validate_property(property: Dictionary) -> void:
 	match property.name:
 		&"text":
 			property.usage = PROPERTY_HINT_NONE
 		&"bbcode_enabled":
 			property.usage = PROPERTY_HINT_NONE
+
+## Override it to make hint_id system working
+func _hint_requested(hint_id:StringName) -> String:
+	return ""

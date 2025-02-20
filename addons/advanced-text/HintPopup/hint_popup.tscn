@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1qw62h10t5vw"]
+
+[ext_resource type="Script" path="res://addons/advanced-text/HintPopup/hint_popup.gd" id="1_6xidp"]
+[ext_resource type="Script" path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" id="1_q40ii"]
+[ext_resource type="Script" path="res://addons/advanced-text/parsers/MarkdownParser.gd" id="3_lk2s6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnsm3"]
+bg_color = Color(0, 0, 0, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.377919, 0.377919, 0.377919, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_dvwfn"]
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yvnlg"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w1bwr"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kl13a"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_fh8fp"]
+script = ExtResource("3_lk2s6")
+italics = "both"
+bold = "both"
+points = "both"
+headers = Array[LabelSettings]([SubResource("LabelSettings_dvwfn"), SubResource("LabelSettings_yvnlg"), SubResource("LabelSettings_w1bwr"), SubResource("LabelSettings_kl13a")])
+use_links_for_hints = false
+
+[node name="HintPopup" type="Window"]
+transparent_bg = true
+size = Vector2i(314, 100)
+wrap_controls = true
+transient = true
+transient_to_focused = true
+exclusive = true
+unresizable = true
+borderless = true
+transparent = true
+popup_window = true
+script = ExtResource("1_6xidp")
+
+[node name="Panel" type="PanelContainer" parent="."]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fnsm3")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+follow_focus = true
+
+[node name="AdvancedTextLabel" type="RichTextLabel" parent="Panel/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+fit_content = true
+scroll_active = false
+script = ExtResource("1_q40ii")
+parser = SubResource("Resource_fh8fp")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -27,9 +27,10 @@ addons/icon_finder/preview_size=24
 
 [autoload]
 
-AdvancedText="*res://addons/advanced-text/AdvancedText.gd"
 IconsFonts="*res://addons/icons-fonts/icons_fonts/IconsFonts.gd"
 Rakugo="*res://addons/Rakugo/Rakugo.gd"
+AdvancedText="*res://addons/advanced-text/AdvancedText.gd"
+HintPopup="*res://addons/advanced-text/HintPopup/hint_popup.tscn"
 
 [debug]
 
