@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dw681hislg41h"]
+[gd_scene load_steps=33 format=3 uid="uid://dw681hislg41h"]
 
 [ext_resource type="FontFile" uid="uid://dopnqhkanf1f7" path="res://addons/advanced-text/font/DejaVuSans.ttf" id="1_nhc5f"]
 [ext_resource type="Script" path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" id="1_uinld"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://addons/advanced-text/parsers/MarkdownParser.gd" id="7_r0mph"]
 [ext_resource type="Script" path="res://addons/advanced-text/parsers/RenPyMarkupParser.gd" id="8_8yudh"]
 [ext_resource type="Script" path="res://addons/advanced-text/parsers/ExtendedBBCodeParser.gd" id="9_xqqk6"]
-[ext_resource type="Script" path="res://addons/advanced-text/nodes/AdvancedTextButton.gd" id="10_w4hpi"]
+[ext_resource type="Script" path="res://addons/rakugo-nodes/nodes/ButtonContainer.gd" id="10_ghujn"]
 [ext_resource type="Script" path="res://addons/advanced-text/examples/InitTestRakugoVars.gd" id="12_wngyp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0sox2"]
@@ -86,28 +86,7 @@ bold = "**"
 points = "-"
 headers = Array[LabelSettings]([SubResource("LabelSettings_mqb2n"), SubResource("LabelSettings_c8yh7"), SubResource("LabelSettings_faw0r"), SubResource("LabelSettings_n4lgb")])
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ky67y"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8whm8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43871"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -125,9 +104,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 0
+current_tab = 4
 
 [node name="MarkdownLabel" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_nhc5f")
 theme_override_fonts/mono_font = ExtResource("5_fmnql")
@@ -392,33 +372,75 @@ parser = SubResource("Resource_va62r")
 metadata/_tab_index = 3
 
 [node name="AdvancedTextButton" type="Panel" parent="."]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="AdvancedTextButton"]
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -15.5
-offset_bottom = 15.5
+offset_left = -63.5
+offset_top = -20.0
+offset_right = 63.5
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 32
 
-[node name="AdvancedTextButton" type="RichTextLabel" parent="AdvancedTextButton/VBoxContainer" groups=["test_btn"]]
+[node name="MarkdownLabel" type="RichTextLabel" parent="AdvancedTextButton/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_ky67y")
-theme_override_styles/normal = SubResource("StyleBoxFlat_8whm8")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_nhc5f")
+theme_override_fonts/mono_font = ExtResource("5_fmnql")
+theme_override_fonts/italics_font = ExtResource("3_7l8y2")
+theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
+theme_override_fonts/bold_font = ExtResource("2_aml2b")
 fit_content = true
 scroll_active = false
-shortcut_keys_enabled = false
-script = ExtResource("10_w4hpi")
-toggle_mode = true
-button_group = &"test_btn"
-advanced_text = null
-parser = ""
+autowrap_mode = 0
+script = ExtResource("1_uinld")
+advanced_text = "To crate **button** with @color=lime{**AdvancedTextLabel**}, 
+Add [mi:file-tree] nodes like this: @color=lime{**ButtonContainer** [mi:arrow-left] **MarginContiner** [mi:arrow-left] **AdvancedTextLabel**},
+You also need to `mouse_filter` to `Ignore` in both @color=lime{**MarginContiner**} and @color=lime{**AdvancedTextLabel**}."
+parser = SubResource("Resource_uxkq8")
+
+[node name="ButtonContainer" type="PanelContainer" parent="AdvancedTextButton/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_43871")
+script = ExtResource("10_ghujn")
+
+[node name="MarginContainer" type="MarginContainer" parent="AdvancedTextButton/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarkdownLabel" type="RichTextLabel" parent="AdvancedTextButton/VBoxContainer/ButtonContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_nhc5f")
+theme_override_fonts/mono_font = ExtResource("5_fmnql")
+theme_override_fonts/italics_font = ExtResource("3_7l8y2")
+theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
+theme_override_fonts/bold_font = ExtResource("2_aml2b")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("1_uinld")
+advanced_text = "@center{ @rainbow 0.2,10,20 {**Button**} [mi:button-cursor] :smile: }
+"
+parser = SubResource("Resource_uxkq8")
 
 [node name="InitTestRakugoVars" type="Timer" parent="."]
 one_shot = true

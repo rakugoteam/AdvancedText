@@ -2,7 +2,7 @@
 @icon("res://addons/advanced-text/icons/AdvancedTextLabel.svg")
 
 ## This class parses given text to bbcode using given TextParser
-## @tutorial: https://rakugoteam.github.io/advanced-text-docs/2.0/AdvancedTextLabel/
+## @tutorial: https://rakugoteam.github.io/advanced-text-docs/3.0/AdvancedTextLabel/
 class_name AdvancedTextLabel
 extends RichTextLabel
 
@@ -90,5 +90,3 @@ func _validate_property(property: Dictionary) -> void:
 			property.usage = PROPERTY_HINT_NONE
 		&"bbcode_enabled":
 			property.usage = PROPERTY_HINT_NONE
-
-
