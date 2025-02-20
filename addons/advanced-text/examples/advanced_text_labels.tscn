@@ -86,7 +86,7 @@ bold = "**"
 points = "-"
 headers = Array[LabelSettings]([SubResource("LabelSettings_mqb2n"), SubResource("LabelSettings_c8yh7"), SubResource("LabelSettings_faw0r"), SubResource("LabelSettings_n4lgb")])
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvi1w"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43871"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -375,26 +375,25 @@ metadata/_tab_index = 3
 layout_mode = 2
 metadata/_tab_index = 4
 
-[node name="ButtonContainer" type="PanelContainer" parent="AdvancedTextButton"]
-custom_minimum_size = Vector2(100, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="AdvancedTextButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -23.0
-offset_right = 150.0
-offset_bottom = 23.0
+offset_left = -63.5
+offset_top = -20.0
+offset_right = 63.5
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_cvi1w")
-script = ExtResource("10_ghujn")
-toggle_mode = true
+theme_override_constants/separation = 32
 
-[node name="MarkdownLabel" type="RichTextLabel" parent="AdvancedTextButton/ButtonContainer"]
+[node name="MarkdownLabel" type="RichTextLabel" parent="AdvancedTextButton/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("1_nhc5f")
 theme_override_fonts/mono_font = ExtResource("5_fmnql")
@@ -403,9 +402,43 @@ theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
 theme_override_fonts/bold_font = ExtResource("2_aml2b")
 fit_content = true
 scroll_active = false
+autowrap_mode = 0
 script = ExtResource("1_uinld")
-advanced_text = "@space=6
-@center{ @rainbow 0.2,10,20 {**Button**}  }
+advanced_text = "To crate **button** with @color=lime{**AdvancedTextLabel**}, 
+Add [mi:file-tree] nodes like this: @color=lime{**ButtonContainer** [mi:arrow-left] **MarginContiner** [mi:arrow-left] **AdvancedTextLabel**},
+You also need to `mouse_filter` to `Ignore` in both @color=lime{**MarginContiner**} and @color=lime{**AdvancedTextLabel**}."
+parser = SubResource("Resource_uxkq8")
+
+[node name="ButtonContainer" type="PanelContainer" parent="AdvancedTextButton/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_43871")
+script = ExtResource("10_ghujn")
+
+[node name="MarginContainer" type="MarginContainer" parent="AdvancedTextButton/VBoxContainer/ButtonContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarkdownLabel" type="RichTextLabel" parent="AdvancedTextButton/VBoxContainer/ButtonContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_nhc5f")
+theme_override_fonts/mono_font = ExtResource("5_fmnql")
+theme_override_fonts/italics_font = ExtResource("3_7l8y2")
+theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
+theme_override_fonts/bold_font = ExtResource("2_aml2b")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("1_uinld")
+advanced_text = "@center{ @rainbow 0.2,10,20 {**Button**} [mi:button-cursor] :smile: }
 "
 parser = SubResource("Resource_uxkq8")
 
