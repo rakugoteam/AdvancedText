@@ -22,6 +22,8 @@ signal custom_link(url:String)
 		
 		_parse_text()
 
+@export var hint_popup_size := Vector2(315, 100)
+
 ## TextParser that will be used to parse `advanced_text`
 @export var parser: TextParser:
 	set(value):
@@ -97,7 +99,7 @@ func _on_meta_hover_started(url: String) -> void:
 
 		var hint_rect: Rect2 = HintPopup.get_rect()
 		hint_rect.position = get_global_mouse_position()
-		hint_rect.size = Vector2(314, 100)
+		hint_rect.size = hint_popup_size
 		HintPopup.popup(hint_rect)
 
 func _on_meta_hover_ended(_url: String) -> void:
