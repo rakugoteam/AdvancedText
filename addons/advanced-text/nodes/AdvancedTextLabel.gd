@@ -42,7 +42,9 @@ signal custom_link(url:String)
 			# print("parse text")
 
 var font_size : int:
-	get: return theme.get_font_size(get_class(), &"normal")
+	get:
+		if !theme: return 16
+		return theme.get_font_size(get_class(), &"normal")
 
 func _ready():
 	bbcode_enabled = true
