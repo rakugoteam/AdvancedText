@@ -25,6 +25,7 @@ func parse(text: String) -> String:
 	text = parse_imgs_size(text)
 	text = parse_code(text)
 	text = parse_hints(text)
+	text = fix_hints(text)
 	text = parse_links(text)
 	text = parse_bold_italic(text)
 	text = parse_bold(text)

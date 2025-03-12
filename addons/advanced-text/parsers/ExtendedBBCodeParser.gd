@@ -41,6 +41,7 @@ func parse(text: String) -> String:
 	text = _addons(text)
 	text = parse_headers(text)
 	text = parse_spaces(text)
+	text = fix_hints(text)
 	return text
 
 ## Parse headers in given text into BBCode
@@ -102,3 +103,17 @@ func add_header(header_size: int, text: String, add_new_line:=false) -> String:
 		return replacement + "\n"
 	
 	return replacement
+
+## If true hint's into url tags,
+## like this [url=hint:something]{text}[\url]
+func fix_hints(text:String) -> String:
+	re.compile("\\[hint=(?P<hint_id>[\\w-]*)\\](?P<text>.+?)\\[\\/hint\\]")
+	result = re.search(text)
+	while result != null:
+		var hint_id := result.get_string("hint_id")
+		var h_text := result.get_string("text")
+		replacement = "[url=hint:%s]%s[/url]" % [hint_id, h_text]
+		text = replace_regex_match(text, result, replacement)
+		result = re.search(text)
+
+	return text

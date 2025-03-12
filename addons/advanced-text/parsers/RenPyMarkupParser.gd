@@ -17,12 +17,11 @@ func parse(text: String) -> String:
 	text = parse_links(text)
 	text = parse_imgs(text)
 	text = parse_imgs_size(text)
-
 	text = safe_replace("{", "[", text)
 	text = safe_replace("}", "]", text)
-	
 	text = parse_headers(text)
 	text = parse_spaces(text)
+	text = fix_hints(text)
 
 	return text
 
