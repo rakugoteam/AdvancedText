@@ -2,17 +2,20 @@
 @icon("res://addons/advanced-text/icons/AdvancedTextLabel.svg")
 
 ## This class parses given text to bbcode using given TextParser
-## @tutorial: https://rakugoteam.github.io/advanced-text-docs/2.0/AdvancedTextLabel/
+## @tutorial: https://rakugoteam.github.io/advanced-text-docs/3.0.1/AdvancedTextLabel/
+## AdvancedTextLabel parses text to BBCode using a TextParser.
 class_name AdvancedTextLabel
 extends RichTextLabel
 
 ## By default links (begins with `http`) will be opened in web browser
 ## For custom links you can connect to `custom_link` signal
-signal custom_link(url:String)
+## Emitted when a custom link is clicked.
+signal custom_link(url: String)
 
 ## Text to be parsed in too BBCode
 ## Use it instead of `text` from RichTextLabel
 ## I had to make this way as I can't override `text` var behavior
+## Text to be parsed into BBCode. Use instead of `text` from RichTextLabel.
 @export_multiline var advanced_text := "":
 	set(value):
 		advanced_text = value
@@ -22,9 +25,11 @@ signal custom_link(url:String)
 		
 		_parse_text()
 
+## Size of the hint popup window.
 @export var hint_popup_size := Vector2(315, 100)
 
 ## TextParser that will be used to parse `advanced_text`
+## TextParser used to parse `advanced_text`.
 @export var parser: TextParser:
 	set(value):
 		parser = value
@@ -41,7 +46,8 @@ signal custom_link(url:String)
 			_parse_text()
 			# print("parse text")
 
-var font_size : int:
+## Returns the font size from the theme or default.
+var font_size: int:
 	get:
 		if !theme: return 16
 		return theme.get_font_size(get_class(), &"normal")
@@ -115,5 +121,5 @@ func _validate_property(property: Dictionary) -> void:
 			property.usage = PROPERTY_HINT_NONE
 
 ## Override it to make hint_id system working
-func _hint_requested(hint_id:StringName) -> String:
+func _hint_requested(hint_id: StringName) -> String:
 	return ""

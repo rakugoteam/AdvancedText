@@ -3,7 +3,8 @@
 
 ## This parser is every limited as its just translates RenPy Markup to BBCode
 ## adds Headers {h1}, FontsIcons and Rakugo variables with <var_name>
-## @tutorial: https://rakugoteam.github.io/advanced-text-docs/2.0/RenPyMarkupParser/
+## @tutorial: https://rakugoteam.github.io/advanced-text-docs/3.0.1/RenPyMarkupParser/
+## RenPyMarkupParser translates RenPy Markup to BBCode, adds headers, font icons, and Rakugo variables.
 class_name RenPyMarkupParser
 extends ExtendedBBCodeParser
 
@@ -12,7 +13,6 @@ func parse(text: String) -> String:
 	## BBCode and Ren'Py has a lot of the same tags,
 	## but RenPy uses '{}' instead of '[]',
 	## so we need to replace them
-
 	text = _addons(text)
 	text = parse_links(text)
 	text = parse_imgs(text)
@@ -35,7 +35,7 @@ func _addons(text := "") -> String:
 		
 	return super._addons(text)
 
-## parse Ren'Py links into BBCode
+## Parses Ren'Py links into BBCode
 ## Ren'Py links examples:
 ## {a=https://some_domain.com}link{/a}
 ## {a}https://some_domain.com{/a}
@@ -50,7 +50,7 @@ func parse_links(text: String) -> String:
 		
 	return text
 
-## parse Ren'Py images with out size into BBCode
+## Parses Ren'Py images without size into BBCode
 ## Ren'Py images example:
 ## {img=<path>}
 func parse_imgs(text: String) -> String:
@@ -63,7 +63,7 @@ func parse_imgs(text: String) -> String:
 
 	return text
 
-## parse Ren'Py images with size into BBCode
+## Parses Ren'Py images with size into BBCode
 ## Ren'Py images with size example:
 # {img=<path> size=<height>x<width>}
 func parse_imgs_size(text: String) -> String:
