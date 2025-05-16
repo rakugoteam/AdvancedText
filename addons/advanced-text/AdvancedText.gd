@@ -2,12 +2,12 @@
 ## This is singleton is used to keep references and common variables
 ## for AdvancedText in one place and not duplicate them.
 ## Mainly used to simplify the handling of supported addons/plugins.
-## @tutorial: https://rakugoteam.github.io/advanced-text-docs/2.0/AdvancedText/
+## @tutorial: https://rakugoteam.github.io/advanced-text-docs/3.0.1/AdvancedText/
 extends Node
 
 ## Reference to root
 ## Its a getter that returns [code]get_node("/root/")[/code]
-var root : Node:
+var root: Node:
 	get: return get_tree().root
 
 ## Reference to Rakugo singleton

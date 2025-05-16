@@ -5,6 +5,7 @@
 ## adds support for add Rakugo variables with <var_name>
 ## and Headers "#" and support for IconsFonts
 ## @tutorial: https://rakugoteam.github.io/advanced-text-docs/2.3/MarkdownParser/
+## MarkdownParser translates Markdown to BBCode, adds Rakugo variables, headers, and IconsFonts support.
 class_name MarkdownParser
 extends ExtendedBBCodeParser
 
@@ -94,6 +95,7 @@ func parse(text: String) -> String:
 	return text
 
 ## Parse @space=x, that it add space in text in size of x
+## Parses @space=x, adds space in text of size x
 func parse_spaces(text: String) -> String:
 	re.compile("@space=(?P<size>\\d+)\n")
 	result = re.search(text)
@@ -246,7 +248,7 @@ func get_bold_sing(_bold: String = bold) -> String:
 ## Example of md italics:
 ## If italics = "*" : *italics*
 ## If italics = "_" : _italics_
-func parse_italics(text: String,) -> String:
+func parse_italics(text: String, ) -> String:
 	var sing := get_italics_sing(italics)
 	return parse_sing(text, sing, sing, "i")
 

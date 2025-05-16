@@ -3,7 +3,7 @@
 Extends RichTextLabel and adds support for Markdown and RenPy.
 Our RenPy Markup and Markdown have some extra stuff so read docs to learn it.
 This new version is designed in way so any one can crate its own TextParser to use with AdvancedText nodes.
-[**Read Docs**](https://rakugoteam.github.io/advanced-text-docs/2.0/)
+[**Read Docs**](https://rakugoteam.github.io/advanced-text-docs/3.0.1/)
 
 ## Features
 

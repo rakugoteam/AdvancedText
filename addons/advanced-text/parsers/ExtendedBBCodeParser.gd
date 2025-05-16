@@ -3,19 +3,17 @@
 
 ## This parser adds Headers {h1} and support for IconsFonts
 ## add Rakugo variables with <var_name> to BBCode
-## @tutorial: https://rakugoteam.github.io/advanced-text-docs/2.0/ExtendedBBCodeParser/
+## @tutorial: https://rakugoteam.github.io/advanced-text-docs/3.0.1/ExtendedBBCodeParser/
+## ExtendedBBCodeParser adds headers, IconsFonts, and Rakugo variables to BBCode.
 class_name ExtendedBBCodeParser
 extends TextParser
 
-## Setting for headers
-## By default those settings are just sizes: 22, 20, 18 and 16
-## Due to BBCode limitations shadow_color is used as background color
-## Ignored properties: line_spacing, shadow_offset and shadow_size
+## Settings for headers, default sizes: 22, 20, 18, 16
 @export var headers := _gen_headers([22, 20, 18, 16])
 
 ## Generates LabelSettings set based on the given sizes
 ## It is used to generate headers initial settings.
-func _gen_headers(sizes: Array[int], color:=Color.BLACK) -> Array[LabelSettings]:
+func _gen_headers(sizes: Array[int], color := Color.BLACK) -> Array[LabelSettings]:
 	var _headers: Array[LabelSettings] = []
 	for size in sizes:
 		var ls := LabelSettings.new()
@@ -44,7 +42,7 @@ func parse(text: String) -> String:
 	text = fix_hints(text)
 	return text
 
-## Parse headers in given text into BBCode
+## Parses headers in given text into BBCode
 func parse_headers(text: String) -> String:
 	re.compile("\\[h(?P<size>[1-4])\\](?P<text>.+?)\\[/h(?P=size)\\]")
 	result = re.search(text)
@@ -57,7 +55,7 @@ func parse_headers(text: String) -> String:
 	
 	return text
 
-## Parse [space=x], that it add space in text in size of x
+## Parses [space=x], adds space in text of size x
 func parse_spaces(text: String) -> String:
 	re.compile("\\[space=(?P<size>\\d+)\\]\n")
 	result = re.search(text)
@@ -69,8 +67,8 @@ func parse_spaces(text: String) -> String:
 
 	return text
 
-## Returns given text with added BBCode for header with given size (1-4) to it
-func add_header(header_size: int, text: String, add_new_line:=false) -> String:
+## Returns text with added BBCode for header with given size (1-4)
+func add_header(header_size: int, text: String, add_new_line := false) -> String:
 	if !headers: return text
 	if headers.is_empty(): return text
 	
@@ -106,7 +104,7 @@ func add_header(header_size: int, text: String, add_new_line:=false) -> String:
 
 ## If true hint's into url tags,
 ## like this [url=hint:something]{text}[\url]
-func fix_hints(text:String) -> String:
+func fix_hints(text: String) -> String:
 	re.compile("\\[hint=(?P<hint_id>[\\w-]*)\\](?P<text>.+?)\\[\\/hint\\]")
 	result = re.search(text)
 	while result != null:
