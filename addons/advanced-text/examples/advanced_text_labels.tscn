@@ -86,7 +86,7 @@ bold = "**"
 points = "-"
 headers = Array[LabelSettings]([SubResource("LabelSettings_mqb2n"), SubResource("LabelSettings_c8yh7"), SubResource("LabelSettings_faw0r"), SubResource("LabelSettings_n4lgb")])
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyvh7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6gfd"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -413,7 +413,7 @@ parser = SubResource("Resource_uxkq8")
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_vyvh7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_j6gfd")
 script = ExtResource("10_ghujn")
 
 [node name="MarginContainer" type="MarginContainer" parent="AdvancedTextButton/VBoxContainer/ButtonContainer"]

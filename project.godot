@@ -21,7 +21,7 @@ rakugo/save_folder="user://saves"
 config/name="AdvancedText"
 config/tags=PackedStringArray("addon", "rakugo")
 run/main_scene="res://addons/advanced-text/examples/advanced_text_labels.tscn"
-config/features=PackedStringArray("4.3")
+config/features=PackedStringArray("4.5")
 config/icon="res://addons/advanced-text/icons/AdvancedTextLabel.svg"
 addons/icon_finder/preview_size=24
 
