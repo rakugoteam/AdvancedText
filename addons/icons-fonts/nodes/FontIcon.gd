@@ -9,12 +9,10 @@ extends Label
 
 func _ready():
 	_on_icon_settings_changed()
-	Utils.connect_if_possible(
-		icon_settings, "changed", _on_icon_settings_changed)
+	Utils.connect_if_possible(icon_settings.changed, _on_icon_settings_changed)
 
 func _on_icon_settings_changed():
-	if !label_settings:
-		label_settings = LabelSettings.new()
+	if !label_settings: label_settings = LabelSettings.new()
 	
 	icon_settings.update_label_settings(label_settings)
 	text = IconsFonts.get_icon_char(
