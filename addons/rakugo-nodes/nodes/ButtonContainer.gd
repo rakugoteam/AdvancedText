@@ -9,43 +9,41 @@ class_name ButtonContainer
 signal pressed
 
 ## Emitted when button is toggled
-## Works only if `toggle_mode` is on.
+## [br] Works only if `toggle_mode` is on.
 signal toggled(value: bool)
-
-signal state_changed(state_name: StringName)
 
 ## If true, button will be disabled
 @export var disabled := false:
 	set(value):
 		disabled = value
-		if disabled:
-			_change_stylebox("disabled")
-			state_changed.emit(&"disabled")
-			return
-		
-		_change_stylebox("normal")
-		state_changed.emit(&"normal")
+		_disable(value)
 
 ## If true, button will be in toggle mode
 @export var toggle_mode := false
-var _toggled := false:
-	get: return _toggled
 
 ## If true, button will be in pressed state
 @export var button_pressed := false:
 	set(value):
-		if toggle_mode:
-			button_pressed = value
-			_togglef(null, value)
+		if disabled:
+			push_warning(name + " button is disabled")
 			return
-		
-		emit_signal("pressed")
+		# must be done using extra priv 
+		if toggle_mode and value == _button_pressed: return
+		_button_pressed = value
+		_set_button_pressed(value)
+	get: return _button_pressed
 
 ## Name of node group to be used as button group
-## It changes all buttons with toggle_mode in group into radio buttons
+## [br] It changes all buttons with toggle_mode in group into radio buttons
 @export var button_group: StringName = ""
 
 @export_group("Styles", "style_")
+@export_enum("normal", "focus", "pressed", "hover", "hover_pressed", "disabled")
+var style_current := "normal":
+	set(value):
+		style_current = value
+		_change_stylebox(style_current)
+		
 @export var style_normal: StyleBox:
 	set(value):
 		style_normal = value
@@ -61,6 +59,7 @@ var _toggled := false:
 			_change_stylebox("pressed")
 
 @export var style_hover: StyleBox
+@export var style_hover_pressed: StyleBox
 
 @export var style_disabled: StyleBox:
 	set(value):
@@ -68,72 +67,98 @@ var _toggled := false:
 		if disabled:
 			_change_stylebox("disabled")
 
-var current_style: StringName
+var signals_methods: Dictionary[Signal, Callable] = {
+	mouse_entered: _on_mouse_entered,
+	mouse_exited: _on_mouse_exited,
+	focus_entered: _on_focus_entered,
+	focus_exited: _on_focus_exited,
+}
+
+var _button_pressed := false
 
 func _ready() -> void:
-	_change_stylebox("normal")
-	state_changed.emit(&"normal")
-	Utils.connect_if_possible(self, &"mouse_entered", _on_mouse_entered)
-	Utils.connect_if_possible(self, &"mouse_exited", _on_mouse_exited)
-	
+	if Engine.is_editor_hint():
+		set_process_input(false)
+	disabled = disabled # we need this
 	if button_group: add_to_group(button_group)
 
-func _on_mouse_exited():
-	if disabled: return
-	if toggle_mode and _toggled: return
+func _disable(disable := true) -> void:
+	if disable:
+		_change_stylebox("disabled")
+		if Engine.is_editor_hint(): return
+		set_process_input(!disable)
+		for sig in signals_methods:
+			Utils.disconnect_if_possible(sig, signals_methods[sig])
+	else:
+		_change_stylebox("normal")
+		if Engine.is_editor_hint(): return
+		set_process_input(!disable)
+		for sig in signals_methods:
+			Utils.connect_if_possible(sig, signals_methods[sig])
+
+func _on_focus_entered():
+	_change_stylebox("focus")
+
+func _on_focus_exited():
 	_change_stylebox("normal")
-	state_changed.emit(&"normal")
 
 func _on_mouse_entered():
-	if disabled: return
-	_change_stylebox("hover")
-	state_changed.emit(&"hover")
+	# prints("mouse_entered", name)
+	if toggle_mode and button_pressed:
+		_change_stylebox("hover_pressed")
+	else: _change_stylebox("hover")
+	
+func _on_mouse_exited():
+	# prints("mouse_exited", name)
+	if toggle_mode and button_pressed:
+		_change_stylebox("pressed")
+	else: _change_stylebox("normal")
 
 func _change_stylebox(button_style: StringName = "normal"):
 	# prints("changed style to:", button_style)
 	var stylebox := get_theme_stylebox(button_style, "Button")
 	match button_style:
-		"normal":
-			stylebox = style_normal if style_normal else stylebox
-		"focus":
-			stylebox = style_focus if style_focus else stylebox
-		"pressed":
-			stylebox = style_pressed if style_pressed else stylebox
-		"hover":
-			stylebox = style_hover if style_hover else stylebox
-		"disabled":
-			stylebox = style_disabled if style_disabled else stylebox
+		"normal": stylebox = Utils.get_var(style_normal, stylebox)
+		"focus": stylebox = Utils.get_var(style_focus, stylebox)
+		"pressed": stylebox = Utils.get_var(style_pressed, stylebox)
+		"hover": stylebox = Utils.get_var(style_hover, stylebox)
+		"disabled": stylebox = Utils.get_var(style_disabled, stylebox)
+		"hover_pressed": stylebox = Utils.get_var(style_hover_pressed, stylebox)
 
-	if current_style != button_style:
-		current_style = button_style
-		add_theme_stylebox_override("panel", stylebox)
+	add_theme_stylebox_override("panel", stylebox)
 
 func _gui_input(event: InputEvent) -> void:
-	if disabled: return
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if toggle_mode:
-				var t := !_toggled
-				_togglef(null, t)
-				
-				if button_group:
-					get_tree().call_group(
-						button_group, "_togglef", self, !t)
-					return
-			
-			state_changed.emit(&"pressed")
-			pressed.emit()
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.is_pressed():
+				if toggle_mode: button_pressed = !button_pressed
+				else: button_pressed = true
 
-func _togglef(main_button: ButtonContainer, value: bool):
-	if disabled: return
-	if main_button == self: return
+			elif event.is_released():
+				if !toggle_mode: button_pressed = false
 
-	_toggled = value
+func _toggle_group_if_needed(toggle: bool):
+	if !button_group: return
+	var buttons := get_tree().get_nodes_in_group(button_group)
+	if buttons.size() <= 1: return
+	for button: ButtonContainer in buttons:
+		if button == self: continue
+		if button.disabled: continue
+		button._button_pressed = toggle
+		button._set_button_pressed(toggle, false)
+
+func _set_button_pressed(value: bool, _toggle_mode := toggle_mode):
+	if _toggle_mode: _toggle_group_if_needed(!value)
 	if value:
 		_change_stylebox("pressed")
-		state_changed.emit(&"pressed")
+		if toggle_mode: toggled.emit(true)
+		pressed.emit()
+		# prints(name, "pressed")
 	else:
 		_change_stylebox("normal")
-		state_changed.emit(&"normal")
+		if toggle_mode: toggled.emit(false)
 
-	toggled.emit(_toggled)
+func add_button_child(child: Control, parent: Control = self):
+	parent.add_child(child)
+	child.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	child.owner = parent
