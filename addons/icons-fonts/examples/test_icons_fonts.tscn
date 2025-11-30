@@ -1,11 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://casymgu2sqx81"]
+[gd_scene load_steps=22 format=3 uid="uid://casymgu2sqx81"]
 
-[ext_resource type="FontFile" uid="uid://be10y8fgoiayy" path="res://addons/icons-fonts/icons_fonts/emojis/NotoColorEmoji.ttf" id="1_lglyu"]
-[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="2_fd237"]
-[ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_jajcj"]
-[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="4_5ca3b"]
-[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_qfxwr"]
-[ext_resource type="Script" path="res://addons/icons-fonts/examples/rich_text_label_with_icons.gd" id="6_3361y"]
+[ext_resource type="FontFile" uid="uid://c8lyvkhyvpr78" path="res://addons/icons-fonts/icons_fonts/emojis/NotoColorEmoji.ttf" id="1_lglyu"]
+[ext_resource type="Script" uid="uid://iy5cq2cs4uq1" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="2_fd237"]
+[ext_resource type="Script" uid="uid://55wn6pkc4a3m" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_jajcj"]
+[ext_resource type="Script" uid="uid://h5k7a01l2af7" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="4_5ca3b"]
+[ext_resource type="Script" uid="uid://ctw7hkfdc12a1" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_qfxwr"]
+[ext_resource type="Script" uid="uid://d2pghlcti3f8l" path="res://addons/icons-fonts/examples/rich_text_label_with_icons.gd" id="6_3361y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fw4y0"]
 font = ExtResource("1_lglyu")
@@ -16,31 +16,9 @@ shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_lqfro"]
 script = ExtResource("3_jajcj")
-icon_font = "MaterialIcons"
-icon_name = "image-outline"
 icon_size = 128
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
-[sub_resource type="Resource" id="Resource_28mvn"]
-script = ExtResource("3_jajcj")
-icon_font = "MaterialIcons"
-icon_name = "image-outline"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_6nmg6"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scswg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcd74"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -52,41 +30,21 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="Resource" id="Resource_28mvn"]
+script = ExtResource("3_jajcj")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6nmg6"]
+
 [sub_resource type="Resource" id="Resource_nwary"]
 script = ExtResource("3_jajcj")
-icon_font = "MaterialIcons"
 icon_name = "toggle-switch-variant"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_v03hs"]
 script = ExtResource("3_jajcj")
-icon_font = "MaterialIcons"
 icon_name = "toggle-switch-variant-off"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_7vk3f"]
 script = ExtResource("3_jajcj")
-icon_font = "MaterialIcons"
-icon_name = "image-outline"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mmhoi"]
 
@@ -95,74 +53,30 @@ script = ExtResource("3_jajcj")
 icon_font = "Emojis"
 icon_name = "framed_picture"
 icon_size = 64
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_pqb8k"]
 script = ExtResource("3_jajcj")
 icon_font = "Emojis"
 icon_name = "framed_picture"
 icon_size = 32
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dtieq"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4h4a"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
 
 [sub_resource type="Resource" id="Resource_bo5k2"]
 script = ExtResource("3_jajcj")
 icon_font = "Emojis"
 icon_name = "thumbs_up"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_6kb3v"]
 script = ExtResource("3_jajcj")
 icon_font = "Emojis"
 icon_name = "thumbs_down"
-icon_size = 16
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_r0p3s"]
 script = ExtResource("3_jajcj")
 icon_font = "Emojis"
 icon_name = "framed_picture"
 icon_size = 32
-icon_color = Color(1, 1, 1, 1)
-outline_color = Color(1, 1, 1, 1)
-outline_size = 0
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [node name="TestIconsFonts" type="BoxContainer"]
 anchors_preset = 10
@@ -195,6 +109,7 @@ icon_settings = SubResource("Resource_lqfro")
 
 [node name="FontIconButton" type="PanelContainer" parent="MaterialIconsExamples/BoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lcd74")
 script = ExtResource("4_5ca3b")
 icon_settings = SubResource("Resource_28mvn")
 label_text = "Jakiś Tekst"
@@ -203,7 +118,7 @@ button_margin = 0
 
 [node name="FontIconCheckButton" type="PanelContainer" parent="MaterialIconsExamples/BoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_scswg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_lcd74")
 script = ExtResource("5_qfxwr")
 on_icon_settings = SubResource("Resource_nwary")
 off_icon_settings = SubResource("Resource_v03hs")
@@ -235,6 +150,7 @@ icon_settings = SubResource("Resource_a0w4j")
 
 [node name="FontIconButton2" type="PanelContainer" parent="EmojisExamples/BoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lcd74")
 script = ExtResource("4_5ca3b")
 icon_settings = SubResource("Resource_pqb8k")
 label_text = "Jakiś Tekst"
@@ -243,7 +159,7 @@ button_margin = 6
 
 [node name="FontIconCheckButton2" type="PanelContainer" parent="EmojisExamples/BoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_r4h4a")
+theme_override_styles/panel = SubResource("StyleBoxFlat_lcd74")
 script = ExtResource("5_qfxwr")
 on_icon_settings = SubResource("Resource_bo5k2")
 off_icon_settings = SubResource("Resource_6kb3v")

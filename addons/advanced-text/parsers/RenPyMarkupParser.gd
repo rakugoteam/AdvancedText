@@ -26,7 +26,7 @@ func parse(text: String) -> String:
 	return text
 
 func _addons(text := "") -> String:
-	re.compile("\\{(mi:.*?)\\}")
+	re.compile(r"\{(mi:.*?)\}")
 	result = re.search(text)
 	while result != null:
 		replacement = "[%s]" % result.get_string(1)
@@ -40,7 +40,7 @@ func _addons(text := "") -> String:
 ## {a=https://some_domain.com}link{/a}
 ## {a}https://some_domain.com{/a}
 func parse_links(text: String) -> String:
-	re.compile("(?<!\\{)\\{(\\/{0,1})a(?:(=[^\\}]+)\\}|\\})")
+	re.compile(r"(?<!\{)\{(\/{0,1})a(?:(=[^\}]+)\}|\})")
 	result = re.search(text)
 	while result != null:
 		replacement = "[%surl%s]" % [
@@ -54,7 +54,7 @@ func parse_links(text: String) -> String:
 ## Ren'Py images example:
 ## {img=<path>}
 func parse_imgs(text: String) -> String:
-	re.compile("(?<!\\{)\\{img=([^\\}\\s]+)\\}")
+	re.compile(r"(?<!\{)\{img=([^\}\s]+)\}")
 	result = re.search(text)
 	while result != null:
 		replacement = to_bbcode_img(result.get_string(1))
@@ -67,7 +67,7 @@ func parse_imgs(text: String) -> String:
 ## Ren'Py images with size example:
 # {img=<path> size=<height>x<width>}
 func parse_imgs_size(text: String) -> String:
-	re.compile("(?<!\\{)\\{img=([^\\}\\s]+) size=([^\\}]+)\\}")
+	re.compile(r"(?<!\{)\{img=([^\}\s]+) size=([^\}]+)\}")
 	result = re.search(text)
 	while result != null:
 		replacement = to_bbcode_img(result.get_string(1), result.get_string(2))

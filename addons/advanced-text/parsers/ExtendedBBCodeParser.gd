@@ -44,7 +44,7 @@ func parse(text: String) -> String:
 
 ## Parses headers in given text into BBCode
 func parse_headers(text: String) -> String:
-	re.compile("\\[h(?P<size>[1-4])\\](?P<text>.+?)\\[/h(?P=size)\\]")
+	re.compile(r"\[h(?P<size>[1-4])\](?P<text>.+?)\[/h(?P=size)\]")
 	result = re.search(text)
 	while result != null:
 		var h_size := result.get_string("size").to_int() - 1
@@ -57,7 +57,7 @@ func parse_headers(text: String) -> String:
 
 ## Parses [space=x], adds space in text of size x
 func parse_spaces(text: String) -> String:
-	re.compile("\\[space=(?P<size>\\d+)\\]\n")
+	re.compile(r"\[space=(?P<size>\d+)\]\n")
 	result = re.search(text)
 	while result != null:
 		var size := result.get_string("size").to_int()
@@ -105,7 +105,7 @@ func add_header(header_size: int, text: String, add_new_line := false) -> String
 ## If true hint's into url tags,
 ## like this [url=hint:something]{text}[\url]
 func fix_hints(text: String) -> String:
-	re.compile("\\[hint=(?P<hint_id>[\\w-]*)\\](?P<text>.+?)\\[\\/hint\\]")
+	re.compile(r"\[hint=(?P<hint_id>[\w-]*)\](?P<text>.+?)\[\/hint\]")
 	result = re.search(text)
 	while result != null:
 		var hint_id := result.get_string("hint_id")

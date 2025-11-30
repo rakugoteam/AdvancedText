@@ -72,7 +72,7 @@ func parse(text: String) -> String:
 
 	# alt
 	# @| text |@
-	text = parse_sing(text, "@\\|", "\\|@", "indent")
+	text = parse_sing(text, r"@\|", r"\|@", "indent")
 
 	# @wave amp=50 freq=2{ text }
 	text = parse_effect(text, "wave", ["amp", "freq"])
@@ -97,7 +97,7 @@ func parse(text: String) -> String:
 ## Parse @space=x, that it add space in text in size of x
 ## Parses @space=x, adds space in text of size x
 func parse_spaces(text: String) -> String:
-	re.compile("@space=(?P<size>\\d+)\n")
+	re.compile(r"@space=(?P<size>\d+)\n")
 	result = re.search(text)
 	while result != null:
 		var size := result.get_string("size").to_int()
@@ -109,7 +109,7 @@ func parse_spaces(text: String) -> String:
 
 ## Parse md # Headers in given text into BBCode
 func parse_headers(text: String) -> String:
-	re.compile("(#+)\\s+(.+\n)")
+	re.compile(r"(#+)\s+(.+\n)")
 	result = re.search(text)
 	while result != null:
 		var header_level = result.get_string(1).length() - 1
@@ -123,7 +123,7 @@ func parse_headers(text: String) -> String:
 ## Parse md images to in given text to BBCode
 ## Example of md image: ![](path/to/img)
 func parse_imgs(text: String) -> String:
-	re.compile("!\\[\\]\\((.*?)\\)")
+	re.compile(r"!\[\]\((.*?)\)")
 	result = re.search(text)
 	while result != null:
 		replacement = "[img]%s[/img]" % result.get_string(1)
@@ -134,7 +134,7 @@ func parse_imgs(text: String) -> String:
 ## Parse md images with size to in given text to BBCode
 ## Example of md image with size: ![height x width](path/to/img)
 func parse_imgs_size(text: String) -> String:
-	re.compile("!\\[(\\d+)x(\\d+)\\]\\((.*?)\\)")
+	re.compile(r"!\[(\d+)x(\d+)\]\((.*?)\)")
 	result = re.search(text)
 	while result != null:
 		var height = result.get_string(1)
@@ -152,7 +152,7 @@ func parse_imgs_size(text: String) -> String:
 ## <https://www.example.com>
 func parse_links(text: String) -> String:
 	# [link](path/to/file.md)
-	re.compile("\\[(.+)\\]\\((.+)\\)")
+	re.compile(r"\[(.+)\]\((.+)\)")
 	result = re.search(text)
 	while result != null:
 		var link = result.get_string(1)
@@ -162,7 +162,7 @@ func parse_links(text: String) -> String:
 		result = re.search(text)
 
 	# <https://www.example.com>
-	re.compile("<(\\w+:\\/\\/[A-Za-z0-9\\.\\-\\_\\@\\/]+)>")
+	re.compile(r"<(\w+:\/\/[A-Za-z0-9\.\-\_\@\/]+)>")
 	result = re.search(text)
 	while result != null:
 		replacement = "[url]%s[/url]" % result.get_string(1)
@@ -175,7 +175,7 @@ func parse_links(text: String) -> String:
 ## @[text](hint)
 func parse_hints(text: String) -> String:
 	# @[text](hint)
-	re.compile("@\\[(.+)\\]\\((.+)\\)")
+	re.compile(r"@\[(.+)\]\((.+)\)")
 	result = re.search(text)
 	while result != null:
 		var t = result.get_string(1)
@@ -187,7 +187,7 @@ func parse_hints(text: String) -> String:
 	return text
 
 func parse_sing(text: String, open: String, close: String, tag: String):
-	var search := "(\\W+)%s(.*?)%s(\\W+)" % [open, close]
+	var search := r"(\W+)%s(.*?)%s(\W+)" % [open, close]
 	re.compile(search)
 	result = re.search(text)
 
@@ -234,15 +234,15 @@ func parse_sing(text: String, open: String, close: String, tag: String):
 
 func get_italics_sing(_italics: String = italics) -> String:
 	match _italics:
-		"*": return "\\*"
-		"_": return "\\_"
-	return "[_|\\*]"
+		"*": return r"\*"
+		"_": return r"\_"
+	return r"[_|\*]"
 
 func get_bold_sing(_bold: String = bold) -> String:
 	match _bold:
-		"**": return "\\*\\*"
-		"__": return "\\_\\_"
-	return "[_\\*]{2}"
+		"**": return r"\*\*"
+		"__": return r"\_\_"
+	return r"[_\*]{2}"
 
 ## Parse md italics to in given text to BBCode
 ## Example of md italics:
@@ -261,7 +261,7 @@ func parse_bold(text: String) -> String:
 	return parse_sing(text, sing, sing, "b")
 
 func parse_bold_italic(text: String) -> String:
-	var sing := "[\\*_]{3}"
+	var sing := r"[\*_]{3}"
 	var _bold := get_bold_sing(bold)
 	var _italics := get_italics_sing(italics)
 
@@ -295,7 +295,7 @@ func parse_table(text: String) -> String:
 	# @tabel=2 {
 	# | cell1 | cell2 |
 	# }
-	re.compile("@table=([0-9]+)\\s*\\{\\s*((\\|.+)\n)+\\}")
+	re.compile(r"@table=([0-9]+)\s*\{\s*((\|.+)\n)+\}")
 	result = re.search(text)
 	while result != null:
 		replacement = "[table=%s]" % result.get_string(1)
@@ -319,7 +319,7 @@ func parse_table(text: String) -> String:
 ## Parse md color name from Color class tag to in given text to BBCode
 func parse_color_key(text: String) -> String:
 	# @color=red { text }
-	re.compile("@color=([a-z]+)\\s*\\{\\s*([^\\}]+)\\s*\\}")
+	re.compile(r"@color=([a-z]+)\s*\{\s*([^\}]+)\s*\}")
 	result = re.search(text)
 	while result != null:
 		var color = result.get_string(1)
@@ -333,7 +333,7 @@ func parse_color_key(text: String) -> String:
 ## Parse md color hex to in given text to BBCode
 func parse_color_hex(text: String) -> String:
 	# @color=#ffe820 { text }
-	re.compile("@color=(#[0-9a-f]+)\\s*\\{\\s*([^\\}]+)\\s*\\}")
+	re.compile(r"@color=(#[0-9a-f]+)\s*\{\s*([^\}]+)\s*\}")
 	for i in range(0, 3):
 		result = re.search(text)
 		while result != null:
@@ -350,7 +350,7 @@ func parse_color_hex(text: String) -> String:
 func parse_effect(text: String, effect: String, args: Array) -> String:
 	# @effect args { text }
 	# where args: arg_name=arg_value, arg_name=arg_value
-	re.compile("@%s([\\s\\w=0-9\\.]+)\\s*{(.+)}" % effect)
+	re.compile(r"@%s([\s\w=0-9\.]+)\s*{(.+)}" % effect)
 	result = re.search(text)
 	while result != null:
 		var _args = result.get_string(1)
@@ -360,7 +360,7 @@ func parse_effect(text: String, effect: String, args: Array) -> String:
 		result = re.search(text)
 
 	# @effect val1,val2 { text }
-	re.compile("@%s\\s([0-9\\.\\,\\s]+)\\s*{(.+)}" % effect)
+	re.compile(r"@%s\s([0-9\.\,\s]+)\s*{(.+)}" % effect)
 	result = re.search(text)
 	while result != null:
 		var _values = result.get_string(1)
@@ -381,7 +381,7 @@ func parse_effect(text: String, effect: String, args: Array) -> String:
 ## Parse md keyword to in given text to BBCode
 func parse_keyword(text: String, keyword: String, tag: String) -> String:
 	# @keyword {text}
-	re.compile("@%s\\s*{(.+)}" % keyword)
+	re.compile(r"@%s\s*{(.+)}" % keyword)
 	result = re.search(text)
 	while result != null:
 		replacement = "[%s]%s[/%s]" % [tag, result.get_string(1), tag]
@@ -392,10 +392,10 @@ func parse_keyword(text: String, keyword: String, tag: String) -> String:
 
 ## Parse md points list to in given text to BBCode
 func parse_points(text: String, _points: String = points) -> String:
-	var regex := "^(\\t*)%s\\s+(.+)$"
+	var regex := r"^(\t*)%s\s+(.+)$"
 	match _points:
 		"-": regex %= "-"
-		"*": regex %= "\\*"
+		"*": regex %= r"\*"
 		"both":
 			text = parse_points(text, "-")
 			return parse_points(text, "*")
@@ -404,7 +404,7 @@ func parse_points(text: String, _points: String = points) -> String:
 
 ## Parse md number points list to in given text to BBCode
 func parse_number_points(text: String) -> String:
-	return parse_list(text, "[ol type=1]", "[/ol]", "^(\\t*)\\d+\\.\\s+(.+)$")
+	return parse_list(text, "[ol type=1]", "[/ol]", r"^(\t*)\d+\.\s+(.+)$")
 
 ## Parse md list to in given text to BBCode
 func parse_list(text: String, open: String, close: String, regex: String):

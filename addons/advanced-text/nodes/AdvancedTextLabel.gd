@@ -46,11 +46,20 @@ signal custom_link(url: String)
 			_parse_text()
 			# print("parse text")
 
+## How much procent of text will add in single tick
+@export_range(1, 100) var text_speed := 100
+
+## How time in second take text_tick
+## 0 or -1 make make text show instantly
+@export var text_tick := -1.0
+
 ## Returns the font size from the theme or default.
 var font_size: int:
 	get:
 		if !theme: return 16
 		return theme.get_font_size(get_class(), &"normal")
+
+var timer: Timer
 
 func _ready():
 	bbcode_enabled = true
@@ -78,6 +87,21 @@ func _parse_text() -> void:
 		return
 	
 	text = parser.parse(advanced_text)
+
+	if text_tick > 0:
+		if !timer:
+			timer = Timer.new()
+			add_child(timer)
+			timer.timeout.connect(_on_timeout)
+
+		timer.wait_time = text_tick
+		visible_ratio = 0
+		timer.start()
+
+func _on_timeout():
+	if visible_ratio < 1:
+		visible_ratio += text_speed * 0.01
+	else: timer.stop()
 
 func _on_rakuvars_changed(var_name, value) -> void:
 	if "<%s>" % var_name in advanced_text:

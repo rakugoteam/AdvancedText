@@ -6,7 +6,7 @@ class_name FontIconButton
 extends ButtonContainer
 
 @export_group("Layout", "layout_")
-@export_enum("Label-Icon", "Icon-Label")
+@export_enum("Label-Icon", "Icon-Label", "Icon")
 var layout_order := "Label-Icon":
 	set(value):
 		layout_order = value
@@ -62,27 +62,32 @@ func _get_lay_dict() -> Dictionary:
 	}
 
 func _ready():
+	super._ready()
 	for ch: Control in get_children():
 		ch.queue_free()
 
 	var empty_style := StyleBoxEmpty.new()
 	_box = BoxContainer.new()
+	_box.alignment = BoxContainer.ALIGNMENT_CENTER
 	_font_icon = FontIcon.new()
 	_font_icon.add_theme_stylebox_override("normal", empty_style)
 
 	_label = Label.new()
 	_label.add_theme_stylebox_override("normal", empty_style)
-	self.layout_order = layout_order
+	layout_order = layout_order
 
 	_margins = MarginContainer.new()
-	_margins.add_child(_box)
-	add_child(_margins)
+	add_button_child(_box, _margins)
+	add_button_child(_margins)
 
 	Utils.connect_if_possible(
-		label_settings, "changed", _on_label_settings_changed)
-	
+		label_settings.changed,
+		_on_label_settings_changed
+	)
 	Utils.connect_if_possible(
-		icon_settings, "changed", _on_icon_settings_changed)
+		icon_settings.changed,
+		_on_icon_settings_changed
+	)
 
 func _on_label_settings_changed():
 	if label_settings != _label.label_settings:
@@ -92,7 +97,7 @@ func _on_icon_settings_changed():
 	if icon_settings != _font_icon.icon_settings:
 		_font_icon.icon_settings = icon_settings
 	Utils.connect_if_possible(
-		icon_settings, "changed",
+		icon_settings.changed,
 		_font_icon._on_icon_settings_changed)
 
 func _clear_box():
@@ -100,12 +105,12 @@ func _clear_box():
 	for ch: Control in _box.get_children():
 		_box.remove_child(ch)
 
-func _set_order(order:String):
+func _set_order(order: String):
 	_clear_box()
 	await get_tree().create_timer(0.2).timeout
 	_apply_layout(_crate_layout(order))
 
-func _crate_layout(order:String) -> Array[Control]:
+func _crate_layout(order: String) -> Array[Control]:
 	var layout: Array[Control] = []
 	var order_split := order.split("-")
 	var dict := _get_lay_dict()
@@ -116,7 +121,6 @@ func _crate_layout(order:String) -> Array[Control]:
 func _apply_layout(layout: Array[Control]):
 	for control: Control in layout:
 		if control.get_parent() == _box: continue
-		_box.add_child(control)
+		add_button_child(control, _box)
 		if control is FontIcon:
-			control.size_flags_horizontal\
-				= Control.SIZE_SHRINK_CENTER
+			control.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
