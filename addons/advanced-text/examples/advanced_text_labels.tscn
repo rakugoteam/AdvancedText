@@ -1,16 +1,16 @@
 [gd_scene load_steps=33 format=3 uid="uid://dw681hislg41h"]
 
 [ext_resource type="FontFile" uid="uid://dopnqhkanf1f7" path="res://addons/advanced-text/font/DejaVuSans.ttf" id="1_nhc5f"]
-[ext_resource type="Script" path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" id="1_uinld"]
+[ext_resource type="Script" uid="uid://v3kqn6xh6gcx" path="res://addons/advanced-text/nodes/AdvancedTextLabel.gd" id="1_uinld"]
 [ext_resource type="FontFile" uid="uid://be1m3xik5j81c" path="res://addons/advanced-text/font/DejaVuSans-Bold.ttf" id="2_aml2b"]
 [ext_resource type="FontFile" uid="uid://dv5f7ykw422ft" path="res://addons/advanced-text/font/DejaVuSans-Oblique.ttf" id="3_7l8y2"]
 [ext_resource type="FontFile" uid="uid://3spkwr34s2bq" path="res://addons/advanced-text/font/DejaVuSans-BoldOblique.ttf" id="4_rc1wt"]
 [ext_resource type="FontFile" uid="uid://buj02o26lgfif" path="res://addons/advanced-text/font/DejaVuSansMono.ttf" id="5_fmnql"]
-[ext_resource type="Script" path="res://addons/advanced-text/parsers/MarkdownParser.gd" id="7_r0mph"]
-[ext_resource type="Script" path="res://addons/advanced-text/parsers/RenPyMarkupParser.gd" id="8_8yudh"]
-[ext_resource type="Script" path="res://addons/advanced-text/parsers/ExtendedBBCodeParser.gd" id="9_xqqk6"]
-[ext_resource type="Script" path="res://addons/rakugo-nodes/nodes/ButtonContainer.gd" id="10_ghujn"]
-[ext_resource type="Script" path="res://addons/advanced-text/examples/InitTestRakugoVars.gd" id="12_wngyp"]
+[ext_resource type="Script" uid="uid://28u3e1qftooc" path="res://addons/advanced-text/parsers/MarkdownParser.gd" id="7_r0mph"]
+[ext_resource type="Script" uid="uid://dnpej4k30jf7w" path="res://addons/advanced-text/parsers/RenPyMarkupParser.gd" id="8_8yudh"]
+[ext_resource type="Script" uid="uid://2g4aqsnqfgld" path="res://addons/advanced-text/parsers/ExtendedBBCodeParser.gd" id="9_xqqk6"]
+[ext_resource type="Script" uid="uid://dfcfufbaug0w7" path="res://addons/rakugo-nodes/nodes/ButtonContainer.gd" id="10_ghujn"]
+[ext_resource type="Script" uid="uid://bidu4oolaar67" path="res://addons/advanced-text/examples/InitTestRakugoVars.gd" id="12_wngyp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0sox2"]
 font_size = 22
@@ -29,9 +29,6 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_uxkq8"]
 script = ExtResource("7_r0mph")
-italics = "both"
-bold = "both"
-points = "both"
 headers = Array[LabelSettings]([SubResource("LabelSettings_0sox2"), SubResource("LabelSettings_1rb2p"), SubResource("LabelSettings_cllr0"), SubResource("LabelSettings_633q0")])
 
 [sub_resource type="LabelSettings" id="LabelSettings_lvv03"]
@@ -86,7 +83,7 @@ bold = "**"
 points = "-"
 headers = Array[LabelSettings]([SubResource("LabelSettings_mqb2n"), SubResource("LabelSettings_c8yh7"), SubResource("LabelSettings_faw0r"), SubResource("LabelSettings_n4lgb")])
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6gfd"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjhlx"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -109,10 +106,10 @@ current_tab = 0
 [node name="MarkdownLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_nhc5f")
-theme_override_fonts/mono_font = ExtResource("5_fmnql")
-theme_override_fonts/italics_font = ExtResource("3_7l8y2")
-theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
 theme_override_fonts/bold_font = ExtResource("2_aml2b")
+theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
+theme_override_fonts/italics_font = ExtResource("3_7l8y2")
+theme_override_fonts/mono_font = ExtResource("5_fmnql")
 script = ExtResource("1_uinld")
 advanced_text = "# Header Level 1
 ## Header Level 2
@@ -198,10 +195,10 @@ auto_translate_mode = 2
 visible = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_nhc5f")
-theme_override_fonts/mono_font = ExtResource("5_fmnql")
-theme_override_fonts/italics_font = ExtResource("3_7l8y2")
-theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
 theme_override_fonts/bold_font = ExtResource("2_aml2b")
+theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
+theme_override_fonts/italics_font = ExtResource("3_7l8y2")
+theme_override_fonts/mono_font = ExtResource("5_fmnql")
 script = ExtResource("1_uinld")
 advanced_text = "{h1}Header Level 1{/h1}
 {h2}Header Level 2{/h2}
@@ -280,10 +277,10 @@ metadata/_tab_index = 1
 visible = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_nhc5f")
-theme_override_fonts/mono_font = ExtResource("5_fmnql")
-theme_override_fonts/italics_font = ExtResource("3_7l8y2")
-theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
 theme_override_fonts/bold_font = ExtResource("2_aml2b")
+theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
+theme_override_fonts/italics_font = ExtResource("3_7l8y2")
+theme_override_fonts/mono_font = ExtResource("5_fmnql")
 script = ExtResource("1_uinld")
 advanced_text = "[h1]Header Level 1[/h1]
 [h2]Header Level 2[/h2]
@@ -360,10 +357,10 @@ metadata/_tab_index = 2
 visible = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_nhc5f")
-theme_override_fonts/mono_font = ExtResource("5_fmnql")
-theme_override_fonts/italics_font = ExtResource("3_7l8y2")
-theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
 theme_override_fonts/bold_font = ExtResource("2_aml2b")
+theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
+theme_override_fonts/italics_font = ExtResource("3_7l8y2")
+theme_override_fonts/mono_font = ExtResource("5_fmnql")
 script = ExtResource("1_uinld")
 advanced_text = "[mi:format-text-rotation-angle-up, 64]
 :cookie, 64:"
@@ -396,10 +393,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("1_nhc5f")
-theme_override_fonts/mono_font = ExtResource("5_fmnql")
-theme_override_fonts/italics_font = ExtResource("3_7l8y2")
-theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
 theme_override_fonts/bold_font = ExtResource("2_aml2b")
+theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
+theme_override_fonts/italics_font = ExtResource("3_7l8y2")
+theme_override_fonts/mono_font = ExtResource("5_fmnql")
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -413,7 +410,7 @@ parser = SubResource("Resource_uxkq8")
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_j6gfd")
+theme_override_styles/panel = SubResource("StyleBoxFlat_pjhlx")
 script = ExtResource("10_ghujn")
 
 [node name="MarginContainer" type="MarginContainer" parent="AdvancedTextButton/VBoxContainer/ButtonContainer"]
@@ -430,10 +427,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("1_nhc5f")
-theme_override_fonts/mono_font = ExtResource("5_fmnql")
-theme_override_fonts/italics_font = ExtResource("3_7l8y2")
-theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
 theme_override_fonts/bold_font = ExtResource("2_aml2b")
+theme_override_fonts/bold_italics_font = ExtResource("4_rc1wt")
+theme_override_fonts/italics_font = ExtResource("3_7l8y2")
+theme_override_fonts/mono_font = ExtResource("5_fmnql")
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
